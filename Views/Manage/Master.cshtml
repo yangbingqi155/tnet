@@ -1,0 +1,65 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Css/Manage/master.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.min.js")"></script>
+    @RenderSection("Head_Style", required: false)
+    @RenderSection("Head_Js", required: false)
+</head>
+<body>
+    <div class="header">
+        <div class="head_box">
+            <div class="inner wrp">
+                <h1 class="logo">
+                    <a href="/" title="悦和华彩微信公众平台"></a>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="contenter">
+        <div class="contenter_box">
+            <div class="col_side">
+                <dl>
+                    <dt><i class="m"></i>管理</dt>
+                    <dd><a href="javascript:void(0)">消息管理</a></dd>
+                    <dd><a href="javascript:void(0)">用户管理</a></dd>
+                    <dd><a href="javascript:void(0)">素材管理</a></dd>
+                    <dd><a href="javascript:void(0)">客服管理</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="f"></i>功能</dt>
+                    <dd><a href="javascript:void(0)">群发消息</a></dd>
+                    <dd><a href="javascript:void(0)">自动回复</a></dd>
+                    <dd><a href="javascript:void(0)" class="selected">自定义菜单</a></dd>
+                </dl>
+            </div>
+            <div class="col_main">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <ul class="links">
+            <li>
+                <a href="/">关于华彩</a>
+            </li>
+            <li>
+                <a href="/">关于悦和</a>
+            </li>
+            <li>
+                <a href="/">联系我们</a>
+            </li>
+            <li>
+                <a href="/">Copyright © 1999-2016 Richers.com.cn. All Rights Reserved.</a>
+            </li>
+
+        </ul>
+    </div>
+    <div id="maskLayout"></div>
+</body>
+</html>
