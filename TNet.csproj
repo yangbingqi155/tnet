@@ -17,7 +17,7 @@
     <AssemblyName>TNet</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -168,25 +168,109 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Weixin\AccessTokenM.cs" />
+    <Compile Include="Models\Weixin\ReceiveMsgM.cs" />
+    <Compile Include="Models\Weixin\ReplyType.cs" />
     <Compile Include="Models\Weixin\RMaterialItemParamM.cs" />
     <Compile Include="Models\Weixin\RMaterialListParamM.cs" />
+    <Compile Include="Models\Weixin\signatureM.cs" />
+    <Compile Include="Models\Weixin\SubscribeMsgM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Util\HttpHelp.cs" />
+    <Compile Include="Util\MsgHelp.cs" />
     <Compile Include="Util\Pub.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\XMLToken.xml" />
+    <Content Include="Css\Com\base.css" />
     <Content Include="Css\Com\Content\bootstrap.css" />
     <Content Include="Css\Com\Content\bootstrap.min.css" />
+    <Content Include="Images\Com\load_ing.gif" />
+    <Content Include="Images\Com\load_ok.png" />
+    <Content Include="Images\Com\load_error.png" />
+    <Content Include="Js\Pub.js" />
+    <Content Include="Css\Manage\Master.css" />
+    <Content Include="Css\Manage\Menu.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Css\Com\Content\Site.css" />
+    <Content Include="Images\angle_6.png" />
+    <Content Include="Images\banshizhinan.png" />
+    <Content Include="Images\baoxiu.png" />
+    <Content Include="Images\baoxiu2.png" />
+    <Content Include="Images\bennler.jpg" />
+    <Content Include="Images\bennler2.jpg" />
+    <Content Include="Images\bennler3.jpg" />
+    <Content Include="Images\bennler4.jpg" />
+    <Content Include="Images\bennler5.jpg" />
+    <Content Include="Images\bszn.png" />
+    <Content Include="Images\bszn2.png" />
+    <Content Include="Images\diaocha.png" />
+    <Content Include="Images\dingdan.png" />
+    <Content Include="Images\dw.png" />
+    <Content Include="Images\ershoujiaoyi.png" />
+    <Content Include="Images\fangcanjiaoyi.png" />
+    <Content Include="Images\gg.png" />
+    <Content Include="Images\gonggao.png" />
+    <Content Include="Images\head_bg.jpg" />
+    <Content Include="Images\horn.png" />
+    <Content Include="Images\hours.png" />
+    <Content Include="Images\icon_refresh_progress_white.png" />
+    <Content Include="Images\jiaofei.png" />
+    <Content Include="Images\jiaofeilis.png" />
+    <Content Include="Images\jiazheng.png" />
+    <Content Include="Images\jinronglicai.png" />
+    <Content Include="Images\juece.png" />
+    <Content Include="Images\jy.png" />
+    <Content Include="Images\kefu.png" />
+    <Content Include="Images\kuaidi.png" />
+    <Content Include="Images\main_icon.png" />
+    <Content Include="Images\Manage\base_z2b638f.png" />
+    <Content Include="Images\Manage\bg_logo2491a6.png" />
+    <Content Include="Images\Manage\bg_mobile_foot.png" />
+    <Content Include="Images\Manage\bg_mobile_head.png" />
+    <Content Include="Images\Manage\icon_menu_function.png" />
+    <Content Include="Images\Manage\icon_menu_management.png" />
+    <Content Include="Images\Manage\index_z2a7519.png" />
+    <Content Include="Images\Material\0.jpg" />
+    <Content Include="Images\Material\fWy-ww0bH4JeCCCqiJA6VgsEk9Wkr_BPjDUD9oTsH6A.jpg" />
+    <Content Include="Images\me.png" />
+    <Content Include="Images\peishong.png" />
+    <Content Include="Images\point.png" />
+    <Content Include="Images\prev_img.png" />
+    <Content Include="Images\quan.png" />
+    <Content Include="Images\richerssoft_weixin.png" />
+    <Content Include="Images\shangcheng.png" />
+    <Content Include="Images\shenming.png" />
+    <Content Include="Images\shequshalong.png" />
+    <Content Include="Images\shezhi.png" />
+    <Content Include="Images\ssp.png" />
+    <Content Include="Images\suipai.png" />
+    <Content Include="Images\tongzhi.png" />
+    <Content Include="Images\toushujianyi.jpg" />
+    <Content Include="Images\toushujianyi.png" />
+    <Content Include="Images\ts.png" />
+    <Content Include="Images\untitled.png" />
+    <Content Include="Images\untitled2.png" />
+    <Content Include="Images\waimai.png" />
+    <Content Include="Images\weixiu2.png" />
+    <Content Include="Images\wexiu2.png" />
+    <Content Include="Images\wo.png" />
+    <Content Include="Images\wuye.png" />
+    <Content Include="Images\wx.png" />
+    <Content Include="Images\yingyongjiaofei.png" />
+    <Content Include="Images\yushouzhanghu.png" />
+    <Content Include="Images\zhichanjiaoyi.png" />
+    <Content Include="Images\zhifudingdan.png" />
+    <Content Include="Images\zhinengjiaju.png" />
+    <Content Include="Images\zhipai.png" />
+    <Content Include="Images\zhoubianshangquan.png" />
     <Content Include="Js\Com\bootstrap.js" />
     <Content Include="Js\Com\bootstrap.min.js" />
     <None Include="Js\Com\jquery-1.10.2.intellisense.js" />
@@ -201,6 +285,7 @@
     <Content Include="Js\Com\respond.js" />
     <Content Include="Js\Com\respond.min.js" />
     <Content Include="Js\Com\_references.js" />
+    <Content Include="Js\Manage\Menu.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -208,7 +293,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -217,7 +304,9 @@
     <Content Include="Views\Manage\Master.cshtml" />
     <Content Include="Views\Manage\Menu.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\WeChat\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -244,7 +333,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>44454</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44454/</IISUrl>
+          <IISUrl>http://localhost/TNet</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

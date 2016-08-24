@@ -1,11 +1,11 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using WeChatApp.Bll;
+using Util;
 using System.IO;
 using WeChatApp.Models;
 
-namespace WeChatApp.Controllers
+namespace TNet.Controllers
 {
     public class ManageController : Controller
     {
@@ -22,8 +22,8 @@ namespace WeChatApp.Controllers
         {
             HttpHelp bll = new HttpHelp();
             string url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=" + Pub.accessToken;
-            string responseContent = bll.HttpGet(url);
-            ViewData["MenuJsonData"] = new HtmlString(responseContent);
+            string data = bll.HttpGet(url);
+            ViewBag.Menu = new HtmlString(data);
             return View();
         }
 
@@ -91,7 +91,7 @@ namespace WeChatApp.Controllers
         {
             HttpHelp bll = new HttpHelp();
             string url = " https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + Pub.accessToken;
-            JavaScriptSerializer Serializer = new JavaScriptSerializer();
+            
             string responseContent = bll.HttpPost(url, menu);
             return Json(responseContent);
         }

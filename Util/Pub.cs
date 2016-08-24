@@ -2,15 +2,20 @@
 using System.Configuration;
 using System.IO;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Xml;
 using WeChatApp.Models;
 
-namespace WeChatApp.Bll
+namespace Util
 {
     public class Pub
     {
-
+        public static string C(string url)
+        {
+            return ConfigurationManager.AppSettings["app_proxy"] + "" + url;
+             
+        }
         /// <summary>
         /// 微信公众号Token
         /// </summary>
@@ -60,7 +65,6 @@ namespace WeChatApp.Bll
                 xml.Load(str);
                 str.Close();
                 str.Dispose();
-
                 string Token = xml.SelectSingleNode("xml").SelectSingleNode("AccessToken").InnerText;
                 DateTime AccessExpires = Convert.ToDateTime(xml.SelectSingleNode("xml").SelectSingleNode("AccessExpires").InnerText);
                 if (DateTime.Now >= AccessExpires)
@@ -111,8 +115,8 @@ namespace WeChatApp.Bll
             catch (Exception)
             {
 
-                throw;
             }
+            return "";
         }
 
 

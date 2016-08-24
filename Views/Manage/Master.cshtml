@@ -1,17 +1,28 @@
-﻿
+﻿@{
+    Layout = null;
+
+}
+@using Util
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/Css/Manage/master.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/jquery-1.7.min.js")"></script>
-    @RenderSection("Head_Style", required: false)
-    @RenderSection("Head_Js", required: false)
+    <link href="@Pub.C(Url.Content("~/Css/Com/Base.css"))" rel="stylesheet" type="text/css" />
+    <link href="@Pub.C(Url.Content("~/Css/Manage/Master.css"))" rel="stylesheet" type="text/css" />
+    <script src="@Pub.C(Url.Content("~/Js/Com/jquery-1.10.2.js"))"></script>
+    <script src="@Pub.C(Url.Content("~/Js/Pub.js"))"></script>
+    @RenderSection("Head", required: false)
 </head>
 <body>
+    <div class="RAMsgHost">
+        <div class="RAMsg" id="RAMsgObj">
+            <div class="Context" id="RAMsgObj_Context">
+                <span class="load_ing">努力加载数据中...</span>
+            </div>
+        </div>
+    </div>
     <div class="header">
         <div class="head_box">
             <div class="inner wrp">
@@ -46,16 +57,10 @@
     <div class="footer">
         <ul class="links">
             <li>
-                <a href="/">关于华彩</a>
-            </li>
-            <li>
-                <a href="/">关于悦和</a>
-            </li>
-            <li>
                 <a href="/">联系我们</a>
             </li>
             <li>
-                <a href="/">Copyright © 1999-2016 Richers.com.cn. All Rights Reserved.</a>
+                <a href="/">Copyright © TNet. All Rights Reserved.</a>
             </li>
 
         </ul>
