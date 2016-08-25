@@ -187,12 +187,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\XMLToken.xml" />
-    <Content Include="Css\Com\base.css" />
+    <Content Include="Css\Com\swiper-3.3.1.min.css" />
+    <Content Include="Css\Home\Index.css" />
+    <Content Include="Css\Manage\Base.css" />
     <Content Include="Css\Com\Content\bootstrap.css" />
     <Content Include="Css\Com\Content\bootstrap.min.css" />
+    <Content Include="Css\WeiXin\Base.css" />
     <Content Include="Images\Com\load_ing.gif" />
     <Content Include="Images\Com\load_ok.png" />
     <Content Include="Images\Com\load_error.png" />
+    <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Js\Pub.js" />
     <Content Include="Css\Manage\Master.css" />
     <Content Include="Css\Manage\Menu.css" />
@@ -286,6 +290,7 @@
     <Content Include="Js\Com\respond.min.js" />
     <Content Include="Js\Com\_references.js" />
     <Content Include="Js\Manage\Menu.js" />
+    <Content Include="Js\Home\Home.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -301,8 +306,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\Master.cshtml" />
     <Content Include="Views\Manage\Menu.cshtml" />
+    <Content Include="Views\Shared\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\WeChat\" />

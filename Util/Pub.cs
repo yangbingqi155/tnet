@@ -9,12 +9,16 @@ using WeChatApp.Models;
 
 namespace Util
 {
-    public class Pub
+    public static class Pub
     {
         public static string C(string url)
         {
-            return ConfigurationManager.AppSettings["app_proxy"] + "" + url;
-             
+            if (url[0] == '~')
+            {
+                url = HttpContext.Current.Request.ApplicationPath + url.Substring(1);
+            }
+            return ConfigurationManager.AppSettings["app_proxy"] + url;
+
         }
         /// <summary>
         /// 微信公众号Token
