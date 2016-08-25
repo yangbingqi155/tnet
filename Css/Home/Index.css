@@ -1,0 +1,112 @@
+﻿.property_content {
+    padding-bottom: 4rem;
+}
+
+.main_banner {
+    position: relative;
+    max-height: 20rem;
+    overflow: hidden;
+}
+
+    .main_banner a {
+        outline: none;
+    }
+
+    .main_banner img {
+        width: 100%;
+    }
+
+    .main_banner .top_tool {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        font-size: 1.4rem;
+        color: #fff;
+        z-index: 999;
+        border-radius: 2rem;
+        background: rgba(0,0,0,0.5);
+        padding: 0.5rem;
+    }
+
+        .main_banner .top_tool i {
+            border: 0.1rem solid #ccc;
+            width: 0.8rem;
+            height: 0.8rem;
+            display: block;
+            border-width: 0.1rem 0 0 0.1rem;
+            transform: rotate(135deg);
+            -moz-transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+            -o-transform: rotate(-135deg);
+            float: right;
+            margin: 0.2rem 0.5em 0;
+        }
+
+.main_nav table {
+    width: 100%;
+    box-sizing: padding-box;
+    padding-top: 1rem;
+}
+
+    .main_nav table tr td {
+        text-align: center;
+    }
+
+        .main_nav table tr td a, .main_nav table tr td a:hover {
+            font-size: 1.2rem;
+            color: #333;
+            width: 100%;
+            outline: none;
+            display: block;
+            padding-bottom: 2rem;
+            box-sizing: padding-box;
+        }
+
+            .main_nav table tr td a span {
+                display: block;
+            }
+
+            .main_nav table tr td a i {
+                background: url(../../Images/main_icon.png) no-repeat scroll 0 0;
+                background-size: cover;
+                display: inline-block;
+                width: 6rem;
+                height: 6rem;
+                transform: scale(0.8);
+                -o-transform: scale(0.8);
+                -webkit-transform: scale(0.8);
+                -moz-transform: scale(0.8);
+                -ms-transform: scale(0.8);
+            }
+
+                .main_nav table tr td a i.tongzhi {
+                    background-position: 0 0;
+                }
+
+                .main_nav table tr td a i.baoxiu {
+                    background-position: 0 -70px;
+                }
+
+                .main_nav table tr td a i.toushu {
+                    background-position: 0 -140px;
+                }
+
+                .main_nav table tr td a i.jiaofei {
+                    background-position: 0 -210px;
+                }
+
+                .main_nav table tr td a i.suishoupai {
+                    background-position: 0 -280px;
+                }
+
+                .main_nav table tr td a i.juece {
+                    background-position: 0 -350px;
+                }
+
+                .main_nav table tr td a i.diaocha {
+                    background-position: 0 -420px;
+                }
+
+                .main_nav table tr td a i.zhinan {
+                    background-position: 0 -490px;
+                }
