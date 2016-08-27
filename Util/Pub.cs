@@ -13,11 +13,16 @@ namespace Util
     {
         public static string C(string url)
         {
+            string proxy_root = "";
+            if(HttpContext.Current.Request.UserHostAddress.IndexOf("192.168.1.20") >= 0)
+            {
+                proxy_root = ConfigurationManager.AppSettings["app_proxy"];
+            }
             if (url[0] == '~')
             {
                 url = HttpContext.Current.Request.ApplicationPath + url.Substring(1);
             }
-            return ConfigurationManager.AppSettings["app_proxy"] + url;
+            return proxy_root + url;
 
         }
         /// <summary>

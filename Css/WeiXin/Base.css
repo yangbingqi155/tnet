@@ -1,6 +1,6 @@
-﻿body,html {
-    padding:0px;
-    margin:0px;
+﻿body, html {
+    padding: 0px;
+    margin: 0px;
 }
 
 
@@ -8,10 +8,9 @@
 /*****************加载提示********************/
 .RAMsgHost {
     width: 100%;
-    position:fixed;
-    top:10px;
+    position: fixed;
+    top: 10px;
     z-index: 999999;
-    
 }
 
     .RAMsgHost .RAMsg {
@@ -22,7 +21,7 @@
         margin: auto;
         z-index: 999999;
         border-radius: 5px;
-        display:none;
+        display: none;
     }
 
         .RAMsgHost .RAMsg .Context span.load_ok {
@@ -67,7 +66,7 @@
 
 
 
-        * {
+* {
     padding: 0;
     margin: 0;
 }
@@ -320,11 +319,29 @@ h1, h2, h3, h3, h4, h5, h6 {
 }
 
 .nodata {
-    text-align:center;
-    font-weight:bold;
-    font-size:1.4rem;
-    color:#666;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #666;
     padding-top: 30rem;
     width: 100%;
     background: url(../../Images/no_data_icon.png) no-repeat scroll center center;
+}
+
+
+/*VLine*/
+
+.vline {
+    border-top: solid #d6d6d6 1px;
+    background-color:#d9d9d9;
+    border-bottom:solid #d6d6d6 1px;
+    display:block;
+    height:8px;
+}
+
+.title{
+     padding:0px 8px 0px 8px;
+     line-height:40px;
+     height:40px;
+     border-bottom:solid #d6d6d6 1px;
 }
