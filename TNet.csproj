@@ -172,16 +172,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Weixin\AccessToken.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
     <Compile Include="Models\Weixin\ReplyType.cs" />
@@ -211,7 +201,7 @@
     <Content Include="Css\Manage\Master.css" />
     <Content Include="Css\Manage\Menu.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Css\Com\Content\Site.css" />
     <Content Include="Images\angle_6.png" />
@@ -301,14 +291,6 @@
     <Content Include="Js\Com\_references.js" />
     <Content Include="Js\Manage\Menu.js" />
     <Content Include="Js\Home\Home.js" />
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Views\Manage\README.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -332,11 +314,10 @@
     <Folder Include="Views\WeChat\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Css\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Js\Com\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
