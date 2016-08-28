@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="TNet.Service.Merc.MercService" CodeBehind="MercService.svc.cs" Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>
