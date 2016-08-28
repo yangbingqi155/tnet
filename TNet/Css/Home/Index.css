@@ -1,67 +1,7 @@
-﻿.property_content {
-    padding-bottom: 4rem;
+﻿.head_host {
+    display:block;
 }
 
-.swiper-banner {
-    text-align: center;
-    height: 170px;
-    overflow: hidden;
-    position: relative;
-}
-
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
-
- .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
-
-.swiper-banner img {
-    max-height: 170px;
-    height: 100%;
-    width: 100%;
-    background: url(../../images/default_bg.png) no-repeat scroll center center #d9d9d9;
-    background-size: contain;
-    max-width: 100%;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-}
-
-.swiper-banner .pagination {
-    bottom: 10px;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    width: 200px;
-    z-index: 20;
-}
-
-    .swiper-banner .pagination .swiper-pagination-bullet {
-        background-color: #fff;
-    }
 
 
 .swiper-banner .top_tool {

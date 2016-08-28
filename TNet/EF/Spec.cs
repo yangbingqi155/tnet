@@ -25,6 +25,8 @@ namespace TNet.EF
 
         public double? price { get; set; }
 
+        public int? sellcount { get; set; }
+
         public int? unit { get; set; }
 
         public int? up { get; set; }

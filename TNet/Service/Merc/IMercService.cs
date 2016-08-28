@@ -33,5 +33,15 @@ namespace TNet.Service.Merc
         /// <returns></returns>
         [WebInvoke(Method = "GET", UriTemplate = "List", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Result<List<EF.Merc>> GetList();
+
+
+        /// <summary>
+        /// 所有商品信息,仅精简信息
+        /// </summary>
+        /// <returns></returns>
+        [WebInvoke(Method = "GET", UriTemplate = "Detail/{idmerc}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Result<MercDataSingle> GetMercSingle(string idmerc);
+
+        
     }
 }

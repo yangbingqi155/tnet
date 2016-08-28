@@ -24,7 +24,9 @@ namespace TNet.EF
         public string sellpt { get; set; }
 
         public double? baseprice { get; set; }
-        
+
+        public int? sellcount { get; set; }
+
         public DateTime? stime { get; set; }
 
         public DateTime? cretime { get; set; }

@@ -60,5 +60,34 @@ namespace TNet.Service.Merc
             return result;
 
         }
+
+       public Result<MercDataSingle> GetMercSingle(string idmerc)
+        {
+            Result<MercDataSingle> result = new Result<MercDataSingle>();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(idmerc))
+                {
+                    int _idmerc = int.Parse(idmerc);
+                    using (TN db = new TN())
+                    {
+                        MercDataSingle m = new MercDataSingle()
+                        {
+                            Merc = db.Mercs.First(mr => mr.inuse == true && mr.idmerc == _idmerc),
+                            Spec = db.Specs.Where(mr => mr.inuse == true && mr.idmerc == _idmerc).ToList(),
+                            Discount = db.Discounts.Where(mr => mr.inuse == true && mr.idmerc == _idmerc).ToList()
+                        };
+                        result.Data = m;
+                        result.Code = R.Ok;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                result.Code = R.Error;
+                result.Msg = "出现异常";
+            }
+            return result;
+        }
     }
 }
