@@ -4,23 +4,26 @@
 }
 @using Util
 @section Head{
-    <link href="@Pub.C("~/Css/Home/Index.css")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Pub.C("~/Js/Home/Home.js")">
+    <link href="@Pub.C("~/Css/Home/Index.css?v20160827")" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="@Pub.C("~/Js/Home/Home.js?v20160827")">
     </script>
 }
 <div class="property_content">
-    <div class="main_banner">
+    <div class="swiper-banner">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="@Pub.C("~/Images/head_bg.jpg")" />
+                        <img class="swiper-lazy"  data-src="@Pub.C("~/Images/head_bg.jpg")" />
                     </a>
+                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                 </div>
                 <div class="swiper-slide">
                     <a href="#">
-                        <img src="@Pub.C("~/Images/head_bg.jpg")" />
+                        <img  class="swiper-lazy"  data-src="@Pub.C("~/Images/head_bg_2.jpeg")" />
                     </a>
+                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                 </div>
             </div>
             <div class="swiper-pagination">
@@ -68,5 +71,21 @@
 <div class="vline"></div>
 
 <div class="title">
-    商品:
+    宽带:
+</div>
+<div id="merc" class="pitem_host">
+    @*<div class="pitem">
+        <div class="pitem_l">
+            <a href="#"><img src="@Pub.C("~/Images/Merc/0.jpg")" />水果</a>
+
+            <div class="HLive"></div>
+
+        </div>
+        <div class="pitem_r">
+            <a href="#"><img src="@Pub.C("~/Images/Merc/0.jpg")" />水果</a>
+
+        </div>
+
+    </div>*@
+    
 </div>

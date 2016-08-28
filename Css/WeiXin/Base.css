@@ -1,4 +1,4 @@
-﻿body, html {
+﻿body, html, * {
     padding: 0px;
     margin: 0px;
 }
@@ -63,18 +63,10 @@
 
 
 
-
-
-
-* {
-    padding: 0;
-    margin: 0;
-}
-
 html {
     font-size: 62.5%;
     list-style: none;
-    color: #333;
+    color: #222222;
 }
 
 body {
@@ -333,15 +325,16 @@ h1, h2, h3, h3, h4, h5, h6 {
 
 .vline {
     border-top: solid #d6d6d6 1px;
-    background-color:#d9d9d9;
-    border-bottom:solid #d6d6d6 1px;
-    display:block;
-    height:8px;
+    background-color: #d9d9d9;
+    border-bottom: solid #d6d6d6 1px;
+    display: block;
+    height: 8px;
+    font-size: 0px;
 }
 
-.title{
-     padding:0px 8px 0px 8px;
-     line-height:40px;
-     height:40px;
-     border-bottom:solid #d6d6d6 1px;
+.title {
+    padding: 0px 8px 0px 8px;
+    line-height: 40px;
+    height: 40px;
+    border-bottom: solid #d6d6d6 1px;
 }

@@ -219,6 +219,8 @@
     <Content Include="Images\Com\load_ing.gif" />
     <Content Include="Images\Com\load_ok.png" />
     <Content Include="Images\Com\load_error.png" />
+    <Content Include="Images\default_bg.png" />
+    <Content Include="Images\head_bg_2.jpeg" />
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Js\Pub.js" />
     <Content Include="Css\Manage\Master.css" />
@@ -265,7 +267,7 @@
     <Content Include="Images\Manage\icon_menu_function.png" />
     <Content Include="Images\Manage\icon_menu_management.png" />
     <Content Include="Images\Manage\index_z2a7519.png" />
-    <Content Include="Images\Material\0.jpg" />
+    <Content Include="Images\Merc\0.jpg" />
     <Content Include="Images\Material\fWy-ww0bH4JeCCCqiJA6VgsEk9Wkr_BPjDUD9oTsH6A.jpg" />
     <Content Include="Images\me.png" />
     <Content Include="Images\peishong.png" />
@@ -336,9 +338,7 @@
     <Content Include="Views\Manage\Menu.cshtml" />
     <Content Include="Views\Shared\Manage.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\Ad\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Css\fonts\glyphicons-halflings-regular.ttf" />
