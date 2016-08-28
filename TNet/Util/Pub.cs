@@ -1,0 +1,150 @@
+﻿using System;
+using System.Configuration;
+using System.IO;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Xml;
+using WeChatApp.Models;
+
+namespace Util
+{
+    public static class Pub
+    {
+        public static string C(string url)
+        {
+            string proxy_root = "";
+            if(HttpContext.Current.Request.UserHostAddress.IndexOf("192.168.1.20") >= 0)
+            {
+                proxy_root = ConfigurationManager.AppSettings["app_proxy"];
+            }
+            if (url[0] == '~')
+            {
+                url = HttpContext.Current.Request.ApplicationPath + url.Substring(1);
+            }
+            return proxy_root + url;
+
+        }
+        /// <summary>
+        /// 微信公众号Token
+        /// </summary>
+        public static string token
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["r_token"];
+            }
+        }
+
+        /// <summary>
+        /// 微信公众号appid
+        /// </summary>
+        public static string appid
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["r_appid"];
+            }
+        }
+
+
+        /// <summary>
+        /// 微信公众号secret
+        /// </summary>
+        public static string secret
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["r_secret"];
+            }
+        }
+
+
+        /// <summary>
+        /// 从本地获取accessToken
+        /// </summary>
+        public static string accessToken
+        {
+
+            get
+            {
+                string filepath = HttpContext.Current.Server.MapPath("../App_Data/XMLToken.xml");
+                StreamReader str = new StreamReader(filepath, System.Text.Encoding.UTF8);
+                XmlDocument xml = new XmlDocument();
+                xml.Load(str);
+                str.Close();
+                str.Dispose();
+                string Token = xml.SelectSingleNode("xml").SelectSingleNode("AccessToken").InnerText;
+                DateTime AccessExpires = Convert.ToDateTime(xml.SelectSingleNode("xml").SelectSingleNode("AccessExpires").InnerText);
+                if (DateTime.Now >= AccessExpires)
+                {
+                    Token = getAccessToken();
+                }
+
+                return Token;
+            }
+        }
+
+
+
+        /// <summary>
+        /// 从微信服务器获取accessToken，并保存在本地xml中
+        /// </summary>
+        /// <returns></returns>
+        private static string getAccessToken()
+        {
+            AccessTokenM mode = null;
+            HttpHelp bll = new HttpHelp();
+            string url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret=" + secret;
+
+            try
+            {
+                string reqStr = bll.HttpGet(url);
+                if (!string.IsNullOrWhiteSpace(reqStr))
+                {
+                    JavaScriptSerializer Serializer = new JavaScriptSerializer();
+                    mode = Serializer.Deserialize<AccessTokenM>(reqStr);
+
+                    if (mode != null)
+                    {
+                        string filepath = HttpContext.Current.Server.MapPath("../App_Data/XMLToken.xml");
+                        StreamReader str = new StreamReader(filepath, System.Text.Encoding.UTF8);
+                        XmlDocument xml = new XmlDocument();
+                        xml.Load(str);
+                        str.Close();
+                        str.Dispose();
+                        xml.SelectSingleNode("xml").SelectSingleNode("AccessToken").InnerText = mode.access_token;
+                        DateTime _accessExpires = DateTime.Now.AddSeconds(int.Parse(mode.Expires_in));
+                        xml.SelectSingleNode("xml").SelectSingleNode("AccessExpires").InnerText = _accessExpires.ToString();
+                        xml.Save(filepath);
+                    }
+                }
+                return mode.access_token;
+            }
+            catch (Exception)
+            {
+
+            }
+            return "";
+        }
+
+
+
+
+        /// <summary>
+        /// 本地路径转换成URL相对路径
+        /// </summary>
+        /// <param name="imagesurl1"></param>
+        /// <returns></returns>
+        public static string urlconvertor(string imagesurl1)
+        {
+            string tmpRootDir = HttpContext.Current.Server.MapPath(HttpContext.Current.Request.ApplicationPath.ToString());//获取程序根目录
+            string imagesurl2 = imagesurl1.Replace(tmpRootDir, ".."); //转换成相对路径
+            imagesurl2 = imagesurl2.Replace(@"\", @"/");
+            //imagesurl2 = imagesurl2.Replace(@"Aspx_Uc/", @"");
+            return imagesurl2;
+        }
+
+
+    }
+}

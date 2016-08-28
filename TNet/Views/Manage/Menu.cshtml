@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "~/Views/Shared/Manage.cshtml";
+    ViewBag.Title = "自定义菜单";
+}
+@using Util
+@section Head   {
+    <link href="@Pub.C("~/Css/Manage/Menu.css?v20160827")" r rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var g_menuJson = @ViewBag.Menu;
+    </script>
+    <script type="text/javascript" src="@Pub.C("~/Js/Manage/Menu.js?v20160827")"></script>
+}
+<div class="main_hd">
+    <h2>自定义菜单</h2>
+</div>
+<div class="main_bd">
+    <div class="device">
+        <div class="menu">
+            <ul></ul>
+        </div>
+        <div class="subMenu">
+            <div class="subMenuBox">
+                <ul></ul><span></span>
+            </div>
+        </div>
+    </div>
+    <div class="edit">
+        <div class="item title">
+            <a href="javascript:void(0)" onclick="updateMenuData(this,0,'menu')">删除菜单</a><h4>菜单名称</h4>
+        </div>
+        <div class="item">
+            菜单名称：<input type="text" id="menuName" onchange="updateMenuData(this,2,'')" />
+            <p>一级菜单名称最多为4个汉字，二级菜单最多为7个汉字</p>
+        </div>
+        <div id="hasSub">
+            <div class="item">
+                菜单类型：<select id="menuType" onchange="setMenuType(this.value)">
+                    <option value="media_id">发送消息</option>
+                    <option value="view">跳转网页</option>
+                </select>
+            </div>
+            <div class="item" id="res_1">
+                素材media_id：<input type="text" id="menuMediaId" />
+            </div>
+            <div class="item" id="res_2" style="display:none">
+                页面地址：<input type="text" id="menuUrl" onchange="updateMenuData(this,2,'url')" /><p>必须http://开头</p>
+            </div>
+        </div>
+        <div class="item detail_content" id="material_detail_box">
+            <h3>图文消息</h3>
+            <div class="msg_bd">
+                <div class="media_cover" id="material_detail_cover">
+                    <span class="create_access">
+                        <a href="javascript:void(0)" onclick="getMaterialList()">
+                            <i class="icon_add"></i>
+                            <b>选择素材</b>
+                        </a>
+                    </span>
+                </div>
+                <div class="msg_content" id="material_detail" onmouseover="showOrHideItemMask(event,this)" onmouseout="showOrHideItemMask(event,this)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main_ft"><input type="button" value="保存并发布" class="submitBtn" onclick="updateWeChatMenu()" /> </div>
+<div class="popWindow">
+    <div class="dialog_hd">
+        <a href="javascript:void(0)" onclick="closePopWindow(this)">关闭</a>
+        <h3>选择素材</h3>
+    </div>
+    <div class="dialog_bd">
+        <ul></ul>
+    </div>
+    <div class="dialog_ft">
+        <input type="button" value="确定" class="submitBtn" onclick="closePopWindow(this)" /><input type="button" value="取消" class="cancelBtn" onclick="closePopWindow(this)" />
+    </div>
+</div>
+

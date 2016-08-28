@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "T网租生活";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Util
+@section Head{
+    <link href="@Pub.C("~/Css/Home/Index.css?v20160827")" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="@Pub.C("~/Js/Home/Home.js?v20160827")">
+    </script>
+}
+<div class="property_content">
+    <div class="swiper-banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img class="swiper-lazy"  data-src="@Pub.C("~/Images/head_bg.jpg")" />
+                    </a>
+                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img  class="swiper-lazy"  data-src="@Pub.C("~/Images/head_bg_2.jpeg")" />
+                    </a>
+                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </div>
+            </div>
+            <div class="swiper-pagination">
+            </div>
+        </div>
+        <div class="top_tool">
+            <a href="@Pub.C("~/Shared/ChangeDB")"><span id="city">北京</span><i></i></a>
+        </div>
+    </div>
+    <div class="main_nav">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <a href="@Pub.C("~/Notice/Index")"><i class="tongzhi"></i><span>公告通知</span> </a>
+                </td>
+                <td>
+                    <a href="@Pub.C("~/Presentation")"><i class="baoxiu"></i><span>宽带销售</span> </a>
+                </td>
+                <td>
+                    <a href="@Pub.C("~/PresentationHistory?type=TS|JY")"><i class="toushu"></i><span>宽带报装</span> </a>
+                </td>
+                <td>
+                    <a href="@Pub.C("~/Charge/Charge")" rel="external"><i class="jiaofei"></i><span>周边商圈</span> </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="@Pub.C("~/PresentationHistory?type=SP")"><i class="suishoupai"></i><span>投诉建议</span> </a>
+                </td>
+                <td>
+                    <a href="@Pub.C("~/DecisionSurvey/DecisionList")" rel="external"><i class="juece"></i><span>我的订单</span> </a>
+                </td>
+                <td>
+                    <a href="@Pub.C("~/DecisionSurvey/SurveyList")" rel="external"><i class="diaocha"></i><span>调查</span> </a>
+                </td>
+                <td>
+
+                    <a href="@Pub.C("~/ServiceGuide")" rel="external"><i class="zhinan"></i><span>调查</span> </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="vline"></div>
+
+<div class="title">
+    宽带:
+</div>
+<div id="merc" class="pitem_host">
+    @*<div class="pitem">
+        <div class="pitem_l">
+            <a href="#"><img src="@Pub.C("~/Images/Merc/0.jpg")" />水果</a>
+
+            <div class="HLive"></div>
+
+        </div>
+        <div class="pitem_r">
+            <a href="#"><img src="@Pub.C("~/Images/Merc/0.jpg")" />水果</a>
+
+        </div>
+
+    </div>*@
+    
+</div>
