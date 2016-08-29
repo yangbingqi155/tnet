@@ -293,3 +293,8 @@ body {
 .item select {
     width:141px;
 }
+
+.loginBox {
+    width:300px;
+    margin:10px auto;
+}

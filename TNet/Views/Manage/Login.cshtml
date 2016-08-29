@@ -1,0 +1,54 @@
+﻿@model TNet.EF.ManageUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>管理员登录</title>
+    <link rel="stylesheet" href="@Url.Content("~/Css/Bootstrap/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Css/Manage/Base.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Css/com/jQuery.Validate.css")" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Bootstrap/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.unobtrusive.min.js")"></script>
+    <script type="text/javascript">
+        $("#loginForm").validate({
+            submitHandler: function (form) {
+                $(form).submit();
+            }
+        });
+        $(function () {
+            $("#btnReset").click(function () {
+                window.location.href = window.location.href;
+            });
+        });
+    </script>
+</head>
+<body>
+    <form method="post" id="loginForm">
+        <div class="loginBox">
+            <fieldset>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName)
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+                <input type="submit" value="登录" class="btn btn-default" />
+                <input type="button" id="btnReset" value="重置" class="btn btn-default" />
+            </fieldset>
+        </div>
+
+    </form>
+
+</body>
+</html>

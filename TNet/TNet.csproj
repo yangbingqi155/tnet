@@ -178,6 +178,7 @@
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="EF\Business.cs" />
     <Compile Include="EF\Discount.cs" />
+    <Compile Include="EF\ManageUser.cs" />
     <Compile Include="EF\Merc.cs" />
     <Compile Include="EF\MercType.cs" />
     <Compile Include="EF\MyAddr.cs" />
@@ -212,6 +213,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\XMLToken.xml" />
+    <Content Include="Css\Bootstrap\bootstrap-theme.css" />
+    <Content Include="Css\Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Css\Bootstrap\bootstrap.css" />
+    <Content Include="Css\Bootstrap\bootstrap.min.css" />
     <Content Include="Css\Com\swiper-3.3.1.min.css" />
     <Content Include="Css\Home\Index.css" />
     <Content Include="Css\Manage\Base.css" />
@@ -224,6 +229,9 @@
     <Content Include="Images\Com\load_ok.png" />
     <Content Include="Images\Com\load_error.png" />
     <Content Include="Images\default_bg.png" />
+    <Content Include="Js\Bootstrap\bootstrap.js" />
+    <Content Include="Js\Bootstrap\bootstrap.min.js" />
+    <Content Include="Js\Bootstrap\npm.js" />
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Js\Merc\Detail.js" />
     <Content Include="Js\Pub.js" />
@@ -306,6 +314,8 @@
     <Content Include="Images\zhoubianshangquan.png" />
     <Content Include="Js\Com\bootstrap.js" />
     <Content Include="Js\Com\bootstrap.min.js" />
+    <Content Include="Css\Bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Css\Bootstrap\bootstrap.css.map" />
     <None Include="Js\Com\jquery-1.10.2.intellisense.js" />
     <Content Include="Js\Com\jquery-1.10.2.js" />
     <Content Include="Js\Com\jquery-1.10.2.min.js" />
@@ -345,8 +355,10 @@
     <Content Include="Views\Shared\Manage.cshtml" />
     <Content Include="Views\Merc\List.cshtml" />
     <Content Include="Views\Merc\Detail.cshtml" />
+    <Content Include="Views\Manage\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Css\Bootstrap\fonts\" />
     <Folder Include="Models\Merc\" />
   </ItemGroup>
   <ItemGroup>

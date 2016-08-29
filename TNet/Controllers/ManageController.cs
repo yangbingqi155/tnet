@@ -9,6 +9,18 @@ namespace TNet.Controllers
 {
     public class ManageController : Controller
     {
+        [HttpGet]
+        public ActionResult Login() {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Login(string UserName,string Password) {
+            return View();
+        }
+
+
         //
         // GET: /Manage/
 
