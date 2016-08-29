@@ -3,8 +3,116 @@
     margin: 0px;
 }
 
+html {
+    font-size: 62.5%;
+    list-style: none;
+    color: #222222;
+}
+
+body {
+    background: #f5f5f5;
+    font-size:1.4rem;
+}
+.T{
+    font-size:23px;
+}
+
+.T .before {
+    background: -webkit-linear-gradient(#000 50%,rgba(255,255,255,.1) 0);
+    background: linear-gradient(#000 50%,rgba(255,255,255,.1) 0);
+    display:block;
+    height: 2px;
+    width: 100%;
+    opacity: .6;
+    position: absolute;
+    top: 0px;
+    -webkit-transform-origin: center top;
+    transform-origin: center top;
+    z-index:9999;
+}
 
 
+
+.TT {
+    display:block;
+    background: #1d1d1d;
+    background-image: -webkit-linear-gradient(#1d1d1d,#181818);
+    background-image: linear-gradient(#1d1d1d,#181818);
+    height: 2.5em;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 210;
+}
+.C{
+   font-size:23px;
+   padding-top:2.5em;
+}
+
+.CC {
+    position: relative;
+    display: block;
+    height: auto;
+    font-size:1.4rem;
+}
+
+.TL {
+    float: right;
+    margin-right: 10px;
+    width: auto;
+    text-align: right;
+    display: block;
+    height: 100%;
+}
+
+.Top_Menu {
+    background: url(../../Images/Com/menu.png) no-repeat 0 0;
+    background-size: cover;
+    float: left;
+    height: 100%;
+    width: 2.934em;
+    transition: none;
+}
+
+.Top_User {
+    display:inline-block;
+    background: url(../../Images/Com/user.png) no-repeat 0 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0 0 0 .775em;
+    width: 2.934em;
+}
+
+.Top_Cart {
+     display:inline-block;
+    background: url(../../Images/Com/Cart.png) no-repeat 0 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0 0 0 .775rem;
+    width: 2.934rem;
+}
+
+a:hover {
+    color: #6b95ea;
+}
+a:active, a:hover {
+    outline: 0;
+}
+
+a {
+    color: #84a3e3;
+    cursor: pointer;
+    -moz-transition: all .15s ease-out;
+    -webkit-transition: all .15s ease-out;
+    -o-transition: all .15s ease-out;
+    transition: all .15s ease-out;
+    text-decoration: none;
+}
 /*****************加载提示********************/
 .RAMsgHost {
     width: 100%;
@@ -62,17 +170,6 @@
         }
 
 
-
-html {
-    font-size: 62.5%;
-    list-style: none;
-    color: #222222;
-}
-
-body {
-    font-size: 1.4rem;
-    background: #f5f5f5;
-}
 
 a, a:hover {
     text-decoration: none;
@@ -408,16 +505,16 @@ h1, h2, h3, h3, h4, h5, h6 {
     }
 
 
-span.loading_l,span.load_error {
+span.loading_l, span.load_error {
     color: #cbcbcb;
 }
 
-span.loading_c,span.load_error  {
+span.loading_c, span.load_error {
     display: block;
     color: #cbcbcb;
     width: 200px;
     height: 50px;
-    line-height:50px;
+    line-height: 50px;
     text-align: center;
     margin: 36px auto 30px auto;
 }
