@@ -11,6 +11,7 @@ namespace TNet.Controllers
     {
         [HttpGet]
         public ActionResult Login() {
+            
             return View();
         }
 

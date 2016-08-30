@@ -7,7 +7,6 @@ namespace TNet.EF
     using System.Data.Entity.Spatial;
 
     [Table("Business")]
-    
     public partial class Business
     {
         [Key]

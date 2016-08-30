@@ -14,6 +14,7 @@ namespace TNet.EF
 
         public virtual DbSet<Business> Businesses { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<ManageUser> ManageUsers { get; set; }
         public virtual DbSet<Merc> Mercs { get; set; }
         public virtual DbSet<MercType> MercTypes { get; set; }
         public virtual DbSet<MyAddr> MyAddrs { get; set; }
@@ -45,6 +46,14 @@ namespace TNet.EF
 
             modelBuilder.Entity<Discount>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ManageUser>()
+                .Property(e => e.UserName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ManageUser>()
+                .Property(e => e.Password)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Merc>()
