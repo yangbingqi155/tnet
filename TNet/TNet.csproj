@@ -172,6 +172,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
@@ -179,7 +180,7 @@
     <Compile Include="EF\Business.cs" />
     <Compile Include="EF\Discount.cs" />
     <Compile Include="EF\ManageUser.cs" />
-    <Compile Include="EF\ManageUserViewModel.cs" />
+    <Compile Include="EF\MenuItem.cs" />
     <Compile Include="EF\Merc.cs" />
     <Compile Include="EF\MercType.cs" />
     <Compile Include="EF\MyAddr.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="EF\Spec.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="Models\Manage\ManageUserViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,8 +199,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Service\Com\R.cs" />
     <Compile Include="Models\Service\Com\Result.cs" />
+    <Compile Include="Models\Service\Manage\ManageUserService.cs" />
+    <Compile Include="Models\Service\Manage\MenuItemService.cs" />
     <Compile Include="Models\Service\Merc\MercInfoSingle.cs" />
     <Compile Include="Models\Service\Merc\MercInfo.cs" />
+    <Compile Include="Models\Service\Merc\MercService.cs" />
     <Compile Include="Models\Weixin\AccessToken.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
     <Compile Include="Models\Weixin\ReplyType.cs" />
@@ -213,8 +218,12 @@
       <DependentUpon>MercService.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Util\CryptoHelper.cs" />
+    <Compile Include="Util\UrlHelperExtension.cs" />
     <Compile Include="Util\HttpHelp.cs" />
+    <Compile Include="Util\ListExtension.cs" />
     <Compile Include="Util\MsgHelp.cs" />
+    <Compile Include="Util\PagerEntity.cs" />
     <Compile Include="Util\Pub.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,15 +240,20 @@
     <Content Include="Css\Com\Content\bootstrap.min.css" />
     <Content Include="Css\Merc\Detail.css" />
     <Content Include="Css\WeiXin\Base.css" />
+    <Content Include="Images\Com\Cart.png" />
+    <Content Include="Images\Com\menu.png" />
+    <Content Include="Images\Com\user.png" />
     <Content Include="Images\Home\2.jpg" />
     <Content Include="Images\Com\load_ing.gif" />
     <Content Include="Images\Com\load_ok.png" />
     <Content Include="Images\Com\load_error.png" />
     <Content Include="Images\default_bg.png" />
+    <Content Include="Images\Manage\login_bg.png" />
     <Content Include="Js\Bootstrap\bootstrap.js" />
     <Content Include="Js\Bootstrap\bootstrap.min.js" />
     <Content Include="Js\Bootstrap\npm.js" />
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
+    <Content Include="Css\Manage\Login.css" />
     <Content Include="Js\Merc\Detail.js" />
     <Content Include="Js\Pub.js" />
     <Content Include="Css\Manage\Master.css" />
@@ -363,6 +377,8 @@
     <Content Include="Views\Merc\List.cshtml" />
     <Content Include="Views\Merc\Detail.cshtml" />
     <Content Include="Views\Manage\Login.cshtml" />
+    <Content Include="Views\Manage\NonAuthorization.cshtml" />
+    <Content Include="Views\Manage\MercList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Css\Bootstrap\fonts\" />

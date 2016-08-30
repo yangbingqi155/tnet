@@ -1,4 +1,4 @@
-﻿@model TNet.EF.ManageUserViewModel
+﻿@model TNet.Models.ManageUserViewModel
 @{
     Layout = null;
 }
@@ -11,11 +11,13 @@
     <title>管理员登录</title>
     <link rel="stylesheet" href="@Url.Content("~/Css/Bootstrap/bootstrap.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Css/Manage/Base.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Css/Manage/Login.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Css/com/jQuery.Validate.css")" />
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-1.10.2.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Bootstrap/bootstrap.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.unobtrusive.min.js")"></script>
+
     <script type="text/javascript">
         $("#loginForm").validate({
             submitHandler: function (form) {
@@ -30,7 +32,9 @@
     </script>
 </head>
 <body>
+
     <form method="post" id="loginForm">
+        
         <div class="loginBox">
             <fieldset>
                 <div class="form-group">
@@ -39,10 +43,11 @@
                     @Html.ValidationMessageFor(model => model.UserName)
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Password)
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Password)
+                    @Html.LabelFor(model => model.ClearPassword)
+                    @Html.PasswordFor(model => model.ClearPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClearPassword)
                 </div>
+                @Html.ValidationSummary(true)
                 <input type="submit" value="登录" class="btn btn-default" />
                 <input type="button" id="btnReset" value="重置" class="btn btn-default" />
             </fieldset>

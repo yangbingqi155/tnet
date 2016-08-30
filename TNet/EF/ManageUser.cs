@@ -14,7 +14,10 @@ namespace TNet.EF
         [StringLength(50)]
         public string UserName { get; set; }
 
-        [StringLength(50)]
+        [StringLength(500)]
         public string Password { get; set; }
+
+        [StringLength(500)]
+        public string MD5Salt { get; set; }
     }
 }

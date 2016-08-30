@@ -1,0 +1,64 @@
+﻿@using TNet.Util;
+@model List<TNet.EF.Merc>
+
+@{
+    Layout = null;
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+    //var routeValues = new RouteValueDictionary();
+    //var obj=  ViewContext.RouteData.Values;
+    //routeValues.Add("pageIndex","1");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商品列表</title>
+    <link rel="stylesheet" href="@Url.Content("~/Css/Bootstrap/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Css/Manage/Base.css")" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Bootstrap/bootstrap.min.js")"></script>
+</head>
+<body>
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "MercList", "Manage", ViewContext.RouteData.Values))
+    </div>
+    <div>
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>商品名称</th>
+                        <th>销售选项</th>
+                        <th>基础价格</th>
+                        <th>销量数量</th>
+                        <th>商品图片</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var item in Model)
+                   {
+                    <tr>
+                        <td>@item.merc1</td>
+                        <td>@item.sellpt</td>
+                        <td>@item.baseprice</td>
+                        <td>@item.sellcount</td>
+                        <td>
+                            <img src="@item.imgs" alt="@item.merc1" title="@item.merc1" />
+                        </td>
+                    </tr>
+                   }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>还没有任何商品.</h2>
+        }
+
+    </div>
+</body>
+</html>
