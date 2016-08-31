@@ -19,6 +19,12 @@ namespace TNet
                 "{controller}/{action}/{pageIndex}",
                 new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional }
                 );
+            routes.MapRoute(
+                "Manage_MercEdit",
+                "{controller}/{action}/{idmerc}",
+                new { controller = "Manage", action = "MercEdit", idmerc = UrlParameter.Optional }
+                );
+
 
             routes.MapRoute(
              "Default", // Route name

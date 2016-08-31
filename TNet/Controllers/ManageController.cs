@@ -9,7 +9,7 @@ using System.IO;
 using WeChatApp.Models;
 using TNet.Models;
 using TNet.EF;
-using TNet.Models.Service;
+using TNet.BLL;
 using TNet.Authorize;
 using TNet.Util;
 
@@ -19,14 +19,8 @@ namespace TNet.Controllers
     {
         [HttpGet]
         public ActionResult Login() {
-            string salt = string.Empty;
-            string clearPassword = "admin";
-            string md5Password = string.Empty;
-            Crypto.GetPwdhashAndSalt(clearPassword, out salt, out md5Password);
-
             return View();
         }
-
 
         [HttpPost]
         public ActionResult Login(ManageUserViewModel model) {
@@ -56,7 +50,6 @@ namespace TNet.Controllers
             return View();
         }
 
-
         /// <summary>
         /// 商品列表
         /// </summary>
@@ -82,8 +75,13 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpGet]
-        public ActionResult MercEdit(int idmerc) {
-            return View();
+        public ActionResult MercEdit(int idmerc=0) {
+            MercViewModel model = new MercViewModel();
+            if (idmerc>0) {
+                Merc merc = MercService.GetMerc(idmerc);
+                if ( merc!=null) { model.CopyFromBase(merc); }
+            }
+            return View(model);
         }
 
         /// <summary>

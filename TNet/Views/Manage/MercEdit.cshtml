@@ -1,17 +1,30 @@
-﻿@{
-    Layout = null;
+﻿@model TNet.Models.MercViewModel
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "商品编辑";
 }
 
-<!DOCTYPE html>
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">商品管理</a></li>
+        <li><a href="#" class="active">编辑商品</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+   <form action="@Url.Action("MercEdit","Manage")" >
+       <fieldset>
+           <div class="form-group">
+               @Html.LabelFor(model=>model.merc1)
+               @Html.TextBoxFor(model=>model.merc1)
+               @Html.ValidationMessageFor(model => model.merc1)
+           </div>
+           <div class="form-group">
+               @Html.LabelFor(model => model.sellpt)
+               @Html.TextBoxFor(model => model.sellpt)
+               @Html.ValidationMessageFor(model => model.sellpt)
+           </div>
+       </fieldset>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+   </form>
+
+</div>
