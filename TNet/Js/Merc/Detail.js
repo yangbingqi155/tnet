@@ -1,4 +1,4 @@
-﻿
+﻿var mercData = null;
 function getDetailData() {
     var idmerc = window.location.href + "";
     if (idmerc) {
@@ -13,6 +13,7 @@ function getDetailData() {
                 url: "Service/Merc/Detail/" + idmerc,
                 //noLoading: true,
                 success: function (data) {
+                    mercData = data;
                     var html = "";
                     if (Pub.wsCheck(data)) {
                         if (data.Data || data.Data.Merc) {
@@ -20,8 +21,6 @@ function getDetailData() {
                             $(".sellpt").html(data.Data.Merc.sellpt);
                             $(".price").html("￥"+data.Data.Merc.baseprice);
                             $(".sellcount").html("销量：" + data.Data.Merc.sellcount);
-
-                            
                             var imgs = data.Data.Merc.imgs;
                             if (imgs) {
                                 imgs = imgs.split('|');
@@ -36,6 +35,17 @@ function getDetailData() {
                                     initBase();
                                 }
                             }
+                            var spec = data.Data.Spec;
+                            if (spec) {
+                                var specHtml = "";
+                                for (var i = 0; i < spec.length; i++) {
+                                    var so = spec[i];
+                                    specHtml += "<p><a href='#'>" + so.spec1 + "</a></p>";
+                                }
+                                if (specHtml) {
+                                    $('.spec').html(specHtml);
+                                }
+                            }
                             return;
                         }
                     }
@@ -47,6 +57,9 @@ function getDetailData() {
             });
         }
     }
+}
+
+function selectSpec() {
 
 }
 
@@ -56,6 +69,7 @@ function load_fail(msg) {
     Pub.noData(".sellpt", msg, getDetailData);
     Pub.noData(".price", "￥0.0", getDetailData);
     Pub.noData(".price", "销量：0", getDetailData);
+    Pub.noData(".spec", msg, getDetailData);
     
 }
 

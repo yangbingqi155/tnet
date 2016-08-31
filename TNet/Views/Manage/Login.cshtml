@@ -1,4 +1,4 @@
-﻿@model TNet.EF.ManageUser
+﻿@model TNet.Models.ManageUserViewModel
 @{
     Layout = null;
 }
@@ -32,7 +32,9 @@
     </script>
 </head>
 <body>
+
     <form method="post" id="loginForm">
+        
         <div class="loginBox">
             <fieldset>
                 <div class="form-group">
@@ -41,10 +43,11 @@
                     @Html.ValidationMessageFor(model => model.UserName)
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Password)
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Password)
+                    @Html.LabelFor(model => model.ClearPassword)
+                    @Html.PasswordFor(model => model.ClearPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClearPassword)
                 </div>
+                @Html.ValidationSummary(true)
                 <input type="submit" value="登录" class="btn btn-default" />
                 <input type="button" id="btnReset" value="重置" class="btn btn-default" />
             </fieldset>

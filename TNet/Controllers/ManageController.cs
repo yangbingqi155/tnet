@@ -1,9 +1,17 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using Util;
 using System.IO;
 using WeChatApp.Models;
+using TNet.Models;
+using TNet.EF;
+using TNet.Models.Service;
+using TNet.Authorize;
+using TNet.Util;
 
 namespace TNet.Controllers
 {
@@ -11,22 +19,60 @@ namespace TNet.Controllers
     {
         [HttpGet]
         public ActionResult Login() {
+            string salt = string.Empty;
+            string clearPassword = "admin";
+            string md5Password = string.Empty;
+            Crypto.GetPwdhashAndSalt(clearPassword, out salt, out md5Password);
+
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult Login(string UserName,string Password) {
+        public ActionResult Login(ManageUserViewModel model) {
+            ManageUser user = ManageUserService.GetManageUserByUserName(model.UserName);
+            if (user==null) {
+                ModelState.AddModelError("","没有找到该用户名.");
+                return View(model);
+            }
+            string md5Password = string.Empty;
+            md5Password= Crypto.GetPwdhash(model.ClearPassword, user.MD5Salt);
+            if (md5Password.ToUpper()!=user.Password.ToUpper()) {
+                ModelState.AddModelError("", "密码不正确.");
+                return View(model);
+            }
+            Session["ManageUser"] = user;
+            return RedirectToAction("Index", "Manage");
+        }
+
+        /// <summary>
+        /// 后台管理首页
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult Index()
+        {
+            
             return View();
         }
 
 
-        //
-        // GET: /Manage/
+        /// <summary>
+        /// 商品列表
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult MercList(int pageIndex=0) {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<Merc> entities = MercService.GetALL();
+            List<Merc> pageList=  entities.Pager<Merc>(pageIndex, pageSize, out pageCount);
+            
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+            
 
-        public ActionResult Index()
-        {
-            return View();
+            return View(pageList);
         }
 
         [HttpGet]
