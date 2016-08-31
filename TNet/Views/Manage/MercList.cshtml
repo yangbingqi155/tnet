@@ -36,6 +36,9 @@
                         <th>基础价格</th>
                         <th>销量数量</th>
                         <th>商品图片</th>
+                        <th>销售时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +51,17 @@
                         <td>@item.sellcount</td>
                         <td>
                             <img src="@item.imgs" alt="@item.merc1" title="@item.merc1" />
+                        </td>
+                        <td>
+                            @item.stime.Value.ToString("yyyy-MM-dd") / @item.entime.Value.ToString("yyyy-MM-dd")
+                        </td>
+                        <td>
+                            @(item.inuse.Value?"启用":"禁用")
+
+                        </td>
+                        <td>
+                            <a href="@Url.Action("MercEdit","Manage",new {idmerc=item.idmerc })" class="btn btn-default">编辑</a>
+                            <a href="@Url.Action("MercEdit","Manage",new{idmerc=item.idmerc,inuse=!item.inuse })" class="btn btn-default">@(item.inuse.Value ? "禁用" : "启用")</a>
                         </td>
                     </tr>
                    }

@@ -75,6 +75,28 @@ namespace TNet.Controllers
             return View(pageList);
         }
 
+        /// <summary>
+        /// 编辑商品
+        /// </summary>
+        /// <param name="idmerc"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult MercEdit(int idmerc) {
+            return View();
+        }
+
+        /// <summary>
+        /// 编辑商品
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult MercEdit(MercViewModel model) {
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult Menu()
         {

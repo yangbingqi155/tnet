@@ -197,6 +197,7 @@
       <DependentUpon>201608300500213_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Manage\MercViewModel.cs" />
     <Compile Include="Models\Service\Com\R.cs" />
     <Compile Include="Models\Service\Com\Result.cs" />
     <Compile Include="Models\Service\Manage\ManageUserService.cs" />
@@ -379,6 +380,7 @@
     <Content Include="Views\Manage\Login.cshtml" />
     <Content Include="Views\Manage\NonAuthorization.cshtml" />
     <Content Include="Views\Manage\MercList.cshtml" />
+    <Content Include="Views\Manage\MercEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Css\Bootstrap\fonts\" />
