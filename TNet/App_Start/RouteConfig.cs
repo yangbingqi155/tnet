@@ -13,12 +13,13 @@ namespace TNet
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                "Manage_MercList",
-                "{controller}/{action}/{pageIndex}",
-                new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional }
-                );
+            //默认导航到前端
+            //
+            //routes.MapRoute(
+            //    "Manage_MercList",
+            //    "{controller}/{action}/{pageIndex}",
+            //    new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional }
+            //    );
 
             routes.MapRoute(
              "Default", // Route name
@@ -26,7 +27,7 @@ namespace TNet
              new { controller = "Home", action = "Index", id = UrlParameter.Optional },
              new { controller = "^(?!Service).*" }
              );
-            
+
             RouteService.register();
         }
     }
