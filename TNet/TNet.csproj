@@ -173,6 +173,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
+    <Compile Include="BLL\Manage\ManageUserService.cs" />
+    <Compile Include="BLL\Manage\MenuItemService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
@@ -197,13 +199,11 @@
       <DependentUpon>201608300500213_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Service\Com\R.cs" />
-    <Compile Include="Models\Service\Com\Result.cs" />
-    <Compile Include="Models\Service\Manage\ManageUserService.cs" />
-    <Compile Include="Models\Service\Manage\MenuItemService.cs" />
-    <Compile Include="Models\Service\Merc\MercInfoSingle.cs" />
-    <Compile Include="Models\Service\Merc\MercInfo.cs" />
-    <Compile Include="Models\Service\Merc\MercService.cs" />
+    <Compile Include="Models\Merc\MercInfo.cs" />
+    <Compile Include="Models\Merc\MercInfoSingle.cs" />
+    <Compile Include="Models\Merc\MercService.cs" />
+    <Compile Include="Models\Service\R.cs" />
+    <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\Weixin\AccessToken.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
     <Compile Include="Models\Weixin\ReplyType.cs" />
@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\XMLToken.xml" />
+    <Content Include="BLL\README.txt" />
     <Content Include="Css\Bootstrap\bootstrap-theme.css" />
     <Content Include="Css\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Css\Bootstrap\bootstrap.css" />
@@ -382,7 +383,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Css\Bootstrap\fonts\" />
-    <Folder Include="Models\Merc\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\fonts\glyphicons-halflings-regular.woff" />
