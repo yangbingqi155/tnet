@@ -45,6 +45,16 @@
 <div class="spec">
     <span class="loading_l">加载中...</span>
 </div>
+<div id="buy_num" class="buy_num_hid">
+    <div class="vline"></div>
+    <div class="num">
+        数量:<div class="num_box">
+            <a href="javascript:void(0)" class="op" onclick="opSpecNum(-1)">-</a>
+            <a href="javascript:void(0)" id="nums" class="nums">1</a>
+            <a href="javascript:void(0)" class="op" onclick="opSpecNum(1)">+</a>
+        </div>
+    </div>
+</div>
 
 <div class="vline"></div>
 
@@ -57,10 +67,10 @@
     <div class="buy">
         <div class="buy_l">
 
-            <a href="#" class="buy_spec">已选择：</a>
-            <a href="#" class="buy_amount">应付金额：<span class="amount">￥0.00</span></a>
+            <a href="javascript:void(0)" class="buy_spec">已选择：</a>
+            <a href="javascript:void(0)" id="buy_amount" class="buy_amount">应付金额：<span class="amount">￥ 0.00</span></a>
         </div>
-        <div class="buy_r"><a href="#" class="go_buy">购买</a></div>
+        <div class="buy_r"><a href="javascript:void(0)" class="go_buy">购买</a></div>
     </div>
 </div>
 

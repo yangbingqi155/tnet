@@ -13,26 +13,25 @@ namespace TNet
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                "Manage_MercList",
-                "{controller}/{action}/{pageIndex}",
-                new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional }
-                );
-            routes.MapRoute(
-                "Manage_MercEdit",
-                "{controller}/{action}/{idmerc}",
-                new { controller = "Manage", action = "MercEdit", idmerc = UrlParameter.Optional }
-                );
-
-
+            
             routes.MapRoute(
              "Default", // Route name
              "{controller}/{action}/{id}", // URL with parameters
              new { controller = "Home", action = "Index", id = UrlParameter.Optional },
              new { controller = "^(?!Service).*" }
              );
-            
+
+            routes.MapRoute(
+             "Manage_MercList",
+             "{controller}/{action}/{pageIndex}",
+             new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional }
+             );
+            routes.MapRoute(
+                "Manage_MercEdit",
+                "{controller}/{action}/{idmerc}",
+                new { controller = "Manage", action = "MercEdit", idmerc = UrlParameter.Optional }
+                );
+
             RouteService.register();
         }
     }

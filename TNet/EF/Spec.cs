@@ -29,6 +29,8 @@ namespace TNet.EF
 
         public int? unit { get; set; }
 
+        public int? month { get; set; }
+
         public int? up { get; set; }
 
         public int? down { get; set; }
