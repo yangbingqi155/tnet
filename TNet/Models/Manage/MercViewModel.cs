@@ -11,6 +11,55 @@ namespace TNet.Models
     [NotMapped]
     public class MercViewModel:Merc
     {
+        [Display(Name = "产品编号")]
+        public int idmerc { get; set; }
+
+        [Display(Name = "产品类型编号")]
+        [Required]
+        public int? idtype { get; set; }
+
+        [Display(Name = "产品名称")]
+        [Required]
+        [StringLength(60)]
+        public string merc1 { get; set; }
+
+        [Display(Name = "卖点")]
+        [StringLength(80)]
+        public string sellpt { get; set; }
+
+        [Display(Name ="基本价格")]
+        public double? baseprice { get; set; }
+
+        [Display(Name = "销量")]
+        public int? sellcount { get; set; }
+
+        [Display(Name = "销售开始时间")]
+        public DateTime? stime { get; set; }
+
+        [Display(Name = "创建时间")]
+        public DateTime? cretime { get; set; }
+
+        [Display(Name = "销售结束时间")]
+        public DateTime? entime { get; set; }
+
+        [Display(Name = "接入方式")]
+        public int? netype { get; set; }
+
+        [Display(Name = "图片")]
+        [StringLength(255)]
+        public string imgs { get; set; }
+
+        [Display(Name = "描述图片集合")]
+        [StringLength(255)]
+        public string descs { get; set; }
+
+        [Display(Name = "备注")]
+        [StringLength(50)]
+        public string notes { get; set; }
+
+        [Display(Name = "是否启用")]
+        public bool? inuse { get; set; }
+
         public void CopyFromBase(Merc merc) {
             this.idmerc = merc.idmerc;
             this.idtype = merc.idtype;

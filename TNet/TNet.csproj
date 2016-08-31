@@ -219,6 +219,7 @@
       <DependentUpon>MercService.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
     <Compile Include="Util\UrlHelperExtension.cs" />
     <Compile Include="Util\HttpHelp.cs" />
