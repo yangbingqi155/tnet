@@ -1,4 +1,4 @@
 /TNet/obj
 /TNet/bin
 *.suo
-/TNet/*.user
+.user
