@@ -1,4 +1,5 @@
-﻿var mercData = null;
+﻿var mercData = null, selectSpec = null;
+var sepcCount = 0;
 function getDetailData() {
     var idmerc = window.location.href + "";
     if (idmerc) {
@@ -13,10 +14,11 @@ function getDetailData() {
                 url: "Service/Merc/Detail/" + idmerc,
                 //noLoading: true,
                 success: function (data) {
-                    mercData = data;
+                   
                     var html = "";
                     if (Pub.wsCheck(data)) {
-                        if (data.Data || data.Data.Merc) {
+                        if (data.Data && data.Data.Merc && data.Data.Spec) {
+                            mercData = data;
                             $(".merc_title").html(data.Data.Merc.merc1);
                             $(".sellpt").html(data.Data.Merc.sellpt);
                             $(".price").html("￥"+data.Data.Merc.baseprice);
@@ -38,14 +40,22 @@ function getDetailData() {
                             var spec = data.Data.Spec;
                             if (spec) {
                                 var specHtml = "";
+                                var scss = "";
                                 for (var i = 0; i < spec.length; i++) {
                                     var so = spec[i];
-                                    specHtml += "<p><a href='#'>" + so.spec1 + "</a></p>";
+                                    if (!selectSpec) {
+                                        selectSpec = so;
+                                        scss = "select";
+                                    } else {
+                                        scss = ""; 
+                                    }
+                                    specHtml += "<p><a href='javascript:void(0)' id='spec_" + so .idspec+ "' onclick='updateForSelectSpec(" + i + ")' class='" + scss + "'>" + so.spec1 + "</a></p>";
                                 }
                                 if (specHtml) {
                                     $('.spec').html(specHtml);
                                 }
                             }
+                            updateForSelectSpec(-1);
                             return;
                         }
                     }
@@ -59,8 +69,43 @@ function getDetailData() {
     }
 }
 
-function selectSpec() {
+function updateForSelectSpec(pos) {
+    if (pos >= 0) {
+        selectSpec = mercData.Data.Spec[pos];
+    }
+    if (selectSpec) {
+        if (selectSpec.unit > 0) {
+            $("#buy_num").show();
+            sepcCount = 1;
+        } else {
+            $("#buy_num").hide();
+            sepcCount = 1;
+        }
+        doUpdateMerc();
+    }
+}
 
+function doUpdateMerc(){
+     $(".spec p a").removeClass("select");
+    $("#spec_" + selectSpec.idspec).addClass("select");
+    $(".price").html("￥" + selectSpec.price);
+    $(".sellcount").html("销量：" + selectSpec.sellcount);
+    $(".buy_spec").html("已选择：" + selectSpec.spec1);
+    updateAmount();
+}
+function updateAmount() {
+    $(".amount").html("￥ " + (selectSpec.price * sepcCount));
+    $("#nums").html(sepcCount);
+}
+//数量
+function opSpecNum(op) {
+    sepcCount += op;
+    if (sepcCount <= 0) {
+        sepcCount = 1;
+    }
+    updateAmount();
+    return false;
+   
 }
 
 function load_fail(msg) {
