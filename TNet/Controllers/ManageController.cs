@@ -148,9 +148,8 @@ namespace TNet.Controllers
         [HttpGet]
         public ActionResult Menu()
         {
-            HttpHelp bll = new HttpHelp();
             string url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=" + Pub.accessToken;
-            string data = bll.HttpGet(url);
+            string data = HttpHelp.Get(url);
             ViewBag.Menu = new HtmlString(data);
             return View();
         }
@@ -169,11 +168,10 @@ namespace TNet.Controllers
         /// <returns></returns>
         public JsonResult GetMaterialList(RMaterialListParamM mode)
         {
-
-            HttpHelp bll = new HttpHelp();
+             
             string url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=" + Pub.accessToken;
-            JavaScriptSerializer Serializer = new JavaScriptSerializer();
-            string responseContent = bll.HttpPost(url, Serializer.Serialize(mode));
+            JavaScriptSerializer s = new JavaScriptSerializer();
+            string responseContent = HttpHelp.Post(url, s.Serialize(mode));
             return Json(responseContent);
         }
 
@@ -202,11 +200,10 @@ namespace TNet.Controllers
         /// <param name="mode"></param>
         /// <returns></returns>
         public string GetMaterialDetail(RMaterialItemParamM mode)
-        {
-            HttpHelp bll = new HttpHelp();
+        { 
             string url = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=" + Pub.accessToken;
-            JavaScriptSerializer Serializer = new JavaScriptSerializer();
-            string responseContent = bll.HttpPost(url, Serializer.Serialize(mode));
+            JavaScriptSerializer s = new JavaScriptSerializer();
+            string responseContent = HttpHelp.Post(url, s.Serialize(mode));
             return responseContent;
         }
 
@@ -216,11 +213,9 @@ namespace TNet.Controllers
         /// <param name="menu"></param>
         /// <returns></returns>
         public JsonResult UpdateMenu(string menu)
-        {
-            HttpHelp bll = new HttpHelp();
+        { 
             string url = " https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + Pub.accessToken;
-            
-            string responseContent = bll.HttpPost(url, menu);
+            string responseContent = HttpHelp.Post(url, menu);
             return Json(responseContent);
         }
     }

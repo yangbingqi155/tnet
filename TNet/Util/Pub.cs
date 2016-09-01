@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -11,10 +12,31 @@ namespace Util
 {
     public static class Pub
     {
+        static long t = 0;
+        volatile static int un = 0;
+        private volatile static object lk = new object();
+        public static long ID()
+        {
+            lock (lk)
+            {
+                if (t == DateTime.Now.Ticks)
+                {
+                    un++;
+                }
+                else
+                {
+                    t = DateTime.Now.Ticks;
+                    un = 0;
+                }
+                return t + un;
+            }
+        }
+
+
         public static string C(string url)
         {
             string proxy_root = "";
-            if(HttpContext.Current.Request.UserHostAddress.IndexOf("192.168.1.20") >= 0)
+            if (HttpContext.Current.Request.UserHostAddress.IndexOf("192.168.1.20") >= 0)
             {
                 proxy_root = ConfigurationManager.AppSettings["app_proxy"];
             }
@@ -94,12 +116,11 @@ namespace Util
         private static string getAccessToken()
         {
             AccessTokenM mode = null;
-            HttpHelp bll = new HttpHelp();
             string url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret=" + secret;
 
             try
             {
-                string reqStr = bll.HttpGet(url);
+                string reqStr = HttpHelp.Get(url);
                 if (!string.IsNullOrWhiteSpace(reqStr))
                 {
                     JavaScriptSerializer Serializer = new JavaScriptSerializer();
