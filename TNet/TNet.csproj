@@ -207,6 +207,7 @@
     <Compile Include="Models\Merc\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
+    <Compile Include="Models\Merc\SpecViewModel.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\Weixin\AccessToken.cs" />
@@ -440,6 +441,9 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Manage\MercEdit.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
+    <Content Include="Views\Manage\MercTypeList.cshtml" />
+    <Content Include="Views\Manage\SpecList.cshtml" />
+    <Content Include="Views\Manage\MercTypeEdit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

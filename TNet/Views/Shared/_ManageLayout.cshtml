@@ -22,11 +22,12 @@
     <div class="manageLeft">
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading parentMenu">商品管理</div>
+            <div class="panel-heading parentMenu">产品管理</div>
             <!-- List group -->
             <div class="list-group">
                 <a class="list-group-item" href="@Url.Action("MercList","Manage")">基本信息管理</a>
-                <a class="list-group-item" href="">规格管理</a>
+                <a class="list-group-item" href="@Url.Action("MercTypeList","Manage")">类型管理</a>
+                <a class="list-group-item" href="@Url.Action("SpecList","Manage")">规格管理</a>
             </div>
             <!-- Default panel contents -->
             <div class="panel-heading parentMenu">订单管理</div>

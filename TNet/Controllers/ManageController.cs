@@ -53,6 +53,7 @@ namespace TNet.Controllers
         /// <summary>
         /// 商品列表
         /// </summary>
+        /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
         public ActionResult MercList(int pageIndex=0) {
@@ -144,6 +145,111 @@ namespace TNet.Controllers
             ModelState.AddModelError("", "保存成功.");
             return View(model);
         }
+
+        /// <summary>
+        /// 产品类型列表
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult MercTypeList(int pageIndex=0) {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<MercType> entities = MercTypeService.GetALL();
+            List<MercType> pageList = entities.Pager<MercType>(pageIndex, pageSize, out pageCount);
+
+
+            List<MercTypeViewModel> viewModels = pageList.Select(model => {
+                MercTypeViewModel viewModel = new MercTypeViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+            return View(viewModels);
+        }
+
+        /// <summary>
+        /// 新增\编辑产品类型
+        /// </summary>
+        /// <param name="idtype"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult MercTypeEdit(int idtype=0)
+        {
+            MercTypeViewModel model = new MercTypeViewModel();
+            if (idtype > 0)
+            {
+                MercType mercType = MercTypeService.GetMercType(idtype);
+                if (mercType != null) { model.CopyFromBase(mercType); }
+            }
+           
+            return View(model);
+        }
+
+        /// <summary>
+        /// 新增\编辑产品类型
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult MercTypeEdit(MercTypeViewModel model)
+        {
+            MercType mercType = new MercType();
+            model.CopyToBase(mercType);
+            if (mercType.idtype == 0)
+            {
+                //新增
+                mercType = MercTypeService.Add(mercType);
+            }
+            else
+            {
+                //编辑
+                mercType = MercTypeService.Edit(mercType);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(mercType);
+           
+            return View(model);
+        }
+
+        /// <summary>
+        /// 产品规格列表
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult SpecList() {
+            return View();
+        }
+
+        /// <summary>
+        /// 新增\编辑产品规格
+        /// </summary>
+        /// <param name="idspec"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult SpecEdit(int idspec = 0)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 新增\编辑产品规格
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult SpecEdit(SpecViewModel model)
+        {
+            return View(model);
+        }
+
 
         [HttpGet]
         public ActionResult Menu()

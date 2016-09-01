@@ -38,7 +38,7 @@ namespace TNet.BLL
             oldMerc.inuse = merc.inuse;
 
             db.SaveChanges();
-            return merc;
+            return oldMerc;
         }
 
         public static TNet.EF.Merc Add(Merc merc)

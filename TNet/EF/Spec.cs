@@ -47,6 +47,6 @@ namespace TNet.EF
         [StringLength(100)]
         public string notes { get; set; }
 
-        public bool? inuse { get; set; }
+        public bool inuse { get; set; }
     }
 }
