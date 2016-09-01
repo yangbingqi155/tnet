@@ -336,3 +336,6 @@ body {
     width:500px;
 
 }
+.form-group div.datetime_picker {
+    padding-left:15px;
+}

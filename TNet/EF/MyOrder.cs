@@ -12,12 +12,12 @@ namespace TNet.EF
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int orderno { get; set; }
+        public long orderno { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int iduser { get; set; }
+        public long iduser { get; set; }
 
         [Key]
         [Column(Order = 2)]

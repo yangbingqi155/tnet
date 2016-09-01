@@ -14,7 +14,7 @@ namespace TNet.Util
     public class AttributeHelper
     {
 
-        public static string GetValueOfNamePropertyOnDisplayAttribute<TModel, TValue>(Expression<Func<TModel, TValue>> expression) {
+        public static string DisplayAttributeFor<TModel, TValue>(Expression<Func<TModel, TValue>> expression) {
            return GetPropertyOnAttributeOfModelProperty<TModel,TValue,DisplayAttribute,string>(expression,"Name");
         }
 

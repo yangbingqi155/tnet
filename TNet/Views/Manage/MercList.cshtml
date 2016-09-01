@@ -4,7 +4,7 @@
 @using System.ComponentModel.DataAnnotations;
 @using TNet.Util;
 
-@model List<TNet.EF.Merc>
+@model List<MercViewModel>
 
 @{
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
@@ -30,14 +30,15 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel,String>(en=>en.merc1))</th>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, String>(en => en.sellpt))</th>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, double?>(en => en.baseprice))</th>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, int?>(en => en.sellcount))</th>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, String>(en => en.imgs))</th>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, DateTime?>(en => en.stime))</th>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, DateTime?>(en => en.entime))</th>
-                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, bool?>(en => en.inuse))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.MercTypeName))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel,String>(en=>en.merc1))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.sellpt))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, double?>(en => en.baseprice))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, int?>(en => en.sellcount))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.imgs))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, DateTime?>(en => en.stime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, DateTime?>(en => en.entime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, bool?>(en => en.inuse))</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -45,6 +46,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>@item.MercTypeName</td>
                             <td>@item.merc1</td>
                             <td>@item.sellpt</td>
                             <td>@item.baseprice</td>
@@ -60,12 +62,12 @@
 
                             </td>
                             <td>
-                                @(item.inuse.Value ? "启用" : "禁用")
+                                @( item.inuse ? "启用" : "禁用")
 
                             </td>
                             <td>
                                 <a href="@Url.Action("MercEdit","Manage",new {idmerc=item.idmerc })" class="btn btn-default">编辑</a>
-                                <a href="@Url.Action("MercEdit","Manage",new{idmerc=item.idmerc,inuse=!item.inuse })" class="btn btn-default">@(item.inuse.Value ? "禁用" : "启用")</a>
+                                <a href="@Url.Action("MercEdit","Manage",new{idmerc=item.idmerc,inuse=!item.inuse })" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
                             </td>
                         </tr>
                     }

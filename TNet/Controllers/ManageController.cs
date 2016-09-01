@@ -60,16 +60,32 @@ namespace TNet.Controllers
             int pageSize = 10;
             List<Merc> entities = MercService.GetALL();
             List<Merc> pageList=  entities.Pager<Merc>(pageIndex, pageSize, out pageCount);
-            
+
+
+            List<MercViewModel> viewModels = pageList.Select(model => {
+                MercViewModel viewModel = new MercViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+
+            //获取产品类型
+            List<MercType> mercTypes = MercTypeService.GetALL();
+
+            viewModels =viewModels.Select(model => {
+                model.MercTypeName = mercTypes.Where(en => en.idtype == model.idtype).FirstOrDefault().name;
+                return model;
+            }).ToList();
+
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
             
 
-            return View(pageList);
+            return View(viewModels);
         }
 
         /// <summary>
-        /// 编辑商品
+        /// 创建/编辑商品
         /// </summary>
         /// <param name="idmerc"></param>
         /// <returns></returns>
@@ -81,6 +97,14 @@ namespace TNet.Controllers
                 Merc merc = MercService.GetMerc(idmerc);
                 if ( merc!=null) { model.CopyFromBase(merc); }
             }
+            List<MercType> entities = MercTypeService.GetALL();
+            List<MercTypeViewModel> mercTypes= entities.Select(en => {
+                MercTypeViewModel viewModel = new MercTypeViewModel();
+                viewModel.CopyFromBase(en);
+                return viewModel;
+            }).ToList();
+
+            model.mercTypes = mercTypes;
             return View(model);
         }
 
@@ -92,6 +116,32 @@ namespace TNet.Controllers
         [ManageLoginValidation]
         [HttpPost]
         public ActionResult MercEdit(MercViewModel model) {
+
+            Merc merc = new Merc();
+            model.CopyToBase(merc);
+            if (merc.idmerc == 0)
+            {
+                //新增
+                merc = MercService.Add(merc);
+            }
+            else {
+                //编辑
+                merc = MercService.Edit(merc);
+            }
+            
+
+            //修改后重新加载
+            model.CopyFromBase(merc); 
+            List<MercType> entities = MercTypeService.GetALL();
+            List<MercTypeViewModel> mercTypes = entities.Select(en => {
+                MercTypeViewModel viewModel = new MercTypeViewModel();
+                viewModel.CopyFromBase(en);
+                return viewModel;
+            }).ToList();
+
+            model.mercTypes = mercTypes;
+
+            ModelState.AddModelError("", "保存成功.");
             return View(model);
         }
 

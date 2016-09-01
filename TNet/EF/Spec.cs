@@ -27,9 +27,9 @@ namespace TNet.EF
 
         public int? sellcount { get; set; }
 
-        public int? unit { get; set; }
-
         public int? month { get; set; }
+
+        public int? unit { get; set; }
 
         public int? up { get; set; }
 

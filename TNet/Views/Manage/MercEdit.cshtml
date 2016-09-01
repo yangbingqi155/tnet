@@ -1,91 +1,141 @@
 ﻿@model TNet.Models.MercViewModel
 @{
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
-    ViewBag.Title = "商品编辑";
+    ViewBag.Title = "编辑产品";
+    if (Model.idmerc == 0)
+    {
+        ViewBag.Title = "新增产品";
+    }
 }
+
 
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">商品管理</a></li>
-        <li><a href="#" class="active">编辑商品</a></li>
+        <li><a href="#" class="active">@(Model.idmerc == 0? "新增产品" : "编辑产品")</a></li>
     </ol>
 </div>
 <div class="ManageRightContent">
-   <form action="@Url.Action("MercEdit","Manage")"  class="form-horizontal" >
-       <div class="merc-edit-box ">
-           <fieldset>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.merc1, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.merc1, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.merc1)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.sellpt, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.sellpt, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.sellpt)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.baseprice, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.baseprice, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.baseprice)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.stime, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.stime, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.stime)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.entime, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.entime, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.entime)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.netype, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.netype, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.netype)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.imgs, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.imgs, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.imgs)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.descs, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.descs, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.descs)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.notes)
-               </div>
-               <div class="form-group">
-                   @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
-                   <div class="col-sm-10">
-                       @Html.TextBoxFor(model => model.inuse, new { @class = "form-control" })
-                   </div>
-                   @Html.ValidationMessageFor(model => model.inuse)
-               </div>
-           </fieldset>
-       </div>
-   </form>
+    <form action="@Url.Action("MercEdit","Manage")" method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                @Html.HiddenFor(model=>model.idmerc)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idtype, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(model=>model.idtype,new SelectList(Model.mercTypes, "idtype", "name"), new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.idtype)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.merc1, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.merc1, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.merc1)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sellpt, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.sellpt, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.sellpt)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.baseprice, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.baseprice, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.baseprice)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.stime, new { @class = "col-sm-2 control-label" })
+                    <div id="@(Html.IdFor(model=>model.stime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.stime)" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.stime)" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.HiddenFor(model => model.stime, new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", Model.stime) })
+                    @Html.ValidationMessageFor(model => model.stime)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.entime, new { @class = "col-sm-2 control-label" })
+                    <div id="@(Html.IdFor(model=>model.entime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.entime)" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.stime)" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.HiddenFor(model => model.entime, new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", Model.stime) })
+                    @Html.ValidationMessageFor(model => model.entime)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.netype, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.netype, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.netype)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.imgs, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.imgs, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.imgs)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.descs, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.descs, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.descs)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.notes)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inuse)
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                        <input type="submit" value="保存" class="btn btn-primary" />
+                </div>
+            </fieldset>
+
+        </div>
+
+    </form>
 
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#@(Html.NameFor(model => model.stime)+"_datepicker")').datetimepicker({
+            language: 'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('#@(Html.NameFor(model => model.entime)+"_datepicker")').datetimepicker({
+            language: 'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    });
+</script>

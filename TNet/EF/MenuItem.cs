@@ -9,7 +9,6 @@ namespace TNet.EF
     [Table("MenuItem")]
     public partial class MenuItem
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(50)]
