@@ -36,7 +36,7 @@ namespace TNet.Util
             sb.AppendLine("<ul class=\"pagination\">");
             sb.AppendLine("<li [pre]>");
             routeValues["pageIndex"] = pageIndex - 1;
-            sb.AppendLine(string.Format( "<a href = \"{0}\" aria-label=\"Previous\">", url.Action(actionName, controllerName, routeValues)));
+            sb.AppendLine(string.Format( "<a href = \"{0}\" aria-label=\"Previous\">", pageIndex==0?"": url.Action(actionName, controllerName, routeValues)));
             sb.AppendLine("<span aria-hidden=\"true\">&laquo;</span>");
             sb.AppendLine("</a>");
             sb.AppendLine("</li>");
@@ -48,7 +48,7 @@ namespace TNet.Util
            
             sb.AppendLine("<li [next]>");
             routeValues["pageIndex"] = pageIndex + 1;
-            sb.AppendLine(string.Format( "<a href=\"{0}\" aria-label=\"Next\">", url.Action(actionName, controllerName, routeValues)));
+            sb.AppendLine(string.Format( "<a href=\"{0}\" aria-label=\"Next\">", (pageIndex==pageCount-1)?"": url.Action(actionName, controllerName, routeValues)));
             sb.AppendLine("<span aria-hidden=\"true\">&raquo;</span>");
             sb.AppendLine("</a>");
             sb.AppendLine("</li>");
@@ -57,6 +57,9 @@ namespace TNet.Util
 
             sb = (pageIndex == 0) ? sb.Replace("[pre]", "class=\"disabled\"") : sb.Replace("[pre]","");
             sb = (pageIndex == pageCount-1) ? sb.Replace("[next]", "class=\"disabled\"") : sb.Replace("[next]", "");
+
+            //把roteValue 重新初始化
+            routeValues["pageIndex"] = 0;
 
             return sb.ToString();
         }

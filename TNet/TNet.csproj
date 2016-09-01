@@ -176,6 +176,7 @@
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
     <Compile Include="BLL\User\UserBll.cs" />
+    <Compile Include="BLL\Merc\MercService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
@@ -201,9 +202,9 @@
       <DependentUpon>201608300500213_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Manage\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
-    <Compile Include="Models\Merc\MercService.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\Weixin\AccessToken.cs" />
@@ -220,6 +221,7 @@
       <DependentUpon>MercService.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
     <Compile Include="Util\UrlHelperExtension.cs" />
     <Compile Include="Util\HttpHelp.cs" />
@@ -383,6 +385,8 @@
     <Content Include="Views\Manage\NonAuthorization.cshtml" />
     <Content Include="Views\Manage\MercList.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Manage\MercEdit.cshtml" />
+    <Content Include="Views\Shared\_ManageLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Css\Bootstrap\fonts\" />

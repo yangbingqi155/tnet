@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "后台管理";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>后台管理</title>
+    <link rel="stylesheet" href="@Url.Content("~/Css/Bootstrap/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Css/Manage/Base.css")" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Bootstrap/bootstrap.min.js")"></script>
+</head>
+<body>
+    <div class="manageLeft">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading parentMenu">商品管理</div>
+            <!-- List group -->
+            <div class="list-group">
+                <a class="list-group-item" href="@Url.Action("MercList","Manage")">基本信息管理</a>
+                <a class="list-group-item" href="">规格管理</a>
+            </div>
+            <!-- Default panel contents -->
+            <div class="panel-heading parentMenu">订单管理</div>
+            <!-- List group -->
+            <div class="list-group">
+                <a class="list-group-item" href="">已经完成的订单</a>
+                <a class="list-group-item" href="">未完成的订单</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="manageRight">
+        @RenderBody()
+    </div>
+</body>
+</html>
+

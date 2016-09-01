@@ -13,14 +13,7 @@ namespace TNet
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            //默认导航到前端
-            //
-            //routes.MapRoute(
-            //    "Manage_MercList",
-            //    "{controller}/{action}/{pageIndex}",
-            //    new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional }
-            //    );
-
+            
             routes.MapRoute(
                 "User",
                 "User",
@@ -33,6 +26,17 @@ namespace TNet
              new { controller = "Home", action = "Index", id = UrlParameter.Optional },
              new { controller = "^(?!Service).*" }
              );
+
+            routes.MapRoute(
+             "Manage_MercList",
+             "{controller}/{action}/{pageIndex}",
+             new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional }
+             );
+            routes.MapRoute(
+                "Manage_MercEdit",
+                "{controller}/{action}/{idmerc}",
+                new { controller = "Manage", action = "MercEdit", idmerc = UrlParameter.Optional }
+                );
 
             RouteService.register();
         }

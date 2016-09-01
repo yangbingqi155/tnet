@@ -1,29 +1,28 @@
 ﻿@using TNet.Util;
+@using TNet.Models;
+@using System.Reflection;
+@using System.ComponentModel.DataAnnotations;
+@using TNet.Util;
+
 @model List<TNet.EF.Merc>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
     var pageCount = Convert.ToInt32(ViewData["pageCount"]);
     var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
-    //var routeValues = new RouteValueDictionary();
-    //var obj=  ViewContext.RouteData.Values;
-    //routeValues.Add("pageIndex","1");
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>商品列表</title>
-    <link rel="stylesheet" href="@Url.Content("~/Css/Bootstrap/bootstrap.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/Css/Manage/Base.css")" />
-    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-1.10.2.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Bootstrap/bootstrap.min.js")"></script>
-</head>
-<body>
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">商品管理</a></li>
+        <li><a href="#" class="active">基本信息管理</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
     <div>
         @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "MercList", "Manage", ViewContext.RouteData.Values))
+    </div>
+    <div>
+        <a class="btn btn-primary" target="_blank" href="@Url.Action("MercEdit","Manage")">新增商品</a>
     </div>
     <div>
         @if (Model.Count > 0)
@@ -31,26 +30,45 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>商品名称</th>
-                        <th>销售选项</th>
-                        <th>基础价格</th>
-                        <th>销量数量</th>
-                        <th>商品图片</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel,String>(en=>en.merc1))</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, String>(en => en.sellpt))</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, double?>(en => en.baseprice))</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, int?>(en => en.sellcount))</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, String>(en => en.imgs))</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, DateTime?>(en => en.stime))</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, DateTime?>(en => en.entime))</th>
+                        <th>@(AttributeHelper.GetValueOfNamePropertyOnDisplayAttribute<MercViewModel, bool?>(en => en.inuse))</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                   @foreach (var item in Model)
-                   {
-                    <tr>
-                        <td>@item.merc1</td>
-                        <td>@item.sellpt</td>
-                        <td>@item.baseprice</td>
-                        <td>@item.sellcount</td>
-                        <td>
-                            <img src="@item.imgs" alt="@item.merc1" title="@item.merc1" />
-                        </td>
-                    </tr>
-                   }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.merc1</td>
+                            <td>@item.sellpt</td>
+                            <td>@item.baseprice</td>
+                            <td>@item.sellcount</td>
+                            <td>
+                                <img src="@item.imgs" alt="@item.merc1" title="@item.merc1" />
+                            </td>
+                            <td>
+                                @item.stime.Value.ToString("yyyy-MM-dd") 
+                            </td>
+                            <td>
+                                @item.entime.Value.ToString("yyyy-MM-dd")
+
+                            </td>
+                            <td>
+                                @(item.inuse.Value ? "启用" : "禁用")
+
+                            </td>
+                            <td>
+                                <a href="@Url.Action("MercEdit","Manage",new {idmerc=item.idmerc })" class="btn btn-default">编辑</a>
+                                <a href="@Url.Action("MercEdit","Manage",new{idmerc=item.idmerc,inuse=!item.inuse })" class="btn btn-default">@(item.inuse.Value ? "禁用" : "启用")</a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         }
@@ -60,5 +78,7 @@
         }
 
     </div>
-</body>
-</html>
+</div>
+
+
+

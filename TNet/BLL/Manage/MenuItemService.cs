@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using TNet.EF;
 
-namespace TNet.Models.Service
+namespace TNet.BLL
 {
     /// <summary>
     /// 菜单项

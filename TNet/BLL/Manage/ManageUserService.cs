@@ -6,7 +6,7 @@ using System.Data.Entity;
 using TNet.EF;
 using TNet.Models;
 
-namespace TNet.Models.Service
+namespace TNet.BLL
 {
     public class ManageUserService
     {
