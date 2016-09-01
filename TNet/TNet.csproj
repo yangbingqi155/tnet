@@ -175,9 +175,11 @@
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
+    <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="EF\Business.cs" />
     <Compile Include="EF\Discount.cs" />
@@ -380,6 +382,7 @@
     <Content Include="Views\Manage\Login.cshtml" />
     <Content Include="Views\Manage\NonAuthorization.cshtml" />
     <Content Include="Views\Manage\MercList.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Css\Bootstrap\fonts\" />

@@ -17,7 +17,7 @@ namespace TNet.EF
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int iduser { get; set; }
+        public long iduser { get; set; }
 
         [Key]
         [Column(Order = 2)]

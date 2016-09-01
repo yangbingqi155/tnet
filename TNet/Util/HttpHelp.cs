@@ -6,21 +6,21 @@ using System.Web;
 
 namespace Util
 {
-    public class HttpHelp
+    public sealed class HttpHelp
     {
         /// <summary>
         /// post请求
         /// </summary>
-        /// <param name="Url"></param>
-        /// <param name="postDataStr"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
-        public string HttpPost(string Url, string postDataStr)
+        public static string Post(string url, string data)
         {
             try
             {
                 Encoding encoding = Encoding.UTF8;
-                byte[] data = encoding.GetBytes(postDataStr);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+                byte[] bdata = encoding.GetBytes(data);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "POST";
                 request.AllowAutoRedirect = true;
                 request.ContentType = "application/x-www-form-urlencoded";
@@ -28,7 +28,7 @@ namespace Util
                 CookieContainer cookie = new CookieContainer();
                 request.CookieContainer = cookie;
                 Stream myRequestStream = request.GetRequestStream();
-                myRequestStream.Write(data, 0, data.Length);
+                myRequestStream.Write(bdata, 0, data.Length);
                 myRequestStream.Close();
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 response.Cookies = cookie.GetCookies(response.ResponseUri);
@@ -95,14 +95,14 @@ namespace Util
         /// <summary>
         /// get请求
         /// </summary>
-        /// <param name="Url"></param>
+        /// <param name="url"></param>
         /// <returns></returns>
-        public string HttpGet(string Url)
+        public static string Get(string url)
         {
             try
             {
                 Encoding encoding = Encoding.UTF8;
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.AllowAutoRedirect = true;
                 request.Method = "GET";
                 request.ContentType = "text/html;charset=UTF-8";
