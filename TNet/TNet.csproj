@@ -253,6 +253,7 @@
     <Content Include="Css\Com\Content\bootstrap.min.css" />
     <Content Include="Css\Merc\Detail.css" />
     <Content Include="Css\WeiXin\Base.css" />
+    <Content Include="Images\Com\arrow.png" />
     <Content Include="Images\Com\Cart.png" />
     <Content Include="Images\Com\menu.png" />
     <Content Include="Images\Com\user.png" />
