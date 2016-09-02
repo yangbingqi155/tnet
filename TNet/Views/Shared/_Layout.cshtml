@@ -18,8 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    @*@Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")*@
     <link href="@Pub.C("~/Css/WeiXin/Base.css?v20160827")" rel="stylesheet" type="text/css" />
     <link href="@Pub.C("~/Css/Com/swiper-3.3.1.min.css?v20160827")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="@Pub.C("~/Js/Com/jquery-1.10.2.js?v20160827")"></script>
@@ -33,23 +31,28 @@
     <div class="T">
         <div class="before"></div>
         <div class="TT">
-            <a class="Top_Menu" href="#"></a>
+            <a class="Top_Menu" href="#" onclick="$('.Top_Main_Menu').toggle()"></a>
             <div class="TL">
                 <a class="Top_User" href="#"></a>
-
                 <a class="Top_Cart" href="#"></a>
-
             </div>
         </div>
-
     </div>
     <div class="C">
         <div class="CC">
             @RenderBody()
+            <div class="Top_Main_Menu" onclick="$('.Top_Main_Menu').toggle()">
+                <ul>
+                    <li><a href="@Url.Content("~/")"> 首页</a></li>
+                    <li><a href="@Url.Content("~/Merc/List")">宽带</a></li>
+                    <li><a href="@Url.Content("~/")">报装</a></li>
+                    <li><a href="@Url.Content("~/")">商圈</a></li>
+                    <li><a href="@Url.Content("~/")">订单</a></li>
+                </ul>
+            </div>
         </div>
 
     </div>
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
+
 </body>
 </html>
