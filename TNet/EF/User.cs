@@ -19,9 +19,10 @@ namespace TNet.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long iduser { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string name { get; set; }
-        
+
         public DateTime? cretime { get; set; }
 
         public bool? isoper { get; set; }

@@ -299,7 +299,7 @@ body {
 }
 
 .manageLeft {
-    width: 300px;
+    width: 220px;
     float: left;
     padding: 10px;
 }
@@ -335,4 +335,7 @@ body {
 .merc-edit-box {
     width:500px;
 
+}
+.form-group div.datetime_picker {
+    padding-left:15px;
 }
