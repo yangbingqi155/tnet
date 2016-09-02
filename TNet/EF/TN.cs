@@ -17,6 +17,7 @@ namespace TNet.EF
         public virtual DbSet<ManageUser> ManageUsers { get; set; }
         public virtual DbSet<MenuItem> MenuItems { get; set; }
         public virtual DbSet<Merc> Mercs { get; set; }
+        public virtual DbSet<MercImage> MercImages { get; set; }
         public virtual DbSet<MercType> MercTypes { get; set; }
         public virtual DbSet<MyAddr> MyAddrs { get; set; }
         public virtual DbSet<MyOrder> MyOrders { get; set; }
@@ -87,6 +88,10 @@ namespace TNet.EF
 
             modelBuilder.Entity<Merc>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MercImage>()
+                .Property(e => e.Path)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MercType>()

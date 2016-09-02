@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
+    <Compile Include="BLL\IdentifyService.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
     <Compile Include="BLL\Merc\SpecService.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="EF\ManageUser.cs" />
     <Compile Include="EF\MenuItem.cs" />
     <Compile Include="EF\Merc.cs" />
+    <Compile Include="EF\MercImage.cs" />
     <Compile Include="EF\MercType.cs" />
     <Compile Include="EF\MyAddr.cs" />
     <Compile Include="EF\MyOrder.cs" />
