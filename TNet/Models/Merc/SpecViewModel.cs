@@ -56,7 +56,45 @@ namespace TNet.Models
         [StringLength(100)]
         public string notes { get; set; }
 
-        [Display(Name = "产品编号")]
+        [Display(Name = "是否启用")]
         public bool inuse { get; set; }
+
+        public void CopyFromBase(Spec spec)
+        {
+            this.idmerc = spec.idmerc;
+            this.idspec = spec.idspec;
+            this.spec1 = spec.spec1;
+            this.price = spec.price;
+            this.sellcount = spec.sellcount;
+            this.month = spec.month;
+            this.unit = spec.unit;
+            this.up = spec.up;
+            this.down = spec.down;
+            this.attmonth = spec.attmonth;
+            this.stuprice = spec.stuprice;
+            this.moveprice = spec.moveprice;
+            this.usertype = spec.usertype;
+            this.notes = spec.notes;
+            this.inuse = spec.inuse;
+        }
+
+        public void CopyToBase(Spec spec)
+        {
+            spec.idmerc = this.idmerc;
+            spec.idspec = this.idspec;
+            spec.spec1 = this.spec1;
+            spec.price = this.price;
+            spec.sellcount = this.sellcount;
+            spec.month = this.month;
+            spec.unit = this.unit;
+            spec.up = this.up;
+            spec.down = this.down;
+            spec.attmonth = this.attmonth;
+            spec.stuprice = this.stuprice;
+            spec.moveprice = this.moveprice;
+            spec.usertype = this.usertype;
+            spec.notes = this.notes;
+            spec.inuse = this.inuse;
+        }
     }
 }

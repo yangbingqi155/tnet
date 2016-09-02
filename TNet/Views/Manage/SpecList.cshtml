@@ -1,17 +1,87 @@
-﻿@{
-    Layout = null;
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+
+@model List<SpecViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">产品管理</a></li>
+        <li><a href="#" class="active">规格管理</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
     <div>
-    
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "SpecList", "Manage", ViewContext.RouteData.Values))
     </div>
-</body>
-</html>
+    <div>
+        <a class="btn btn-primary" target="_blank" href="@Url.Action("SpecEdit","Manage")">新增规格</a>
+    </div>
+    <div>
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int>(en => en.idmerc))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int>(en => en.idspec))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, String>(en => en.spec1))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, double?>(en => en.price))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int?>(en => en.sellcount))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int?>(en => en.month))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int?>(en => en.unit))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int?>(en => en.up))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int?>(en => en.down))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int?>(en => en.attmonth))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, double?>(en => en.stuprice))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, double?>(en => en.moveprice))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, String>(en => en.usertype))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, String>(en => en.notes))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, bool>(en => en.inuse))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.idmerc</td>
+                            <td>@item.idspec</td>
+                            <td>@item.spec1</td>
+                            <td>@item.price</td>
+                            <td>@item.sellcount</td>
+                            <td>@item.month</td>
+                            <td>@item.unit</td>
+                            <td>@item.up</td>
+                            <td>@item.down</td>
+                            <td>@item.attmonth</td>
+                            <td>@item.stuprice</td>
+                            <td>@item.moveprice</td>
+                            <td>@item.usertype</td>
+                            <td>@item.notes</td>
+                            <td>
+                                @( item.inuse ? "启用" : "禁用")
+                            </td>
+                            <td>
+                                <a href="@Url.Action("SpecEdit","Manage",new {idmerc=item.idmerc,idspec=item.idmerc })" class="btn btn-default">编辑</a>
+                                <a href="@Url.Action("SpecEdit","Manage",new{idmerc=item.idmerc,idspec=item.idmerc,inuse=!item.inuse })" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>还没有任何产品规格.</h2>
+        }
+
+    </div>
+</div>
+
+

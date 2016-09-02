@@ -220,10 +220,26 @@ namespace TNet.Controllers
         /// <summary>
         /// 产品规格列表
         /// </summary>
+        /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult SpecList() {
-            return View();
+        public ActionResult SpecList(int pageIndex=0) {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<Spec> entities = SpecService.GetALL();
+            List<Spec> pageList = entities.Pager<Spec>(pageIndex, pageSize, out pageCount);
+            
+            List<SpecViewModel> viewModels = pageList.Select(model => {
+                SpecViewModel viewModel = new SpecViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+            
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+
+            return View(viewModels);
         }
 
         /// <summary>
@@ -235,7 +251,14 @@ namespace TNet.Controllers
         [HttpGet]
         public ActionResult SpecEdit(int idspec = 0)
         {
-            return View();
+            SpecViewModel model = new SpecViewModel();
+            if (idspec > 0)
+            {
+                Spec spec = SpecService.GetSpecs(idspec);
+                if (spec != null) { model.CopyFromBase(spec); }
+            }
+
+            return View(model);
         }
 
         /// <summary>
@@ -247,6 +270,22 @@ namespace TNet.Controllers
         [HttpPost]
         public ActionResult SpecEdit(SpecViewModel model)
         {
+            Spec spec = new Spec();
+            model.CopyToBase(spec);
+            if (spec.idspec == 0)
+            {
+                //新增
+                spec = SpecService.Add(spec);
+            }
+            else
+            {
+                //编辑
+                spec = SpecService.Edit(spec);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(spec);
+
             return View(model);
         }
 

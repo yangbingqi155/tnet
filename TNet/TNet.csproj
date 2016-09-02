@@ -175,6 +175,7 @@
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
+    <Compile Include="BLL\Merc\SpecService.cs" />
     <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="BLL\Merc\MercService.cs" />
     <Compile Include="BLL\Merc\MercTypeService.cs" />
@@ -444,6 +445,7 @@
     <Content Include="Views\Manage\MercTypeList.cshtml" />
     <Content Include="Views\Manage\SpecList.cshtml" />
     <Content Include="Views\Manage\MercTypeEdit.cshtml" />
+    <Content Include="Views\Manage\SpecEdit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
