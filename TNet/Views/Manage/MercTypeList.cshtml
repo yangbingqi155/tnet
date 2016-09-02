@@ -1,0 +1,63 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@model List<MercTypeViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">产品管理</a></li>
+        <li><a href="#" class="active">类型管理</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "MercTypeList", "Manage", ViewContext.RouteData.Values))
+    </div>
+    <div>
+        <a class="btn btn-primary" target="_blank" href="@Url.Action("MercTypeEdit","Manage")">新增产品类型</a>
+    </div>
+    <div>
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercTypeViewModel, int>(en => en.idtype))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercTypeViewModel, String>(en => en.name))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercTypeViewModel, String>(en => en.notes))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercTypeViewModel, bool?>(en => en.inuse))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.idtype</td>
+                            <td>@item.name</td>
+                            <td>@item.notes</td>
+                            <td>
+                                @(item.inuse ? "启用" : "禁用")
+
+                            </td>
+                            <td>
+                                <a href="@Url.Action("MercTypeEdit","Manage",new {idtype=item.idtype })" class="btn btn-default">编辑</a>
+                                <a href="@Url.Action("MercTypeEdit","Manage",new{idtype=item.idtype,inuse=!item.inuse })" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>还没有任何产品类型.</h2>
+        }
+
+    </div>
+</div>

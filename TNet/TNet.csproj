@@ -175,10 +175,13 @@
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
+    <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="BLL\Merc\MercService.cs" />
+    <Compile Include="BLL\Merc\MercTypeService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="EF\Business.cs" />
     <Compile Include="EF\Discount.cs" />
@@ -200,9 +203,11 @@
       <DependentUpon>201608300500213_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Manage\MercViewModel.cs" />
+    <Compile Include="Models\Merc\MercTypeViewModel.cs" />
+    <Compile Include="Models\Merc\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
+    <Compile Include="Models\Merc\SpecViewModel.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\Weixin\AccessToken.cs" />
@@ -231,6 +236,8 @@
   <ItemGroup>
     <Content Include="App_Data\XMLToken.xml" />
     <Content Include="BLL\README.txt" />
+    <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
+    <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="Css\Bootstrap\bootstrap-theme.css" />
     <Content Include="Css\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Css\Bootstrap\bootstrap.css" />
@@ -252,6 +259,54 @@
     <Content Include="Images\Com\load_error.png" />
     <Content Include="Images\default_bg.png" />
     <Content Include="Images\Manage\login_bg.png" />
+    <Content Include="Js\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Js\bootstrap-datetimepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ar.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.az.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.bg.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.bn.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ca.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.cs.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.da.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.de.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ee.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.el.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.es.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.fi.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.fr.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.he.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.hr.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.hu.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.hy.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.id.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.is.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.it.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ja.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ka.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ko.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.lt.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.lv.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ms.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.nb.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.nl.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.no.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.pl.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.pt-BR.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.pt.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ro.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.rs-latin.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.rs.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ru.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.sk.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.sl.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.sv.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.sw.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.th.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.tr.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ua.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.uk.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.zh-TW.js" />
     <Content Include="Js\Bootstrap\bootstrap.js" />
     <Content Include="Js\Bootstrap\bootstrap.min.js" />
     <Content Include="Js\Bootstrap\npm.js" />
@@ -340,6 +395,7 @@
     <Content Include="Js\Com\bootstrap.min.js" />
     <Content Include="Css\Bootstrap\bootstrap-theme.css.map" />
     <Content Include="Css\Bootstrap\bootstrap.css.map" />
+    <Content Include="Css\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Js\Com\jquery-1.10.2.intellisense.js" />
     <Content Include="Js\Com\jquery-1.10.2.js" />
     <Content Include="Js\Com\jquery-1.10.2.min.js" />
@@ -382,12 +438,14 @@
     <Content Include="Views\Manage\Login.cshtml" />
     <Content Include="Views\Manage\NonAuthorization.cshtml" />
     <Content Include="Views\Manage\MercList.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Manage\MercEdit.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
+    <Content Include="Views\Manage\MercTypeList.cshtml" />
+    <Content Include="Views\Manage\SpecList.cshtml" />
+    <Content Include="Views\Manage\MercTypeEdit.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Css\Bootstrap\fonts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Css\fonts\glyphicons-halflings-regular.ttf" />

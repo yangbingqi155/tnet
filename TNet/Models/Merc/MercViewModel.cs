@@ -14,9 +14,15 @@ namespace TNet.Models
         [Display(Name = "产品编号")]
         public int idmerc { get; set; }
 
-        [Display(Name = "产品类型编号")]
+        [Display(Name = "产品类型")]
         [Required]
         public int? idtype { get; set; }
+
+        /// <summary>
+        /// 产品类型
+        /// </summary>
+        [Display(Name = "产品类型")]
+        public string MercTypeName { get; set; }
 
         [Display(Name = "产品名称")]
         [Required]
@@ -58,7 +64,10 @@ namespace TNet.Models
         public string notes { get; set; }
 
         [Display(Name = "是否启用")]
-        public bool? inuse { get; set; }
+        [Required]
+        public bool inuse { get; set; }
+        
+        public List<MercTypeViewModel> mercTypes { get; set; }
 
         public void CopyFromBase(Merc merc) {
             this.idmerc = merc.idmerc;

@@ -193,3 +193,10 @@
             height:30px;
             line-height:30px;
         }
+
+        .lv{
+            display:block;
+            height:36px;
+            line-height:36px;
+            padding:0px 10px 0px 10px;
+        }

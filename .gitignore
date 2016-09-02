@@ -3,3 +3,4 @@
 *.suo
 .user
 .suo
+/.vs/TNet/v14/*.suo
