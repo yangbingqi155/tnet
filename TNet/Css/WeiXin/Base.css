@@ -543,7 +543,7 @@ span.loading_c, span.load_error {
 }
 .Top_Main_Menu {
     display:block;
-    position: absolute;
+    position:fixed;
     width: 100%;
     top: 2.5em;
     left: 0px;
