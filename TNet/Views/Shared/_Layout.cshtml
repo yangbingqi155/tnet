@@ -18,12 +18,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link href="@Pub.C("~/Css/WeiXin/Base.css?v20160827")" rel="stylesheet" type="text/css" />
-    <link href="@Pub.C("~/Css/Com/swiper-3.3.1.min.css?v20160827")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Pub.C("~/Js/Com/jquery-1.10.2.js?v20160827")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/Com/swiper-3.3.1.min.js?v20160827")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/Pub.js?v20160827")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/WeiXin/Base.js?v20160827")"></script>
+    <link href="@Pub.C("~/Css/WeiXin/Base.css?v=20160902")" rel="stylesheet" type="text/css" />
+    <link href="@Pub.C("~/Css/Com/swiper-3.3.1.min.css?v=20160902")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Pub.C("~/Js/Com/jquery-1.10.2.js?v=20160902")"></script>
+    <script type="text/javascript" src="@Pub.C("~/Js/Com/swiper-3.3.1.min.js?v=20160902")"></script>
+    <script type="text/javascript" src="@Pub.C("~/Js/Pub.js?v=20160902")"></script>
+    <script type="text/javascript" src="@Pub.C("~/Js/WeiXin/Base.js?v=20160902")"></script>
     @RenderSection("Head", required: false)
 
 </head>
@@ -31,27 +31,28 @@
     <div class="T">
         <div class="before"></div>
         <div class="TT">
-            <a class="Top_Menu" href="#" onclick="$('.Top_Main_Menu').toggle()"></a>
+            <a class="Top_Menu" href="#" onclick="autoShowTopMenu()"></a>
             <div class="TL">
                 <a class="Top_User" href="#"></a>
                 <a class="Top_Cart" href="#"></a>
             </div>
         </div>
     </div>
-    <div class="C">
-        <div class="CC">
+    <div id="C" class="C">
+        <div class="CC" id="CC">
             @RenderBody()
-            <div class="Top_Main_Menu" onclick="$('.Top_Main_Menu').toggle()">
-                <ul>
-                    <li><a href="@Url.Content("~/")"> 首页</a></li>
-                    <li><a href="@Url.Content("~/Merc/List")">宽带</a></li>
-                    <li><a href="@Url.Content("~/")">报装</a></li>
-                    <li><a href="@Url.Content("~/")">商圈</a></li>
-                    <li><a href="@Url.Content("~/")">订单</a></li>
-                </ul>
-            </div>
         </div>
-
+    </div>
+    <div class="Top_Main_Menu_Host" id="Top_Main_Menu_Host">
+        <div class="Top_Main_Menu" id="Top_Main_Menu" onclick="autoShowTopMenu()">
+            <ul>
+                <li><a href="@Url.Content("~/")"> 首页<span /></a></li>
+                <li><a href="@Url.Content("~/Merc/List")">宽带<span /></a></li>
+                <li><a href="@Url.Content("~/")">报装<span /></a></li>
+                <li><a href="@Url.Content("~/")">商圈<span /></a></li>
+                <li><a href="@Url.Content("~/")">订单<span /></a></li>
+            </ul>
+        </div>
     </div>
 
 </body>

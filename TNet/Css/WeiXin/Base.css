@@ -29,7 +29,11 @@ body {
         top: 0px;
         -webkit-transform-origin: center top;
         transform-origin: center top;
-        z-index: 9999;
+        z-index: 99999;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
     }
 
 
@@ -44,7 +48,7 @@ body {
     top: 0px;
     left: 0px;
     right: 0px;
-    z-index: 210;
+    z-index: 99998;
 }
 
 .C {
@@ -52,6 +56,7 @@ body {
     padding-top: 2.5em;
     position: relative;
     display: block;
+    height:auto;
 }
 
 .CC {
@@ -527,16 +532,25 @@ span.loading_c, span.load_error {
     text-align: center;
     margin: 36px auto 30px auto;
 }
-
+.body_bg{
+      background-color: #222222;
+}
+.Top_Main_Menu_Host{
+     display: none;
+     font-size:23px;   
+     width:100%;
+     height:100%;
+}
 .Top_Main_Menu {
-    display: none;
+    display:block;
     position: absolute;
     width: 100%;
-    top: 0px;
+    top: 2.5em;
     left: 0px;
     height: 100%;
     background-color: #222222;
-    z-index: 99999;
+    z-index: 999;
+    font-size: 23px;
 }
 
     .Top_Main_Menu ul {
@@ -550,21 +564,36 @@ span.loading_c, span.load_error {
             list-style: none;
             height: 100%;
             border-top: solid #3B3B3B 1px;
-            padding: 0px 0px 0px 20px;
         }
 
             .Top_Main_Menu ul li a {
                 color: #ffffff;
                 text-decoration: none;
-                display: inline-block;
-                width: 99.5%;
-                background-image: url(../../Images/Com/arrow.png);
-                background-position: right center;
-                background-repeat: no-repeat;
+                display: block;
                 background-size: 0.5em;
-                 
+                padding: 0px 0px 0px 20px;
+                font-size: 1.4rem;
+                position: relative;
             }
 
-             .Top_Main_Menu ul li:hover{
-                  background-color:#2d2d2d;
-             }
+            .Top_Main_Menu ul li:hover {
+                background-color: #2d2d2d;
+            }
+
+            .Top_Main_Menu ul li a:hover, .Top_Main_Menu ul li a:active {
+                background-color: none;
+            }
+
+            .Top_Main_Menu ul li a span {
+                background: url(../../Images/Com/arrow.png) no-repeat;
+                background-size: contain;
+                content: " ";
+                height: .8rem;
+                width: .4rem;
+                opacity: .3;
+                position: absolute;
+                top: 50%;
+                right: .8rem;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
