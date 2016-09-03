@@ -1,18 +1,18 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "用户信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-        @ViewBag.ok
-    </div>
-</body>
-</html>
+@section Head{
+    <script type="text/javascript">
+        var ru = "@ViewBag.ru";
+        var tn_u = @ViewBag.u;
+        Pub.setUser(tn_u);
+        if (ru) {
+            window.location.href = ru;
+        }
+    </script>
+}
+@ViewBag.ok

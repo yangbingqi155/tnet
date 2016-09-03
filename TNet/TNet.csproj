@@ -183,6 +183,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="EF\Business.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Models\Merc\SpecViewModel.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
+    <Compile Include="Models\User\UserInfo.cs" />
     <Compile Include="Models\Weixin\AccessToken.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
     <Compile Include="Models\Weixin\ReplyType.cs" />
@@ -252,6 +254,7 @@
     <Content Include="Css\Com\Content\bootstrap.css" />
     <Content Include="Css\Com\Content\bootstrap.min.css" />
     <Content Include="Css\Merc\Detail.css" />
+    <Content Include="Css\Order\Submit.css" />
     <Content Include="Css\WeiXin\Base.css" />
     <Content Include="Images\Com\arrow.png" />
     <Content Include="Images\Com\Cart.png" />
@@ -263,6 +266,9 @@
     <Content Include="Images\Com\load_error.png" />
     <Content Include="Images\default_bg.png" />
     <Content Include="Images\Manage\login_bg.png" />
+    <Content Include="Js\Addr\distpicker.data.js" />
+    <Content Include="Js\Addr\distpicker.js" />
+    <Content Include="Js\Addr\main.js" />
     <Content Include="Js\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
     <Content Include="Js\bootstrap-datetimepicker\bootstrap-datetimepicker.min.js" />
     <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ar.js" />
@@ -317,11 +323,12 @@
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Css\Manage\Login.css" />
     <Content Include="Js\Merc\Detail.js" />
+    <Content Include="Js\Order\Submit.js" />
     <Content Include="Js\Pub.js" />
     <Content Include="Css\Manage\Master.css" />
     <Content Include="Css\Manage\Menu.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Css\Com\Content\Site.css" />
     <Content Include="Images\angle_6.png" />
@@ -399,7 +406,7 @@
     <Content Include="Js\Com\bootstrap.min.js" />
     <Content Include="Css\Bootstrap\bootstrap-theme.css.map" />
     <Content Include="Css\Bootstrap\bootstrap.css.map" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Js\Com\jquery-1.10.2.intellisense.js" />
     <Content Include="Js\Com\jquery-1.10.2.js" />
     <Content Include="Js\Com\jquery-1.10.2.min.js" />
@@ -442,19 +449,22 @@
     <Content Include="Views\Manage\Login.cshtml" />
     <Content Include="Views\Manage\NonAuthorization.cshtml" />
     <Content Include="Views\Manage\MercList.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Manage\MercEdit.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
     <Content Include="Views\Manage\MercTypeList.cshtml" />
     <Content Include="Views\Manage\SpecList.cshtml" />
     <Content Include="Views\Manage\MercTypeEdit.cshtml" />
     <Content Include="Views\Manage\SpecEdit.cshtml" />
+    <Content Include="Views\Order\Submit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Css\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.eot" />
+    <Folder Include="Images\Addr\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Js\Com\jquery-1.10.2.min.map" />
   </ItemGroup>

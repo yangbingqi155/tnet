@@ -1,6 +1,6 @@
 ﻿(function () {
     Pub = {
-        ajax: _ajax_call, //增加统一请求服务-lxw
+        ajax: _ajax_call,
         call: _ajax_call,
         post: _ajax_post,
         get: _ajax_get,
@@ -11,7 +11,22 @@
         showMsg: showMsg,//显示进度条
         showError: showError,//显示进度条
         hieLoading: hieLoading,
-        noData:noData//无数据
+        noData: noData,//无数据
+        checkUser: checkUser,
+        isHome: isHome,
+        auth: auth,
+        setCache: setCache,
+        getCache: getCache,
+        delCache: delCache,
+        setUser: function (v, e) {
+            return setCache('tn_u', v, e);
+        },
+        getUser: function () {
+            return getCache('tn_u');
+        },
+        delUser: function () {
+            return delCache('tn_u');
+        }
 
     };
     var default_root_url = "";
@@ -218,7 +233,7 @@
     }
 
     //无数据统一处理
-    function noData(id,msg,fun) {
+    function noData(id, msg, fun) {
         var obj = $(id);
         if (obj) {
             if (!msg) {
@@ -228,4 +243,108 @@
             obj.children(":first").click(fun);
         }
     }
+
+    function checkUser(go) {
+        var tn_u = Pub.getUser();
+        if (!tn_u || tn_u == "") {
+            auth(go);
+            return false;
+        }
+        return true;
+    }
+    function isHome() {
+        var h = $(document.body).attr("__Is_Home_Tag");
+        if (h != undefined) {
+            return true;
+        }
+        return false;
+    }
+
+    function auth(go) {
+        var tn_u = Pub.getUser();
+        var ru = rootUrl();
+        var realu = "";
+        //if (!isHome()) {
+        realu = window.location.href + "";
+        //}
+        var u = "";
+        var uurl = "http://app.i5shang.com/tnet/user?ru=" + encodeURIComponent(realu);
+        if (!tn_u) {
+            uurl = encodeURIComponent(uurl);
+            u = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc530ec3ce6a52233&redirect_uri=' + uurl + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+            if (go) {
+                window.location.href = u;
+                return true;
+            }
+            //return false;
+        } else {
+            u = uurl;
+        }
+        $(".Top_User").attr("href", u);
+        if (tn_u && tn_u.avatar) {
+            var uo = $("#Top_User");
+            uo.css("background-image", "url(" + tn_u.avatar + ")");
+            uo.css("background-size", "1.5em");
+        }
+        return false;
+    }
+
+    //设置缓存
+    function setCache(key, value, expires) {
+        if (window.localStorage) {
+            if (value) {
+                if (!expires) {
+                    expires = new Date();
+                    expires.setDate(expires.getDate() + 1);
+                    expires = expires.getTime();
+                }
+                var k = "tnet_app_" + key;
+                window.localStorage[k] = JSON.stringify({ value: value, expires: expires });
+                return true;
+            } else {
+                _clearCache(key);
+            }
+        } else {
+            //alert("不支持-localStorage");
+        }
+        return false;
+    }
+
+
+    //获取缓存
+    function getCache(key) {
+        if (window.localStorage) {
+            var k = "tnet_app_" + key;
+            var v = window.localStorage[k];
+            if (v) {
+                v = JSON.parse(v);
+                if (v && v.expires <= (new Date().getTime())) {
+                    v = null;
+                    // alert("清空了");
+                }
+                //window.localStorage.removeItem(k);
+                if (v) {
+                    return v.value;
+                }
+            }
+        } else {
+            // alert("不支持-localStorage");
+        }
+        return null;
+    }
+
+
+    //清空缓存
+    function delCache(key) {
+        if (window.localStorage && key) {
+            var k = "tnet_app_" + key;
+            window.localStorage.removeItem(k);
+            return true;
+        } else {
+            // alert("不支持-localStorage");
+        }
+        return false;
+    }
+
+
 })();

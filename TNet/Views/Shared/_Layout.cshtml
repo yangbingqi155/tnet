@@ -1,7 +1,6 @@
 ﻿@{
     Layout = null;
 }
-@using Util
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,22 +17,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link href="@Pub.C("~/Css/WeiXin/Base.css?v=20160902")" rel="stylesheet" type="text/css" />
-    <link href="@Pub.C("~/Css/Com/swiper-3.3.1.min.css?v=20160902")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Pub.C("~/Js/Com/jquery-1.10.2.js?v=20160902")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/Com/swiper-3.3.1.min.js?v=20160902")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/Pub.js?v=20160902")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/WeiXin/Base.js?v=20160902")"></script>
+    <link href="@Url.Content("~/Css/WeiXin/Base.css?v=20160902")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Com/swiper-3.3.1.min.css?v=20160902")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-1.10.2.js?v=20160902")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/swiper-3.3.1.min.js?v=20160902")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/js.cookie.js?v=20160902")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Pub.js?v=20160902")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/WeiXin/Base.js?v=20160902")"></script>
     @RenderSection("Head", required: false)
 
 </head>
-<body root="@Pub.C("~/")">
+<body root="@Url.Content("~/")" @ViewBag.__Is_Home_Tag>
     <div class="T">
         <div class="before"></div>
         <div class="TT">
             <a class="Top_Menu" href="#" onclick="autoShowTopMenu()"></a>
             <div class="TL">
-                <a class="Top_User" href="#"></a>
+                <a class="Top_User" id="Top_User" href="#"></a>
                 <a class="Top_Cart" href="#"></a>
             </div>
         </div>
