@@ -19,6 +19,12 @@ namespace TNet.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int iuser { get; set; }
 
+        [StringLength(60)]
+        public string contact { get; set; }
+
+        [StringLength(13)]
+        public string phone { get; set; }
+
         [StringLength(10)]
         public string province { get; set; }
 

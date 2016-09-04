@@ -212,6 +212,10 @@
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
+    <Compile Include="Models\Order\CreateOrderData.cs" />
+    <Compile Include="Models\Order\CreateOrderResult.cs" />
+    <Compile Include="Models\Order\OrderStatus.cs" />
+    <Compile Include="Models\Order\OrderType.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\User\UserInfo.cs" />
@@ -227,6 +231,10 @@
     <Compile Include="Service\Merc\IMercService.cs" />
     <Compile Include="Service\Merc\MercService.svc.cs">
       <DependentUpon>MercService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Order\IOrderService.cs" />
+    <Compile Include="Service\Order\OrderService.svc.cs">
+      <DependentUpon>OrderService.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Util\AttributeHelper.cs" />
@@ -423,10 +431,10 @@
     <Content Include="Js\Home\Home.js" />
     <Content Include="Js\WeiXin\Base.js" />
     <Content Include="Service\Merc\MercService.svc" />
+    <Content Include="Service\Order\OrderService.svc" />
     <Content Include="Service\README.txt" />
     <Content Include="Views\Home\README.txt" />
     <Content Include="Views\Manage\README.txt" />
-    <Content Include="Views\Merc\detail.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

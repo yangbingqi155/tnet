@@ -22,15 +22,35 @@ namespace TNet.EF
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idpro { get; set; }
+        public int idmerc { get; set; }
 
         [StringLength(60)]
-        public string pro { get; set; }
+        public string merc { get; set; }
+
+        [Key]
+        [Column(Order = 4)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int idspec { get; set; }
+
+        [StringLength(60)]
+        public string spec { get; set; }
+
+        public int? month { get; set; }
+
+        public int? attmonth { get; set; }
 
         public double? price { get; set; }
 
+
+        [StringLength(60)]
+        public string contact { get; set; }
+        
+
         [StringLength(100)]
         public string addr { get; set; }
+
+        [StringLength(13)]
+        public string phone { get; set; }
 
         public DateTime? cretime { get; set; }
 
@@ -45,6 +65,6 @@ namespace TNet.EF
         [StringLength(50)]
         public string notes { get; set; }
 
-        public int? inuse { get; set; }
+        public bool? inuse { get; set; }
     }
 }
