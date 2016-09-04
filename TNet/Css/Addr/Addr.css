@@ -1,0 +1,162 @@
+﻿body {
+}
+
+.Addr_Host {
+    display: none;
+    padding-bottom: 50px;
+}
+
+.Add_C {
+    display: block;
+}
+
+.Addr_List {
+    display: block;
+}
+
+.Addr_Op {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    z-index: 9999;
+}
+
+    .Addr_Op a {
+        padding: 0px;
+        margin: 0px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 50px;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #ff6a00;
+    }
+
+.Addr_Edit {
+    padding: 20px 0px 0px 0px;
+    display: none;
+}
+
+.Edit_Item {
+    display: block;
+    height: 60px;
+    padding: 8px;
+    position: relative;
+}
+
+    .Edit_Item .Edit_Name {
+        float: left;
+        width: 50px;
+        height: 100%;
+        padding: 0px 0px 0px 8px;
+    }
+
+
+    .Edit_Item .Edit_Value {
+        position: absolute;
+        top: 0px;
+        left: 65px;
+        right: 10px;
+        height: 100%;
+    }
+
+        .Edit_Item .Edit_Value div.in {
+            display: block;
+            border: solid #d6d6d6 1px;
+            border-radius: 5px;
+            height: 40px;
+            padding: 0px 10px 0px 10px;
+            background-color: #ffffff;
+        }
+
+        .Edit_Item .Edit_Value input[type="text"] {
+            display: block;
+            width: 100%;
+            height: 40px;
+            border: none;
+            outline: none;
+        }
+
+        .Edit_Item .Edit_Value div.addr_box, .Edit_Item .Edit_Value div.ck {
+            display: block;
+            height: 40px;
+            line-height: 40px;
+        }
+
+
+
+.addr_item {
+    display: block;
+    height: 60px;
+    position: relative;
+    width:100%;
+    border-top:solid #d6d6d6 1px;
+    
+}
+
+    .addr_item a {
+        display: block;
+        height: 100%;
+        line-height: 60px;
+        color: #222222;
+        text-decoration: none;
+        padding: 0px 10px 0px 10px;
+    }
+
+        .addr_item a i {
+            font-size: 20px;
+        }
+
+    .addr_item .addr_info {
+        display: block;
+        position: absolute;
+        left: 36px;
+        right: 40px;
+        height: 100%;
+        top: 0px;
+        float: left;
+    }
+
+        .addr_item .addr_info .np_host {
+            height: 30px;
+            display: block;
+            line-height: 30px;
+        }
+
+            .addr_item .addr_info .np_host .contact {
+                float: left;
+            }
+
+            .addr_item .addr_info .np_host .phone {
+                float: right;
+                text-align: right;
+            }
+
+        .addr_item .addr_info .real_addr {
+            height: 30px;
+            display: block;
+            line-height: 30px;
+            overflow:hidden;
+            font-size:14px;
+            color:#757575;
+        }
+
+    .addr_item .choice {
+        border-right: 1px solid #6c6c6c;
+        border-top: 1px solid #6c6c6c;
+        display: inline-block;
+        height: 10px;
+        transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        width: 10px;
+        margin: 25px 0 0 10px;
+        position: absolute;
+        right: 0.625em;
+    }
