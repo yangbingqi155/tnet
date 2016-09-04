@@ -103,6 +103,14 @@ namespace TNet.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyAddr>()
+                .Property(e => e.contact)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyAddr>()
+                .Property(e => e.phone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyAddr>()
                 .Property(e => e.province)
                 .IsUnicode(false);
 
@@ -123,11 +131,23 @@ namespace TNet.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyOrder>()
-                .Property(e => e.pro)
+                .Property(e => e.merc)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrder>()
+                .Property(e => e.spec)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrder>()
+                .Property(e => e.contact)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyOrder>()
                 .Property(e => e.addr)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrder>()
+                .Property(e => e.phone)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyOrder>()

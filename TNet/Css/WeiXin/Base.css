@@ -523,18 +523,16 @@ h1, h2, h3, h3, h4, h5, h6 {
     }
 
 
-span.loading_l, span.load_error {
-    color: #cbcbcb;
-}
 
-span.loading_c, span.load_error {
+span.loading_l,span.loading_c, span.load_error {
     display: block;
     color: #cbcbcb;
     width: 200px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    margin: 36px auto 30px auto;
+    margin: 0px auto 30px auto;
+    padding:20px 0px 20px 0px;
 }
 
 .body_bg {

@@ -273,7 +273,7 @@
             uurl = encodeURIComponent(uurl);
             u = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc530ec3ce6a52233&redirect_uri=' + uurl + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
             if (go) {
-                window.location.href = u;
+               // window.location.href = u;
                 return true;
             }
             //return false;

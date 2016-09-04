@@ -28,7 +28,7 @@ namespace TNet.EF
         public string merc { get; set; }
 
         [Key]
-        [Column(Order = 4)]
+        [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int idspec { get; set; }
 
@@ -41,10 +41,8 @@ namespace TNet.EF
 
         public double? price { get; set; }
 
-
-        [StringLength(60)]
+        [StringLength(50)]
         public string contact { get; set; }
-        
 
         [StringLength(100)]
         public string addr { get; set; }
