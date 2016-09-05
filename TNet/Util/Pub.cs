@@ -19,7 +19,7 @@ namespace Util
         {
             lock (lk)
             {
-                long _t = DateTime.Now.Ticks * 10000;
+                long _t = DateTime.Now.Ticks / 10000;
                 if (t == _t)
                 {   
                     un++;
