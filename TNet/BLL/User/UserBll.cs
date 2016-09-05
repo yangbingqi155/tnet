@@ -30,7 +30,7 @@ namespace TNet.BLL.User
                         using (TN db = new TN())
                         {
                             EF.User us = db.Users.Where(m => m.idweixin == openid).FirstOrDefault();
-                            if (us != null)
+                            if (us == null)
                             {
                                 string nickname = "", headimgurl = "";
                                 url = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN";
@@ -44,32 +44,24 @@ namespace TNet.BLL.User
                                         headimgurl = json["headimgurl"] + "";
                                     }
                                 }
-                                EF.User u = new EF.User();
-                                u.iduser = Pub.ID();
-                                u.idweixin = openid;
-                                u.inuse = true;
-                                u.isoper = false;
-                                u.name = nickname;
-                                u.notes = "微信";
-                                u.phone = "";
-                                u.sex = 1;
-                                u.avatar = headimgurl;
-                                u.comp = "";
-                                u.cretime = DateTime.Now;
-                                db.Users.Add(u);
-                                //try
-                                //{
+                                us = new EF.User();
+                                us.iduser = Pub.ID();
+                                us.idweixin = openid;
+                                us.inuse = true;
+                                us.isoper = false;
+                                us.name = nickname;
+                                us.notes = "微信";
+                                us.phone = "";
+                                us.sex = 1;
+                                us.avatar = headimgurl;
+                                us.comp = "";
+                                us.cretime = DateTime.Now;
+                                db.Users.Add(us);
                                 if (db.SaveChanges() > 0)
                                 {
-                                    user = setUser(u);
+                                    user = setUser(us);
                                     return true;
                                 }
-                                //}
-                                //catch (Exception e)
-                                //{
-
-                                //}
-
                             }
                             else
                             {
