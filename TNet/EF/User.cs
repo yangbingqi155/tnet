@@ -13,10 +13,7 @@ namespace TNet.EF
         [Column(Order = 0)]
         [StringLength(50)]
         public string idweixin { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+      
         public long iduser { get; set; }
 
         [Required]
