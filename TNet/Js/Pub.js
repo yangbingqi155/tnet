@@ -26,7 +26,8 @@
         },
         delUser: function () {
             return delCache('tn_u');
-        }
+        },
+        str:getStr
 
     };
     var default_root_url = "";
@@ -348,6 +349,14 @@
         }
         return false;
     }
-
+    //处理ios半输入状态字乱码问题
+    function getStr(str) {
+        if (str) {
+            var s = String.fromCharCode(8198);
+            var r = new RegExp("["+s+"]","gi");
+            str = str.replace(r, "");
+        }
+        return str;
+    }
 
 })();

@@ -24,6 +24,7 @@ $(document.body).ready(init);
 function selectAddr() {
     $("#OC").toggle();
     $("#Addr_Host").toggle();
+    setAddrOp();
     getAddrList();
 }
 

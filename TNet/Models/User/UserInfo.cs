@@ -10,13 +10,13 @@ namespace TNet.Models.User
         public UserInfo(EF.User u)
         {
             this.idweixin = u.idweixin;
-            this.iduser = u.iduser;
+            this.iduser = u.iduser+"";
             this.name = u.name;
             this.avatar = u.avatar;
         }
         public string idweixin { get; set; }
 
-        public long iduser { get; set; }
+        public string iduser { get; set; }
 
         public string name { get; set; }
 
