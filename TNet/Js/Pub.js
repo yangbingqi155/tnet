@@ -228,6 +228,10 @@
                 //_login();
             } else if (data.Code == 1) {
                 return true;
+            } else {
+                if (data.Msg) {
+                    alert(data.Msg);
+                }
             }
         }
         return false;

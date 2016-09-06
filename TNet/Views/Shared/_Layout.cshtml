@@ -31,7 +31,10 @@
     <div class="T">
         <div class="before"></div>
         <div class="TT">
-            <a class="Top_Menu" href="#" onclick="autoShowTopMenu()"></a>
+            <a class="Top_Menu" id="Top_Menu" href="#">
+                <span  id="Top_Menu_Ico" ></span>
+
+            </a>
             <div class="TL">
                 <a class="Top_User" id="Top_User" href="#"></a>
                 <a class="Top_Cart" href="#"></a>
@@ -44,7 +47,7 @@
         </div>
     </div>
     <div class="Top_Main_Menu_Host" id="Top_Main_Menu_Host">
-        <div class="Top_Main_Menu" id="Top_Main_Menu" onclick="autoShowTopMenu()">
+        <div class="Top_Main_Menu" id="Top_Main_Menu">
             <ul>
                 <li><a href="@Url.Content("~/")"> 首页<span /></a></li>
                 <li><a href="@Url.Content("~/Merc/List")">宽带<span /></a></li>

@@ -10,9 +10,13 @@ function initBase() {
         lazyLoading: true
     });
     Pub.auth(false);
+    setTopMenuEvent();
 }
+
+
 var g_base_x_v = 0;
 function autoShowTopMenu() {
+   
     if (g_base_x_v == 0) {
         g_base_x_v = $(document.body).scrollTop();
     }
@@ -30,5 +34,19 @@ function autoShowTopMenu() {
     }
 }
 $(document).ready(initBase);
+
+
+function setTopMenuEvent(func,css) {
+    if (!func) {
+        func = autoShowTopMenu;
+    }
+    var mu = $("#Top_Menu");
+    if (!css) {
+        mu.removeClass().addClass("Top_Menu");
+    } else {
+        mu.removeClass().addClass(css);
+    }
+    mu.unbind('click').click(func);
+}
 
 

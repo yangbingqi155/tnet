@@ -19,8 +19,16 @@
     bottom: 0px;
     left: 0px;
     width: 100%;
-    height: 50px;
+    height: 60px;
     z-index: 9999;
+
+    
+    background-color: #ffffff;
+    border-top: solid #cbcbcb 1px;
+    padding: 0px;
+    background: #FAFAFA;
+    background: linear-gradient(#FAFAFA,#F4F4F4);
+    box-shadow: 0 -1px 0 rgba(0,0,0,.1) inset,0 -2px 8px rgba(0,0,0,.06);
 }
 
     .Addr_Op a {
@@ -29,11 +37,11 @@
         display: block;
         width: 100%;
         height: 100%;
-        line-height: 50px;
+        line-height: 60px;
         text-align: center;
         text-decoration: none;
-        color: #ffffff;
-        background-color: #ff6a00;
+        color: #222222;
+        font-weight:bold;
     }
 
 .Addr_Edit {
@@ -93,18 +101,18 @@
     display: block;
     height: 60px;
     position: relative;
-    width:100%;
-    border-top:solid #d6d6d6 1px;
-    
+    width: 100%;
+    border-bottom: solid #d6d6d6 1px;
 }
 
-    .addr_item a {
+    .addr_item a.addr_item_c {
         display: block;
-        height: 100%;
+       
+         height: 60px;
         line-height: 60px;
         color: #222222;
         text-decoration: none;
-        padding: 0px 10px 0px 10px;
+        padding: 0px 60px 0px 10px;
     }
 
         .addr_item a i {
@@ -115,8 +123,8 @@
         display: block;
         position: absolute;
         left: 36px;
-        right: 40px;
-        height: 100%;
+        right: 76px;
+        height: 60px;
         top: 0px;
         float: left;
     }
@@ -129,34 +137,40 @@
 
             .addr_item .addr_info .np_host .contact {
                 float: left;
+                font-weight:bold;
             }
 
             .addr_item .addr_info .np_host .phone {
                 float: right;
                 text-align: right;
+                font-weight:bold;
             }
 
         .addr_item .addr_info .real_addr {
             height: 30px;
             display: block;
             line-height: 30px;
-            overflow:hidden;
-            font-size:14px;
-            color:#757575;
+            overflow: hidden;
+            font-size: 12px;
+            color: #757575;
         }
 
-    .addr_item .choice {
-        border-right: 1px solid #6c6c6c;
-        border-top: 1px solid #6c6c6c;
-        display: inline-block;
-        height: 10px;
-        transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        width: 10px;
-        margin: 25px 0 0 10px;
+    .addr_item a.addr_list_op {
+        display:inline-block;
         position: absolute;
-        right: 0.625em;
+        right: 5px;
+        top: 0px;
+        height: 60px;
+        width: 60px;
+        z-index: 9999;
+    }
+
+    .addr_item a.addr_list_op i {
+        display:inline-block;
+        width:100%;
+        height:30px;
+        text-align:center;
+        margin:15px auto 0px auto;
+        color:#222222;
+        border-left:solid 1px #d6d6d6;
     }

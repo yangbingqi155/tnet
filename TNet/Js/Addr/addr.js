@@ -1,4 +1,5 @@
 ﻿var idAddr = 0;
+var addr_data_cache = null;
 var update_Addr_ing = false;
 function getAddrList() {
     var u = Pub.getUser();
@@ -7,22 +8,25 @@ function getAddrList() {
             url: "Service/Addr/All/" + u.iduser,
             //noLoading: true,
             success: function (data) {
-
                 var html = "";
                 if (Pub.wsCheck(data)) {
                     if (data.Data) {
                         var addrs = data.Data;
+                        addr_data_cache = addrs;
+                        var cao = Pub.getCache("Addr");
                         if (addrs) {
                             var html = "";
                             var di = 0;
                             for (var i = 0; i < addrs.length; i++) {
                                 var ao = addrs[i];
-                                if (ao.isdv) {
+                                if (cao && cao.idaddr === cao.idaddr) {
+                                    di = i;
+                                } else if (!cao && ao.isdv) {
                                     di = i;
                                 }
-                                var real_addr = ao.province + " " + ao.city + " " + ao.district + " " + ao.street;
+                                var real_addr = ao.province + ao.city + ao.district + ao.street;
                                 html += '<div class="addr_item">';
-                                html += '<a href="javascript:void(0)" onclick="doSetAddr()">';
+                                html += '<a href="javascript:void(0)" class="addr_item_c" onclick="doSetAddr(' + i + ')">';
                                 html += '<i id="addr_i_k_' + i + '" class="iconfont">&#xe615</i>';
                                 html += '<div class="addr_info"><div class="np_host">';
                                 html += '<span class="contact">' + ao.contact + '</span>';
@@ -30,14 +34,14 @@ function getAddrList() {
                                 html += '</div>';
                                 html += '<div class="real_addr">' + real_addr + '</div>';
 
-                                html += '</div>';
-                                html += '<span class="choice"></span>';
-                                html += '</a>';
+                                html += '</div></a>';
+                                html += '<a href="javascript:void(0)" class="addr_list_op"><i class="iconfont">&#xe60f</i></a>';
+
                                 html += '</div>';
                             }
                             if (html) {
                                 $('.Addr_List').html(html);
-                                $('#addr_i_k_' + di).css("color", "red");
+                               // $('#addr_i_k_' + di).css("color", "red");
                                 return;
                             }
                         }
@@ -120,7 +124,6 @@ function checkAddr() {
 }
 
 function saveAddr() {
-
     var u = Pub.getUser();
     if (u != null) {
         if (checkAddr()) {
@@ -166,6 +169,21 @@ function saveAddr() {
     }
 }
 
+
+
+function showAdrBox() {
+    $("#Addr_Host").toggle();
+    setAddrOp();
+    getAddrList();
+    setTopMenuEvent(autoAddrBack, "Top_Menu_Back");
+}
+
+function hiddenAddrBox() {
+    $("#OC").show();
+    $("#Addr_Host").hide();
+    setTopMenuEvent();
+}
+
 function setAddrOp() {
     clearAddr();
     var addr_Op = $("#Addr_Op");
@@ -177,6 +195,16 @@ function setAddrOp() {
 
 }
 
+function autoAddrBack() {
+    if ($(".Addr_Edit").is(":visible")) {
+        $(".Addr_Edit").hide();
+        $(".Addr_List").show();
+    } else if ($(".Addr_List").is(":visible")) {
+
+        hiddenAddrBox();
+    }
+    setAddrOp();
+}
 function opAddr() {
     if ($(".Addr_Edit").is(":hidden")) {
         $(".Addr_Edit").show();
@@ -189,9 +217,10 @@ function opAddr() {
 
 
 function doSetAddr(pos) {
-    $("#OC").toggle();
-    $("#Addr_Host").toggle();
-
+    var ad = addr_data_cache[pos];
+    Pub.setCache("Addr", ad);
+    hiddenAddrBox();
+    loadAddr();
 }
 
 

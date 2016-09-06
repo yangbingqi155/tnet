@@ -17,16 +17,38 @@ function init() {
             $("#ico").attr("src", Pub.rootUrl() + "Images/Merc/" + imgs);
         }
     }
+    loadAddr();
 }
 
 $(document.body).ready(init);
+function loadAddr() {
+    var ao = Pub.getCache("Addr");
+    if (ao) {
+        var real_addr = ao.province  + ao.city + ao.district + ao.street;
+        var html = '<i class="iconfont">&#xe615</i>';
+        html += '<div class="addrInfo">';
+        html += '<div class="npHost">';
+        html += '<span class="contacts">' + ao.contact + '</span>';
+        html += '<span class="phones">' + ao.phone + '</span>';
+        html += '</div>';
+        html += '<div class="realAddr">' + real_addr + '</div>';
+        html += '</div>';
+        html += '<span class="choice"></span>';
+        $("#addr").html(html);
+    } else {
+        var html = '<i class="iconfont">&#xe615</i>';
+        html += '<span>请选择地址...</span>';
+        html += '<span class="choice"></span>';
+        $("#addr").html(html);
+    }
+}
 
 function selectAddr() {
     $("#OC").toggle();
-    $("#Addr_Host").toggle();
-    setAddrOp();
-    getAddrList();
+    showAdrBox();
 }
+
+
 
 //下订单
 function submit() {
