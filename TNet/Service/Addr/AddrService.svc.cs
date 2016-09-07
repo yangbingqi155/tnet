@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -25,7 +27,7 @@ namespace TNet.Service.Addr
                 long _iduser = long.Parse(iduser);
                 using (TN db = new TN())
                 {
-                    result.Data = db.MyAddrs.Where(mr => mr.iduser == _iduser).ToList();
+                    result.Data = db.MyAddrs.Where(mr => mr.iduser == _iduser).OrderByDescending(m=>m.idaddr).ToList();
                     result.Code = R.Ok;
                 }
             }
@@ -50,8 +52,30 @@ namespace TNet.Service.Addr
                     if (data.idaddr <= 0)
                     {
                         data.idaddr = Pub.ID();
+                        db.MyAddrs.Add(data);
                     }
-                    db.MyAddrs.Add(data);
+                    else
+                    {
+                        DbEntityEntry<EF.MyAddr> entry = db.Entry<EF.MyAddr>(data);
+                        if (data.inuse == false)
+                        {
+                            entry.State = EntityState.Deleted;
+                        }
+                        else
+                        {
+                            entry.State = EntityState.Unchanged;
+                            entry.Property("contact").IsModified = true;
+                            entry.Property("phone").IsModified = true;
+                            entry.Property("province").IsModified = true;
+                            entry.Property("city").IsModified = true;
+                            entry.Property("district").IsModified = true;
+                            entry.Property("street").IsModified = true;
+                            entry.Property("tag").IsModified = true;
+                            entry.Property("isdv").IsModified = true;
+                            entry.Property("notes").IsModified = true;
+                            entry.Property("inuse").IsModified = true;
+                        }
+                    }
                     if (db.SaveChanges() > 0)
                     {
                         result.Data = data.idaddr;

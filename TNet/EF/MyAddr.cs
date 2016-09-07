@@ -25,19 +25,19 @@ namespace TNet.EF
         [StringLength(13)]
         public string phone { get; set; }
 
-        [StringLength(20)]
+        [StringLength(30)]
         public string province { get; set; }
 
-        [StringLength(20)]
+        [StringLength(30)]
         public string city { get; set; }
 
-        [StringLength(20)]
+        [StringLength(30)]
         public string district { get; set; }
 
         [StringLength(120)]
         public string street { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string tag { get; set; }
 
         public bool? isdv { get; set; }

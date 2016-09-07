@@ -29,19 +29,23 @@ function getAddrList() {
                                 html += '<a href="javascript:void(0)" class="addr_item_c" onclick="doSetAddr(' + i + ')">';
                                 html += '<i id="addr_i_k_' + i + '" class="iconfont">&#xe615</i>';
                                 html += '<div class="addr_info"><div class="np_host">';
-                                html += '<span class="contact">' + ao.contact + '</span>';
+                                var tag = "";
+                                if (ao.tag && ao.tag != "") {
+                                    tag = " [" + ao.tag + "]";
+                                }
+                                html += '<span class="contact">' + ao.contact + tag + '</span>';
                                 html += '<span class="phone">' + ao.phone + '</span>';
                                 html += '</div>';
                                 html += '<div class="real_addr">' + real_addr + '</div>';
 
                                 html += '</div></a>';
-                                html += '<a href="javascript:void(0)" class="addr_list_op"><i class="iconfont">&#xe60f</i></a>';
+                                html += '<a href="javascript:void(0)" class="addr_list_op" onclick="doEditAddr(' + i + ')" ><i class="iconfont">&#xe60f</i></a>';
 
                                 html += '</div>';
                             }
                             if (html) {
                                 $('.Addr_List').html(html);
-                               // $('#addr_i_k_' + di).css("color", "red");
+                                // $('#addr_i_k_' + di).css("color", "red");
                                 return;
                             }
                         }
@@ -62,6 +66,11 @@ function load_fail(msg) {
 }
 
 function initAddr() {
+    try {
+        $("#distpicker").distpicker('destroy');
+    } catch (e) {
+
+    }
     $("#distpicker").distpicker({
         province: "—— 省 ——",
         city: "—— 市 ——",
@@ -73,12 +82,6 @@ function initAddr() {
 $(window).ready(initAddr);
 
 function checkAddr() {
-    ///var r = $("#contact").val();
-    //for (var i = 0; i < r.length; i++) {
-
-    // alert(r[i].charCodeAt());
-    //}
-
     if (!Pub.str($("#contact").val())) {
         alert("请输入姓名");
         $("#contact").focus();
@@ -108,12 +111,6 @@ function checkAddr() {
         return false;
     }
 
-    var district = Pub.str($("#district").val());
-    if (!district || district == '—— 区 ——') {
-        alert("请选择区");
-        $("#district").focus();
-        return false;
-    }
     var street = Pub.str($("#street").val());
     if (!street) {
         alert("请输入街道");
@@ -123,25 +120,39 @@ function checkAddr() {
     return true;
 }
 
-function saveAddr() {
+//保存地址
+function saveAddr(del) {
     var u = Pub.getUser();
     if (u != null) {
         if (checkAddr()) {
             if (!update_Addr_ing) {
+                var msg = "保存";
+                if (del) {
+                    msg = "删除";
+                }
                 update_Addr_ing = true;
+                var city = $("#city").val();
+                if (city == "—— 市 ——") {
+                    city = "";
+                }
+                var district = $("#district").val();
+                if (district == "—— 区 ——") {
+                    district = "";
+                }
+                var isune = del ? false : true;
                 var data = {
                     idaddr: idAddr,
                     iduser: u.iduser,
                     contact: Pub.str($("#contact").val()),
                     phone: Pub.str($("#phone").val()),
-                    province: Pub.str($("#province").val()),
-                    city: Pub.str($("#city").val()),
-                    district: Pub.str($("#district").val()),
+                    province: $("#province").val(),
+                    city: city,
+                    district: district,
                     street: Pub.str($("#street").val()),
                     tag: Pub.str($("#tag").val()),
                     notes: Pub.str($("#notes").val()),
                     isdv: $("#isdv").is(":checked"),
-                    inuse: true
+                    inuse: isune
                 };
                 Pub.post({
                     url: "Service/Addr/Update",
@@ -151,7 +162,14 @@ function saveAddr() {
                         update_Addr_ing = false;
                         if (Pub.wsCheck(data)) {
                             if (data.Data) {
-                                alert("保存成功");
+                                alert(msg + "成功");
+                                if (del) {
+                                    var da = Pub.getCache("Addr");
+                                    if (da && da .idaddr == idAddr) {
+                                        Pub.delCache("Addr");
+                                        loadAddr();
+                                    }
+                                }
                                 saveAddrFinish();
                                 return;
                             }
@@ -159,7 +177,7 @@ function saveAddr() {
                         // load_fail("商品不存在 或 已下架");
                     },
                     error: function (xhr, status, e) {
-                        alert("保存失败");
+                        alert(msg + "失败");
                         update_Addr_ing = false;
                         // load_fail("加载数据失败");
                     }
@@ -169,10 +187,13 @@ function saveAddr() {
     }
 }
 
-
+function delAddr() {
+    saveAddr(true);
+}
 
 function showAdrBox() {
     $("#Addr_Host").toggle();
+    $("#delAddr").hide();
     setAddrOp();
     getAddrList();
     setTopMenuEvent(autoAddrBack, "Top_Menu_Back");
@@ -181,6 +202,7 @@ function showAdrBox() {
 function hiddenAddrBox() {
     $("#OC").show();
     $("#Addr_Host").hide();
+    $("#delAddr").hide();
     setTopMenuEvent();
 }
 
@@ -200,11 +222,13 @@ function autoAddrBack() {
         $(".Addr_Edit").hide();
         $(".Addr_List").show();
     } else if ($(".Addr_List").is(":visible")) {
-
         hiddenAddrBox();
     }
     setAddrOp();
+    idAddr = 0;
 }
+
+//新增
 function opAddr() {
     if ($(".Addr_Edit").is(":hidden")) {
         $(".Addr_Edit").show();
@@ -215,7 +239,6 @@ function opAddr() {
     }
 }
 
-
 function doSetAddr(pos) {
     var ad = addr_data_cache[pos];
     Pub.setCache("Addr", ad);
@@ -224,9 +247,39 @@ function doSetAddr(pos) {
 }
 
 
+function doEditAddr(pos) {
+    opAddr();
+    $("#delAddr").show();
+    var ad = addr_data_cache[pos];
+    clearAddr();
+    idAddr = ad.idaddr;
+    $("#contact").val(ad.contact);
+    $("#phone").val(ad.phone);
+    $("#distpicker").distpicker('destroy');
+    $("#street").val(ad.street);
+    $("#tag").val(ad.tag);
+    $("#notes").val(tag.notes);
+    if (ad.isdv) {
+        $("#isdv").attr("checked", true);
+    } else {
+        $("#isdv").removeAttr("checked");
+    }
+    var district = ad.district;
+    if (!district) {
+        district = "—— 区 ——";
+    }
+    $("#distpicker").distpicker({
+        province: ad.province,
+        city: ad.city,
+        district: district
+    });
+}
+
+
 
 function saveAddrFinish() {
     $(".Addr_Edit").hide();
+    $("#delAddr").hide();
     $(".Addr_List").show();
     setAddrOp();
     getAddrList();
@@ -236,7 +289,7 @@ function saveAddrFinish() {
 function clearAddr() {
     $("#contact").val("");
     $("#phone").val("");
-    $("#distpicker").distpicker('reset');
+    initAddr();
     $("#street").val("");
     $("#tag").val("");
     $("#notes").val("");

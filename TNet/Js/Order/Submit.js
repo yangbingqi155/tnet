@@ -10,7 +10,6 @@ function init() {
         $("#merc_count").html("x" + order_cart.Count);
         $("#buy_att_month").html("送:" + order_cart.Spec.attmonth + " 月");
         $("#amount").html("￥ " + (order_cart.Spec.price * order_cart.Count));
-
         var imgs = order_cart.Merc.imgs;
         if (imgs) {
             imgs = imgs.split('|')[0];

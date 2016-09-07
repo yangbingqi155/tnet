@@ -12,7 +12,9 @@
         <span class="loading_l">加载中...</span>
     </div>
     <div class="Addr_Op">
-        <a id="Addr_Op" href="javascript:void(0)" onclick="opAddr()">新增</a>
+
+        <a id="delAddr" class="iconfont" href="javascript:void(0)" onclick="delAddr()">&#xe603;</a>
+        <a id="Addr_Op" class="save" href="javascript:void(0)" onclick="opAddr()">新增</a>
     </div>
 
     <div class="Addr_Edit">
@@ -20,7 +22,7 @@
             <div class="Edit_Name">姓名:</div>
             <div class="Edit_Value">
                 <div class="in">
-                    <input id="contact"  type="text" placeholder="输入姓名..." />
+                    <input id="contact" type="text" maxlength="25" placeholder="输入姓名..." />
                 </div>
             </div>
         </div>
@@ -28,7 +30,7 @@
             <div class="Edit_Name">电话:</div>
             <div class="Edit_Value">
                 <div class="in">
-                    <input id="phone" type="text"  placeholder="输入电话..." />
+                    <input id="phone" type="tel" maxlength="13" placeholder="输入电话..." />
                 </div>
             </div>
         </div>
@@ -48,7 +50,7 @@
             <div class="Edit_Name">街道:</div>
             <div class="Edit_Value">
                 <div class="in">
-                    <input id="street" type="text" required placeholder="输入街道..." />
+                    <input id="street" type="text" maxlength="80" required placeholder="输入街道..." />
                 </div>
             </div>
         </div>
@@ -57,7 +59,7 @@
             <div class="Edit_Name">标识:</div>
             <div class="Edit_Value">
                 <div class="in">
-                    <input id="tag" type="text" placeholder="输入公司/家庭..." />
+                    <input id="tag" type="text" maxlength="10" placeholder="输入公司/家庭..." />
                 </div>
             </div>
         </div>
@@ -66,7 +68,7 @@
             <div class="Edit_Name">备注:</div>
             <div class="Edit_Value">
                 <div class="in">
-                    <input id="notes" type="text" placeholder="输入备注..." />
+                    <input id="notes" type="text" maxlength="25" placeholder="输入备注..." />
                 </div>
             </div>
         </div>
