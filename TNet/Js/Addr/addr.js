@@ -221,6 +221,7 @@ function autoAddrBack() {
     if ($(".Addr_Edit").is(":visible")) {
         $(".Addr_Edit").hide();
         $(".Addr_List").show();
+        $("#delAddr").hide();
     } else if ($(".Addr_List").is(":visible")) {
         hiddenAddrBox();
     }
