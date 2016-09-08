@@ -28,16 +28,23 @@
 
 </head>
 <body root="@Url.Content("~/")" @ViewBag.__Is_Home_Tag>
+    <div class="RAMsgHost" id="RAMsgObj">
+        <div class="RAMsg">
+            <div class="Context" id="RAMsgObj_Context">
+                <span class="load_ing">处理中...</span>
+            </div>
+        </div>
+    </div>
+    <div id="RAMsgBg" class="RAMsgBg"></div>
     <div class="T">
         <div class="before"></div>
         <div class="TT">
             <a class="Top_Menu" id="Top_Menu" href="#">
-                <span  id="Top_Menu_Ico" ></span>
-
+                <span id="Top_Menu_Ico"></span>
             </a>
             <div class="TL">
                 <a class="Top_User" id="Top_User" href="#"></a>
-                <a class="Top_Cart" href="#"></a>
+                <a class="Top_Cart" href="@Url.Content("~/Order/List")"></a>
             </div>
         </div>
     </div>
@@ -53,10 +60,9 @@
                 <li><a href="@Url.Content("~/Merc/List")">宽带<span /></a></li>
                 <li><a href="@Url.Content("~/")">报装<span /></a></li>
                 <li><a href="@Url.Content("~/")">商圈<span /></a></li>
-                <li><a href="@Url.Content("~/")">订单<span /></a></li>
+                <li><a href="@Url.Content("~/Order/List")">订单<span /></a></li>
             </ul>
         </div>
     </div>
-
 </body>
 </html>

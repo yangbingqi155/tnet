@@ -6,7 +6,7 @@ function getAddrList() {
     if (u != null) {
         Pub.get({
             url: "Service/Addr/All/" + u.iduser,
-            //noLoading: true,
+            noLoading: true,
             success: function (data) {
                 var html = "";
                 if (Pub.wsCheck(data)) {

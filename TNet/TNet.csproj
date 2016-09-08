@@ -267,14 +267,19 @@
     <Content Include="Css\Com\Content\bootstrap.css" />
     <Content Include="Css\Com\Content\bootstrap.min.css" />
     <Content Include="Css\Merc\Detail.css" />
+    <Content Include="Css\Order\List.css" />
+    <Content Include="Css\Order\Pay.css" />
     <Content Include="Css\Order\Submit.css" />
     <Content Include="Css\WeiXin\Base.css" />
     <Content Include="Images\Com\a.bg.gif" />
     <Content Include="Images\Com\arrow.png" />
     <Content Include="Images\Com\Cart.png" />
+    <Content Include="Images\Com\loading.png" />
+    <Content Include="Images\Com\loading1.gif" />
     <Content Include="Images\Com\menu.png" />
     <Content Include="Images\Com\nav-back-arrow.png" />
     <Content Include="Images\Com\user.png" />
+    <Content Include="Images\Com\weixin_pay_logo.png" />
     <Content Include="Images\Home\2.jpg" />
     <Content Include="Images\Com\load_ing.gif" />
     <Content Include="Images\Com\load_ok.png" />
@@ -339,6 +344,8 @@
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Css\Manage\Login.css" />
     <Content Include="Js\Merc\Detail.js" />
+    <Content Include="Js\Order\List.js" />
+    <Content Include="Js\Order\Pay.js" />
     <Content Include="Js\Order\Submit.js" />
     <Content Include="Js\Pub.js" />
     <Content Include="Css\Manage\Master.css" />
@@ -472,6 +479,8 @@
     <Content Include="Views\Order\Submit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Addr\Addr.cshtml" />
+    <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Order\Pay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Addr\" />

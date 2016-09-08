@@ -12,7 +12,7 @@ function getDetailData() {
         if (idmerc) {
             Pub.get({
                 url: "Service/Merc/Detail/" + idmerc,
-                //noLoading: true,
+                noLoading: true,
                 success: function (data) {
 
                     var html = "";

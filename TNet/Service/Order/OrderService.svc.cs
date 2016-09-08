@@ -44,9 +44,9 @@ namespace TNet.Service.Order
                     o.entime = DateTime.Now.AddMonths(data.month + data.attmonth);
                     o.otype = OrderType.Merc;
                     o.status = OrderStatus.WaitPay;
-                    o.status = OrderStatus.WaitPay;
                     o.notes = data.notes;
                     o.inuse = true;
+                    db.MyOrders.Add(o);
                     if (db.SaveChanges() > 0)
                     {
                         result.Data = new CreateOrderResult();

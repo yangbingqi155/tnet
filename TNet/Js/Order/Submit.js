@@ -23,7 +23,7 @@ $(document.body).ready(init);
 function loadAddr() {
     var ao = Pub.getCache("Addr");
     if (ao) {
-        var real_addr = ao.province  + ao.city + ao.district + ao.street;
+        var real_addr = ao.province + ao.city + ao.district + ao.street;
         var html = '<i class="iconfont">&#xe615</i>';
         html += '<div class="addrInfo">';
         html += '<div class="npHost">';
@@ -51,5 +51,50 @@ function selectAddr() {
 
 //下订单
 function submit() {
-
+    var order_cart = Pub.getCache("order_cart");
+    if (order_cart && order_cart.Merc && order_cart.Spec) {
+        var u = Pub.getUser();
+        if (u != null) {
+            var contact = "";
+            var addr = "";
+            var phone = "";
+            var ao = Pub.getCache("Addr");
+            if (ao) {
+                contact = ao.contact;
+                addr = ao.province + ao.city + ao.district + ao.street;
+                phone = ao.phone;
+            }
+            var data = {
+                iduser: u.iduser,
+                idmerc: order_cart.Merc.idmerc,
+                merc: order_cart.Merc.merc1,
+                idspec: order_cart.Spec.idspec,
+                spec: order_cart.Spec.spec1,
+                price: order_cart.Spec.price,
+                month: order_cart.Spec.month,
+                attmonth: order_cart.Spec.attmonth,
+                contact: contact,
+                addr: addr,
+                phone: phone,
+                notes: Pub.str($("#notes").val())
+            };
+            Pub.post({
+                url: "Service/Order/Create",
+                data: JSON.stringify(data),
+                //noLoading: true,
+                success: function (data) {
+                    if (Pub.wsCheck(data)) {
+                        if (data.Data) {
+                            //alert("\n下单成功,订单号: " + data.Data.orderno);
+                            window.location.href = Pub.rootUrl() + "Order/Pay/" + data.Data.orderno;
+                            return;
+                        }
+                    }
+                },
+                error: function (xhr, status, e) {
+                    alert("下单失败");
+                }
+            });
+        }
+    }
 }

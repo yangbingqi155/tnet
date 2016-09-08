@@ -21,6 +21,28 @@ namespace TNet
                   new { controller = "^(?!Service).*" }
             );
 
+
+            routes.MapRoute(
+                  "Order_Pay",
+                 "Order/Pay/{orderno}",
+                  new { controller = "Order", action = "Pay", orderno = UrlParameter.Optional },
+                  new { controller = "^(?!Service).*" }
+              );
+
+            routes.MapRoute(
+                 "Manage_MercEdit",
+                 "Manage/MercEdit/{idmerc}",
+                  new { controller = "Manage", action = "MercEdit", idmerc = UrlParameter.Optional },
+                  new { controller = "^(?!Service).*" }
+            );
+            
+            routes.MapRoute(
+                "Manage_MercList",
+               "{Manage}/MercList/{pageIndex}",
+                new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional },
+                new { controller = "^(?!Service).*" }
+            );
+
             routes.MapRoute(
                "Default",
                "{controller}/{action}/{id}",
@@ -28,23 +50,9 @@ namespace TNet
                 new { controller = "^(?!Service).*" }
             );
 
-            routes.MapRoute(
-                 "Manage_MercEdit",
-                 "{controller}/{action}/{idmerc}",
-                  new { controller = "Manage", action = "MercEdit", idmerc = UrlParameter.Optional },
-                  new { controller = "^(?!Service).*" }
-            );
+            
 
 
-
-            routes.MapRoute(
-                "Manage_MercList",
-               "{controller}/{action}/{pageIndex}",
-                new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional },
-                new { controller = "^(?!Service).*" }
-            );
-
-          
 
             RouteService.register();
         }

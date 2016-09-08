@@ -32,7 +32,6 @@ namespace TNet.Models.Order
         
         public string phone { get; set; }
 
-        public int? otype { get; set; }
  
         public string notes { get; set; }
  

@@ -53,14 +53,14 @@
                 <a href="javascript:void(0)" class="buy_att_month">送: 0  月</a>
                 <a href="javascript:void(0)" id="buy_amount" class="buy_amount">应付金额：<span class="amount" id="amount">￥ 0.00</span></a>
             </div>
-            <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="save()">下单</a></div>
+            <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="submit()">下单</a></div>
         </div>
     </div>
 
     <div class="notes">
         备注:
         <div class="comm">
-            <input type="text" placeholder="给卖家留言,最多15汉字..." />
+            <input type="text" id="notes" placeholder="给卖家留言,最多15汉字..." maxlength="15" />
         </div>
     </div>
     <div class="vline"></div>

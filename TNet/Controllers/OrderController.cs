@@ -18,5 +18,16 @@ namespace TNet.Controllers
         {
             return View();
         }
+
+        public ActionResult List()
+        {
+            return View();
+        }
+
+        public ActionResult Pay(string orderno)
+        {
+            ViewBag.orderno = orderno;
+            return View();
+        }
     }
 }

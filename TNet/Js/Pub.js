@@ -7,9 +7,9 @@
         jsonDate: jsonDate,
         rootUrl: rootUrl,
         wsCheck: wsCheck,//服务检查
-        showLoading: showLoading,//显示进度条
-        showMsg: showMsg,//显示进度条
-        showError: showError,//显示进度条
+        showLoading: showLoading,// 
+        showMsg: showMsg,// 
+        showError: showError,// 
         hieLoading: hieLoading,
         noData: noData,//无数据
         checkUser: checkUser,
@@ -27,7 +27,7 @@
         delUser: function () {
             return delCache('tn_u');
         },
-        str:getStr
+        str: getStr
 
     };
     var default_root_url = "";
@@ -45,19 +45,23 @@
     }
 
     function doShowMsg(msg, type, noHid) {
-
+        if (!msg) {
+            msg = "处理中...";
+        }
         var msgHost = document.getElementById("RAMsgObj");
         if (msgHost) {
             showCount++;
             msgHost.style.display = "block";
             msgHost = document.getElementById("RAMsgObj_Context");
-
             if (type == 'e') {
                 type = "load_error";
+                $("#RAMsgBg").hide();
             } else if (type == 'l') {
+                $("#RAMsgBg").show();
                 type = "load_ing";
             } else {
                 type = "load_ok";
+                $("#RAMsgBg").hide();
             }
             msgHost.innerHTML = '<span class="' + type + '">' + msg + '</span>';
             clearMsgTime();
@@ -68,14 +72,14 @@
     }
 
     function hieLoading() {
-
+        
         var msgHost = document.getElementById("RAMsgObj");
         if (msgHost) {
             showCount--;
             msgHost.style.display = "none";
+            $("#RAMsgBg").hide();
             clearMsgTime();
         }
-
     }
     function clearMsgTime() {
         if (msgTimeTag) {
@@ -83,6 +87,8 @@
             msgTimeTag = 0;
         }
     }
+
+     
 
     //加载动画
     function _if_loading(str) {
@@ -281,7 +287,7 @@
                 if (window.navigator.userAgent.indexOf("MicroMesseng") > 0) {
                     window.location.href = u;
                 }
-               // 
+                // 
                 return true;
             }
             //return false;
@@ -357,7 +363,7 @@
     function getStr(str) {
         if (str) {
             var s = String.fromCharCode(8198);
-            var r = new RegExp("["+s+"]","gi");
+            var r = new RegExp("[" + s + "]", "gi");
             str = str.replace(r, "");
         }
         return str;
