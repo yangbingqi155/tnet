@@ -19,6 +19,8 @@ namespace TNet.Models.Order
 
         public double price { get; set; }
 
+        public int count { get; set; }
+        
         public int month { get; set; }
 
         public int attmonth { get; set; }
@@ -34,6 +36,8 @@ namespace TNet.Models.Order
 
  
         public string notes { get; set; }
- 
+
+        public string img { get; set; }
+
     }
 }

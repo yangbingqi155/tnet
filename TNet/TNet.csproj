@@ -214,7 +214,9 @@
     <Compile Include="Models\Merc\SpecViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
+    <Compile Include="Models\Order\OrderListInfo.cs" />
     <Compile Include="Models\Order\OrderStatus.cs" />
+    <Compile Include="Models\Order\OrderStatusItem.cs" />
     <Compile Include="Models\Order\OrderType.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />

@@ -27,5 +27,9 @@ namespace TNet.Service.Order
         /// <returns></returns>
         [WebInvoke(Method = "POST", UriTemplate = "Create", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Result<CreateOrderResult> Create(CreateOrderData data);
+
+
+        [WebInvoke(Method = "GET", UriTemplate = "List/{iduser}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Result<OrderListInfo> List(string iduser);
     }
 }

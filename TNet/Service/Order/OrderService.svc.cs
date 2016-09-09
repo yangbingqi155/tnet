@@ -36,6 +36,7 @@ namespace TNet.Service.Order
                     o.month = data.month;
                     o.attmonth = data.attmonth;
                     o.price = data.price;
+                    o.count = data.count;
                     o.contact = data.contact;
                     o.addr = data.addr;
                     o.phone = data.phone;
@@ -45,6 +46,7 @@ namespace TNet.Service.Order
                     o.otype = OrderType.Merc;
                     o.status = OrderStatus.WaitPay;
                     o.notes = data.notes;
+                    o.img = data.img;
                     o.inuse = true;
                     db.MyOrders.Add(o);
                     if (db.SaveChanges() > 0)
@@ -53,11 +55,40 @@ namespace TNet.Service.Order
                         result.Data.orderno = o.orderno;
                         result.Code = R.Ok;
 
-                    }else
+                    }
+                    else
                     {
                         result.Code = R.Error;
                     }
                     // result.Data = m;
+                }
+            }
+            catch (Exception)
+            {
+                result.Code = R.Error;
+                result.Msg = "出现异常";
+            }
+            return result;
+        }
+
+
+
+        public Result<OrderListInfo> List(string iduser)
+        {
+            Result<OrderListInfo> result = new Result<OrderListInfo>();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(iduser))
+                {
+                    long _iduser = long.Parse(iduser);
+                    using (TN db = new TN())
+                    {
+                        result.Data = new OrderListInfo()
+                        {
+                            Order = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser).OrderByDescending(m => m.cretime).ToList()
+                        };
+                        result.Code = R.Ok;
+                    }
                 }
             }
             catch (Exception)

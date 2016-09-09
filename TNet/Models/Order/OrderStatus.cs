@@ -63,5 +63,32 @@ namespace TNet.Models.Order
         /// 交易取消
         /// </summary>
         public static readonly int Cancel = -99;
+
+        public static List<OrderStatusItem> s = new List<OrderStatusItem>()
+        {
+            new OrderStatusItem()
+            {
+                status = WaitPay,
+                text = "等待支付",
+                ops = "cancel|pay"
+            },
+            new OrderStatusItem()
+            {
+                status = PayFinish,
+                text = "支付完成",
+                ops = "sendmsg"
+            }
+            ,
+            new OrderStatusItem()
+            {
+                status = WaitSettle,
+                text = "等待结算",
+                ops = "sendmsg"
+            }
+        };
+        public static List<OrderStatusItem> get()
+        {
+            return s;
+        }
     }
 }

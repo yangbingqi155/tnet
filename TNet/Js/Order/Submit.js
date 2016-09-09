@@ -64,6 +64,13 @@ function submit() {
                 addr = ao.province + ao.city + ao.district + ao.street;
                 phone = ao.phone;
             }
+            var img = order_cart.Merc.imgs;
+            if (img) {
+                img = img.split('|')[0];
+            }
+            if (!img) {
+                img = "";
+            }
             var data = {
                 iduser: u.iduser,
                 idmerc: order_cart.Merc.idmerc,
@@ -71,12 +78,14 @@ function submit() {
                 idspec: order_cart.Spec.idspec,
                 spec: order_cart.Spec.spec1,
                 price: order_cart.Spec.price,
+                count: order_cart.Count,
                 month: order_cart.Spec.month,
                 attmonth: order_cart.Spec.attmonth,
                 contact: contact,
                 addr: addr,
                 phone: phone,
-                notes: Pub.str($("#notes").val())
+                notes: Pub.str($("#notes").val()),
+                img: img
             };
             Pub.post({
                 url: "Service/Order/Create",
@@ -85,6 +94,7 @@ function submit() {
                 success: function (data) {
                     if (Pub.wsCheck(data)) {
                         if (data.Data) {
+                            Pub.delCache("order_cart")
                             //alert("\n下单成功,订单号: " + data.Data.orderno);
                             window.location.href = Pub.rootUrl() + "Order/Pay/" + data.Data.orderno;
                             return;

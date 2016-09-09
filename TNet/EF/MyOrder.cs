@@ -39,7 +39,10 @@ namespace TNet.EF
 
         public int? attmonth { get; set; }
 
+        
         public double? price { get; set; }
+
+        public int count { get; set; }
 
         [StringLength(50)]
         public string contact { get; set; }
@@ -62,6 +65,9 @@ namespace TNet.EF
 
         [StringLength(50)]
         public string notes { get; set; }
+
+        [StringLength(255)]
+        public string img { get; set; }
 
         public bool? inuse { get; set; }
     }

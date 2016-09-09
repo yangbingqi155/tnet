@@ -12,22 +12,24 @@ namespace Util
 {
     public static class Pub
     {
-        static long t = 0;
+        static long t = DateTime.Now.Ticks / 10000;
         volatile static int un = 0;
-        private volatile static object lk = new object();
+       // private volatile static object lk = new object();
+       //id 生成器,CAS版本
         public static long ID()
         {
-            lock (lk)
+            //lock (lk)
             {
                 long _t = DateTime.Now.Ticks / 10000;
                 if (t == _t)
-                {   
-                    un++;
+                {
+                    //Interlocked.CompareExchange(ref t, _t, _t);
+                    Interlocked.Increment(ref un);                    
                 }
                 else
                 {
-                    t = _t;
-                    un = 0;
+                    Interlocked.Exchange(ref t, _t);
+                    Interlocked.Exchange(ref un, 0);
                 }
                 return t + un;
             }
