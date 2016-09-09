@@ -15,15 +15,15 @@ namespace TNet
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             //参与这种路由参数 兼容 MCF路由
             routes.MapRoute(
-                  "User",
-                 "{User}",
+                 "User",
+                 "User",
                   new { controller = "User", action = "Index" },
                   new { controller = "^(?!Service).*" }
             );
 
 
             routes.MapRoute(
-                  "Order_Pay",
+                 "Order_Pay",
                  "Order/Pay/{orderno}",
                   new { controller = "Order", action = "Pay", orderno = UrlParameter.Optional },
                   new { controller = "^(?!Service).*" }
@@ -37,11 +37,18 @@ namespace TNet
             );
             
             routes.MapRoute(
-                "Manage_MercList",
-               "{Manage}/MercList/{pageIndex}",
+               "Manage_MercList",
+               "Manage/MercList/{pageIndex}",
                 new { controller = "Manage", action = "MercList", pageIndex = UrlParameter.Optional },
                 new { controller = "^(?!Service).*" }
             );
+
+            routes.MapRoute(
+               "Manage",
+               "Manage/{action}/{id}",
+                new { controller = "Manage", action = "Login", id = UrlParameter.Optional },
+                new { controller = "^(?!Service).*" }
+           );
 
             routes.MapRoute(
                "Default",
@@ -49,11 +56,6 @@ namespace TNet
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new { controller = "^(?!Service).*" }
             );
-
-            
-
-
-
             RouteService.register();
         }
     }
