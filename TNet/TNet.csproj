@@ -214,6 +214,7 @@
     <Compile Include="Models\Merc\SpecViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
+    <Compile Include="Models\Order\OrderDetailInfo.cs" />
     <Compile Include="Models\Order\OrderListInfo.cs" />
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\Order\OrderStatusItem.cs" />
@@ -269,6 +270,8 @@
     <Content Include="Css\Com\Content\bootstrap.css" />
     <Content Include="Css\Com\Content\bootstrap.min.css" />
     <Content Include="Css\Merc\Detail.css" />
+    <Content Include="Css\Order\Base.css" />
+    <Content Include="Css\Order\Detail.css" />
     <Content Include="Css\Order\List.css" />
     <Content Include="Css\Order\Pay.css" />
     <Content Include="Css\Order\Submit.css" />
@@ -346,6 +349,8 @@
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Css\Manage\Login.css" />
     <Content Include="Js\Merc\Detail.js" />
+    <Content Include="Js\Order\Base.js" />
+    <Content Include="Js\Order\Detail.js" />
     <Content Include="Js\Order\List.js" />
     <Content Include="Js\Order\Pay.js" />
     <Content Include="Js\Order\Submit.js" />
@@ -483,6 +488,7 @@
     <Content Include="Views\Addr\Addr.cshtml" />
     <Content Include="Views\Order\List.cshtml" />
     <Content Include="Views\Order\Pay.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Addr\" />

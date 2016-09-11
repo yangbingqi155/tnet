@@ -29,6 +29,14 @@ namespace TNet
                   new { controller = "^(?!Service).*" }
               );
 
+
+            routes.MapRoute(
+                 "Order_Detail",
+                 "Order/Detail/{orderno}",
+                  new { controller = "Order", action = "Detail", orderno = UrlParameter.Optional },
+                  new { controller = "^(?!Service).*" }
+              );
+
             routes.MapRoute(
                  "Manage_MercEdit",
                  "Manage/MercEdit/{idmerc}",

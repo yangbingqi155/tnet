@@ -29,5 +29,14 @@ namespace TNet.Controllers
             ViewBag.orderno = orderno;
             return View();
         }
+
+
+
+        public ActionResult Detail(string orderno)
+        {
+            ViewBag.orderno = orderno;
+            return View();
+        }
+
     }
 }

@@ -52,6 +52,7 @@
         if (msgHost) {
             showCount++;
             msgHost.style.display = "block";
+          
             msgHost = document.getElementById("RAMsgObj_Context");
             if (type == 'e') {
                 type = "load_error";
@@ -154,7 +155,9 @@
         } catch (e) {
 
         }
+        
         if (!ld) {
+
             _if_loading();
         }
         $.ajax(request);

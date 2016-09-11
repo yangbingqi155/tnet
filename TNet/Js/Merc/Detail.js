@@ -14,7 +14,6 @@ function getDetailData() {
                 url: "Service/Merc/Detail/" + idmerc,
                // noLoading: true,
                 success: function (data) {
-
                     var html = "";
                     if (Pub.wsCheck(data)) {
                         if (data.Data && data.Data.Merc && data.Data.Spec) {

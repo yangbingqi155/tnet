@@ -14,8 +14,9 @@ namespace Util
     {
         static long t = DateTime.Now.Ticks / 10000;
         volatile static int un = 0;
-       // private volatile static object lk = new object();
-       //id 生成器,CAS版本
+        static int tid = Thread.CurrentThread.ManagedThreadId;
+        // private volatile static object lk = new object();
+        //id 生成器,CAS版本
         public static long ID()
         {
             //lock (lk)
@@ -24,14 +25,15 @@ namespace Util
                 if (t == _t)
                 {
                     //Interlocked.CompareExchange(ref t, _t, _t);
-                    Interlocked.Increment(ref un);                    
+                    Interlocked.Increment(ref un);
                 }
                 else
                 {
                     Interlocked.Exchange(ref t, _t);
                     Interlocked.Exchange(ref un, 0);
                 }
-                return t + un;
+
+                return long.Parse(t  + "" + un);
             }
         }
         /// <summary>

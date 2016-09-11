@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -85,7 +87,67 @@ namespace TNet.Service.Order
                     {
                         result.Data = new OrderListInfo()
                         {
-                            Order = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser).OrderByDescending(m => m.cretime).ToList()
+                            Order = db.MyOrders.Where(m=> m.inuse == true &&  m.iduser == _iduser).OrderByDescending(m => m.cretime).ToList()
+                        };
+                        result.Code = R.Ok;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                result.Code = R.Error;
+                result.Msg = "出现异常";
+            }
+            return result;
+        }
+
+
+       public Result<bool> Cancel(string iduser, string orderno)
+        {
+            Result<bool> result = new Result<bool>();
+            result.Code = R.Error;
+            result.Msg = "取消订单失败";
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(iduser) && !string.IsNullOrWhiteSpace(orderno))
+                {
+                    long _iduser = long.Parse(iduser);
+                    long _orderno = long.Parse(orderno);
+                    using (TN db = new TN())
+                    {
+                        int r =db.Database.ExecuteSqlCommand("update myorder set status = {0} where iduser = {1} and orderno = {2}", OrderStatus.Cancel, _iduser,_orderno);
+                         
+                        if (r> 0)
+                        {
+                            result.Data = true;
+                            result.Code = R.Ok;
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Code = R.Error;
+                result.Msg = "取消订单出现异常";
+            }
+            return result;
+        }
+
+        public Result<OrderDetailInfo> Detail(string iduser,string orderno)
+        {
+            Result<OrderDetailInfo> result = new Result<OrderDetailInfo>();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(iduser) && !string.IsNullOrWhiteSpace(orderno))
+                {
+                    long _iduser = long.Parse(iduser);
+                    long _orderno = long.Parse(orderno);
+                    using (TN db = new TN())
+                    {
+                        result.Data = new OrderDetailInfo()
+                        {
+                            Order = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault()
                         };
                         result.Code = R.Ok;
                     }

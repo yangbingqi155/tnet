@@ -1,0 +1,114 @@
+﻿body {
+}
+
+.order_title {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: solid #d6d6d6 1px;
+}
+
+.order_item {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 10px 10px 10px 20px;
+}
+
+
+    .order_item .order_name, .order_item .order_value {
+        float: left;
+    }
+
+.mu20 {
+    margin-bottom: 20px;
+}
+
+.pay_item {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 0px 10px 0px;
+}
+
+a.winxin_pay {
+    background-color: #ffffff;
+    background-image: url(../../Images/Com/weixin_pay_logo.png);
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    padding: 0px 10px 0px 60px;
+    color: #222222;
+    text-decoration: none;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+}
+
+
+
+
+
+
+.buy {
+    height: 60px;
+    position: fixed;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: solid #cbcbcb 1px;
+    padding: 0px;
+    background: #FAFAFA;
+    background: linear-gradient(#FAFAFA,#F4F4F4);
+    box-shadow: 0 -1px 0 rgba(0,0,0,.1) inset,0 -2px 8px rgba(0,0,0,.06);
+}
+
+    .buy .buy_l {
+        float: left;
+        height: 100%;
+    }
+
+        .buy .buy_l a {
+            color: #222222;
+            font-size: 1.3rem;
+            line-height: 26px;
+            height: 26px;
+            display: block;
+            padding: 0px 0px 0px 10px;
+        }
+
+            .buy .buy_l a.buy_amount span {
+                color: #ff0000;
+                font-weight: bold;
+            }
+
+    .buy .buy_r {
+        float: right;
+        padding: 5px 10px 5px 5px;
+    }
+
+        .buy .buy_r a {
+            background: #ce2828;
+            background: linear-gradient(#ce2828,#ce2228);
+            box-shadow: none;
+            text-shadow: none;
+            color: #FFF;
+            -moz-transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+            height: 50px;
+            line-height: 50px;
+            padding: 0px 10px 0px 10px;
+            width: 120px;
+            font-size: 18px;
+            transition: none;
+            -moz-transition: none;
+            -webkit-transition: none;
+            border-radius: 9px;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+        }

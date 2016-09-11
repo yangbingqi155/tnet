@@ -31,5 +31,14 @@ namespace TNet.Service.Order
 
         [WebInvoke(Method = "GET", UriTemplate = "List/{iduser}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Result<OrderListInfo> List(string iduser);
+
+        [WebInvoke(Method = "GET", UriTemplate = "Cancel/{iduser}/{orderno}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Result<bool> Cancel(string iduser, string orderno);
+
+
+
+        [WebInvoke(Method = "GET", UriTemplate = "Detail/{iduser}/{orderno}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Result<OrderDetailInfo> Detail(string iduser,string orderno);
+
     }
 }

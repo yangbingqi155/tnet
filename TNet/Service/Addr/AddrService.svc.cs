@@ -45,6 +45,7 @@ namespace TNet.Service.Addr
         public Result<long> Update(EF.MyAddr data)
         {
             Result<long> result = new Result<long>();
+
             try
             {
                 using (TN db = new TN())

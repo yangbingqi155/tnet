@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "支付订单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head{
+    <link href="@Url.Content("~/Css/Order/Pay.css?v=20160902")" r rel="stylesheet" type="text/css" />
+
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Pay.js?v=20160900")">
+
+    </script>
+
+}
+
+
+<div class="order_title">订单信息:</div>
+<div class="order_item">
+    <div class="order_name">订单：</div>
+    <div class="order_value">@ViewBag.orderno</div>
+</div>
+<div class="order_item mu20">
+    <div class="order_name">金额：</div>
+    <div class="order_value"></div>
+</div>
+
+<div class="vline"></div>
+
+
+<div class="order_title">支付方式:</div>
+<div class="pay_item">
+    <a class="winxin_pay" href="#">微信</a>
+</div>
+
+<div class="buyhost">
+    <div class="buy">
+        <div class="buy_l">
+
+            <a href="javascript:void(0)" class="buy_att_month">请尽快完成支付.</a>
+            <a href="javascript:void(0)" id="buy_amount" class="buy_amount">您的信任,是我们的动力...</a>
+        </div>
+        <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="submit()">支付</a></div>
+    </div>
+</div>
+

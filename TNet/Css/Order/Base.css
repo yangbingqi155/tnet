@@ -1,0 +1,56 @@
+﻿
+
+/********order_ops**********/
+
+.order_ops {
+    display: block;
+    height: 60px;
+    border-top: solid #d6d6d6 1px;
+}
+
+    .order_ops .ops {
+        display: block;
+        float: right;
+        width: auto;
+    }
+
+
+    .order_ops .amont {
+        display: block;
+        float: left;
+        height:60px;
+        line-height:60px;
+        padding:0px 0px 0px 10px;
+        width: auto;
+        color: #ff0000;
+        font-weight: bold;
+    }
+
+
+a.pay, a.cancel {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 20px 0px 20px;
+    margin: 5px 10px 5px 10px;
+    border: solid #d6d6d6 1px;
+    border-radius: 5px;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+a.pay {
+    color: #ffffff;
+    background: #ce2828;
+    background: linear-gradient(#ce2828,#ce2228);
+}
+
+a.cancel {
+    color: #757575;
+}
+
+
+
+a.cancel {
+    color: #757575;
+}

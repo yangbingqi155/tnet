@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "订单详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@section Head{
+    <link href="@Url.Content("~/Css/Order/Base.css?v=20160902")" r rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Detail.css?v=20160902")" rel="stylesheet" type="text/css" />
+
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Base.js?v=20160900")">
+
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Detail.js?v=20160900")">
+    </script>
+
+
+
+
+}
+
+<div id="OC" class="OC" orderno="@ViewBag.orderno">
+    <div class="title">订单信息：</div>
+    <div class="order">
+        <div class="no" id="orderno">订单...</div>
+        <div class="status" id="status">状态...</div>
+    </div>
+    <div class="vline"></div>
+    <div class="title">地址信息：</div>
+    <div class="addr">
+        <a href="javascript:void(0)" id="addr">
+            <i class="iconfont">&#xe615</i>
+            <div class="addrInfo">
+                <div class="npHost">
+                    <span class="contacts" id="contacts">联系人...</span>
+                    <span class="phones" id="phones">电话....</span>
+                </div>
+                <div class="realAddr" id="realAddr">地址...</div>
+            </div>
+        </a>
+    </div>
+
+    <div class="vline"></div>
+
+    <div class="title">商品信息：</div>
+    <a href="#" id="merc" class="merc">
+        <div class="merc_l">
+            <img id="ico" />
+        </div>
+        <div class="merc_c">
+
+            <span id="merc_title">商品...</span>
+            <span id="merc_spec">规格...</span>
+        </div>
+        <div class="merc_r">
+
+            <span id="merc_price">￥0</span>
+            <span id="merc_count">x0</span>
+        </div>
+    </a>
+    <div class="vline"></div>
+
+    <div class="title">留言信息：</div>
+    <div class="notes">
+        买家留言:
+        <div class="comm" id="comm">
+            <input type="text" id="notes" readonly placeholder="买家的留言..." maxlength="15" />
+        </div>
+    </div>
+
+
+    <div class="buyhost">
+        <div class="buy">
+            <div class="buy_l">
+
+                <a href="javascript:void(0)" class="buy_att_month" id="attmonth">送: 0  月</a>
+                <a href="javascript:void(0)" id="buy_amount" class="buy_amount">金额:<span class="amount" id="amount">￥ 0.00</span></a>
+            </div>
+            <div class="buy_r ops" id="ops"></div>
+        </div>
+    </div>
+
+</div>

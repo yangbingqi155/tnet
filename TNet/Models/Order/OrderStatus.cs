@@ -85,6 +85,15 @@ namespace TNet.Models.Order
                 text = "等待结算",
                 ops = "sendmsg"
             }
+
+
+            ,
+            new OrderStatusItem()
+            {
+                status = Cancel,
+                text = "已经取消",
+                ops = "sendmsg"
+            }
         };
         public static List<OrderStatusItem> get()
         {
