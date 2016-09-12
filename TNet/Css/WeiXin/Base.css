@@ -43,7 +43,7 @@ input[type="text"] {
 }
 
 a:hover {
-    color: #6b95ea;
+    /*color: #6b95ea;*/
 }
 
 a:active, a:hover {
@@ -253,7 +253,7 @@ a:active {
 
 a, a:hover {
     text-decoration: none;
-    color: #fff;
+    /*color: #fff;*/
 }
 
 

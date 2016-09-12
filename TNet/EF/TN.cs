@@ -31,6 +31,10 @@ namespace TNet.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Business>()
+                .Property(e => e.city)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Business>()
                 .Property(e => e.addr)
                 .IsUnicode(false);
 
@@ -40,6 +44,10 @@ namespace TNet.EF
 
             modelBuilder.Entity<Business>()
                 .Property(e => e.imgs)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Business>()
+                .Property(e => e.runtime)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Business>()
@@ -116,6 +124,10 @@ namespace TNet.EF
 
             modelBuilder.Entity<MyAddr>()
                 .Property(e => e.city)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyAddr>()
+                .Property(e => e.district)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyAddr>()

@@ -17,6 +17,9 @@ namespace TNet.EF
         [StringLength(60)]
         public string buss { get; set; }
 
+        [StringLength(60)]
+        public string city { get; set; }
+
         [StringLength(100)]
         public string addr { get; set; }
 
@@ -30,10 +33,19 @@ namespace TNet.EF
 
         public DateTime? busstime { get; set; }
 
-        public int? blevel { get; set; }
+        public double? price { get; set; }
+
+        public double? longitude { get; set; }
+
+        public double? latitude { get; set; }
 
         [StringLength(50)]
+        public string runtime { get; set; }
+
+        [StringLength(350)]
         public string notes { get; set; }
+
+        public int? blevel { get; set; }
 
         public bool? inuse { get; set; }
     }
