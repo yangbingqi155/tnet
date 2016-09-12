@@ -12,23 +12,32 @@ namespace TNet.EF
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idaddr { get; set; }
+        public long idaddr { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int iuser { get; set; }
+        public long iduser { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
+        public string contact { get; set; }
+
+        [StringLength(13)]
+        public string phone { get; set; }
+
+        [StringLength(30)]
         public string province { get; set; }
 
-        [StringLength(10)]
+        [StringLength(30)]
         public string city { get; set; }
+
+        [StringLength(30)]
+        public string district { get; set; }
 
         [StringLength(120)]
         public string street { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string tag { get; set; }
 
         public bool? isdv { get; set; }

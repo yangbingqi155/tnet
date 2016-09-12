@@ -14,6 +14,10 @@ namespace TNet.BLL
             TN db = new TN();
             return db.Specs.ToList();
         }
+        public static List<Spec> GetSpecsByIdMerc(int idmerc)
+        {
+            return GetALL().Where(en => en.idmerc == idmerc).ToList();
+        }
 
         public static Spec GetSpecs(int idspec)
         {

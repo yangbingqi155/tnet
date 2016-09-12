@@ -18,6 +18,6 @@ namespace TNet.EF
 
         public int? SortID { get; set; }
 
-        public bool? InUse { get; set; }
+        public bool InUse { get; set; }
     }
 }
