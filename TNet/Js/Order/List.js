@@ -38,6 +38,7 @@ function getData() {
 
                                 html += '<span id="merc_title">' + o.merc + '</span>';
                                 html += '<span id="merc_spec">' + o.spec + '</span>';
+                                html += '<span id="merc_time">' + getTime(o.stime) + " 至 " + getTime(o.entime) + '</span>';
                                 html += '</div>';
                                 html += '<div class="merc_r">';
 
@@ -71,6 +72,8 @@ function getData() {
         });
     }
 }
+
+
 
 $(document).ready(getData);
 

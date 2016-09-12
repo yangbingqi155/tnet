@@ -58,3 +58,10 @@ function getOps(status, order) {
     }
     return html;
 }
+
+function getTime(t) {
+    if (t) {
+       t = t.substring(0, t.length - 3);
+    }
+    return t;
+}

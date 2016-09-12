@@ -6,7 +6,7 @@
 
 .order_item {
     display: block;
-    height: 190px;
+    height: 215px;
 }
 
 .order {
@@ -39,7 +39,7 @@
 
 .merc {
     display: block;
-    height: 90px;
+    height: 120px;
     padding: 15px 8px 0px 8px;
     position: relative;
 }
@@ -55,6 +55,7 @@
             border: solid #d6d6d6 1px;
             width: 60px;
             height: 60px;
+            margin-top:15px;
         }
 
     .merc .merc_c {
@@ -63,7 +64,7 @@
         padding: 0px 10px 0px 10px;
     }
 
-#merc_title, #merc_spec {
+#merc_title, #merc_spec, #merc_time {
     display: block;
     height: 30px;
     line-height: 30px;
@@ -71,12 +72,17 @@
     font-weight: bold;
 }
 
+#merc_time {
+    font-weight: normal;
+    color: #757575;
+}
 
 #merc_spec {
     display: block;
     height: 30px;
     line-height: 30px;
     color: #757575;
+    font-weight: normal;
 }
 
 .merc .merc_r {
@@ -96,5 +102,5 @@
     color: #222222;
 }
 
-/***********merc begin********/
+/***********merc end********/
 

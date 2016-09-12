@@ -44,7 +44,7 @@ namespace TNet.Service.Order
                     o.phone = data.phone;
                     o.cretime = DateTime.Now;
                     o.stime = DateTime.Now;
-                    o.entime = DateTime.Now.AddMonths(data.month + data.attmonth);
+                    o.entime = DateTime.Now.AddMonths((data.month + data.attmonth)* o.count);
                     o.otype = OrderType.Merc;
                     o.status = OrderStatus.WaitPay;
                     o.notes = data.notes;

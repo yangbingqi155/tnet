@@ -3,14 +3,14 @@
     height: auto;
 }
 
-.title{
-     display:block;
-     height:40px;
-     line-height:40px;
-     padding:0px 0px 0px 8px;
-     font-weight:bold;
-     border-bottom:solid #d6d6d6 1px;
-     color:#757575;
+.title {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 0px 0px 8px;
+    font-weight: bold;
+    border-bottom: solid #d6d6d6 1px;
+    color: #757575;
 }
 
 .order {
@@ -155,7 +155,18 @@
     color: #222222;
 }
 
+.merc_st_et {
+    display: block;
+    line-height: 30px;
+    height: 30px;
+    padding: 8px 0px 8px 8px;
+    border-top: solid #d6d6d6 1px;
+    color: #757575;
+}
 
+    .merc_st_et span {
+        color: #222222;
+    }
 
 
 .buy {
@@ -197,7 +208,7 @@
         padding: 5px 10px 5px 5px;
     }
 
-     
+
 .notes {
     display: block;
     height: 80px;

@@ -36,6 +36,8 @@ function getData() {
                             $("#attmonth").html("送: " + o.attmonth + "  月");
                             $("#amount").html("￥" + (o.price * o.count));
                             $("#ops").html(getOps(so, o));
+                            $("#merc_st_et").html(getTime(o.stime) + " 至 " + getTime(o.entime));
+
                         } catch (e) {
                             //$('#order_host').html("加载异常" + e.message);
                             return;
