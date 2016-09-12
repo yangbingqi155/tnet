@@ -10,10 +10,9 @@ namespace TNet.EF
     public partial class User
     {
         [Key]
-        [Column(Order = 0)]
         [StringLength(50)]
         public string idweixin { get; set; }
-      
+
         public long iduser { get; set; }
 
         [Required]

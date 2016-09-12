@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TNet.Service.Buss.BussService" CodeBehind="BussService.svc.cs"   Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>

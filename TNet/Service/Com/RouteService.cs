@@ -7,6 +7,7 @@ using System.ServiceModel.Activation;
 using TNet.Service.Merc;
 using TNet.Service.Addr;
 using TNet.Service.Order;
+using TNet.Service.Buss;
 
 namespace TNet.Service.Com
 {
@@ -23,6 +24,10 @@ namespace TNet.Service.Com
 
             RouteTable.Routes.Add(new ServiceRoute("Service/Order/", new WebServiceHostFactory(), typeof(OrderService)));
             RouteTable.Routes.Add(new ServiceRoute("OrderService.svc", new WebServiceHostFactory(), typeof(OrderService)));
+
+
+            RouteTable.Routes.Add(new ServiceRoute("Service/Buss/", new WebServiceHostFactory(), typeof(BussService)));
+            RouteTable.Routes.Add(new ServiceRoute("BussService.svc", new WebServiceHostFactory(), typeof(BussService)));
         }
     }
 }

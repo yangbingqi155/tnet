@@ -180,6 +180,7 @@
     <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="BLL\Merc\MercService.cs" />
     <Compile Include="BLL\Merc\MercTypeService.cs" />
+    <Compile Include="Controllers\BussController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
@@ -234,6 +235,10 @@
       <DependentUpon>AddrService.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\Addr\IAddrService.cs" />
+    <Compile Include="Service\Buss\BussService.svc.cs">
+      <DependentUpon>BussService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Buss\IBussService.cs" />
     <Compile Include="Service\Com\RouteService.cs" />
     <Compile Include="Service\Merc\IMercService.cs" />
     <Compile Include="Service\Merc\MercService.svc.cs">
@@ -263,6 +268,7 @@
     <Content Include="Css\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Css\Bootstrap\bootstrap.css" />
     <Content Include="Css\Bootstrap\bootstrap.min.css" />
+    <Content Include="Css\Buss\Index.css" />
     <Content Include="Css\Com\jQuery.Validate.css" />
     <Content Include="Css\Com\swiper-3.3.1.min.css" />
     <Content Include="Css\Home\Index.css" />
@@ -344,6 +350,7 @@
     <Content Include="Js\Bootstrap\bootstrap.js" />
     <Content Include="Js\Bootstrap\bootstrap.min.js" />
     <Content Include="Js\Bootstrap\npm.js" />
+    <Content Include="Js\Buss\Index.js" />
     <Content Include="Js\Com\jquery-3.1.0.min.js" />
     <Content Include="Js\Com\js.cookie.js" />
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
@@ -450,6 +457,7 @@
     <Content Include="Js\Home\Home.js" />
     <Content Include="Js\WeiXin\Base.js" />
     <Content Include="Service\Addr\AddrService.svc" />
+    <Content Include="Service\Buss\BussService.svc" />
     <Content Include="Service\Merc\MercService.svc" />
     <Content Include="Service\Order\OrderService.svc" />
     <Content Include="Service\README.txt" />
@@ -489,6 +497,9 @@
     <Content Include="Views\Order\List.cshtml" />
     <Content Include="Views\Order\Pay.cshtml" />
     <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="README.md" />
+    <Content Include="Views\Buss\Index.cshtml" />
+    <Content Include="Views\Buss\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Addr\" />
