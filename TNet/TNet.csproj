@@ -185,9 +185,11 @@
     <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="BLL\Merc\MercService.cs" />
     <Compile Include="BLL\Merc\MercTypeService.cs" />
+    <Compile Include="Controllers\BussController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="EF\Business.cs" />
@@ -217,8 +219,16 @@
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
+    <Compile Include="Models\Order\CreateOrderData.cs" />
+    <Compile Include="Models\Order\CreateOrderResult.cs" />
+    <Compile Include="Models\Order\OrderDetailInfo.cs" />
+    <Compile Include="Models\Order\OrderListInfo.cs" />
+    <Compile Include="Models\Order\OrderStatus.cs" />
+    <Compile Include="Models\Order\OrderStatusItem.cs" />
+    <Compile Include="Models\Order\OrderType.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
+    <Compile Include="Models\User\UserInfo.cs" />
     <Compile Include="Models\Weixin\AccessToken.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
     <Compile Include="Models\Weixin\ReplyType.cs" />
@@ -227,10 +237,22 @@
     <Compile Include="Models\Weixin\Signature.cs" />
     <Compile Include="Models\Weixin\SubscribeMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Addr\AddrService.svc.cs">
+      <DependentUpon>AddrService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Addr\IAddrService.cs" />
+    <Compile Include="Service\Buss\BussService.svc.cs">
+      <DependentUpon>BussService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Buss\IBussService.cs" />
     <Compile Include="Service\Com\RouteService.cs" />
     <Compile Include="Service\Merc\IMercService.cs" />
     <Compile Include="Service\Merc\MercService.svc.cs">
       <DependentUpon>MercService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Order\IOrderService.cs" />
+    <Compile Include="Service\Order\OrderService.svc.cs">
+      <DependentUpon>OrderService.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Util\AttributeHelper.cs" />
@@ -246,6 +268,7 @@
   <ItemGroup>
     <Content Include="App_Data\XMLToken.xml" />
     <Content Include="BLL\README.txt" />
+    <Content Include="Css\Addr\Addr.css" />
     <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
     <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="Css\bootstrap-fileinput\fileinput.css" />
@@ -292,6 +315,7 @@
     <Content Include="Css\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Css\Bootstrap\bootstrap.css" />
     <Content Include="Css\Bootstrap\bootstrap.min.css" />
+    <Content Include="Css\Buss\Index.css" />
     <Content Include="Css\Com\jQuery.Validate.css" />
     <Content Include="Css\Com\swiper-3.3.1.min.css" />
     <Content Include="Css\Home\Index.css" />
@@ -299,17 +323,47 @@
     <Content Include="Css\Com\Content\bootstrap.css" />
     <Content Include="Css\Com\Content\bootstrap.min.css" />
     <Content Include="Css\Merc\Detail.css" />
+    <Content Include="Css\Order\Base.css" />
+    <Content Include="Css\Order\Detail.css" />
+    <Content Include="Css\Order\List.css" />
+    <Content Include="Css\Order\Pay.css" />
+    <Content Include="Css\Order\Submit.css" />
     <Content Include="Css\WeiXin\Base.css" />
+    <Content Include="Images\buss\1001.jpg" />
+    <Content Include="Images\buss\1002.jpg" />
+    <Content Include="Images\buss\1003.jpg" />
+    <Content Include="Images\buss\1004.jpg" />
+    <Content Include="Images\buss\1005.jpg" />
+    <Content Include="Images\buss\1006.jpg" />
+    <Content Include="Images\Com\a.bg.gif" />
     <Content Include="Images\Com\arrow.png" />
     <Content Include="Images\Com\Cart.png" />
+    <Content Include="Images\Com\loading.png" />
+    <Content Include="Images\Com\loading1.gif" />
     <Content Include="Images\Com\menu.png" />
+    <Content Include="Images\Com\nav-back-arrow.png" />
     <Content Include="Images\Com\user.png" />
+    <Content Include="Images\Com\weixin_pay_logo.png" />
     <Content Include="Images\Home\2.jpg" />
     <Content Include="Images\Com\load_ing.gif" />
     <Content Include="Images\Com\load_ok.png" />
     <Content Include="Images\Com\load_error.png" />
     <Content Include="Images\default_bg.png" />
     <Content Include="Images\Manage\login_bg.png" />
+    <Content Include="Images\Merc\1001.png" />
+    <Content Include="Images\Merc\1002.png" />
+    <Content Include="Images\Merc\1003.png" />
+    <Content Include="Images\Merc\1004.png" />
+    <Content Include="Images\Merc\1005.png" />
+    <Content Include="Images\Merc\1006.png" />
+    <Content Include="Images\Merc\1007.png" />
+    <Content Include="Images\Merc\1008.png" />
+    <Content Include="Images\Merc\1009.png" />
+    <Content Include="Images\Merc\1010.png" />
+    <Content Include="Images\Merc\1011.png" />
+    <Content Include="Images\Merc\1012.png" />
+    <Content Include="Js\Addr\Addr.js" />
+    <Content Include="Js\Addr\distpicker.min.js" />
     <Content Include="Js\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
     <Content Include="Js\bootstrap-datetimepicker\bootstrap-datetimepicker.min.js" />
     <Content Include="Js\bootstrap-datetimepicker\locales\bootstrap-datetimepicker.ar.js" />
@@ -361,14 +415,22 @@
     <Content Include="Js\Bootstrap\bootstrap.js" />
     <Content Include="Js\Bootstrap\bootstrap.min.js" />
     <Content Include="Js\Bootstrap\npm.js" />
+    <Content Include="Js\Buss\Index.js" />
+    <Content Include="Js\Com\jquery-3.1.0.min.js" />
+    <Content Include="Js\Com\js.cookie.js" />
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Css\Manage\Login.css" />
     <Content Include="Js\Merc\Detail.js" />
+    <Content Include="Js\Order\Base.js" />
+    <Content Include="Js\Order\Detail.js" />
+    <Content Include="Js\Order\List.js" />
+    <Content Include="Js\Order\Pay.js" />
+    <Content Include="Js\Order\Submit.js" />
     <Content Include="Js\Pub.js" />
     <Content Include="Css\Manage\Master.css" />
     <Content Include="Css\Manage\Menu.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Css\Com\Content\Site.css" />
     <Content Include="Images\angle_6.png" />
@@ -409,7 +471,6 @@
     <Content Include="Images\Manage\icon_menu_function.png" />
     <Content Include="Images\Manage\icon_menu_management.png" />
     <Content Include="Images\Manage\index_z2a7519.png" />
-    <Content Include="Images\Merc\0.jpg" />
     <Content Include="Images\Material\fWy-ww0bH4JeCCCqiJA6VgsEk9Wkr_BPjDUD9oTsH6A.jpg" />
     <Content Include="Images\me.png" />
     <Content Include="Images\peishong.png" />
@@ -446,10 +507,7 @@
     <Content Include="Js\Com\bootstrap.min.js" />
     <Content Include="Css\Bootstrap\bootstrap-theme.css.map" />
     <Content Include="Css\Bootstrap\bootstrap.css.map" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.woff2" />
-    <None Include="Js\Com\jquery-1.10.2.intellisense.js" />
-    <Content Include="Js\Com\jquery-1.10.2.js" />
-    <Content Include="Js\Com\jquery-1.10.2.min.js" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Js\Com\jquery.validate-vsdoc.js" />
     <Content Include="Js\Com\jquery.validate.js" />
     <Content Include="Js\Com\jquery.validate.min.js" />
@@ -464,11 +522,13 @@
     <Content Include="Js\WeiXin\Base.js" />
     <Content Include="lib\log4net\log4net.dll" />
     <Content Include="lib\log4net\log4net.xml" />
+    <Content Include="Service\Addr\AddrService.svc" />
+    <Content Include="Service\Buss\BussService.svc" />
     <Content Include="Service\Merc\MercService.svc" />
+    <Content Include="Service\Order\OrderService.svc" />
     <Content Include="Service\README.txt" />
     <Content Include="Views\Home\README.txt" />
     <Content Include="Views\Manage\README.txt" />
-    <Content Include="Views\Merc\detail.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -491,7 +551,6 @@
     <Content Include="Views\Manage\Login.cshtml" />
     <Content Include="Views\Manage\NonAuthorization.cshtml" />
     <Content Include="Views\Manage\MercList.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Manage\MercEdit.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
     <Content Include="Views\Manage\MercTypeList.cshtml" />
@@ -503,13 +562,25 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resource\Images\" />
+    <Content Include="Views\Order\Submit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Addr\Addr.cshtml" />
+    <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Order\Pay.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="README.md" />
+    <Content Include="Views\Buss\Index.cshtml" />
+    <Content Include="Views\Buss\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Css\fonts\glyphicons-halflings-regular.eot" />
+    <Folder Include="Images\Addr\" />
+    <Folder Include="Models\Addr\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Css\Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <Content Include="Js\Com\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

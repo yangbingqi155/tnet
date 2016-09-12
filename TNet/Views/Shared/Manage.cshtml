@@ -1,20 +1,19 @@
 ﻿@{
     Layout = null;
 }
-@using Util
 <!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="@Pub.C("~/Css/Manage/Base.css?v20160827")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Pub.C("~/Js/Com/jquery-1.10.2.js?v20160827")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/Pub.js?v20160827")"></script>
-    <script type="text/javascript" src="@Pub.C("~/Js/Com/swiper-3.3.1.min.js?v20160827")"></script>
+    <link href="@Url.Content("~/Css/Manage/Base.css?v20160827")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-3.1.0.min.js?v20160827")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Pub.js?v20160827")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/swiper-3.3.1.min.js?v20160827")"></script>
     @RenderSection("Head", required: false)
 </head>
-<body root="@Pub.C("~/")">
+<body root="@Url.Content("~/")">
     <div class="RAMsgHost">
         <div class="RAMsg" id="RAMsgObj">
             <div class="Context" id="RAMsgObj_Context">

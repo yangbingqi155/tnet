@@ -1,0 +1,98 @@
+﻿
+.buss_host {
+    display: block;
+    height: auto;
+    padding: 0px 0px 50px 0px;
+}
+
+.buss_item {
+    display: block;
+    height: 120px;
+    padding: 8px 0px 8px 8px;
+    border-top: solid 1px #d6d6d6;
+}
+
+
+.buss {
+    display: block;
+    height: 90px;
+    padding: 15px 8px 0px 8px;
+    position: relative;
+    color: #222222;
+}
+
+
+
+    .buss .buss_l {
+        display: inline-block;
+        float: left;
+        width: 60px;
+        height: 60px;
+    }
+
+        .buss .buss_l img {
+            border: solid #d6d6d6 1px;
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+        }
+
+    .buss .buss_c {
+        display: block;
+        float: left;
+        padding: 0px 10px 0px 10px;
+    }
+
+
+#buss_title, #buss_price {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #222222;
+    font-weight: bold;
+}
+
+
+
+
+#buss_price {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #ff0000;
+    font-weight: normal;
+}
+
+.buss_addr_host {
+    display: block;
+    height: 40px;
+    text-align: right;
+    line-height: 40px;
+    padding: 0px 0px 0px 8px;
+}
+
+    .buss_addr_host a {
+        text-decoration: none;
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-align: right;
+        padding: 0px 0px 0px 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border-top: 1px dotted #dfdfdf;
+    }
+
+
+#buss_addr {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-weight: normal;
+    color: #757575;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0px 2px 0px 0px;
+}

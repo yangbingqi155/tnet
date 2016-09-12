@@ -12,40 +12,29 @@ namespace Util
 {
     public static class Pub
     {
-        static long t = 0;
+        static long t = DateTime.Now.Ticks / 10000;
         volatile static int un = 0;
-        private volatile static object lk = new object();
+        static int tid = Thread.CurrentThread.ManagedThreadId;
+        // private volatile static object lk = new object();
+        //id 生成器,CAS版本
         public static long ID()
         {
-            lock (lk)
+            //lock (lk)
             {
-                if (t == DateTime.Now.Ticks)
+                long _t = DateTime.Now.Ticks / 10000;
+                if (t == _t)
                 {
-                    un++;
+                    //Interlocked.CompareExchange(ref t, _t, _t);
+                    Interlocked.Increment(ref un);
                 }
                 else
                 {
-                    t = DateTime.Now.Ticks;
-                    un = 0;
+                    Interlocked.Exchange(ref t, _t);
+                    Interlocked.Exchange(ref un, 0);
                 }
-                return t + un;
-            }
-        }
 
-
-        public static string C(string url)
-        {
-            string proxy_root = "";
-            if (HttpContext.Current.Request.UserHostAddress.IndexOf("192.168.1.20") >= 0)
-            {
-                proxy_root = ConfigurationManager.AppSettings["app_proxy"];
+                return long.Parse(t  + "" + un);
             }
-            if (url[0] == '~')
-            {
-                url = HttpContext.Current.Request.ApplicationPath + url.Substring(1);
-            }
-            return proxy_root + url;
-
         }
         /// <summary>
         /// 微信公众号Token

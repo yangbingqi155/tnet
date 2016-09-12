@@ -12,7 +12,24 @@ namespace TNet.Controllers
         // GET: User
         public ActionResult Index()
         {
-            ViewBag.ok =  UserBll.Auth2();
+            string user = "null";
+            bool ok = UserBll.Auth(ref user);
+            if (string.IsNullOrWhiteSpace(user))
+            {
+                user = "null";
+            }
+            ViewBag.ok = ok;
+            ViewBag.ru = "";
+            ViewBag.u = new HtmlString(user);
+            if (ok)
+            {
+                string ru = Request.QueryString["ru"];
+                if (!string.IsNullOrWhiteSpace(ru))
+                {
+                    ViewBag.ru = new HtmlString(ru);
+                   
+                }
+            }
             return View();
         }
     }

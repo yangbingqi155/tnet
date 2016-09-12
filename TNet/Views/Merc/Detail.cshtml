@@ -5,11 +5,10 @@
 }
 
 
-@using Util
 @section Head{
-    <link href="@Pub.C("~/Css/Merc/Detail.css?v=20160902")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Merc/Detail.css?v=20160902")" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="@Pub.C("~/Js/Merc/Detail.js?v=20160902")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Detail.js?v=20160902")">
     </script>
 }
 <div class="swiper-banner">
@@ -17,7 +16,7 @@
         <div class="swiper-wrapper">
             @*<div class="swiper-slide">
                     <a href="#">
-                        <img class="swiper-lazy" src="@Pub.C("~/Images/Home/1.jpg")" />
+                        <img class="swiper-lazy" src="@Url.Content("~/Images/Home/1.jpg")" />
                     </a>
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                 </div>*@
@@ -77,7 +76,7 @@
             <a href="javascript:void(0)" class="buy_spec">已选择：</a>
             <a href="javascript:void(0)" id="buy_amount" class="buy_amount">应付金额：<span class="amount">￥ 0.00</span></a>
         </div>
-        <div class="buy_r"><a href="javascript:void(0)" class="go_buy">购买</a></div>
+        <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="save()">购买</a></div>
     </div>
 </div>
 

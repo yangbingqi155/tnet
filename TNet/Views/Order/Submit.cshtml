@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "确认订单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Head{
+    <link href="@Url.Content("~/Css/Order/Submit.css?v=20160902")" rel="stylesheet" type="text/css" />
+
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Submit.js?v=20160900")">
+    </script>
+
+}
+
+<div id="OC" class="OC">
+    <div class="addr">
+        <a href="javascript:void(0)" id="addr" onclick="selectAddr()">
+            <i class="iconfont">&#xe615</i>
+            <span>请选择地址...</span>
+            <span class="choice"></span>
+            <i class="iconfont">&#xe615</i>
+        </a>
+    </div>
+
+    <div class="vline"></div>
+
+    <a href="#" id="merc" class="merc">
+        <div class="merc_l">
+            <img id="ico" />
+        </div>
+        <div class="merc_c">
+
+            <span id="merc_title">商品...</span>
+            <span id="merc_spec">规格...</span>
+        </div>
+        <div class="merc_r">
+
+            <span id="merc_price">￥0</span>
+            <span id="merc_count">x0</span>
+        </div>
+    </a>
+
+
+    <div class="vline"></div>
+
+
+    <div class="buyhost">
+        <div class="buy">
+            <div class="buy_l">
+
+                <a href="javascript:void(0)" class="buy_att_month">送: 0  月</a>
+                <a href="javascript:void(0)" id="buy_amount" class="buy_amount">应付金额：<span class="amount" id="amount">￥ 0.00</span></a>
+            </div>
+            <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="submit()">下单</a></div>
+        </div>
+    </div>
+
+    <div class="notes">
+        备注:
+        <div class="comm">
+            <input type="text" id="notes" placeholder="给卖家留言,最多15汉字..." maxlength="15" />
+        </div>
+    </div>
+    <div class="vline"></div>
+</div>
+
+
+<div id="Addr_Host" class="Addr_Host">
+
+    @Html.Partial("~/Views/Addr/Addr.cshtml")
+
+
+</div>

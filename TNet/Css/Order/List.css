@@ -1,0 +1,107 @@
+﻿.order_host {
+    display: block;
+    height: auto;
+}
+
+
+.order_item {
+    display: block;
+    height: 215px;
+}
+
+.order {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: solid #cbcbcb 1px;
+}
+
+.no {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    color: #222222;
+    padding: 0px 0px 0px 10px;
+}
+
+.status {
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    color: #222222;
+    padding: 0px 10px 0px 0px;
+}
+
+
+
+/***********merc begin********/
+
+
+.merc {
+    display: block;
+    height: 120px;
+    padding: 15px 8px 0px 8px;
+    position: relative;
+}
+
+    .merc .merc_l {
+        display: inline-block;
+        float: left;
+        width: 60px;
+        height: 60px;
+    }
+
+        .merc .merc_l img {
+            border: solid #d6d6d6 1px;
+            width: 60px;
+            height: 60px;
+            margin-top:15px;
+            display:inline-block;
+        }
+
+    .merc .merc_c {
+        display: block;
+        float: left;
+        padding: 0px 10px 0px 10px;
+    }
+
+#merc_title, #merc_spec, #merc_time {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #222222;
+    font-weight: bold;
+}
+
+#merc_time {
+    font-weight: normal;
+    color: #757575;
+}
+
+#merc_spec {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #757575;
+    font-weight: normal;
+}
+
+.merc .merc_r {
+    position: absolute;
+    top: 0px;
+    right: 8px;
+    width: 60px;
+    height: 100%;
+    padding: 0px 8px 0px 0px;
+    text-align: right;
+}
+
+#merc_price, #merc_count {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: #222222;
+}
+
+/***********merc end********/
+

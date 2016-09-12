@@ -9,11 +9,14 @@ function initBase() {
         preloadImages: false,
         lazyLoading: true
     });
-    var u = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc530ec3ce6a52233&redirect_uri=http://app.i5shang.com/tnet/user&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
-    $(".Top_User").attr("href", u);
+    Pub.auth(false);
+    setTopMenuEvent();
 }
+
+
 var g_base_x_v = 0;
 function autoShowTopMenu() {
+   
     if (g_base_x_v == 0) {
         g_base_x_v = $(document.body).scrollTop();
     }
@@ -31,5 +34,19 @@ function autoShowTopMenu() {
     }
 }
 $(document).ready(initBase);
+
+
+function setTopMenuEvent(func,css) {
+    if (!func) {
+        func = autoShowTopMenu;
+    }
+    var mu = $("#Top_Menu");
+    if (!css) {
+        mu.removeClass().addClass("Top_Menu");
+    } else {
+        mu.removeClass().addClass(css);
+    }
+    mu.unbind('click').click(func);
+}
 
 

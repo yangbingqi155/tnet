@@ -39,6 +39,8 @@ namespace TNet.EF
 
         public int? attmonth { get; set; }
 
+        public int count { get; set; }
+
         public double? price { get; set; }
 
         [StringLength(50)]
@@ -59,6 +61,9 @@ namespace TNet.EF
         public int? otype { get; set; }
 
         public int? status { get; set; }
+
+        [StringLength(255)]
+        public string img { get; set; }
 
         [StringLength(50)]
         public string notes { get; set; }

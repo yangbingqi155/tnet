@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TNet.Service.Addr.AddrService" CodeBehind="AddrService.svc.cs" Factory="System.ServiceModel.Activation.WebServiceHostFactory"  %>

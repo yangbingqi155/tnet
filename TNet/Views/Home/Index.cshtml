@@ -1,12 +1,14 @@
 ﻿@{
     ViewBag.Title = "T网租生活";
+    ViewBag.__Is_Home_Tag = "__Is_Home_Tag=1";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using Util
 @section Head{
-    <link href="@Pub.C("~/Css/Home/Index.css?v=20160902")" rel="stylesheet" type="text/css" />
-
-    <script type="text/javascript" src="@Pub.C("~/Js/Home/Home.js?v=20160902")">
+    <link href="@Url.Content("~/Css/Home/Index.css?v=20160902")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20160902")">
+    </script>
+    <script type="text/javascript">
+        // Pub.delUser();
     </script>
 }
 <div class="head_host">
@@ -15,13 +17,13 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <a href="#">
-                        <img class="swiper-lazy" src="@Pub.C("~/Images/Home/1.jpg")" />
+                        <img class="swiper-lazy" src="@Url.Content("~/Images/Home/1.jpg")" />
                     </a>
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                 </div>
                 <div class="swiper-slide">
                     <a href="#">
-                        <img class="swiper-lazy" data-src="@Pub.C("~/Images/Home/2.jpg")" />
+                        <img class="swiper-lazy" data-src="@Url.Content("~/Images/Home/2.jpg")" />
                     </a>
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                 </div>
@@ -30,7 +32,7 @@
             </div>
         </div>
         <div class="top_tool">
-            <a href="@Pub.C("~/Shared/ChangeDB")"><span id="city">北京</span><i></i></a>
+            <a href="@Url.Content("~/Shared/ChangeDB")"><span id="city">北京</span><i></i></a>
         </div>
     </div>
 
@@ -41,13 +43,13 @@
                     <a href="#"><i class="tongzhi"></i><span>公告通知</span> </a>
                 </td>
                 <td>
-                    <a href="@Pub.C("~/Merc/List")"><i class="baoxiu"></i><span>宽带销售</span> </a>
+                    <a href="@Url.Content("~/Merc/List")"><i class="baoxiu"></i><span>宽带销售</span> </a>
                 </td>
                 <td>
                     <a href="#" )"><i class="toushu"></i><span>宽带报装</span> </a>
                 </td>
                 <td>
-                    <a href="#" rel="external"><i class="jiaofei"></i><span>周边商圈</span> </a>
+                    <a href="@Url.Content("~/Buss/Index")"><i class="jiaofei"></i><span>周边商圈</span> </a>
                 </td>
             </tr>
             <tr>
@@ -55,14 +57,14 @@
                     <a href="#"><i class="suishoupai"></i><span>投诉建议</span> </a>
                 </td>
                 <td>
-                    <a href="#" rel="external"><i class="juece"></i><span>我的订单</span> </a>
+                    <a href="@Url.Content("~/Order/List")"><i class="juece"></i><span>我的订单</span> </a>
                 </td>
                 <td>
-                    <a href="#" rel="external"><i class="diaocha"></i><span>调查</span> </a>
+                    <a href="#"><i class="diaocha"></i><span>调查</span> </a>
                 </td>
                 <td>
 
-                    <a href="#" rel="external"><i class="zhinan"></i><span>调查</span> </a>
+                    <a href="#"><i class="zhinan"></i><span>调查</span> </a>
                 </td>
             </tr>
         </table>
@@ -78,13 +80,13 @@
     <span class="loading_c">加载中...</span>
     @*<div class="pitem">
             <div class="pitem_l">
-                <a href="#"><img src="@Pub.C("~/Images/Merc/0.jpg")" />水果</a>
+                <a href="#"><img src="@Url.Content("~/Images/Merc/0.jpg")" />水果</a>
 
                 <div class="HLive"></div>
 
             </div>
             <div class="pitem_r">
-                <a href="#"><img src="@Pub.C("~/Images/Merc/0.jpg")" />水果</a>
+                <a href="#"><img src="@Url.Content("~/Images/Merc/0.jpg")" />水果</a>
 
             </div>
 

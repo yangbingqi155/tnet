@@ -1,0 +1,230 @@
+﻿.OC {
+    display: block;
+    height: auto;
+}
+
+.addr {
+    display: block;
+    height: 60px;
+    position:relative;
+}
+
+    .addr a {
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        color: #222222;
+        text-decoration: none;
+        padding: 0px 10px 0px 10px;
+    }
+
+        .addr a i {
+            font-size: 20px;
+        }
+
+
+        
+    .addr .addrInfo {
+        display: block;
+        position: absolute;
+        left: 36px;
+        right: 40px;
+        height: 60px;
+        top: 0px;
+        float: left;
+    }
+
+        .addr .addrInfo .npHost {
+            height: 30px;
+            display: block;
+            line-height: 30px;
+        }
+
+            .addr .addrInfo .npHost .contacts {
+                float: left;
+                font-weight:bold;
+            }
+
+            .addr .addrInfo .npHost .phones {
+                float: right;
+                text-align: right;
+                font-weight:bold;
+            }
+
+        .addr .addrInfo .realAddr {
+            height: 30px;
+            display: block;
+            line-height: 30px;
+            overflow: hidden;
+            font-size: 12px;
+            color: #757575;
+        }
+
+
+
+.choice {
+    border-right: 1px solid #6c6c6c;
+    border-top: 1px solid #6c6c6c;
+    display: inline-block;
+    height: 10px;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    width: 10px;
+    margin: 25px 0 0 10px;
+    position: absolute;
+    right: 0.625em;
+}
+
+.merc {
+    display: block;
+    height: 80px;
+    padding: 15px 8px 0px 8px;
+    position: relative;
+}
+
+    .merc .merc_l {
+        display: inline-block;
+        float: left;
+        width: 60px;
+        height: 60px;
+    }
+
+        .merc .merc_l img {
+            border: solid #d6d6d6 1px;
+            width: 60px;
+            height: 60px;
+        }
+
+    .merc .merc_c {
+        display: block;
+        float: left;
+        padding: 0px 10px 0px 10px;
+    }
+
+#merc_title, #merc_spec {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #222222;
+    font-weight: bold;
+}
+
+
+#merc_spec {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #757575;
+}
+
+.merc .merc_r {
+    position: absolute;
+    top: 0px;
+    right: 8px;
+    width: 60px;
+    height: 100%;
+    padding: 0px 8px 0px 0px;
+    text-align: right;
+}
+
+#merc_price, #merc_count {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: #222222;
+}
+
+
+
+
+.buy {
+    height: 60px;
+    position: fixed;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: solid #cbcbcb 1px;
+    padding: 0px;
+    background: #FAFAFA;
+    background: linear-gradient(#FAFAFA,#F4F4F4);
+    box-shadow: 0 -1px 0 rgba(0,0,0,.1) inset,0 -2px 8px rgba(0,0,0,.06);
+}
+
+    .buy .buy_l {
+        float: left;
+        height: 100%;
+    }
+
+        .buy .buy_l a {
+            color: #222222;
+            font-size: 1.3rem;
+            line-height: 26px;
+            height: 26px;
+            display: block;
+            padding: 0px 0px 0px 10px;
+        }
+
+            .buy .buy_l a.buy_amount span {
+                color: #ff0000;
+                font-weight: bold;
+            }
+
+    .buy .buy_r {
+        float: right;
+        padding: 5px 10px 5px 5px;
+    }
+
+        .buy .buy_r a {
+            background: #ce2828;
+            background: linear-gradient(#ce2828,#ce2228);
+            box-shadow: none;
+            text-shadow: none;
+            color: #FFF;
+            -moz-transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+            height: 50px;
+            line-height: 50px;
+            padding: 0px 10px 0px 10px;
+            width: 120px;
+            font-size: 18px;
+            transition: none;
+            -moz-transition: none;
+            -webkit-transition: none;
+            border-radius: 9px;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+        }
+
+
+.notes {
+    display: block;
+    height: 80px;
+    padding: 8px;
+}
+
+    .notes .comm {
+        display: block;
+        height: 40px;
+        margin: 8px 0px 0px 0px;
+        border-radius: 5px;
+        border: solid 1px #d6d6d6;
+        background-color: #ffffff;
+        padding: 0px 8px 0px 8px;
+    }
+
+    .notes input {
+        display: block;
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+    }
