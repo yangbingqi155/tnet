@@ -2,20 +2,20 @@
 .buss_host {
     display: block;
     height: auto;
-    padding:0px 0px 50px 0px;
+    padding: 0px 0px 50px 0px;
 }
 
 .buss_item {
     display: block;
-    height: 110px;
-    padding: 8px;
+    height: 120px;
+    padding: 8px 0px 8px 8px;
     border-top: solid 1px #d6d6d6;
 }
 
 
 .buss {
     display: block;
-    height: 80px;
+    height: 90px;
     padding: 15px 8px 0px 8px;
     position: relative;
     color: #222222;
@@ -68,22 +68,31 @@
     height: 40px;
     text-align: right;
     line-height: 40px;
-    padding: 0px 2px 0px 0px;
+    padding: 0px 0px 0px 8px;
 }
 
     .buss_addr_host a {
         text-decoration: none;
-        display: inline-block;
+        display: block;
         height: 40px;
         line-height: 40px;
-        padding: 0px 10px 0px 10px;
+        text-align: right;
+        padding: 0px 0px 0px 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border-top: 1px dotted #dfdfdf;
     }
 
+
 #buss_addr {
-    display: inline-block;
+    display: block;
     height: 40px;
     line-height: 40px;
     font-weight: normal;
     color: #757575;
-    padding: 0px 0px 0px 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0px 2px 0px 0px;
 }

@@ -31,7 +31,7 @@ function getData() {
                             html += '</a>';
 
                             html += '<div class="buss_addr_host">';
-                            html += '<a href="javascript:void(0)"><i class="iconfont">&#xe615</i><span id="buss_addr">' + o.addr + '</span></a>';
+                            html += '<a href="javascript:void(0)"><span id="buss_addr"><i class="iconfont">&#xe615</i>' + o.addr + '</span></a>';
                             html += '</div>';
                             html += '</div>';                             
                         }
