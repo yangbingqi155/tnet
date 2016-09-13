@@ -13,6 +13,7 @@ namespace TNet
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             //参与这种路由参数 兼容 WCF路由
             routes.MapRoute(
                  "User",
@@ -20,7 +21,6 @@ namespace TNet
                   new { controller = "User", action = "Index" },
                   new { controller = "^(?!Service).*" }
             );
-
 
             routes.MapRoute(
                  "Order_Pay",

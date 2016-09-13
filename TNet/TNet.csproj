@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\log4net\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -176,6 +180,7 @@
     <Compile Include="BLL\IdentifyService.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
+    <Compile Include="BLL\Merc\MercImageService.cs" />
     <Compile Include="BLL\Merc\SpecService.cs" />
     <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="BLL\Merc\MercService.cs" />
@@ -208,6 +213,7 @@
       <DependentUpon>201608300500213_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Merc\MercImageViewModel.cs" />
     <Compile Include="Models\Merc\MercTypeViewModel.cs" />
     <Compile Include="Models\Merc\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />
@@ -251,6 +257,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
+    <Compile Include="Util\HttpExtension.cs" />
     <Compile Include="Util\UrlHelperExtension.cs" />
     <Compile Include="Util\HttpHelp.cs" />
     <Compile Include="Util\ListExtension.cs" />
@@ -264,6 +271,46 @@
     <Content Include="Css\Addr\Addr.css" />
     <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
     <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="Css\bootstrap-fileinput\fileinput.css" />
+    <Content Include="Css\bootstrap-fileinput\fileinput.min.css" />
+    <Content Include="Js\bootstrap-fileinput\fileinput.js" />
+    <Content Include="Js\bootstrap-fileinput\fileinput.min.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\ar.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\bg.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\ca.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\cr.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\cz.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\da.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\de.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\el.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\es.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\fa.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\fi.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\fr.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\hu.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\id.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\it.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\ja.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\LANG.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\nl.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\pl.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\pt-BR.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\pt.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\ro.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\ru.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\sk.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\th.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\tr.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\uk.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\vi.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\zh-TW.js" />
+    <Content Include="Js\bootstrap-fileinput\locales\zh.js" />
+    <Content Include="Js\bootstrap-fileinput\plugins\canvas-to-blob.js" />
+    <Content Include="Js\bootstrap-fileinput\plugins\canvas-to-blob.min.js" />
+    <Content Include="Js\bootstrap-fileinput\plugins\purify.js" />
+    <Content Include="Js\bootstrap-fileinput\plugins\purify.min.js" />
+    <Content Include="Js\bootstrap-fileinput\plugins\sortable.js" />
+    <Content Include="Js\bootstrap-fileinput\plugins\sortable.min.js" />
     <Content Include="Css\Bootstrap\bootstrap-theme.css" />
     <Content Include="Css\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Css\Bootstrap\bootstrap.css" />
@@ -475,6 +522,8 @@
     <Content Include="Js\Manage\Menu.js" />
     <Content Include="Js\Home\Home.js" />
     <Content Include="Js\WeiXin\Base.js" />
+    <Content Include="lib\log4net\log4net.dll" />
+    <Content Include="lib\log4net\log4net.xml" />
     <Content Include="Service\Addr\AddrService.svc" />
     <Content Include="Service\Buss\BussService.svc" />
     <Content Include="Service\Merc\MercService.svc" />
@@ -510,6 +559,11 @@
     <Content Include="Views\Manage\SpecList.cshtml" />
     <Content Include="Views\Manage\MercTypeEdit.cshtml" />
     <Content Include="Views\Manage\SpecEdit.cshtml" />
+    <Content Include="Views\Manage\MercImageList.cshtml" />
+    <Content Include="Views\Manage\MercImageEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resource\Images\" />
     <Content Include="Views\Order\Submit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Addr\Addr.cshtml" />

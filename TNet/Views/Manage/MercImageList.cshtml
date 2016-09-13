@@ -1,0 +1,68 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+
+@model List<MercImageViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+    int mercId= Convert.ToInt32(ViewData["mercId"]);
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">产品管理</a></li>
+        <li><a href="#" class="active">产品图片管理</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "MercImageList", "Manage", ViewContext.RouteData.Values))
+    </div>
+    <div>
+        <a class="btn btn-primary" target="_blank" href="@Url.Action("MercImageEdit","Manage",new { idmerc= mercId, MercImageId=0})">新增产品图片</a>
+    </div>
+    <div>
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercImageViewModel, int>(en => en.MercImageId))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercImageViewModel, String>(en => en.Path))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercImageViewModel, int?>(en => en.SortID))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercImageViewModel, bool?>(en => en.InUse))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MercImageId</td>
+                            <td>@item.Path</td>
+                            <td>@item.SortID</td>
+                            <td>
+                                @( item.InUse ? "启用" : "禁用")
+
+                            </td>
+                            <td>
+                                <a href="@Url.Action("MercImageEdit","Manage",new {MercImageId=item.MercImageId })" class="btn btn-default">编辑</a>
+                                <a href="@Url.Action("MercImageEdit","Manage",new{MercImageId=item.MercImageId,inuse=!item.InUse })" class="btn btn-default">@(item.InUse ? "禁用" : "启用")</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>还没有任何产品图片.</h2>
+        }
+
+    </div>
+</div>
+
+

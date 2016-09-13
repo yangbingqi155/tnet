@@ -67,6 +67,8 @@
                             <td>
                                 <a href="@Url.Action("MercEdit","Manage",new {idmerc=item.idmerc })" class="btn btn-default">编辑</a>
                                 <a href="@Url.Action("MercEdit","Manage",new{idmerc=item.idmerc,inuse=!item.inuse })" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                                <a href="@Url.Action("MercImageList","Manage",new {mercId=item.idmerc })" class="btn btn-default">管理图片</a>
+                                <a href="@Url.Action("SpecList","Manage",new {idmerc=item.idmerc })" class="btn btn-default">管理规格</a>
                             </td>
                         </tr>
                     }
