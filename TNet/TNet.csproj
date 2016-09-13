@@ -226,6 +226,8 @@
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\Order\OrderStatusItem.cs" />
     <Compile Include="Models\Order\OrderType.cs" />
+    <Compile Include="Models\ResponseCodeType.cs" />
+    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\User\UserInfo.cs" />
@@ -561,7 +563,6 @@
     <Content Include="Views\Manage\MercImageEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resource\Images\" />
     <Content Include="Views\Order\Submit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Addr\Addr.cshtml" />
@@ -575,6 +576,7 @@
   <ItemGroup>
     <Folder Include="Images\Addr\" />
     <Folder Include="Models\Addr\" />
+    <Folder Include="Resource\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\Fonts\glyphicons-halflings-regular.woff" />

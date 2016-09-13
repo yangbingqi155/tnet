@@ -42,15 +42,17 @@
                     {
                         <tr>
                             <td>@item.MercImageId</td>
-                            <td>@item.Path</td>
+                            <td>
+                            <img src="@Url.Content(item.Path)" alt="" style="width:135px;"/>
+                            </td>
                             <td>@item.SortID</td>
                             <td>
                                 @( item.InUse ? "启用" : "禁用")
 
                             </td>
                             <td>
-                                <a href="@Url.Action("MercImageEdit","Manage",new {MercImageId=item.MercImageId })" class="btn btn-default">编辑</a>
-                                <a href="@Url.Action("MercImageEdit","Manage",new{MercImageId=item.MercImageId,inuse=!item.InUse })" class="btn btn-default">@(item.InUse ? "禁用" : "启用")</a>
+                                <a href="@Url.Action("MercImageEdit","Manage",new {idmerc= item.idmerc,MercImageId=item.MercImageId })" class="btn btn-default">编辑</a>
+                                <a href="@Url.Action("MercImageEdit","Manage",new{idmerc= item.idmerc,MercImageId=item.MercImageId,inuse=!item.InUse })" class="btn btn-default">@(item.InUse ? "禁用" : "启用")</a>
                             </td>
                         </tr>
                     }

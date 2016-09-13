@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace TNet.Util
 {
@@ -35,6 +36,18 @@ namespace TNet.Util
             }
 
             return entities;
+        }
+
+        /// <summary>
+        /// 把List<>集合序列化成JSON格式字符串
+        /// </summary>
+        /// <typeparam name="T">要序列化的List的类型</typeparam>
+        /// <param name="list">输入的List对象</param>
+        /// <returns></returns>
+        public static string SerializeToJson<T>(this List<T> list)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(list);
         }
     }
 }

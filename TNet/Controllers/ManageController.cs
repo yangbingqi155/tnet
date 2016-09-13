@@ -357,14 +357,17 @@ namespace TNet.Controllers
             { 
                 MercImageService.Edit(mercImage);
             }
-            return View();
+            return RedirectToAction("MercImageEdit","Manage",new { idmerc = model.idmerc, MercImageId=model.MercImageId });
         }
 
-
+        [ManageLoginValidation]
         public ActionResult UploadMercImage(int mercId) {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件上传成功";
             string GUID = System.Guid.NewGuid().ToString();
-            string path = "~/Resouce/Images/" ;
+            string path = "~/Resouce/Images/Merc/" ;
             string filename = string.Empty;
             string message = string.Empty;
             try
@@ -373,19 +376,26 @@ namespace TNet.Controllers
                 {
                     if (Request.Files.Count > 1)
                     {
-                        return Content("请选择文件.");
+                        resultEntity.Code = ResponseCodeType.Fail;
+                        resultEntity.Message = "请选择文件.";
+                        return Content(resultEntity.SerializeToJson());
                     }
+                    resultEntity.Content = new List<MercImageViewModel>();
                     foreach (string upload in Request.Files)
                     {
                         if (!Request.Files[upload].HasFile())
                         {
-                            return Content("文件大小不能0.");
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件大小不能0.";
+                            return Content(resultEntity.SerializeToJson());
                         }
 
 
                         if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[upload]))
                         {
-                            return Content("文件类型只能是jpg,bmp,gif,PNG.");
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
                         }
 
                         //获取文件后缀名
@@ -394,7 +404,9 @@ namespace TNet.Controllers
                         int lastIndex = originFileName.LastIndexOf(".");
                         if (lastIndex < 0)
                         {
-                            return Content("文件类型只能是jpg,bmp,gif,PNG.");
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
                         }
                         originFileNameSuffix = originFileName.Substring(lastIndex, originFileName.Length - lastIndex);
 
@@ -405,22 +417,31 @@ namespace TNet.Controllers
                         }
 
                         Request.Files[upload].SaveAs(Path.Combine(Server.MapPath(path), filename));
+                        resultEntity.Content.Add(new MercImageViewModel() {
+                             idmerc= mercId,
+                             Path= path+ filename,
+                             SortID=0,
+                              InUse=true
+                        });
 
                     }
 
                 }
                 else
                 {
-                    return Content("没有选择要上传的文件.");
+                    resultEntity.Code = ResponseCodeType.Fail;
+                    resultEntity.Message = "没有选择要上传的文件.";
+                    return Content(resultEntity.SerializeToJson());
                 }
             }
             catch (Exception ex)
             {
-                return Content("没有选择要上传的文件.");
                 log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "没有选择要上传的文件.";
+                return Content(resultEntity.SerializeToJson());
             }
-            return Content("文件上传成功。");
-
+            return Content(resultEntity.SerializeToJson());
 
         }
 

@@ -21,6 +21,7 @@ namespace TNet.Models
         public string Path { get; set; }
 
         [Display(Name ="排序")]
+        [Required]
         public int? SortID { get; set; }
 
         [Display(Name ="是否启用")]

@@ -23,6 +23,13 @@
             <fieldset>
                 @Html.HiddenFor(model => model.idmerc)
                 @Html.HiddenFor(model => model.MercImageId)
+                @Html.HiddenFor(model=>model.Path)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Path, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <input type="file" name="image" id="mymercimage" class="projectfile" />
+                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.SortID, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-10">
@@ -33,12 +40,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.InUse, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-10">
-                        @Html.CheckBoxFor(model => model.InUse, new { @class = "form-control" })
+                        @Html.CheckBoxFor(model => model.InUse, new { @class = "form-control" ,@checked="checked"})
                     </div>
                     @Html.ValidationMessageFor(model => model.InUse)
-                </div>
-                <div class="form-group">
-                    <input type="file" name="image" id="mymercimage" class="projectfile" />
                 </div>
                 @Html.ValidationSummary(true)
                 <div class="form-group">
@@ -67,10 +71,20 @@
             showCaption: false,//是否显示标题
             browseClass: "btn btn-primary", //按钮样式
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        }).on('fileuploaded', function (event, data, id, index) {
+            var responseData = data.response;
+            if (responseData.Code == "1") {
+                $("#@Html.IdFor(model=>model.Path)").val(responseData.Content[0].Path);
+                alert(responseData.Message);
+            }
+            else if (responseData.Code == "2") {
+                alert(responseData.Message);
+            }
+            
         });
     }
     $(function () {
-        initFileInput("mymercimage", "@Url.Action("UploadMercImage","Manage")");
+        initFileInput("mymercimage", "@Url.Action("UploadMercImage","Manage",new { mercId = Model.idmerc })");
     });
 
 
