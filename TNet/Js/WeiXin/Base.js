@@ -50,3 +50,20 @@ function setTopMenuEvent(func,css) {
 }
 
 
+
+function getTime(t) {
+    if (t) {
+        t = t.substring(0, t.length - 3);
+    }
+    return t;
+}
+
+
+
+
+function getTimeYYMMHH(t) {
+    if (t) {
+        t = t.substring(0, t.length - 9);
+    }
+    return t;
+}
