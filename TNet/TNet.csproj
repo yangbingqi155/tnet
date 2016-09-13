@@ -317,6 +317,7 @@
     <Content Include="Css\Bootstrap\bootstrap-theme.min.css" />
     <Content Include="Css\Bootstrap\bootstrap.css" />
     <Content Include="Css\Bootstrap\bootstrap.min.css" />
+    <Content Include="Css\Buss\Detail.css" />
     <Content Include="Css\Buss\Index.css" />
     <Content Include="Css\Com\jQuery.Validate.css" />
     <Content Include="Css\Com\swiper-3.3.1.min.css" />
@@ -417,6 +418,7 @@
     <Content Include="Js\Bootstrap\bootstrap.js" />
     <Content Include="Js\Bootstrap\bootstrap.min.js" />
     <Content Include="Js\Bootstrap\npm.js" />
+    <Content Include="Js\Buss\Detail.js" />
     <Content Include="Js\Buss\Index.js" />
     <Content Include="Js\Com\jquery-3.1.0.min.js" />
     <Content Include="Js\Com\js.cookie.js" />

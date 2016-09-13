@@ -15,8 +15,9 @@ namespace TNet.Controllers
         }
 
 
-        public ActionResult Detail()
+        public ActionResult Detail(string idbuss)
         {
+            ViewBag.idbuss = idbuss;
             return View();
         }
     }

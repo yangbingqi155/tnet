@@ -362,7 +362,7 @@ a, a:hover {
 
 .swiper-banner {
     text-align: center;
-    height: 170px;
+    height: 200px;
     overflow: hidden;
     position: relative;
 }
@@ -397,7 +397,7 @@ a, a:hover {
 }
 
 .swiper-banner img {
-    max-height: 170px;
+    max-height: 200px;
     height: 100%;
     width: 100%;
     background: /*url(../../images/default_bg.png)*/ no-repeat scroll center center #d9d9d9;
@@ -430,8 +430,7 @@ a, a:hover {
     }
 
 
-
-span.loading_l, span.loading_c, span.load_error {
+span.loading_c, span.load_error {
     display: block;
     color: #cbcbcb;
     width: 200px;
@@ -442,6 +441,16 @@ span.loading_l, span.loading_c, span.load_error {
     padding: 20px 0px 20px 0px;
 }
 
+span.loading_l{
+    display: block;
+    color: #cbcbcb;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    margin: 0px auto 10px 10px;
+    padding: 10px 0px 10px 0px;
+}
 .body_bg {
     background-color: #222222;
 }

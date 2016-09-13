@@ -4,5 +4,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>2016-09-12-13 实现</h2>
 
+
+
+@section Head{
+    <link href="@Url.Content("~/Css/Buss/Detail.css?v=20160902")" rel="stylesheet" type="text/css" />
+
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Buss/Detail.js?v=20160900")">
+
+    </script>
+}
+
+<div id="OC" class="OC" idbuss="@ViewBag.idbuss">
+    <div class="swiper-banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+
+            </div>
+            <div class="swiper-pagination">
+            </div>
+        </div>
+
+    </div>
+    <div class="buss_title">
+        <span class="loading_l">加载中...</span>
+    </div>
+    <div class="sellpt">
+        <span class="loading_l">加载中...</span>
+    </div>
+    <div class="price">
+        <span class="loading_l">￥0.0</span>
+    </div>
+    <div class="vline"></div>
+    <div class="buss_addr_host">
+        <a href="javascript:void(0)"><span id="buss_addr"><i class="iconfont">&#xe615</i>地址...</span></a>
+    </div>
+    <div class="vline"></div>
+    <div class="title">营业时间：</div>
+    <div class="buss_st_et">期间：<span id="buss_st_et"></span></div>
+    <div class="vline"></div>
+    <div class="title">创立时间：</div>
+    <div class="buss_st_et"><span id="busstime">...</span></div>
+    <div class="vline"></div>
+    <div class="title">备注：</div>
+    <div class="notes" id="notes"></div>
+
+
+    <div class="buyhost">
+        <div class="buy">
+            <div class="buy_l">
+                <a href="javascript:void(0)" class="buy_att_month">联系人：<span class="amount" id="contact">...</span> </a>
+                <a href="javascript:void(0)" id="buy_amount" class="buy_amount">电话：<span class="amount" id="phone">...</span></a>
+            </div>
+            <div class="buy_r ops" id="ops"><a href="javascript:void(0)" class="call" id="call">拨打</a></div>
+        </div>
+    </div>
+</div>

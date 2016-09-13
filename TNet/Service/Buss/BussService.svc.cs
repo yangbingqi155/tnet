@@ -26,6 +26,31 @@ namespace TNet.Service.Buss
             }
             catch (Exception)
             {
+                result.Msg = "获取周边商圈错误";
+                result.Code = R.Error;
+            }
+            return result;
+        }
+
+
+        public Result<EF.Business> Detail(string idbuss)
+        {
+            Result<EF.Business> result = new Result<EF.Business>();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(idbuss))
+                {
+                    long _idbuss = long.Parse(idbuss);
+                    using (TN db = new TN())
+                    {
+                        result.Data = db.Businesses.Where(m => m.inuse == true && m.idbuss == _idbuss).FirstOrDefault();
+                        result.Code = R.Ok;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                result.Msg = "获取商家错误";
                 result.Code = R.Error;
             }
             return result;
