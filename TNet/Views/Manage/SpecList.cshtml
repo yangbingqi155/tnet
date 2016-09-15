@@ -8,6 +8,7 @@
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     var pageCount = Convert.ToInt32(ViewData["pageCount"]);
     var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+    int idmerc = Convert.ToInt32(ViewData["mercId"]);
 }
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
@@ -21,7 +22,7 @@
         @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "SpecList", "Manage", ViewContext.RouteData.Values))
     </div>
     <div>
-        <a class="btn btn-primary" target="_blank" href="@Url.Action("SpecEdit","Manage")">新增规格</a>
+        <a class="btn btn-primary" target="_blank" href="@Url.Action("SpecEdit","Manage",new { idmerc=idmerc})">新增规格</a>
     </div>
     <div>
         @if (Model.Count > 0)
@@ -70,7 +71,7 @@
                                 <a onclick="enableSpec('@Url.Action("SpecEnable", "Manage", new { idspec = item.idspec, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
                             </td>
                             <td>
-                                <a href="@Url.Action("SpecEdit","Manage",new {idmerc=item.idmerc,idspec=item.idmerc })" class="btn btn-default">编辑</a>
+                                <a href="@Url.Action("SpecEdit","Manage",new {idmerc=item.idmerc,idspec=item.idspec })" class="btn btn-default">编辑</a>
                             </td>
                         </tr>
                     }

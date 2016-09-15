@@ -124,9 +124,13 @@ namespace TNet.Controllers
         [HttpGet]
         public ActionResult MercEdit(int idmerc=0) {
             MercViewModel model = new MercViewModel();
-            if (idmerc>0) {
+            if (idmerc > 0)
+            {
                 Merc merc = MercService.GetMerc(idmerc);
-                if ( merc!=null) { model.CopyFromBase(merc); }
+                if (merc != null) { model.CopyFromBase(merc); }
+            }
+            else {
+                model.inuse = true;
             }
             List<MercType> entities = MercTypeService.GetALL();
             List<MercTypeViewModel> mercTypes= entities.Select(en => {
@@ -152,6 +156,7 @@ namespace TNet.Controllers
             model.CopyToBase(merc);
             if (merc.idmerc == 0)
             {
+                merc.idmerc = IdentifyService.GetMaxIdentifyID<Merc>(en=>en.idmerc)+1;
                 //新增
                 merc = MercService.Add(merc);
             }
@@ -245,6 +250,10 @@ namespace TNet.Controllers
                 MercType mercType = MercTypeService.GetMercType(idtype);
                 if (mercType != null) { model.CopyFromBase(mercType); }
             }
+            else
+            {
+                model.inuse = true;
+            }
            
             return View(model);
         }
@@ -262,6 +271,7 @@ namespace TNet.Controllers
             model.CopyToBase(mercType);
             if (mercType.idtype == 0)
             {
+                mercType.idtype = IdentifyService.GetMaxIdentifyID<MercType>(en => en.idtype)+1;
                 //新增
                 mercType = MercTypeService.Add(mercType);
             }
@@ -297,6 +307,7 @@ namespace TNet.Controllers
             
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
+            ViewData["mercId"] = idmerc;
 
 
             return View(viewModels);
@@ -338,13 +349,16 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpGet]
-        public ActionResult SpecEdit(int idspec = 0)
+        public ActionResult SpecEdit(int idmerc, int idspec = 0)
         {
             SpecViewModel model = new SpecViewModel();
             if (idspec > 0)
             {
                 Spec spec = SpecService.GetSpecs(idspec);
                 if (spec != null) { model.CopyFromBase(spec); }
+            }
+            else {
+                model.inuse = true;
             }
 
             return View(model);
@@ -363,6 +377,7 @@ namespace TNet.Controllers
             model.CopyToBase(spec);
             if (spec.idspec == 0)
             {
+                spec.idspec = IdentifyService.GetMaxIdentifyID<Spec>(en => en.idspec) + 1;
                 //新增
                 spec = SpecService.Add(spec);
             }
@@ -470,7 +485,7 @@ namespace TNet.Controllers
                 MercImageService.Edit(mercImage);
             }
 
-            return RedirectToAction("MercImageEdit","Manage",new { idmerc = model.idmerc, MercImageId=model.MercImageId });
+            return RedirectToAction("MercImageEdit","Manage",new { idmerc = mercImage.idmerc, MercImageId= mercImage.MercImageId });
         }
 
         [ManageLoginValidation]
