@@ -54,6 +54,31 @@ namespace TNet.Controllers
         }
 
         /// <summary>
+        /// 商圈列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult BusinessList(int pageIndex = 0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<Business> entities = BusinessService.GetALL();
+            List<Business> pageList = entities.Pager<Business>(pageIndex, pageSize, out pageCount);
+
+            List<BusinessViewModel> viewModels = pageList.Select(model => {
+                BusinessViewModel viewModel = new BusinessViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+            return View(viewModels);
+        }
+
+        /// <summary>
         /// 订单列表
         /// </summary>
         /// <param name="pageIndex"></param>

@@ -26,9 +26,18 @@ namespace TNet.BLL
             TN db = new TN();
             Type type = typeof(T);
             string efModelTypeName = type.Name;
+            string propertyName = string.Empty;
 
             Type dbType = typeof(TN);
-            DbSet<T> efModelList= (DbSet<T>)dbType.GetProperty(string.Format("{0}s", efModelTypeName)).GetValue(db);
+            if (efModelTypeName == "Business")
+            {
+                propertyName = string.Format("{0}es", efModelTypeName);
+            }
+            else
+            {
+                propertyName = string.Format("{0}s", efModelTypeName);
+            }
+            DbSet<T> efModelList= (DbSet<T>)dbType.GetProperty(propertyName).GetValue(db);
 
             if (efModelList==null|| efModelList.Count()==0) {
                 return 999;

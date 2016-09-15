@@ -53,6 +53,6 @@ namespace TNet.EF
 
         public int? blevel { get; set; }
 
-        public bool? inuse { get; set; }
+        public bool inuse { get; set; }
     }
 }

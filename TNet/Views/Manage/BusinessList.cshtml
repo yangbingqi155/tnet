@@ -1,0 +1,95 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+
+@model List<BusinessViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">商圈管理</a></li>
+        <li><a href="#" class="active">商圈列表</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "BusinessList", "Manage", ViewContext.RouteData.Values))
+    </div>
+    <div>
+        <a class="btn btn-primary" target="_blank" href="@Url.Action("BusinessEdit","Manage")">新增商铺</a>
+    </div>
+    <div>
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, long>(en => en.idbuss))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, String>(en => en.buss))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, String>(en => en.contact))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, string>(en => en.phone))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, string>(en => en.city))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, string>(en => en.addr))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, string>(en => en.sellpt))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, string>(en => en.imgs))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, DateTime?>(en => en.cretime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, DateTime?>(en => en.busstime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, double?>(en => en.price))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, double?>(en => en.longitude))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, double?>(en => en.latitude))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, string>(en => en.runtime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, string>(en => en.notes))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, int?>(en => en.blevel))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<BusinessViewModel, bool>(en => en.inuse))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.idbuss</td>
+                            <td>@item.buss</td>
+                            <td>@item.contact</td>
+                            <td>@item.phone</td>
+                            <td>@item.city</td>
+                            <td>@item.addr</td>
+                            <td>@item.sellpt</td>
+                            <td>@item.imgs</td>
+                            <td>@item.cretime</td>
+                            <td>
+                                @item.busstime.Value.ToString("yyyy-MM-dd")
+
+                            </td>
+                            <td>@item.price</td>
+                            <td>@item.longitude</td>
+                            <td>@item.latitude</td>
+                            <td>@item.runtime</td>
+                            <td>@item.notes</td>
+                            <td>@item.blevel</td>
+                            <td>
+                                @( item.inuse ? "启用" : "禁用")
+                                @*<a onclick="enableMerc('@Url.Action("MercEnable", "Manage", new { idmerc = item.idmerc, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>*@
+                            </td>
+                            <td>
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>没有找到任何商圈.</h2>
+        }
+
+    </div>
+</div>
+
+

@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
+    <Compile Include="BLL\Business\BusinessService.cs" />
     <Compile Include="BLL\IdentifyService.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="EF\Spec.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="Models\Business\BusinessViewModel.cs" />
     <Compile Include="Models\Manage\ManageUserViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -567,6 +569,7 @@
     <Content Include="Views\Manage\MercImageList.cshtml" />
     <Content Include="Views\Manage\MercImageEdit.cshtml" />
     <Content Include="Views\Manage\OrderList.cshtml" />
+    <Content Include="Views\Manage\BusinessList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />
