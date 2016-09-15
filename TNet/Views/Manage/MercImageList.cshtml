@@ -9,11 +9,12 @@
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     var pageCount = Convert.ToInt32(ViewData["pageCount"]);
     var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
-    int mercId= Convert.ToInt32(ViewData["mercId"]);
+    int mercId = Convert.ToInt32(ViewData["mercId"]);
 }
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">产品管理</a></li>
+        <li><a href="@Url.Action("MercList","Manage")">商品管理</a></li>
         <li><a href="#" class="active">产品图片管理</a></li>
     </ol>
 </div>
@@ -43,16 +44,18 @@
                         <tr>
                             <td>@item.MercImageId</td>
                             <td>
-                            <img src="@Url.Content(item.Path)" alt="" style="width:135px;"/>
+                                @if (!string.IsNullOrEmpty(item.Path))
+                                {
+                                    <img src="@Url.Content(item.Path)" alt="" style="width:135px;" />
+                                }
                             </td>
                             <td>@item.SortID</td>
                             <td>
                                 @( item.InUse ? "启用" : "禁用")
-
+                                <a onclick="enableMercImage('@Url.Action("MercImageEnable","Manage",new{MercImageId=item.MercImageId,enable=!item.InUse,isAjax=true })');" href="javascript:void(0);" class="btn btn-default">@(item.InUse ? "禁用" : "启用")</a>
                             </td>
                             <td>
-                                <a href="@Url.Action("MercImageEdit","Manage",new {idmerc= item.idmerc,MercImageId=item.MercImageId })" class="btn btn-default">编辑</a>
-                                <a href="@Url.Action("MercImageEdit","Manage",new{idmerc= item.idmerc,MercImageId=item.MercImageId,inuse=!item.InUse })" class="btn btn-default">@(item.InUse ? "禁用" : "启用")</a>
+                                <a href="@Url.Action("MercImageEdit","Manage",new {idmerc= item.idmerc,MercImageId=item.MercImageId })" class="btn btn-default">编辑</a> 
                             </td>
                         </tr>
                     }
@@ -67,4 +70,21 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    function enableMercImage(url) {
+        var manageLoginUrl = "@Url.Action("Login","Manage")";
+        $.post(url, null, function (returndata) {
+            returndata=eval("("+returndata+")");
+            if (returndata.Code == "3") {
+                alert(returndata.Message);
+                window.Location.href = manageLoginUrl;
+            } else if (returndata.Code == "1") {
+                alert("操作成功.");
+                window.location.href = window.location.href;
+            } else {
+                alert("系统出错，请稍后再试。");
+            }
+        });
+    }
 
+</script>

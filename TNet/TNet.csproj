@@ -219,6 +219,7 @@
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
+    <Compile Include="Models\NULLViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
     <Compile Include="Models\Order\OrderDetailInfo.cs" />

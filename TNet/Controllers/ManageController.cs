@@ -89,6 +89,33 @@ namespace TNet.Controllers
         }
 
         /// <summary>
+        /// 启用或者禁用产品
+        /// </summary>
+        /// <param name="idmerc"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult MercEnable(int idmerc, bool enable, bool isAjax)
+        {
+            ResultModel<MercViewModel> resultEntity = new ResultModel<MercViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try {
+                Merc merc = MercService.GetMerc(idmerc);
+                merc.inuse = enable;
+                MercService.Edit(merc);
+            }
+            catch (Exception ex) {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+           
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
         /// 创建/编辑商品
         /// </summary>
         /// <param name="idmerc"></param>
@@ -173,6 +200,36 @@ namespace TNet.Controllers
             return View(viewModels);
         }
 
+
+        /// <summary>
+        /// 启用或者禁用产品类型
+        /// </summary>
+        /// <param name="idtype"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult MercTypeEnable(int idtype, bool enable, bool isAjax)
+        {
+            ResultModel<MercTypeViewModel> resultEntity = new ResultModel<MercTypeViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                MercType mercType = MercTypeService.GetMercType(idtype);
+                mercType.inuse = enable;
+                MercTypeService.Edit(mercType);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
         /// <summary>
         /// 新增\编辑产品类型
         /// </summary>
@@ -243,6 +300,35 @@ namespace TNet.Controllers
 
 
             return View(viewModels);
+        }
+
+        /// <summary>
+        /// 启用或者禁用产品规格
+        /// </summary>
+        /// <param name="idspec"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult SpecEnable(int idspec, bool enable, bool isAjax)
+        {
+            ResultModel<SpecViewModel> resultEntity = new ResultModel<SpecViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                Spec spec = SpecService.GetSpecs(idspec);
+                spec.inuse = enable;
+                SpecService.Edit(spec);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
         }
 
         /// <summary>
@@ -318,6 +404,31 @@ namespace TNet.Controllers
         }
 
         /// <summary>
+        /// 启用或者禁用产品图片
+        /// </summary>
+        /// <param name="MercImageId"></param>
+        /// <param name="enable"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult MercImageEnable(int MercImageId,bool enable,bool isAjax) {
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try {
+                MercImage mercImage = MercImageService.GetMercImage(MercImageId);
+                mercImage.InUse = enable;
+                MercImageService.Edit(mercImage);
+            }
+            catch (Exception ex) {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
         /// 产品图片信息编辑
         /// </summary>
         /// <param name="ercImageId"></param>
@@ -329,6 +440,7 @@ namespace TNet.Controllers
             if (MercImageId == 0)
             {
                 mercImageModel.idmerc = idmerc;
+                mercImageModel.InUse = true;
             }
             else {
                 MercImage mercImage =   MercImageService.GetMercImage(MercImageId);
@@ -357,6 +469,7 @@ namespace TNet.Controllers
             { 
                 MercImageService.Edit(mercImage);
             }
+
             return RedirectToAction("MercImageEdit","Manage",new { idmerc = model.idmerc, MercImageId=model.MercImageId });
         }
 

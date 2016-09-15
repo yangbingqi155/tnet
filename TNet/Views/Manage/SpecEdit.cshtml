@@ -12,6 +12,8 @@
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">产品管理</a></li>
+        <li><a href="@Url.Action("MercList","Manage")">商品管理</a></li>
+        <li><a href="@Url.Action("SpecList","Manage",new { idmerc=Model.idmerc})" class="active">规格管理</a></li>
         <li><a href="#" class="active">@(Model.idmerc == 0 ? "新增产品规格" : "编辑产品规格")</a></li>
     </ol>
 </div>

@@ -12,12 +12,15 @@ namespace TNet.Models
     public class MercImageViewModel:MercImage
     {
         [Display(Name ="图片编号")]
+        [Required]
         public int MercImageId { get; set; }
 
+        [Required]
         public int idmerc { get; set; }
 
         [Display(Name ="产品图片")]
         [StringLength(500)]
+        [Required]
         public string Path { get; set; }
 
         [Display(Name ="排序")]
