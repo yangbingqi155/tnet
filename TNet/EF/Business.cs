@@ -17,13 +17,11 @@ namespace TNet.EF
         [StringLength(60)]
         public string buss { get; set; }
 
-
         [StringLength(50)]
         public string contact { get; set; }
 
         [StringLength(13)]
         public string phone { get; set; }
-
 
         [StringLength(60)]
         public string city { get; set; }

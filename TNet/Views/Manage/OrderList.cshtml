@@ -1,0 +1,100 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+
+@model List<MyOrderViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">订单管理</a></li>
+        <li><a href="#" class="active">订单列表</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "OrderList", "Manage", ViewContext.RouteData.Values))
+    </div>
+
+    <div>
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, long>(en => en.orderno))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, long>(en => en.iduser))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int>(en => en.idmerc))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.merc))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int>(en => en.idspec))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.spec))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.month))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.attmonth))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.count))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, double?>(en => en.price))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.contact))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.addr))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.phone))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, DateTime?>(en => en.cretime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, DateTime?>(en => en.stime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, DateTime?>(en => en.entime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.otype))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.status))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.img))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.notes))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, bool>(en => en.inuse))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.orderno</td>
+                            <td>@item.iduser</td>
+                            <td>@item.idmerc</td>
+                            <td>@item.merc</td>
+                            <td>@item.idspec</td>
+                            <td>@item.spec</td>
+                            <td>@item.month</td>
+                            <td>@item.attmonth</td>
+                            <td>@item.count</td>
+                            <td>@item.price</td>
+                            <td>@item.contact</td>
+                            <td>@item.addr</td>
+                            <td>@item.phone</td>
+                            <td>@item.cretime</td>
+                            <td>@item.stime.Value.ToString("yyyy-MM-dd")</td>
+                            <td>@item.entime.Value.ToString("yyyy-MM-dd")</td>
+                            <td>@item.otype</td>
+                            <td>@item.status</td>
+                            <td>@item.img</td>
+                            <td>@item.notes</td>
+                         
+                            <td>
+                                @( item.inuse ? "启用" : "禁用")
+                                @*<a onclick="enableMerc('@Url.Action("MercEnable", "Manage", new { idmerc = item.idmerc, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>*@
+
+                            </td>
+                            <td>
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>没有找到任何订单.</h2>
+        }
+
+    </div>
+</div>
+
+

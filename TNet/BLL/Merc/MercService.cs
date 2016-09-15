@@ -12,16 +12,16 @@ namespace TNet.BLL
     /// </summary>
     public class MercService
     {
-        public static List<TNet.EF.Merc> GetALL() {
+        public static List<Merc> GetALL() {
             TN db = new TN();
             return db.Mercs.ToList();
         }
 
-        public static TNet.EF.Merc GetMerc(int idmerc) {
+        public static Merc GetMerc(int idmerc) {
             return GetALL().Where(en => en.idmerc == idmerc).FirstOrDefault();
         }
 
-        public static TNet.EF.Merc Edit(Merc merc) {
+        public static Merc Edit(Merc merc) {
             TN db = new TN();
             Merc oldMerc= db.Mercs.Where(en => en.idmerc == merc.idmerc).FirstOrDefault();
 
@@ -41,7 +41,7 @@ namespace TNet.BLL
             return oldMerc;
         }
 
-        public static TNet.EF.Merc Add(Merc merc)
+        public static Merc Add(Merc merc)
         {
             TN db = new TN();
             db.Mercs.Add(merc);

@@ -45,5 +45,10 @@ namespace TNet.EF
         public string notes { get; set; }
 
         public bool inuse { get; set; }
+
+        [StringLength(50)]
+        public string idbuss { get; set; }
+
+        public int? idclass { get; set; }
     }
 }

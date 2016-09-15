@@ -54,6 +54,31 @@ namespace TNet.Controllers
         }
 
         /// <summary>
+        /// 订单列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult OrderList(int pageIndex = 0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<MyOrder> entities = MyOrderService.GetALL();
+            List<MyOrder> pageList = entities.Pager<MyOrder>(pageIndex, pageSize, out pageCount);
+            
+            List<MyOrderViewModel> viewModels = pageList.Select(model => {
+                MyOrderViewModel viewModel = new MyOrderViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+            
+            return View(viewModels);
+        }
+
+        /// <summary>
         /// 商品列表
         /// </summary>
         /// <param name="pageIndex"></param>

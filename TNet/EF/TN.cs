@@ -31,6 +31,14 @@ namespace TNet.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Business>()
+                .Property(e => e.contact)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Business>()
+                .Property(e => e.phone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Business>()
                 .Property(e => e.city)
                 .IsUnicode(false);
 
@@ -96,6 +104,10 @@ namespace TNet.EF
 
             modelBuilder.Entity<Merc>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Merc>()
+                .Property(e => e.idbuss)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MercImage>()

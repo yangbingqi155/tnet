@@ -182,6 +182,7 @@
     <Compile Include="BLL\Manage\MenuItemService.cs" />
     <Compile Include="BLL\Merc\MercImageService.cs" />
     <Compile Include="BLL\Merc\SpecService.cs" />
+    <Compile Include="BLL\Order\MyOrderService.cs" />
     <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="BLL\Merc\MercService.cs" />
     <Compile Include="BLL\Merc\MercTypeService.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Models\NULLViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
+    <Compile Include="Models\Order\MyOrderViewModel.cs" />
     <Compile Include="Models\Order\OrderDetailInfo.cs" />
     <Compile Include="Models\Order\OrderListInfo.cs" />
     <Compile Include="Models\Order\OrderStatus.cs" />
@@ -564,6 +566,7 @@
     <Content Include="Views\Manage\SpecEdit.cshtml" />
     <Content Include="Views\Manage\MercImageList.cshtml" />
     <Content Include="Views\Manage\MercImageEdit.cshtml" />
+    <Content Include="Views\Manage\OrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />
