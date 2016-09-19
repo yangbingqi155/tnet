@@ -29,19 +29,27 @@ function getData() {
                             $("#merc_spec").html(o.spec);
                             $("#merc_price").html("￥" + o.price);
                             $("#merc_count").html("x" + o.count);
-                            var so = data.Data.Status;
-                            var so = getStatus(so, o.status);
+                            var so = data.Data.Status; 
                             $("#status").html(so.text);
                             $("#notes").val(o.notes);
                             $("#attmonth").html("送: " + o.attmonth + "  月");
                             $("#amount").html("￥" + (o.price * o.count));
                             $("#ops").html(getOps(so, o));
                             $("#merc_st_et").html(getTime(o.stime) + " 至 " + getTime(o.entime));
+                            var phtml = "";
+                            if (data.Data.Presses) {
+                                for (var i = 0; i < data.Data.Presses.length; i++) {
+                                    var po = data.Data.Presses[i];
+                                    phtml += "<div class='p_item'><span class='p_time'>" + po.cretime + "</span>";
+                                    phtml += "<span class='p_statust'>" + po.statust + "</span>";
+                                    phtml += "<span class='p_oper'>" + po.oper + "</span></div>";
+                                }
+                            }
+                            $("#Presses").html(phtml);
 
                         } catch (e) {
                             //$('#order_host').html("加载异常" + e.message);
                             return;
-
                         }
 
                     }

@@ -84,7 +84,7 @@ namespace Util
                 }
                 return fileName;
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }

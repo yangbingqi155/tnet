@@ -15,8 +15,11 @@ function init() {
             imgs = imgs.split('|')[0];
             $("#ico").attr("src", Pub.rootUrl() + "Images/Merc/" + imgs);
         }
+        loadAddr();
+    } else {
+        toHome();
     }
-    loadAddr();
+    
 }
 
 $(document.body).ready(init);
@@ -64,6 +67,10 @@ function submit() {
                 addr = ao.province + ao.city + ao.district + ao.street;
                 phone = ao.phone;
             }
+            if (!addr) {
+                alert("请选择地址");
+                return;
+            }
             var img = order_cart.Merc.imgs;
             if (img) {
                 img = img.split('|')[0];
@@ -106,5 +113,13 @@ function submit() {
                 }
             });
         }
+    } else {
+        toHome();
     }
+}
+
+
+function toHome() {
+    alert("亲！您现在还没有挑选宝贝呢");
+    window.location.href = Pub.rootUrl();
 }

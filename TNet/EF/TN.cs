@@ -21,6 +21,7 @@ namespace TNet.EF
         public virtual DbSet<MercType> MercTypes { get; set; }
         public virtual DbSet<MyAddr> MyAddrs { get; set; }
         public virtual DbSet<MyOrder> MyOrders { get; set; }
+        public virtual DbSet<MyOrderPress> MyOrderPresses { get; set; }
         public virtual DbSet<Spec> Specs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -176,6 +177,22 @@ namespace TNet.EF
 
             modelBuilder.Entity<MyOrder>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrderPress>()
+                .Property(e => e.idpress)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrderPress>()
+                .Property(e => e.orderno)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrderPress>()
+                .Property(e => e.statust)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrderPress>()
+                .Property(e => e.oper)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Spec>()

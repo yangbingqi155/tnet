@@ -38,7 +38,7 @@ namespace TNet.Service.Order
 
 
         [WebInvoke(Method = "GET", UriTemplate = "Detail/{iduser}/{orderno}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Result<OrderDetailInfo> Detail(string iduser,string orderno);
+        Result<MyOrderDetail> Detail(string iduser,string orderno);
 
     }
 }

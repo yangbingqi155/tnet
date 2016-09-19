@@ -44,13 +44,22 @@ namespace TNet.Service.Order
                     o.phone = data.phone;
                     o.cretime = DateTime.Now;
                     o.stime = DateTime.Now;
-                    o.entime = DateTime.Now.AddMonths((data.month + data.attmonth)* o.count);
+                    o.entime = DateTime.Now.AddMonths((data.month + data.attmonth) * o.count);
                     o.otype = OrderType.Merc;
                     o.status = OrderStatus.WaitPay;
                     o.notes = data.notes;
                     o.img = data.img;
                     o.inuse = true;
                     db.MyOrders.Add(o);
+                    MyOrderPress s = new MyOrderPress();
+                    s.idpress = Pub.ID().ToString();
+                    s.orderno = o.orderno.ToString();
+                    s.status = OrderStatus.Create;
+                    s.statust = OrderStatus.get(s.status.Value).text;
+                    s.oper = "系统";
+                    s.inuse = true;
+                    s.cretime = DateTime.Now;
+                    db.MyOrderPresses.Add(s);
                     if (db.SaveChanges() > 0)
                     {
                         result.Data = new CreateOrderResult();
@@ -87,7 +96,7 @@ namespace TNet.Service.Order
                     {
                         result.Data = new OrderListInfo()
                         {
-                            Order = db.MyOrders.Where(m=> m.inuse == true &&  m.iduser == _iduser).OrderByDescending(m => m.cretime).ToList()
+                            Order = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser).OrderByDescending(m => m.cretime).ToList()
                         };
                         result.Code = R.Ok;
                     }
@@ -102,7 +111,7 @@ namespace TNet.Service.Order
         }
 
 
-       public Result<bool> Cancel(string iduser, string orderno)
+        public Result<bool> Cancel(string iduser, string orderno)
         {
             Result<bool> result = new Result<bool>();
             result.Code = R.Error;
@@ -115,28 +124,40 @@ namespace TNet.Service.Order
                     long _orderno = long.Parse(orderno);
                     using (TN db = new TN())
                     {
-                        int r =db.Database.ExecuteSqlCommand("update myorder set status = {0} where iduser = {1} and orderno = {2}", OrderStatus.Cancel, _iduser,_orderno);
-                         
-                        if (r> 0)
+                        using (DbContextTransaction t = db.Database.BeginTransaction())
                         {
-                            result.Data = true;
-                            result.Code = R.Ok;
+
+                            int r = db.Database.ExecuteSqlCommand("update myorder set status = {0} where iduser = {1} and orderno = {2}", OrderStatus.Cancel, _iduser, _orderno);
+                           
+                            if (r > 0)
+                            {
+                                r = db.Database.ExecuteSqlCommand("insert into MyOrderPress (idpress,orderno,status,statust,cretime,oper,inuse) values({0},{1},{2},{3},{4},{5},1)", Pub.ID(), orderno, OrderStatus.Cancel, OrderStatus.get(OrderStatus.Cancel).text,DateTime.Now, "用户");
+                                if(r > 0)
+                                {
+                                    t.Commit();
+                                    result.Data = true;
+                                    result.Code = R.Ok;
+                                    return result;
+                                }
+                                
+                            }
+                            t.Rollback();
                         }
-                        
+
                     }
                 }
             }
             catch (Exception e)
             {
                 result.Code = R.Error;
-                result.Msg = "取消订单出现异常";
+                result.Msg = "取消订单出现异常"+e.InnerException;
             }
             return result;
         }
 
-        public Result<OrderDetailInfo> Detail(string iduser,string orderno)
+        public Result<MyOrderDetail> Detail(string iduser, string orderno)
         {
-            Result<OrderDetailInfo> result = new Result<OrderDetailInfo>();
+            Result<MyOrderDetail> result = new Result<MyOrderDetail>();
             try
             {
                 if (!string.IsNullOrWhiteSpace(iduser) && !string.IsNullOrWhiteSpace(orderno))
@@ -145,18 +166,18 @@ namespace TNet.Service.Order
                     long _orderno = long.Parse(orderno);
                     using (TN db = new TN())
                     {
-                        result.Data = new OrderDetailInfo()
-                        {
-                            Order = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault()
-                        };
+                        EF.MyOrder o = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault();
+                        result.Data = new MyOrderDetail();
+                        result.Data.Order = o;
+                        result.Data.Presses = db.MyOrderPresses.Where(m => m.inuse == true && m.orderno == orderno).ToList();
                         result.Code = R.Ok;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 result.Code = R.Error;
-                result.Msg = "出现异常";
+                result.Msg = "出现异常"+e.InnerException;
             }
             return result;
         }

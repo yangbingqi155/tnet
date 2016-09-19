@@ -13,6 +13,11 @@ namespace TNet.Models.Order
     public class OrderStatus
     {
         /// <summary>
+        /// 创建订单
+        /// </summary>
+        public static readonly int Create = 1;
+
+        /// <summary>
         /// 等待支付
         /// </summary>
         public static readonly int WaitPay = 10;
@@ -64,40 +69,65 @@ namespace TNet.Models.Order
         /// </summary>
         public static readonly int Cancel = -99;
 
-        public static List<OrderStatusItem> s = new List<OrderStatusItem>()
+        public static Dictionary<int, OrderStatusItem> s = new Dictionary<int, OrderStatusItem>()
         {
-            new OrderStatusItem()
-            {
-                status = WaitPay,
-                text = "等待支付",
-                ops = "cancel|pay"
+             {
+                Create,
+                new OrderStatusItem()
+                {
+                    text = "订单创建",
+                    ops = "cancel|pay"
+                }
             },
-            new OrderStatusItem()
             {
-                status = PayFinish,
-                text = "支付完成",
-                ops = "sendmsg"
-            }
-            ,
-            new OrderStatusItem()
+                WaitPay,
+                new OrderStatusItem()
+                {
+                    text = "等待支付",
+                    ops = "cancel|pay"
+                }
+            },
             {
-                status = WaitSettle,
-                text = "等待结算",
-                ops = "sendmsg"
-            }
-
-
-            ,
-            new OrderStatusItem()
+                PayFinish,
+                new OrderStatusItem()
+                {
+                    text = "支付完成",
+                    ops = "sendmsg"
+                }
+            },
             {
-                status = Cancel,
-                text = "已经取消",
-                ops = "sendmsg"
+                WaitSettle,
+                new OrderStatusItem()
+                {
+                    text = "等待结算",
+                    ops = "sendmsg"
+                }
+            },
+            {
+                Cancel,
+                new OrderStatusItem()
+                {
+                    text = "已经取消",
+                    ops = ""
+                }
+            },
+            {
+                0,
+                new OrderStatusItem()
+                {
+                    text = "未知",
+                    ops = ""
+                }
             }
         };
-        public static List<OrderStatusItem> get()
+        public static Dictionary<int, OrderStatusItem> get()
         {
             return s;
+        }
+
+        public static OrderStatusItem get(int status)
+        {
+            return s.ContainsKey(status) ? s[status] : s[0];
         }
     }
 }

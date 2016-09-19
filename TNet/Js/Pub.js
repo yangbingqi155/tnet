@@ -191,7 +191,7 @@
                     if (typeof (v) === 'string') {
                         if (v && v.length > 18 && dr.test(v)) {
                             v = v.substr(6, v.length - 6 - 7) - 0;
-                            v = new Date(v);
+                            v = new Date(v); 
                             var y = v.getYear() + 1900;
                             var M = v.getMonth() + 1;
                             var d = v.getDate();
@@ -200,14 +200,14 @@
                             var s = v.getSeconds();
                             M = M <= 9 ? "0" + M : M;
                             d = d <= 9 ? "0" + d : d;
-                            if (h > 0) {
-                                h = " " + (h <= 9 ? "0" + h : h);
+                            if (h >= 0) {
+                                h = " " + ((h <= 9) ? " 0" + h : h);
                             }
-                            if (m > 0) {
-                                m = ":" + (m <= 9 ? "0" + m : m);
+                            if (m >= 0) {
+                                m = ":" + ((m <= 9) ? "0" + m : m);
                             }
-                            if (s > 0) {
-                                s = ":" + (s <= 9 ? "0" + s : s);
+                            if (s >= 0) {
+                                s = ":" + ((s <= 9) ? "0" + s : s);
                             }
                             v = y + "-" + M + "-" + d + h + m + s;
                             data[o] = v;

@@ -203,6 +203,7 @@
     <Compile Include="EF\MercType.cs" />
     <Compile Include="EF\MyAddr.cs" />
     <Compile Include="EF\MyOrder.cs" />
+    <Compile Include="EF\MyOrderPress.cs" />
     <Compile Include="EF\Spec.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
@@ -225,8 +226,8 @@
     <Compile Include="Models\NULLViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
+    <Compile Include="Models\Order\MyOrderDetail.cs" />
     <Compile Include="Models\Order\MyOrderViewModel.cs" />
-    <Compile Include="Models\Order\OrderDetailInfo.cs" />
     <Compile Include="Models\Order\OrderListInfo.cs" />
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\Order\OrderStatusItem.cs" />

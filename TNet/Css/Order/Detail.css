@@ -1,6 +1,7 @@
 ﻿.OC {
     display: block;
     height: auto;
+    padding: 0px 0px 100px 0px;
 }
 
 .title {
@@ -236,3 +237,34 @@
         outline: none;
         font-size: 14px;
     }
+
+.Presses {
+    display: block;
+    height: auto;
+    padding: 20px 10px 30px 10px;
+}
+
+.p_item {
+    display: block;
+    height:30px;
+    line-height:30px;
+    color:#757575;
+    border-bottom:dotted 1px #d6d6d6;
+}
+
+.Presses .p_item span.p_time{
+     display:inline-block;
+     width:140px; 
+}
+
+
+.Presses .p_item span.p_statust{
+     display:inline-block;
+     width:80px; 
+}
+
+
+.Presses .p_item span.p_oper{
+     display:inline-block;
+     width:100px; 
+}

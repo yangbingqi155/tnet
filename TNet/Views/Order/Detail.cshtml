@@ -8,14 +8,14 @@
 
 
 @section Head{
-    <link href="@Url.Content("~/Css/Order/Base.css?v=20160902")" r rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Css/Order/Detail.css?v=20160902")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Base.css?v=20160919")" r rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Detail.css?v=20160919")" rel="stylesheet" type="text/css" />
 
 
-    <script type="text/javascript" src="@Url.Content("~/Js/Order/Base.js?v=20160900")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Base.js?v=20160919")">
 
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Order/Detail.js?v=20160900")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Detail.js?v=20160919")">
     </script>
 
 
@@ -59,14 +59,15 @@
 
             <span id="merc_price">￥0</span>
             <span id="merc_count">x0</span>
-        </div>        
+        </div>
     </a>
-    <div class="merc_st_et">期间：<span  id="merc_st_et"></span></div>
+    <div class="merc_st_et">期间：<span id="merc_st_et"></span></div>
     <div class="vline"></div>
-
+    <div class="title">处理进度：</div>
+    <div class="Presses" id="Presses"></div>
+    <div class="vline"></div>
     <div class="title">留言信息：</div>
     <div class="notes">
-        买家留言:
         <div class="comm" id="comm">
             <input type="text" id="notes" readonly placeholder="买家的留言..." maxlength="15" />
         </div>

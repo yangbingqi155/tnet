@@ -6,12 +6,13 @@ function getData() {
     if (u != null) {
         Pub.get({
             url: "Service/Order/List/" + u.iduser,
-            noLoading: true,
+           // noLoading: true,
             success: function (data) {
                 if (Pub.wsCheck(data)) {
                     if (data.Data) {
                         var html = "";
                         try {
+                            data.Data.Status = setStatus(data.Data.Status);
                             for (var i = 0; i < data.Data.Order.length; i++) {
                                 var o = data.Data.Order[i];
                                 var so = getStatus(data.Data.Status, o.status);

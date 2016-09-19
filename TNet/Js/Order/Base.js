@@ -29,15 +29,27 @@ function doCancelOrder(orderno) {
     }
 }
 
+function setStatus(s) {
+    var sObj = {};
+    if (s) {
+        for (var so in s) {
+            if (so) {
+                sObj[s[so].Key] = s[so].Value;
+            }
+        }
+    }
+    return sObj;
+}
 
 function getStatus(s, status) {
     if (s) {
-        for (var i = 0; i < s.length; i++) {
-            var so = s[i];
-            if (so.status == status) {
-                return so;
-            }
+
+        //for (var i = 0; i < s.length; i++) {
+        var so = s[status];
+        if (so) {
+            return so;
         }
+        //}
     }
     return { code: "", text: "未知", ops: "" };
 }
