@@ -23,6 +23,13 @@ namespace TNet
             );
 
             routes.MapRoute(
+                 "Merc",
+                 "Merc/List/{tag}",
+                  new { controller = "Merc", action = "List", tag = UrlParameter.Optional },
+                  new { controller = "^(?!Service).*" }
+              );
+
+            routes.MapRoute(
                  "Order_Pay",
                  "Order/Pay/{orderno}",
                   new { controller = "Order", action = "Pay", orderno = UrlParameter.Optional },

@@ -21,11 +21,10 @@ namespace TNet.EF
 
         [Key]
         [Column(Order = 2)]
-        public int? status { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int status { get; set; }
 
-       
         [StringLength(60)]
-        
         public string statust { get; set; }
 
         public DateTime? cretime { get; set; }

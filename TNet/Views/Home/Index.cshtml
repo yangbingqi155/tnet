@@ -5,7 +5,10 @@
 }
 @section Head{
     <link href="@Url.Content("~/Css/Home/Index.css?v=20160920")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Merc/List.css?v=20160920")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20160920")">
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/List.js?v=20160920")">
     </script>
     <script type="text/javascript">
         // Pub.delUser();
@@ -31,9 +34,9 @@
             <div class="swiper-pagination">
             </div>
         </div>
-        <div class="top_tool">
-            <a href="@Url.Content("~/Shared/ChangeDB")"><span id="city">北京</span><i></i></a>
-        </div>
+        @*<div class="top_tool">
+                <a href="@Url.Content("~/Shared/ChangeDB")"><span id="city">北京</span><i></i></a>
+            </div>*@
     </div>
 
     <div class="main_nav">
@@ -46,7 +49,7 @@
                     <a href="@Url.Content("~/Merc/List")"><i class="baoxiu"></i><span>宽带销售</span> </a>
                 </td>
                 <td>
-                    <a href="#" )"><i class="toushu"></i><span>宽带报装</span> </a>
+                    <a href="@Url.Content("~/Merc/List/Setup")"><i class="toushu"></i><span>宽带报装</span> </a>
                 </td>
                 <td>
                     <a href="@Url.Content("~/Buss/Index")"><i class="jiaofei"></i><span>周边商圈</span> </a>
@@ -60,7 +63,7 @@
                     <a href="@Url.Content("~/Order/List")"><i class="juece"></i><span>我的订单</span> </a>
                 </td>
                 <td>
-                    <a href="#"><i class="diaocha"></i><span>调查</span> </a>
+                    <a href="#"><i class="diaocha"></i><span>报修</span> </a>
                 </td>
                 <td>
 

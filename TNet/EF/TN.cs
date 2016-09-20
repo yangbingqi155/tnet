@@ -13,6 +13,7 @@ namespace TNet.EF
         }
 
         public virtual DbSet<Business> Businesses { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
         public virtual DbSet<ManageUser> ManageUsers { get; set; }
         public virtual DbSet<MenuItem> MenuItems { get; set; }
@@ -22,6 +23,8 @@ namespace TNet.EF
         public virtual DbSet<MyAddr> MyAddrs { get; set; }
         public virtual DbSet<MyOrder> MyOrders { get; set; }
         public virtual DbSet<MyOrderPress> MyOrderPresses { get; set; }
+        public virtual DbSet<Setup> Setups { get; set; }
+        public virtual DbSet<SetupAddr> SetupAddrs { get; set; }
         public virtual DbSet<Spec> Specs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -60,6 +63,18 @@ namespace TNet.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Business>()
+                .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<City>()
+                .Property(e => e.idcity)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<City>()
+                .Property(e => e.city1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<City>()
                 .Property(e => e.notes)
                 .IsUnicode(false);
 
@@ -193,6 +208,54 @@ namespace TNet.EF
 
             modelBuilder.Entity<MyOrderPress>()
                 .Property(e => e.oper)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Setup>()
+                .Property(e => e.idsetup)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Setup>()
+                .Property(e => e.idtype)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Setup>()
+                .Property(e => e.setuptype)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Setup>()
+                .Property(e => e.notes)
+                .IsFixedLength();
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.idaddr)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.idtype)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.idsetup)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.phone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.service)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.notes)
+                .IsFixedLength();
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.acceptime)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SetupAddr>()
+                .Property(e => e.setuptime)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Spec>()

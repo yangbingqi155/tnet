@@ -1,5 +1,5 @@
 ﻿.head_host {
-    display:block;
+    display: block;
 }
 
 
@@ -98,60 +98,3 @@
                 .main_nav table tr td a i.zhinan {
                     background-position: 0 -490px;
                 }
-
-.pitem_host {
-    position: relative;
-    display: block;
-    height: auto;
-}
-
-.pitem {
-    display: block;
-    height: 200px;
-    position: relative;
-    border-bottom: solid #d6d6d6 1px;
-}
-
-.pitem_l {
-    float: left;
-}
-
-.pitem_l, .pitem_r {
-    width: 50%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    background-color:transparent;
-}
-
-.pitem_r {
-    float: left;
-}
-
-.HLive {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    height: 100%;
-    width: 1px;
-    font-size: 0px;
-    background-color: #d6d6d6;
-}
-
-.pitem_l a, .pitem_r a {
-    width: 100%;
-    height: 200px;
-    display: block;
-    top: 0px;
-    color: #222222;
-    text-align: center;
-    padding: 20px 0px 0px 0px;
-}
-
-.pitem_l img, .pitem_r img {
-    width: 120px;
-    height: 100px;
-    display: block;
-    margin: 0px auto 20px auto;
-    border: none;
-}

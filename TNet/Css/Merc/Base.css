@@ -1,0 +1,33 @@
+﻿.setup {
+    display: block;
+    height: auto;
+    padding: 10px 10px 10px 10px;
+    border-bottom: dotted 1px #d6d6d6;
+}
+
+    .setup span {
+        color: #757575;
+        display: inline-block;
+        float: left;
+        width: 40px;
+    }
+
+    .setup div {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+    }
+
+.setup_addr_title {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #757575;
+    border-top: dotted 1px #d6d6d6;
+}
+
+.setup .setup_addr{
+     display:inline-block;
+     height:auto;
+     padding: 0px 10px 0px 10px;
+}

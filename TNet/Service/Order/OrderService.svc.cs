@@ -55,7 +55,7 @@ namespace TNet.Service.Order
                     s.idpress = Pub.ID().ToString();
                     s.orderno = o.orderno.ToString();
                     s.status = OrderStatus.Create;
-                    s.statust = OrderStatus.get(s.status.Value).text;
+                    s.statust = OrderStatus.get(s.status).text;
                     s.oper = "用户";
                     s.inuse = true;
                     s.cretime = DateTime.Now;
@@ -66,7 +66,7 @@ namespace TNet.Service.Order
                     s.idpress = Pub.ID().ToString();
                     s.orderno = o.orderno.ToString();
                     s.status = OrderStatus.Confirm;
-                    s.statust = OrderStatus.get(s.status.Value).text;
+                    s.statust = OrderStatus.get(s.status).text;
                     s.oper = "系统";
                     s.inuse = true;
                     s.cretime = DateTime.Now;

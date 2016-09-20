@@ -12,8 +12,16 @@ namespace TNet.Controllers
         /// 宽带
         /// </summary>
         /// <returns></returns>
-        public ActionResult List()
+        public ActionResult List(string tag)
         {
+            ViewBag.tag = tag;
+            if (tag == "Setup")
+            {
+                ViewBag.Title = "宽带报装";
+            }else
+            {
+                ViewBag.Title = "T网宽带";
+            }
             return View();
         }
 

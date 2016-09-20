@@ -195,6 +195,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="EF\Business.cs" />
+    <Compile Include="EF\City.cs" />
     <Compile Include="EF\Discount.cs" />
     <Compile Include="EF\ManageUser.cs" />
     <Compile Include="EF\MenuItem.cs" />
@@ -204,6 +205,8 @@
     <Compile Include="EF\MyAddr.cs" />
     <Compile Include="EF\MyOrder.cs" />
     <Compile Include="EF\MyOrderPress.cs" />
+    <Compile Include="EF\Setup.cs" />
+    <Compile Include="EF\SetupAddr.cs" />
     <Compile Include="EF\Spec.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
@@ -223,6 +226,7 @@
     <Compile Include="Models\Merc\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
+    <Compile Include="Models\Merc\SetupList.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
     <Compile Include="Models\NULLViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
@@ -282,6 +286,8 @@
     <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="Css\bootstrap-fileinput\fileinput.css" />
     <Content Include="Css\bootstrap-fileinput\fileinput.min.css" />
+    <Content Include="Css\Merc\Base.css" />
+    <Content Include="Css\Merc\List.css" />
     <Content Include="Js\bootstrap-fileinput\fileinput.js" />
     <Content Include="Js\bootstrap-fileinput\fileinput.min.js" />
     <Content Include="Js\bootstrap-fileinput\locales\ar.js" />
@@ -432,6 +438,7 @@
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Css\Manage\Login.css" />
     <Content Include="Js\Merc\Detail.js" />
+    <Content Include="Js\Merc\List.js" />
     <Content Include="Js\Order\Base.js" />
     <Content Include="Js\Order\Detail.js" />
     <Content Include="Js\Order\List.js" />

@@ -36,6 +36,15 @@ namespace TNet.Service.Merc
         Result<MercList> GetList();
 
 
+
+        /// <summary>
+        /// 所有商品信息,仅精简信息
+        /// </summary>
+        /// <returns></returns>
+        [WebInvoke(Method = "GET", UriTemplate = "Setup/List", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Result<SetupList> GetSetupList();
+
+
         /// <summary>
         /// 所有商品信息,仅精简信息
         /// </summary>

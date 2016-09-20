@@ -15,5 +15,9 @@ namespace TNet.Models.Service.Merc
 
         public List<EF.Discount> Discount { get; set; }
 
+        public List<EF.Setup> Setups { get; set; }
+
+        public List<EF.SetupAddr> SetupAddrs { get; set; }
+
     }
 }

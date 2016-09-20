@@ -82,7 +82,13 @@ namespace TNet.Service.Merc
                             Merc = db.Mercs.First(mr => mr.inuse == true && mr.idmerc == _idmerc),
                             Spec = db.Specs.Where(mr => mr.inuse == true && mr.idmerc == _idmerc).ToList(),
                             Discount = db.Discounts.Where(mr => mr.inuse == true && mr.idmerc == _idmerc).ToList()
+
                         };
+                        if (m.Merc != null)
+                        {
+                            m.Setups = db.Setups.Where(mr => mr.inuse == true && mr.idtype == m.Merc.idtype.ToString()).ToList();
+                            m.SetupAddrs = db.SetupAddrs.Where(mr => mr.inuse == true && mr.idtype == m.Merc.idtype.ToString()).ToList();
+                        }
                         result.Data = m;
                         result.Code = R.Ok;
                     }
@@ -94,6 +100,33 @@ namespace TNet.Service.Merc
                 result.Msg = "出现异常";
             }
             return result;
+        }
+
+
+
+        public Result<SetupList> GetSetupList()
+        {
+            Result<SetupList> result = new Result<SetupList>();
+            try
+            {
+                using (TN db = new TN())
+                {
+                    result.Data = new SetupList()
+                    {
+                        Mercs = db.Mercs.Where(m => m.inuse == true && m.isetup == true).OrderByDescending(m => m.idtype).ThenByDescending(m => m.sortno).ToList(),
+                        Types = db.MercTypes.Where(m => m.inuse == true).OrderByDescending(m => m.sortno).ToList(),
+                        Setups = db.Setups.Where(m => m.inuse == true).ToList(),
+                        SetupAddrs = db.SetupAddrs.Where(m => m.inuse == true).ToList(),
+                    };
+                    result.Code = R.Ok;
+                }
+            }
+            catch (Exception)
+            {
+                result.Code = R.Error;
+            }
+            return result;
+
         }
     }
 }
