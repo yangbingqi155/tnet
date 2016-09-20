@@ -18,6 +18,11 @@ namespace TNet.Models.Order
         public static readonly int Create = 1;
 
         /// <summary>
+        /// 确认订单
+        /// </summary>
+        public static readonly int Confirm = 2;
+
+        /// <summary>
         /// 等待支付
         /// </summary>
         public static readonly int WaitPay = 10;
@@ -77,6 +82,14 @@ namespace TNet.Models.Order
                 {
                     text = "订单创建",
                     ops = "cancel|pay"
+                }
+            },
+            {
+                Confirm,
+                new OrderStatusItem()
+                {
+                    text = "确认订单",
+                    ops = ""
                 }
             },
             {

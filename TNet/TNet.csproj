@@ -218,6 +218,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Merc\MercImageViewModel.cs" />
+    <Compile Include="Models\Merc\MercList.cs" />
     <Compile Include="Models\Merc\MercTypeViewModel.cs" />
     <Compile Include="Models\Merc\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />

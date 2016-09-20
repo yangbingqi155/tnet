@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.Text;
 using TNet.EF;
+using TNet.Models.Merc;
 using TNet.Models.Service.Com;
 using TNet.Models.Service.Merc;
 
@@ -41,15 +42,20 @@ namespace TNet.Service.Merc
             }
             return result;
         }
-    
-        public Result<List<EF.Merc>> GetList()
+
+        public Result<MercList> GetList()
         {
-            Result<List<EF.Merc>> result = new Result<List<EF.Merc>>();
+            Result<MercList> result = new Result<MercList>();
             try
             {
                 using (TN db = new TN())
                 {
-                    result.Data = db.Mercs.Where(mr => mr.inuse == true).ToList();
+                    result.Data = new MercList()
+                    {
+                        Mercs = db.Mercs.Where(mr => mr.inuse == true).OrderByDescending(m => m.idtype).ThenByDescending(m => m.sortno).ToList(),
+                        Types = db.MercTypes.Where(m => m.inuse == true).OrderByDescending(m => m.sortno).ToList()
+
+                    };
                     result.Code = R.Ok;
                 }
             }
@@ -61,7 +67,7 @@ namespace TNet.Service.Merc
 
         }
 
-       public Result<MercDataSingle> GetMercSingle(string idmerc)
+        public Result<MercDataSingle> GetMercSingle(string idmerc)
         {
             Result<MercDataSingle> result = new Result<MercDataSingle>();
             try

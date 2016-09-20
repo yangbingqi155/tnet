@@ -56,6 +56,17 @@ namespace TNet.Service.Order
                     s.orderno = o.orderno.ToString();
                     s.status = OrderStatus.Create;
                     s.statust = OrderStatus.get(s.status.Value).text;
+                    s.oper = "用户";
+                    s.inuse = true;
+                    s.cretime = DateTime.Now;
+                    db.MyOrderPresses.Add(s);
+
+
+                    s = new MyOrderPress();
+                    s.idpress = Pub.ID().ToString();
+                    s.orderno = o.orderno.ToString();
+                    s.status = OrderStatus.Confirm;
+                    s.statust = OrderStatus.get(s.status.Value).text;
                     s.oper = "系统";
                     s.inuse = true;
                     s.cretime = DateTime.Now;

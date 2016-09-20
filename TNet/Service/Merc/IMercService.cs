@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using TNet.Models.Merc;
 using TNet.Models.Service.Com;
 using TNet.Models.Service.Merc;
 
@@ -32,7 +33,7 @@ namespace TNet.Service.Merc
         /// </summary>
         /// <returns></returns>
         [WebInvoke(Method = "GET", UriTemplate = "List", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Result<List<EF.Merc>> GetList();
+        Result<MercList> GetList();
 
 
         /// <summary>

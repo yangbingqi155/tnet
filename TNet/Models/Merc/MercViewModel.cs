@@ -9,7 +9,7 @@ using TNet.EF;
 namespace TNet.Models
 {
     [NotMapped]
-    public class MercViewModel:Merc
+    public class MercViewModel: EF.Merc
     {
         [Display(Name = "产品编号")]
         public int idmerc { get; set; }
@@ -69,7 +69,7 @@ namespace TNet.Models
         
         public List<MercTypeViewModel> mercTypes { get; set; }
 
-        public void CopyFromBase(Merc merc) {
+        public void CopyFromBase(EF.Merc merc) {
             this.idmerc = merc.idmerc;
             this.idtype = merc.idtype;
             this.merc1 = merc.merc1;
@@ -86,7 +86,7 @@ namespace TNet.Models
             this.inuse = merc.inuse;
         }
 
-        public void CopyToBase(Merc merc) {
+        public void CopyToBase(EF.Merc merc) {
             merc.idmerc = this.idmerc;
             merc.idtype = this.idtype;
             merc.merc1 = this.merc1;

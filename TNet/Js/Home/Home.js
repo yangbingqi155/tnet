@@ -1,4 +1,4 @@
-﻿ 
+﻿
 function getMercList() {
     Pub.get({
         url: "Service/Merc/List",
@@ -7,19 +7,35 @@ function getMercList() {
             var html = "";
             if (Pub.wsCheck(data)) {
                 if (data.Data) {
-                    for (var i = 0; i < data.Data.length; i++) {
-                        var lo = data.Data[i];
-                        var ro = null;
-                        if (i++ < data.Data.length) {
-                            ro = data.Data[i];
+                    var types = data.Data.Types;
+                    for (var i = 0; i < types.length; i++) {
+                        var to = types[i];
+                        var mhtml = "";
+                        for (var j = 0; j < data.Data.Mercs.length; j++) {
+                            var lo = data.Data.Mercs[j];                            
+                            if (to.idtype == lo.idtype) {
+                                var ro = null;                                
+                                if (++j < data.Data.Mercs.length) {
+                                    ro = data.Data.Mercs[j];
+                                    if (to.idtype != ro.idtype) {
+                                        ro = null;
+                                    }
+                                }
+                                mhtml += '<div class="pitem">';
+                                mhtml += crateItem(lo, 'l', ro);
+                                mhtml += crateItem(ro, 'r', null);
+                                mhtml += ' </div>';
+                            }
                         }
-
-                        html += '<div class="pitem">';
-                        html += crateItem(lo, 'l', ro);
-                        html += crateItem(ro, 'r', null);
-                        html += ' </div>';
-
+                        if (mhtml) {
+                            if (html) {
+                                html += '<div class="vline"></div>';
+                            }
+                            html += '<div class="title">' + to.name + ':</div>';
+                            html += mhtml;
+                        }
                     }
+
                 }
             }
             if (html) {
@@ -58,7 +74,7 @@ function crateItem(o, tag, o2) {
         html += '<a href="' + Pub.rootUrl() + 'Merc/Detail/' + o.idmerc + '">';
         html += '<img src="' + Pub.rootUrl() + img + '" />';
         html += o.merc1 + '</a>';
-        if (o2) {
+        if (tag == "l") {
             html += '<div class="HLive"></div>';
         }
         html += '</div>';

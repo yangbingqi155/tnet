@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Head{
-    <link href="@Url.Content("~/Css/Home/Index.css?v=20160919")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Home/Index.css?v=20160920")" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20160919")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20160920")">
     </script>
 }
 <div class="head_host">
@@ -32,10 +32,9 @@
     </div>
 </div>
 
-<div class="title">
-    宽带:
-</div>
+
 <div id="merc" class="pitem_host">
+    <span class="loading_c">加载中...</span>
     @*<div class="pitem">
             <div class="pitem_l">
                 <a href="#"><img src="@Url.Content("~/Images/Merc/0.jpg")" />水果</a>
