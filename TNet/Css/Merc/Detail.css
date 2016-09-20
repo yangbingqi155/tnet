@@ -49,10 +49,11 @@
 }
 
 .spec-title {
-    padding: 5px 0px 10px 5px;
+    padding: 0px 0px 0px 8px;
     color: #222222;
-    height: 20px;
-    line-height: 20px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom:solid #d6d6d6 1px;
 }
 
 .spec {
@@ -67,9 +68,9 @@
 
         .spec p a {
             display: inline-block;
-            padding: 2px 15px 2px 15px;
-            height: 30px;
-            line-height: 30px;
+            padding: 0px 15px 0px 10px;
+            height: 35px;
+            line-height: 35px;
             color: #222222;
             font-size: 1.2rem;
             background-color: #ff6a00;
@@ -199,4 +200,8 @@
             height:36px;
             line-height:36px;
             padding:0px 10px 0px 10px;
+        }
+
+        .setup{
+            padding-bottom:20px;
         }

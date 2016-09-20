@@ -12,7 +12,7 @@ function getDetailData() {
         if (idmerc) {
             Pub.get({
                 url: "Service/Merc/Detail/" + idmerc,
-               // noLoading: true,
+                // noLoading: true,
                 success: function (data) {
                     var html = "";
                     if (Pub.wsCheck(data)) {
@@ -52,6 +52,40 @@ function getDetailData() {
                                 }
                                 if (specHtml) {
                                     $('.spec').html(specHtml);
+                                }
+                            }
+
+                            var shtml = "";
+                            if (data.Data.Setups) {
+                                for (var z = 0; z < data.Data.Setups.length; z++) {
+                                    var s = data.Data.Setups[z];
+                                    if (s.idtype == data.Data.Merc.idtype) {
+                                        shtml += '<div class="setup">';
+                                        shtml += '<div class="setup_title"><span>主题:</span>' + s.setup1 + '</div>';
+                                        shtml += '<div class="setup_resource"><span>材料:</span>' + s.resource + '</div>';
+                                        shtml += '<div class="setup_setuptype"><span>方式:</span>' + s.setuptype + '</div>';
+
+                                        var sahtml = "";
+                                        for (var h = 0; h < data.Data.SetupAddrs.length; h++) {
+                                            var sa = data.Data.SetupAddrs[h];
+                                            if (sa.idtype == data.Data.Merc.idtype && sa.idsetup == s.idsetup) {
+                                                sahtml += '<div class="setup_addr"><div><span>电话:</span>' + sa.phone + "&nbsp;&nbsp;" + sa.service + '</div>';
+                                                sahtml += '<div><span>受理:</span>' + sa.acceptime + '</div>';
+                                                sahtml += '<div><span>安装:</span>' + sa.setuptime + '</div>';
+                                                sahtml += '<div><span>地址:</span>' + sa.addr + '</div></div>';
+
+                                            }
+                                        }
+                                        if (sahtml) {
+                                            shtml += "<div class='setup_addr_title'>办理点:</div>" + sahtml;
+                                        }
+                                        shtml += '</div>';
+                                    }
+                                }
+                                if (shtml) {
+                                    $(".setup_host").html(shtml);
+                                } else {
+                                    $(".setup_host").html('<span class="load_error">暂无报装</span>');
                                 }
                             }
                             updateForSelectSpec(-1);
@@ -126,6 +160,7 @@ function load_fail(msg) {
     Pub.noData(".price", "￥0.0", getDetailData);
     Pub.noData(".price", "销量：0", getDetailData);
     Pub.noData(".spec", msg, getDetailData);
+    Pub.noData(".setup_host", msg, getDetailData);
 
 }
 

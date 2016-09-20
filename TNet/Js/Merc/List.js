@@ -12,6 +12,7 @@ function getListUrl() {
     return "Service/Merc/List";
 }
 
+ 
 function getMercList() {
     Pub.get({
         url: getListUrl(),
