@@ -51,7 +51,6 @@
                             </td>
                             <td>@item.SortID</td>
                             <td>
-                                @( item.InUse ? "启用" : "禁用")
                                 <a onclick="enableMercImage('@Url.Action("MercImageEnable","Manage",new{MercImageId=item.MercImageId,enable=!item.InUse,isAjax=true })');" href="javascript:void(0);" class="btn btn-default">@(item.InUse ? "禁用" : "启用")</a>
                             </td>
                             <td>

@@ -68,6 +68,15 @@ namespace TNet.EF
         [StringLength(50)]
         public string notes { get; set; }
 
+        [StringLength(20)]
+        public string idc { get; set; }
+
+        [StringLength(255)]
+        public string idc_img1 { get; set; }
+
+        [StringLength(255)]
+        public string idc_img2 { get; set; }
+
         public bool inuse { get; set; }
     }
 }

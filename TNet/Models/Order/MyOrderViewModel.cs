@@ -101,6 +101,18 @@ namespace TNet.Models
         [Required]
         public bool inuse { get; set; }
 
+        [Display(Name = "身份证")]
+        [StringLength(20)]
+        public string idc { get; set; }
+
+        [Display(Name = "身份证正面")]
+        [StringLength(255)]
+        public string idc_img1 { get; set; }
+
+        [Display(Name = "身份证反面")]
+        [StringLength(255)]
+        public string idc_img2 { get; set; }
+
         public void CopyFromBase(MyOrder order)
         {
             this.orderno = order.orderno;
@@ -123,6 +135,9 @@ namespace TNet.Models
             this.status = order.status;
             this.img = order.img;
             this.notes = order.notes;
+            this.idc = order.idc;
+            this.idc_img1 = order.idc;
+            this.idc_img2 = order.idc_img2;
             this.inuse = order.inuse;
         }
 
@@ -148,6 +163,9 @@ namespace TNet.Models
             order.status = this.status;
             order.img = this.img;
             order.notes = this.notes;
+            order.idc = this.idc;
+            order.idc_img1 = this.idc;
+            order.idc_img2 = this.idc_img2;
             order.inuse = this.inuse;
         }
     }

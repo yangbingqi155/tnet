@@ -21,20 +21,24 @@ namespace TNet.Controllers
     public class ManageController : Controller
     {
         [HttpGet]
-        public ActionResult Login() {
+        public ActionResult Login()
+        {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(ManageUserViewModel model) {
+        public ActionResult Login(ManageUserViewModel model)
+        {
             ManageUser user = ManageUserService.GetManageUserByUserName(model.UserName);
-            if (user==null) {
-                ModelState.AddModelError("","没有找到该用户名.");
+            if (user == null)
+            {
+                ModelState.AddModelError("", "没有找到该用户名.");
                 return View(model);
             }
             string md5Password = string.Empty;
-            md5Password= Crypto.GetPwdhash(model.ClearPassword, user.MD5Salt);
-            if (md5Password.ToUpper()!=user.Password.ToUpper()) {
+            md5Password = Crypto.GetPwdhash(model.ClearPassword, user.MD5Salt);
+            if (md5Password.ToUpper() != user.Password.ToUpper())
+            {
                 ModelState.AddModelError("", "密码不正确.");
                 return View(model);
             }
@@ -49,7 +53,7 @@ namespace TNet.Controllers
         [ManageLoginValidation]
         public ActionResult Index()
         {
-            
+
             return View();
         }
 
@@ -66,7 +70,8 @@ namespace TNet.Controllers
             List<Business> entities = BusinessService.GetALL();
             List<Business> pageList = entities.Pager<Business>(pageIndex, pageSize, out pageCount);
 
-            List<BusinessViewModel> viewModels = pageList.Select(model => {
+            List<BusinessViewModel> viewModels = pageList.Select(model =>
+            {
                 BusinessViewModel viewModel = new BusinessViewModel();
                 viewModel.CopyFromBase(model);
                 return viewModel;
@@ -76,6 +81,87 @@ namespace TNet.Controllers
             ViewData["pageIndex"] = pageIndex;
 
             return View(viewModels);
+        }
+
+        /// <summary>
+        /// 启用或者禁用商圈
+        /// </summary>
+        /// <param name="idbuss"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult BusinessEnable(long idbuss, bool enable, bool isAjax)
+        {
+            ResultModel<BusinessViewModel> resultEntity = new ResultModel<BusinessViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                Business business = BusinessService.GetBusiness(idbuss);
+                business.inuse = enable;
+                BusinessService.Edit(business);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
+        /// 录入/编辑商圈
+        /// </summary>
+        /// <param name="idbuss"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult BusinessEdit(long idbuss = 0)
+        {
+            BusinessViewModel model = new BusinessViewModel();
+            if (idbuss > 0)
+            {
+                Business business = BusinessService.GetBusiness(idbuss);
+                if (business != null) { model.CopyFromBase(business); }
+            }
+            else
+            {
+                model.inuse = true;
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 录入/编辑商圈
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult BusinessEdit(BusinessViewModel model)
+        {
+            Business business = new Business();
+            model.CopyToBase(business);
+            if (business.idbuss == 0)
+            {
+                business.idbuss = IdentifyService.GetMaxIdentifyID<Business>(en => (int)en.idbuss) + 1;
+                //新增
+                business = BusinessService.Add(business);
+            }
+            else
+            {
+                //编辑
+                business = BusinessService.Edit(business);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(business);
+
+            ModelState.AddModelError("", "保存成功.");
+            return View(model);
         }
 
         /// <summary>
@@ -90,8 +176,9 @@ namespace TNet.Controllers
             int pageSize = 10;
             List<MyOrder> entities = MyOrderService.GetALL();
             List<MyOrder> pageList = entities.Pager<MyOrder>(pageIndex, pageSize, out pageCount);
-            
-            List<MyOrderViewModel> viewModels = pageList.Select(model => {
+
+            List<MyOrderViewModel> viewModels = pageList.Select(model =>
+            {
                 MyOrderViewModel viewModel = new MyOrderViewModel();
                 viewModel.CopyFromBase(model);
                 return viewModel;
@@ -99,8 +186,51 @@ namespace TNet.Controllers
 
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
-            
+
             return View(viewModels);
+        }
+
+        /// <summary>
+        /// 启用或者禁用商圈
+        /// </summary>
+        /// <param name="idbuss"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult OrderEnable(long orderno, bool enable, bool isAjax)
+        {
+            ResultModel<MyOrderViewModel> resultEntity = new ResultModel<MyOrderViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                MyOrder order = MyOrderService.GetOrder(orderno);
+                order.inuse = enable;
+                MyOrderService.Edit(order);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
+        /// 订单详细
+        /// </summary>
+        /// <param name="idbuss"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult OrderDetail(long orderno)
+        {
+            MyOrderViewModel model = new MyOrderViewModel();
+            MyOrder order = MyOrderService.GetOrder(orderno);
+            if (order != null) { model.CopyFromBase(order); }
+            return View(model);
         }
 
         /// <summary>
@@ -109,14 +239,16 @@ namespace TNet.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult MercList(int pageIndex=0) {
+        public ActionResult MercList(int pageIndex = 0)
+        {
             int pageCount = 0;
             int pageSize = 10;
             List<Merc> entities = MercService.GetALL();
-            List<Merc> pageList=  entities.Pager<Merc>(pageIndex, pageSize, out pageCount);
+            List<Merc> pageList = entities.Pager<Merc>(pageIndex, pageSize, out pageCount);
 
 
-            List<MercViewModel> viewModels = pageList.Select(model => {
+            List<MercViewModel> viewModels = pageList.Select(model =>
+            {
                 MercViewModel viewModel = new MercViewModel();
                 viewModel.CopyFromBase(model);
                 return viewModel;
@@ -126,14 +258,15 @@ namespace TNet.Controllers
             //获取产品类型
             List<MercType> mercTypes = MercTypeService.GetALL();
 
-            viewModels =viewModels.Select(model => {
+            viewModels = viewModels.Select(model =>
+            {
                 model.MercTypeName = mercTypes.Where(en => en.idtype == model.idtype).FirstOrDefault().name;
                 return model;
             }).ToList();
 
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
-            
+
 
             return View(viewModels);
         }
@@ -152,16 +285,18 @@ namespace TNet.Controllers
             ResultModel<MercViewModel> resultEntity = new ResultModel<MercViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "成功";
-            try {
+            try
+            {
                 Merc merc = MercService.GetMerc(idmerc);
                 merc.inuse = enable;
                 MercService.Edit(merc);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 resultEntity.Code = ResponseCodeType.Fail;
                 resultEntity.Message = ex.ToString();
             }
-           
+
             return Content(resultEntity.SerializeToJson());
         }
 
@@ -172,18 +307,21 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpGet]
-        public ActionResult MercEdit(int idmerc=0) {
+        public ActionResult MercEdit(int idmerc = 0)
+        {
             MercViewModel model = new MercViewModel();
             if (idmerc > 0)
             {
                 Merc merc = MercService.GetMerc(idmerc);
                 if (merc != null) { model.CopyFromBase(merc); }
             }
-            else {
+            else
+            {
                 model.inuse = true;
             }
             List<MercType> entities = MercTypeService.GetALL();
-            List<MercTypeViewModel> mercTypes= entities.Select(en => {
+            List<MercTypeViewModel> mercTypes = entities.Select(en =>
+            {
                 MercTypeViewModel viewModel = new MercTypeViewModel();
                 viewModel.CopyFromBase(en);
                 return viewModel;
@@ -200,26 +338,29 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpPost]
-        public ActionResult MercEdit(MercViewModel model) {
+        public ActionResult MercEdit(MercViewModel model)
+        {
 
             Merc merc = new Merc();
             model.CopyToBase(merc);
             if (merc.idmerc == 0)
             {
-                merc.idmerc = IdentifyService.GetMaxIdentifyID<Merc>(en=>en.idmerc)+1;
+                merc.idmerc = IdentifyService.GetMaxIdentifyID<Merc>(en => en.idmerc) + 1;
                 //新增
                 merc = MercService.Add(merc);
             }
-            else {
+            else
+            {
                 //编辑
                 merc = MercService.Edit(merc);
             }
-            
+
 
             //修改后重新加载
-            model.CopyFromBase(merc); 
+            model.CopyFromBase(merc);
             List<MercType> entities = MercTypeService.GetALL();
-            List<MercTypeViewModel> mercTypes = entities.Select(en => {
+            List<MercTypeViewModel> mercTypes = entities.Select(en =>
+            {
                 MercTypeViewModel viewModel = new MercTypeViewModel();
                 viewModel.CopyFromBase(en);
                 return viewModel;
@@ -236,14 +377,16 @@ namespace TNet.Controllers
         /// </summary>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult MercTypeList(int pageIndex=0) {
+        public ActionResult MercTypeList(int pageIndex = 0)
+        {
             int pageCount = 0;
             int pageSize = 10;
             List<MercType> entities = MercTypeService.GetALL();
             List<MercType> pageList = entities.Pager<MercType>(pageIndex, pageSize, out pageCount);
 
 
-            List<MercTypeViewModel> viewModels = pageList.Select(model => {
+            List<MercTypeViewModel> viewModels = pageList.Select(model =>
+            {
                 MercTypeViewModel viewModel = new MercTypeViewModel();
                 viewModel.CopyFromBase(model);
                 return viewModel;
@@ -292,7 +435,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpGet]
-        public ActionResult MercTypeEdit(int idtype=0)
+        public ActionResult MercTypeEdit(int idtype = 0)
         {
             MercTypeViewModel model = new MercTypeViewModel();
             if (idtype > 0)
@@ -304,7 +447,7 @@ namespace TNet.Controllers
             {
                 model.inuse = true;
             }
-           
+
             return View(model);
         }
 
@@ -321,7 +464,7 @@ namespace TNet.Controllers
             model.CopyToBase(mercType);
             if (mercType.idtype == 0)
             {
-                mercType.idtype = IdentifyService.GetMaxIdentifyID<MercType>(en => en.idtype)+1;
+                mercType.idtype = IdentifyService.GetMaxIdentifyID<MercType>(en => en.idtype) + 1;
                 //新增
                 mercType = MercTypeService.Add(mercType);
             }
@@ -333,7 +476,7 @@ namespace TNet.Controllers
 
             //修改后重新加载
             model.CopyFromBase(mercType);
-           
+
             return View(model);
         }
 
@@ -343,18 +486,20 @@ namespace TNet.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult SpecList(int idmerc, int pageIndex=0) {
+        public ActionResult SpecList(int idmerc, int pageIndex = 0)
+        {
             int pageCount = 0;
             int pageSize = 10;
             List<Spec> entities = SpecService.GetSpecsByIdMerc(idmerc);
             List<Spec> pageList = entities.Pager<Spec>(pageIndex, pageSize, out pageCount);
-            
-            List<SpecViewModel> viewModels = pageList.Select(model => {
+
+            List<SpecViewModel> viewModels = pageList.Select(model =>
+            {
                 SpecViewModel viewModel = new SpecViewModel();
                 viewModel.CopyFromBase(model);
                 return viewModel;
             }).ToList();
-            
+
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
             ViewData["mercId"] = idmerc;
@@ -407,7 +552,8 @@ namespace TNet.Controllers
                 Spec spec = SpecService.GetSpecs(idspec);
                 if (spec != null) { model.CopyFromBase(spec); }
             }
-            else {
+            else
+            {
                 model.inuse = true;
             }
 
@@ -449,13 +595,15 @@ namespace TNet.Controllers
         /// <param name="mercId"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult MercImageList(int mercId,int pageIndex=0) {
+        public ActionResult MercImageList(int mercId, int pageIndex = 0)
+        {
             int pageCount = 0;
             int pageSize = 10;
             List<MercImage> entities = MercImageService.GetMercImagesByMercId(mercId);
             List<MercImage> pageList = entities.Pager<MercImage>(pageIndex, pageSize, out pageCount);
-            
-            List<MercImageViewModel> viewModels = pageList.Select(model => {
+
+            List<MercImageViewModel> viewModels = pageList.Select(model =>
+            {
                 MercImageViewModel viewModel = new MercImageViewModel();
                 viewModel.CopyFromBase(model);
                 return viewModel;
@@ -476,16 +624,19 @@ namespace TNet.Controllers
         /// <returns></returns>
         [HttpPost]
         [ManageLoginValidation]
-        public ActionResult MercImageEnable(int MercImageId,bool enable,bool isAjax) {
+        public ActionResult MercImageEnable(int MercImageId, bool enable, bool isAjax)
+        {
             ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "成功";
-            try {
+            try
+            {
                 MercImage mercImage = MercImageService.GetMercImage(MercImageId);
                 mercImage.InUse = enable;
                 MercImageService.Edit(mercImage);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 resultEntity.Code = ResponseCodeType.Fail;
                 resultEntity.Message = ex.ToString();
             }
@@ -500,15 +651,17 @@ namespace TNet.Controllers
         /// <returns></returns>
         [HttpGet]
         [ManageLoginValidation]
-        public ActionResult MercImageEdit(int idmerc ,int MercImageId=0) {
+        public ActionResult MercImageEdit(int idmerc, int MercImageId = 0)
+        {
             MercImageViewModel mercImageModel = new MercImageViewModel();
             if (MercImageId == 0)
             {
                 mercImageModel.idmerc = idmerc;
                 mercImageModel.InUse = true;
             }
-            else {
-                MercImage mercImage =   MercImageService.GetMercImage(MercImageId);
+            else
+            {
+                MercImage mercImage = MercImageService.GetMercImage(MercImageId);
                 mercImageModel.CopyFromBase(mercImage);
             }
             return View(mercImageModel);
@@ -527,25 +680,26 @@ namespace TNet.Controllers
             model.CopyToBase(mercImage);
             if (model.MercImageId == 0)
             {
-                mercImage.MercImageId = IdentifyService.GetMaxIdentifyID<MercImage>(en => en.MercImageId)+1;
+                mercImage.MercImageId = IdentifyService.GetMaxIdentifyID<MercImage>(en => en.MercImageId) + 1;
                 MercImageService.Add(mercImage);
             }
             else
-            { 
+            {
                 MercImageService.Edit(mercImage);
             }
 
-            return RedirectToAction("MercImageEdit","Manage",new { idmerc = mercImage.idmerc, MercImageId= mercImage.MercImageId });
+            return RedirectToAction("MercImageEdit", "Manage", new { idmerc = mercImage.idmerc, MercImageId = mercImage.MercImageId });
         }
 
         [ManageLoginValidation]
-        public ActionResult UploadMercImage(int mercId) {
+        public ActionResult UploadMercImage(int mercId)
+        {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "文件上传成功";
             string GUID = System.Guid.NewGuid().ToString();
-            string path = "~/Resouce/Images/Merc/" ;
+            string path = "~/Resouce/Images/Merc/";
             string filename = string.Empty;
             string message = string.Empty;
             try
@@ -595,11 +749,12 @@ namespace TNet.Controllers
                         }
 
                         Request.Files[upload].SaveAs(Path.Combine(Server.MapPath(path), filename));
-                        resultEntity.Content.Add(new MercImageViewModel() {
-                             idmerc= mercId,
-                             Path= path+ filename,
-                             SortID=0,
-                              InUse=true
+                        resultEntity.Content.Add(new MercImageViewModel()
+                        {
+                            idmerc = mercId,
+                            Path = path + filename,
+                            SortID = 0,
+                            InUse = true
                         });
 
                     }
@@ -705,7 +860,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         public JsonResult GetMaterialList(RMaterialListParamM mode)
         {
-             
+
             string url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=" + Pub.accessToken;
             JavaScriptSerializer s = new JavaScriptSerializer();
             string responseContent = HttpHelp.Post(url, s.Serialize(mode));
@@ -737,7 +892,7 @@ namespace TNet.Controllers
         /// <param name="mode"></param>
         /// <returns></returns>
         public string GetMaterialDetail(RMaterialItemParamM mode)
-        { 
+        {
             string url = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=" + Pub.accessToken;
             JavaScriptSerializer s = new JavaScriptSerializer();
             string responseContent = HttpHelp.Post(url, s.Serialize(mode));
@@ -750,7 +905,7 @@ namespace TNet.Controllers
         /// <param name="menu"></param>
         /// <returns></returns>
         public JsonResult UpdateMenu(string menu)
-        { 
+        {
             string url = " https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + Pub.accessToken;
             string responseContent = HttpHelp.Post(url, menu);
             return Json(responseContent);

@@ -1,17 +1,162 @@
-﻿@{
-    Layout = null;
+﻿@model TNet.Models.BusinessViewModel
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "编辑商圈";
+    if (Model.idbuss == 0)
+    {
+        ViewBag.Title = "录入商圈";
+    }
 }
 
-<!DOCTYPE html>
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">商圈管理</a></li>
+        <li><a href="@Url.Action("BusinessList","Manage")">商圈列表</a></li>
+        <li><a href="#" class="active">@(Model.idbuss == 0 ? "录入商圈" : "编辑商圈")</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form action="@Url.Action("BusinessEdit","Manage")" method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                @Html.HiddenFor(model => model.idbuss)
+             @Html.HiddenFor(model => model.longitude)
+                @Html.HiddenFor(model => model.latitude)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.buss, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.buss, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.buss)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.contact, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.contact, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.contact)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.phone, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.phone)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.city, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.city, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.city)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.addr, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.addr, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.addr)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sellpt, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.sellpt, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.sellpt)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.cretime, new { @class = "col-sm-2 control-label" })
+                    <div id="@(Html.IdFor(model=>model.cretime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.cretime)" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.cretime)" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.HiddenFor(model => model.cretime, new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", Model.cretime) })
+                    @Html.ValidationMessageFor(model => model.cretime)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.busstime, new { @class = "col-sm-2 control-label" })
+                    <div id="@(Html.IdFor(model=>model.busstime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.busstime)" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.busstime)" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.HiddenFor(model => model.busstime, new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", Model.busstime) })
+                    @Html.ValidationMessageFor(model => model.busstime)
+                </div>
+               
+                <div class="form-group">
+                    @Html.LabelFor(model => model.price, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.price, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.price)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.runtime, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.runtime, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.runtime)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.notes)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.blevel, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.blevel, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.blevel)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inuse)
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="submit" value="保存" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+        </div>
+
+    </form>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#@(Html.NameFor(model => model.cretime) +"_datepicker")').datetimepicker({
+            language: 'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('#@(Html.NameFor(model => model.busstime) +"_datepicker")').datetimepicker({
+            language: 'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    });
+
+</script>

@@ -43,6 +43,13 @@
                     @Html.ValidationMessageFor(model => model.notes)
                 </div>
                 <div class="form-group">
+                    @Html.LabelFor(model => model.sortno, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.sortno, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.sortno)
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-10">
                         @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })

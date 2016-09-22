@@ -63,6 +63,9 @@ namespace TNet.Models
         [StringLength(50)]
         public string notes { get; set; }
 
+        [Display(Name = "排序")]
+        public int? sortno { get; set; }
+
         [Display(Name = "是否启用")]
         [Required]
         public bool inuse { get; set; }
@@ -83,6 +86,7 @@ namespace TNet.Models
             this.imgs = merc.imgs;
             this.descs = merc.descs;
             this.notes = merc.notes;
+            this.sortno = merc.sortno;
             this.inuse = merc.inuse;
         }
 
@@ -100,6 +104,7 @@ namespace TNet.Models
             merc.imgs = this.imgs;
             merc.descs = this.descs;
             merc.notes = this.notes;
+            merc.sortno = this.sortno;
             merc.inuse = this.inuse;
         }
     }

@@ -35,6 +35,7 @@ namespace TNet.BLL
             oldMerc.imgs = merc.imgs;
             oldMerc.descs = merc.descs;
             oldMerc.notes = merc.notes;
+            oldMerc.sortno = merc.sortno;
             oldMerc.inuse = merc.inuse;
 
             db.SaveChanges();
