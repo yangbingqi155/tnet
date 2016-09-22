@@ -597,6 +597,7 @@
     <Content Include="Js\Lrz\2.chunk.js.map" />
     <Content Include="Js\Lrz\lrz.all.bundle.js.map" />
     <Content Include="Js\Lrz\lrz.bundle.js.map" />
+    <Content Include="Views\Manage\BusinessEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

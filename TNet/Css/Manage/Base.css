@@ -299,13 +299,15 @@ body {
 }
 
 .manageLeft {
-    width: 220px;
+    min-width: 220px;
+    width:19.9%;
     float: left;
     padding: 10px;
 }
 
 .manageRight {
     min-width: 1200px;
+    width:79.9%;
     float: left;
     min-height:1000px;
     padding: 10px;
