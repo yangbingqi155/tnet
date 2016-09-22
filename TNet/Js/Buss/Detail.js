@@ -4,7 +4,8 @@ function getData() {
     if (idbuss) {
         Pub.get({
             url: "Service/Buss/Detail/" + idbuss,
-            // noLoading: true,
+
+            loadingMsg: "加载中...",
             success: function (data) {
                 if (Pub.wsCheck(data)) {
                     if (data.Data) {

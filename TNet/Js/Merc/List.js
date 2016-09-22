@@ -1,10 +1,4 @@
 ﻿
-//报装业务
-function isSetup() {
-    var r = /(\/Setup)[\/]*/gi;
-    return r.test(window.location.href + "");
-}
-
 function getListUrl() {
     if (isSetup()) {
         return "Service/Merc/Setup/List"
@@ -16,7 +10,6 @@ function getListUrl() {
 function getMercList() {
     Pub.get({
         url: getListUrl(),
-        noLoading: true,
         success: function (data) {
             var html = "";
             if (Pub.wsCheck(data)) {
@@ -95,6 +88,7 @@ function getMercList() {
 }
 
 function crateItem(o, tag, o2) {
+    var setup = isSetup() ? "?tag=Setup" : "";
     var html = '';
     if (o) {
         var img = null;
@@ -115,7 +109,7 @@ function crateItem(o, tag, o2) {
             img = "Images/default_bg.png";
         }
         html += '<div class="pitem_' + tag + '">';
-        html += '<a href="' + Pub.rootUrl() + 'Merc/Detail/' + o.idmerc + '">';
+        html += '<a href="' + Pub.rootUrl() + 'Merc/Detail/' + o.idmerc + setup + '">';
         html += '<img src="' + Pub.rootUrl() + img + '" />';
         html += o.merc1 + '</a>';
         if (tag == "l") {

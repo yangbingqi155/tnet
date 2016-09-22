@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using TNet.EF;
+using TNet.Models.File;
 using TNet.Models.Order;
 using TNet.Models.Service.Com;
 
@@ -39,6 +40,9 @@ namespace TNet.Service.Order
 
         [WebInvoke(Method = "GET", UriTemplate = "Detail/{iduser}/{orderno}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Result<MyOrderDetail> Detail(string iduser,string orderno);
+
+
+        
 
     }
 }

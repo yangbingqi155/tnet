@@ -17,25 +17,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link href="@Url.Content("~/Css/WeiXin/Base.css?v=20160921")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Css/Com/swiper-3.3.1.min.css?v=20160921")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-3.1.0.min.js?v=20160921")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Com/swiper-3.3.1.min.js?v=20160921")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Com/js.cookie.js?v=20160921")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Pub.js?v=20160921")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Js/WeiXin/Base.js?v=20160921")"></script>
+    <link href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/WeiXin/Base.css?v=20160923")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Com/swiper-3.3.1.min.css?v=20160923")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-3.1.0.min.js?v=20160923")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/swiper-3.3.1.min.js?v=20160923")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Com/js.cookie.js?v=20160923")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Pub.js?v=20160923")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/WeiXin/Base.js?v=20160923")"></script>
     @RenderSection("Head", required: false)
 
 </head>
-<body root="@Url.Content("~/")" @ViewBag.__Is_Home_Tag>
-    <div class="RAMsgHost" id="RAMsgObj">
-        <div class="RAMsg">
-            <div class="Context" id="RAMsgObj_Context">
-                <span class="load_ing">处理中...</span>
-            </div>
-        </div>
-    </div>
-    <div id="RAMsgBg" class="RAMsgBg"></div>
+<body root="@Url.Content("~/")" @ViewBag.__Is_Home_Tag ontouchstart>
     <div class="T">
         <div class="before"></div>
         <div class="TT">
@@ -54,14 +47,50 @@
         </div>
     </div>
     <div class="Top_Main_Menu_Host" id="Top_Main_Menu_Host">
-        <div class="Top_Main_Menu" id="Top_Main_Menu">
+        <div class="Top_Main_Menu" id="Top_Main_Menu" onclick="autoShowTopMenu()">
             <ul>
                 <li><a href="@Url.Content("~/")"> 首页<span /></a></li>
                 <li><a href="@Url.Content("~/Merc/List")">宽带<span /></a></li>
-                <li><a href="@Url.Content("~/")">报装<span /></a></li>
+                <li><a href="@Url.Content("~/Merc/List/Setup")">报装<span /></a></li>
                 <li><a href="@Url.Content("~/Buss/Index")">商圈<span /></a></li>
                 <li><a href="@Url.Content("~/Order/List")">订单<span /></a></li>
             </ul>
+        </div>
+    </div>
+
+    <div id="toast" style="display: none;">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <i class="weui_icon_toast"></i>
+            <p id="toast_c" class="weui_toast_content">已完成</p>
+        </div>
+    </div>
+    <div id="toast_e" style="display:none;">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <i class="weui_icon_toast weui_icon_toast_e"></i>
+            <p id="toast_e_c" class="weui_toast_content">失败了!</p>
+        </div>
+    </div>
+    <div id="toast_l" class="weui_loading_toast" style="display:none;">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <div class="weui_loading">
+                <!-- :) -->
+                <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+                <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+            </div>
+            <p id="toast_l_c" class="weui_toast_content">处理中...</p>
         </div>
     </div>
 </body>

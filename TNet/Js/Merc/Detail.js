@@ -12,7 +12,8 @@ function getDetailData() {
         if (idmerc) {
             Pub.get({
                 url: "Service/Merc/Detail/" + idmerc,
-                // noLoading: true,
+
+                loadingMsg: "加载中...",
                 success: function (data) {
                     var html = "";
                     if (Pub.wsCheck(data)) {
@@ -146,7 +147,7 @@ function save() {
         alert("亲！请选择一个宝贝");
         return;
     }
-    if (Pub.setCache("order_cart", { Merc: mercData.Data.Merc, Spec: selectSpec, Count: sepcCount })) {
+    if (Pub.setCache("order_cart", { Merc: mercData.Data.Merc, Spec: selectSpec, Count: sepcCount, Setup: isSetup() })) {
         window.location.href = Pub.rootUrl() + "Order/Submit";
         return;
     }
@@ -164,6 +165,14 @@ function load_fail(msg) {
 
 }
 
-$(document).ready(getDetailData);
+
+function initParam() {
+    getDetailData();
+    if (isSetup()) {
+        $(".go_buy").html("预约报装");
+    }
+}
+
+$(document).ready(initParam);
 
 

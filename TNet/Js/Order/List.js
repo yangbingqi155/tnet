@@ -6,7 +6,7 @@ function getData() {
     if (u != null) {
         Pub.get({
             url: "Service/Order/List/" + u.iduser,
-           // noLoading: true,
+            loadingMsg: "加载中...",
             success: function (data) {
                 if (Pub.wsCheck(data)) {
                     if (data.Data) {

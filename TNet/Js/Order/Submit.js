@@ -1,5 +1,6 @@
 ﻿Pub.checkUser(true);
 
+
 function init() {
     var order_cart = Pub.getCache("order_cart");
     if (order_cart && order_cart.Merc && order_cart.Spec) {
@@ -10,16 +11,23 @@ function init() {
         $("#merc_count").html("x" + order_cart.Count);
         $("#buy_att_month").html("送:" + order_cart.Spec.attmonth + " 月");
         $("#amount").html("￥ " + (order_cart.Spec.price * order_cart.Count));
+        var ur = Pub.rootUrl() + "Images/default_bg.png";
         var imgs = order_cart.Merc.imgs;
         if (imgs) {
             imgs = imgs.split('|')[0];
-            $("#ico").attr("src", Pub.rootUrl() + "Images/Merc/" + imgs);
+            ur = Pub.rootUrl() + "Images/Merc/" + imgs;
+
         }
+        $("#ico").attr("src", ur);
         loadAddr();
+        if (order_cart.Setup) {
+            $(".go_buy").html("提交");
+            $(".resource").show();
+        }
     } else {
         toHome();
     }
-    
+
 }
 
 $(document.body).ready(init);
@@ -97,7 +105,7 @@ function submit() {
             Pub.post({
                 url: "Service/Order/Create",
                 data: JSON.stringify(data),
-                //noLoading: true,
+                loadingMsg: "提交...",
                 success: function (data) {
                     if (Pub.wsCheck(data)) {
                         if (data.Data) {
@@ -109,7 +117,7 @@ function submit() {
                     }
                 },
                 error: function (xhr, status, e) {
-                    alert("下单失败");
+                    Pub.showMsg("提交失败");
                 }
             });
         }
@@ -122,4 +130,59 @@ function submit() {
 function toHome() {
     alert("亲！您现在还没有挑选宝贝呢");
     window.location.href = Pub.rootUrl();
+}
+
+
+
+
+function selectImg(id, e) {
+    //if (e.target.files) {
+    //    var f = e.target.files[0];
+    //    // for (var i = 0, f; f = files[i]; i++) {
+    //    //if (!f.type.match('image.*')) continue;
+    //    var reader = new FileReader();
+    //    reader.onload = (function (theFile) {
+    //        return function (e) {
+    //            //var img = document.createElement('img');
+    //            $("#" + id).attr("title", theFile.name);
+    //            $("#" + id).attr("src", e.target.result);
+    //            //img.title = theFile.name;
+    //            //img.src = e.target.result;
+    //            //document.body.appendChild(img);   
+    //        }
+    //    })(f);
+    //    reader.readAsDataURL(f);
+    //    // }
+    //}
+    lrz(e.files[0], {
+        width: 800
+    }).then(function (rst) {
+        // 处理成功会执行
+        // console.log(rst);       
+        uploadImg(rst.base64, id);
+    }).catch(function (err) {
+        // 处理失败会执行
+    }).always(function () {
+        // 不管是成功失败，都会执行
+    });
+}
+
+
+function uploadImg(imgData, id) {
+    Pub.post({
+        url: "Service/File/Upload",
+        data: JSON.stringify({ data: imgData }),
+        loadingMsg: "上传图片中...",
+        success: function (data) {
+            if (Pub.wsCheck(data)) {
+                $("#" + id).attr("src", imgData);
+                $("#" + id).attr("title", data.Data.name);
+                return;
+            }
+            Pub.showError("上传失败");
+        },
+        error: function (xhr, status, e) {
+            Pub.showError("上传失败");
+        }
+    });
 }

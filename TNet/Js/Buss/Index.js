@@ -2,7 +2,8 @@
 function getData() {
     Pub.get({
         url: "Service/Buss/List",
-       // noLoading: true,
+
+        loadingMsg: "加载中...",
         success: function (data) {
             if (Pub.wsCheck(data)) {
                 if (data.Data) {

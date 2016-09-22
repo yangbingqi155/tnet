@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -155,6 +156,40 @@ namespace Util
             return imagesurl2;
         }
 
+        /// <summary>
+		/// Base64解密
+		/// </summary>
+		/// <param name="str">加密字符串</param>
+		/// <returns>原字符串</returns>
+		public static string DeBase64(string str)
+        {
+            //调用FromBase64String()返回解密后的byte数组
+            byte[] temps = Convert.FromBase64String(str);
+            //把byte数组转化为string类型
+            string tempd = Encoding.Default.GetString(temps);
+            //输出解密结果
+            return tempd;
+        }
 
+
+
+        /// <summary>
+        /// Base64解密
+        /// </summary>
+        /// <param name="str">加密字符串</param>
+        /// <returns>原字符串</returns>
+        public static byte[] DeBase64ToBytes(string str)
+        {
+            if (!string.IsNullOrWhiteSpace(str))
+            {
+                //调用FromBase64String()返回解密后的byte数组
+                byte[] temps = Convert.FromBase64String(str);
+                //把byte数组转化为string类型
+                //string tempd = Encoding.Default.GetString(temps);
+                //输出解密结果
+                return temps;
+            }
+            return null;
+        }
     }
 }

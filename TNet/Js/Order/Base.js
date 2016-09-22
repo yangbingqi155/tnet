@@ -15,7 +15,8 @@ function doCancelOrder(orderno) {
     if (u != null) {
         Pub.get({
             url: "Service/Order/Cancel/" + u.iduser + "/" + orderno,
-            //noLoading: true,
+
+            loadingMsg: "取消中...",
             success: function (data) {
                 if (Pub.wsCheck(data)) {
                     alert("取消订单成功");

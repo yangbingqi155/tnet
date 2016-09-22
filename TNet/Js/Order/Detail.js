@@ -8,7 +8,7 @@ function getData() {
         $("#orderno").html("单号：" + orderno);
         Pub.get({
             url: "Service/Order/Detail/" + u.iduser + "/" + orderno,
-            // noLoading: true,
+            loadingMsg: "加载中...",
             success: function (data) {
                 if (Pub.wsCheck(data)) {
                     if (data.Data) {
