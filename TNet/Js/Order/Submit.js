@@ -61,7 +61,7 @@ function selectAddr() {
 
 
 //下订单
-function submit() {
+function submit() {    
     var order_cart = Pub.getCache("order_cart");
     if (order_cart && order_cart.Merc && order_cart.Spec) {
         var u = Pub.getUser();
@@ -78,6 +78,27 @@ function submit() {
             if (!addr) {
                 alert("请选择地址");
                 return;
+            }
+            var otype = "merc";
+            var idc = "", idc_img1 = "", idc_img2 = "";
+            if (order_cart.Setup) {
+                otype = "setup";
+                idc = $.trim(Pub.str($("#idc").val()));
+                if (!idc) {
+                    alert("请输入身份证号码");
+                    return;
+                }
+                idc_img1 = $.trim($("#idc_img1").attr("title"))
+                if (!idc_img1) {
+                    alert("请上传身份证 正面 照");
+                    return;
+                }
+
+                idc_img2 = $.trim($("#idc_img2").attr("title"))
+                if (!idc_img2) {
+                    alert("请上传身份证 反面 照");
+                    return;
+                }
             }
             var img = order_cart.Merc.imgs;
             if (img) {
@@ -100,7 +121,11 @@ function submit() {
                 addr: addr,
                 phone: phone,
                 notes: Pub.str($("#notes").val()),
-                img: img
+                img: img,
+                otype: otype,
+                idc: idc,
+                idc_img1: idc_img1,
+                idc_img2: idc_img2
             };
             Pub.post({
                 url: "Service/Order/Create",

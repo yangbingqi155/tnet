@@ -294,6 +294,7 @@
     <Content Include="Css\bootstrap-fileinput\fileinput.min.css" />
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
+    <Content Include="Images\Order\setup_tag.png" />
     <Content Include="Js\bootstrap-fileinput\fileinput.js" />
     <Content Include="Js\bootstrap-fileinput\fileinput.min.js" />
     <Content Include="Js\bootstrap-fileinput\locales\ar.js" />
