@@ -30,58 +30,77 @@
         str: getStr
 
     };
+    var full_root_url = "http://app.i5shang.com/tnet/";
     var default_root_url = "";
     var showCount = 0;
     /*****进度条******/
-    var msgTimeTag = 0;
+    var msgTimeTag = 0, cur_toast_id = "";
     function showLoading(msg) {
         doShowMsg(msg, 'l', true);
     }
     function showMsg(msg) {
-        doShowMsg(msg, 'f', false);
+        doShowMsg(msg, 'f', true);
     }
-    function showError(msg, noHid) {
-        doShowMsg(msg, 'e', noHid);
+    function showError(msg) {
+        doShowMsg(msg, 'e', true);
     }
 
-    function doShowMsg(msg, type, noHid) {
-        if (!msg) {
-            msg = "处理中...";
-        }
-        var msgHost = document.getElementById("RAMsgObj");
-        if (msgHost) {
+    function doShowMsg(msg, type, hid) {
+        var ix = -1;
+        if (type == 'e') {
+            if (!msg) {
+                msg = "失败了!";
+            }
+            ix = 1;
+        } else if (type == 'l') {
+            if (!msg) {
+                msg = "处理中...";
+            }
+            ix = 2;
             showCount++;
-            msgHost.style.display = "block";
-          
-            msgHost = document.getElementById("RAMsgObj_Context");
-            if (type == 'e') {
-                type = "load_error";
-                $("#RAMsgBg").hide();
-            } else if (type == 'l') {
-                $("#RAMsgBg").show();
-                type = "load_ing";
+        } else {
+            ix = 0;
+            if (!msg) {
+                msg = "已完成";
+            }
+        }
+        var tobj = "";
+        var tids = ["#toast", "#toast_e", "#toast_l"]
+        for (var i = 0; i < 3; i++) {
+            if (i == ix) {
+                if (i == 2) {
+                    cur_toast_id = tids[i];
+                }
+                tobj = tids[i];
+                $(tids[i]).show();
+                $(tids[i] + "_c").html(msg);
+
             } else {
-                type = "load_ok";
-                $("#RAMsgBg").hide();
+                $(tids[i]).hide();
             }
-            msgHost.innerHTML = '<span class="' + type + '">' + msg + '</span>';
+        }
+        if (hid) {
             clearMsgTime();
-            if (!noHid) {
-                msgTimeTag = window.setTimeout(hieLoading, 1000 * 8);
-            }
+            msgTimeTag = window.setTimeout(function () {
+                hieLoading(tobj + "");
+            }, 1000 * 5);
         }
     }
 
-    function hieLoading() {
-        
-        var msgHost = document.getElementById("RAMsgObj");
-        if (msgHost) {
+    function hieLoading(tobj) {
+        if (!tobj) {
+            tobj = cur_toast_id;
+        }
+        if (tobj) {
+            $(tobj).hide();
+            if (tobj == cur_toast_id) {
+                cur_toast_id = "";
+            }
             showCount--;
-            msgHost.style.display = "none";
-            $("#RAMsgBg").hide();
             clearMsgTime();
         }
     }
+
     function clearMsgTime() {
         if (msgTimeTag) {
             window.clearTimeout(msgTimeTag);
@@ -89,12 +108,12 @@
         }
     }
 
-     
+
 
     //加载动画
-    function _if_loading(str) {
+    function _if_loading(msg) {
         if (showCount <= 0) {
-            showLoading(str);
+            showLoading(msg);
         }
     }
     /***************获取跟路径******************/
@@ -149,16 +168,18 @@
                 error(xhr, status, e);
             }
         };
+        var msg = "";
         var ld = false;
         try {
             ld = request.noLoading;
         } catch (e) {
-
         }
-        
+        try {
+            msg = request.loadingMsg;
+        } catch (e) {
+        }
         if (!ld) {
-
-            _if_loading();
+            _if_loading(msg);
         }
         $.ajax(request);
     }
@@ -191,7 +212,7 @@
                     if (typeof (v) === 'string') {
                         if (v && v.length > 18 && dr.test(v)) {
                             v = v.substr(6, v.length - 6 - 7) - 0;
-                            v = new Date(v); 
+                            v = new Date(v);
                             var y = v.getYear() + 1900;
                             var M = v.getMonth() + 1;
                             var d = v.getDate();
@@ -282,7 +303,7 @@
         realu = window.location.href + "";
         //}
         var u = "";
-        var uurl = "http://app.i5shang.com/tnet/user?ru=" + encodeURIComponent(realu);
+        var uurl = full_root_url + "user?ru=" + encodeURIComponent(realu);
         if (!tn_u) {
             uurl = encodeURIComponent(uurl);
             u = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc530ec3ce6a52233&redirect_uri=' + uurl + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
@@ -373,3 +394,12 @@
     }
 
 })();
+
+
+//错误
+window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
+    if (errorMessage) {
+        alert(errorMessage + "," + scriptURI + ",lineNumber=" + lineNumber);
+    }
+    return false;
+};

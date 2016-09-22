@@ -6,7 +6,7 @@ function getData() {
     if (u != null) {
         Pub.get({
             url: "Service/Order/List/" + u.iduser,
-           // noLoading: true,
+            loadingMsg: "加载中...",
             success: function (data) {
                 if (Pub.wsCheck(data)) {
                     if (data.Data) {
@@ -19,7 +19,8 @@ function getData() {
                                 if (html) {
                                     html += '<div class="vline"></div>';
                                 }
-                                html += '<div class="order_item">';
+                                var otype = (o.otype == 2) ? "<div class='setup_tag'></div> " : "";
+                                html += '<div class="order_item">' + otype;
                                 html += '<div class="order">';
                                 html += '<div class="no">' + o.orderno + '</div>';
                                 html += '<div class="status">' + so.text + '</div>';

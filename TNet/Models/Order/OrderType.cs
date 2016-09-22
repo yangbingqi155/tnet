@@ -14,5 +14,11 @@ namespace TNet.Models.Order
         /// 商品订单
         /// </summary>
         public static int Merc = 1;
+
+
+        /// <summary>
+        /// 报装业务
+        /// </summary>
+        public static int Setup = 2;
     }
 }

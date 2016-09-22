@@ -7,6 +7,7 @@
 .order_item {
     display: block;
     height: 215px;
+    position: relative;
 }
 
 .order {
@@ -30,6 +31,9 @@
     line-height: 40px;
     color: #222222;
     padding: 0px 10px 0px 0px;
+    color:#ff6a00;
+
+    
 }
 
 
@@ -55,8 +59,8 @@
             border: solid #d6d6d6 1px;
             width: 60px;
             height: 60px;
-            margin-top:15px;
-            display:inline-block;
+            margin-top: 15px;
+            display: inline-block;
         }
 
     .merc .merc_c {
@@ -105,3 +109,15 @@
 
 /***********merc end********/
 
+.setup_tag {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+    background-image: url("../../Images/Order/setup_tag.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:cover;
+    opacity:0.5;
+}

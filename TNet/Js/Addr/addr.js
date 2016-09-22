@@ -6,7 +6,8 @@ function getAddrList() {
     if (u != null) {
         Pub.get({
             url: "Service/Addr/All/" + u.iduser,
-            noLoading: true,
+
+            loadingMsg: "加载中...",
             success: function (data) {
                 var html = "";
                 if (Pub.wsCheck(data)) {
@@ -55,10 +56,11 @@ function getAddrList() {
                 load_fail("暂无地址");
             },
             error: function (data) {
-
                 load_fail("加载地址失败");
             }
         });
+    } else {
+        load_fail("暂无地址");
     }
 }
 function load_fail(msg) {
@@ -157,7 +159,8 @@ function saveAddr(del) {
                 Pub.post({
                     url: "Service/Addr/Update",
                     data: JSON.stringify(data),
-                    //noLoading: true,
+
+                    loadingMsg: "保存中...",
                     success: function (data) {
                         update_Addr_ing = false;
                         if (Pub.wsCheck(data)) {
@@ -165,7 +168,7 @@ function saveAddr(del) {
                                 alert(msg + "成功");
                                 if (del) {
                                     var da = Pub.getCache("Addr");
-                                    if (da && da .idaddr == idAddr) {
+                                    if (da && da.idaddr == idAddr) {
                                         Pub.delCache("Addr");
                                         loadAddr();
                                     }

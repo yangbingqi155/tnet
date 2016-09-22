@@ -6,10 +6,19 @@
 
 
 @section Head{
-    <link href="@Url.Content("~/Css/Order/Submit.css?v=20160921")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Submit.css?v=20160923")" rel="stylesheet" type="text/css" />
 
 
-    <script type="text/javascript" src="@Url.Content("~/Js/Order/Submit.js?v=20160921")">
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20160923")">
+    </script>
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Submit.js?v=20160923")">
+
+    </script>
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Lrz/lrz.bundle.js?v=20160923")">
+
     </script>
 
 }
@@ -20,7 +29,6 @@
             <i class="iconfont">&#xe615</i>
             <span>请选择地址...</span>
             <span class="choice"></span>
-            <i class="iconfont">&#xe615</i>
         </a>
     </div>
 
@@ -42,7 +50,37 @@
         </div>
     </a>
 
+    <div class="resource">
+        <div class="vline"></div>
+        <div class="title">身份证号码：</div>
+        <div class="idc_num">
+            <div class="edit">
+                <input type="text" id="idc" placeholder="身份证号..." maxlength="15" />
+            </div>
+        </div>
+        <div class="vline"></div>
 
+        <div class="title">身份证照片：</div>
+        <div>
+            <a href="javascript:void(0)">
+                <img id="idc_img1" src="@Url.Content("~/Images/default_bg.png")" />
+                <input type="file" value="" accept="image/jpeg,image/x-png" onchange="{ selectImg('idc_img1', this) }">
+            </a>
+            <a href="javascript:void(0)">
+                <img id="idc_img2" src="@Url.Content("~/Images/default_bg.png")" />
+                <input type="file" value="" accept="image/jpeg,image/x-png" onchange="{ selectImg('idc_img2', this) }">
+            </a>
+        </div>
+
+    </div>
+
+    <div class="vline"></div>
+    <div class="notes">
+        留言:
+        <div class="edit">
+            <input type="text" id="notes" placeholder="给卖家留言,最多15汉字..." maxlength="15" />
+        </div>
+    </div>
     <div class="vline"></div>
 
 
@@ -56,14 +94,6 @@
             <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="submit()">下单</a></div>
         </div>
     </div>
-
-    <div class="notes">
-        备注:
-        <div class="comm">
-            <input type="text" id="notes" placeholder="给卖家留言,最多15汉字..." maxlength="15" />
-        </div>
-    </div>
-    <div class="vline"></div>
 </div>
 
 

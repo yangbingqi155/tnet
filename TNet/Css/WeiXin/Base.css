@@ -31,7 +31,7 @@ a {
     -webkit-tap-highlight-color: transparent;*/
 }
 
-    a, a img {
+    a, a img,.weui_mask_transparent {
         -webkit-user-select: none;
         -webkit-touch-callout: none;
         box-sizing: border-box;
@@ -200,7 +200,7 @@ a:active {
     width: 270px;
     left: 50%;
     margin: 0px auto auto -130px;
-    display:none;
+    display: none;
 }
 
     .RAMsgHost .RAMsg {
@@ -441,7 +441,7 @@ span.loading_c, span.load_error {
     padding: 20px 0px 20px 0px;
 }
 
-span.loading_l{
+span.loading_l {
     display: block;
     color: #cbcbcb;
     width: 200px;
@@ -451,6 +451,7 @@ span.loading_l{
     margin: 0px auto 10px 10px;
     padding: 10px 0px 10px 0px;
 }
+
 .body_bg {
     background-color: #222222;
 }
@@ -639,4 +640,9 @@ span.loading_l{
     -moz-animation: loading_anim 1s infinite linear; /* Firefox */
     -webkit-animation: loading_anim 1s infinite linear; /* Safari 和 Chrome */
     -o-animation: loading_anim 1s infinite linear;
+}
+
+
+i.weui_icon_toast_e:before {
+    content: "\EA03";
 }

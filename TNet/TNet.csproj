@@ -211,6 +211,8 @@
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
+    <Compile Include="Models\File\UploadData.cs" />
+    <Compile Include="Models\File\UploadDataResult.cs" />
     <Compile Include="Models\Manage\ManageUserViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -259,6 +261,10 @@
     </Compile>
     <Compile Include="Service\Buss\IBussService.cs" />
     <Compile Include="Service\Com\RouteService.cs" />
+    <Compile Include="Service\File\FileService.svc.cs">
+      <DependentUpon>FileService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\File\IFileService.cs" />
     <Compile Include="Service\Merc\IMercService.cs" />
     <Compile Include="Service\Merc\MercService.svc.cs">
       <DependentUpon>MercService.svc</DependentUpon>
@@ -288,6 +294,7 @@
     <Content Include="Css\bootstrap-fileinput\fileinput.min.css" />
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
+    <Content Include="Images\Order\setup_tag.png" />
     <Content Include="Js\bootstrap-fileinput\fileinput.js" />
     <Content Include="Js\bootstrap-fileinput\fileinput.min.js" />
     <Content Include="Js\bootstrap-fileinput\locales\ar.js" />
@@ -437,6 +444,13 @@
     <Content Include="Js\Com\js.cookie.js" />
     <Content Include="Js\Com\swiper-3.3.1.min.js" />
     <Content Include="Css\Manage\Login.css" />
+    <Content Include="Js\Lrz\1.chunk.js" />
+    <Content Include="Js\Lrz\2.chunk.js" />
+    <Content Include="Js\Lrz\lrz.all.bundle.js" />
+    <Content Include="Js\Lrz\lrz.bundle.js" />
+    <Content Include="Js\Lrz\README.txt" />
+    <Content Include="Js\Lrz\那么多文件，应该引用哪个？.txt" />
+    <Content Include="Js\Merc\Base.js" />
     <Content Include="Js\Merc\Detail.js" />
     <Content Include="Js\Merc\List.js" />
     <Content Include="Js\Order\Base.js" />
@@ -542,6 +556,7 @@
     <Content Include="lib\log4net\log4net.xml" />
     <Content Include="Service\Addr\AddrService.svc" />
     <Content Include="Service\Buss\BussService.svc" />
+    <Content Include="Service\File\FileService.svc" />
     <Content Include="Service\Merc\MercService.svc" />
     <Content Include="Service\Order\OrderService.svc" />
     <Content Include="Service\README.txt" />
@@ -579,6 +594,10 @@
     <Content Include="Views\Manage\MercImageEdit.cshtml" />
     <Content Include="Views\Manage\OrderList.cshtml" />
     <Content Include="Views\Manage\BusinessList.cshtml" />
+    <Content Include="Js\Lrz\1.chunk.js.map" />
+    <Content Include="Js\Lrz\2.chunk.js.map" />
+    <Content Include="Js\Lrz\lrz.all.bundle.js.map" />
+    <Content Include="Js\Lrz\lrz.bundle.js.map" />
     <Content Include="Views\Manage\BusinessEdit.cshtml" />
     <Content Include="Views\Manage\OrderDetail.cshtml" />
   </ItemGroup>

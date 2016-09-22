@@ -8,6 +8,7 @@ using TNet.Service.Merc;
 using TNet.Service.Addr;
 using TNet.Service.Order;
 using TNet.Service.Buss;
+using TNet.Service.File;
 
 namespace TNet.Service.Com
 {
@@ -28,6 +29,9 @@ namespace TNet.Service.Com
 
             RouteTable.Routes.Add(new ServiceRoute("Service/Buss/", new WebServiceHostFactory(), typeof(BussService)));
             RouteTable.Routes.Add(new ServiceRoute("BussService.svc", new WebServiceHostFactory(), typeof(BussService)));
+
+            RouteTable.Routes.Add(new ServiceRoute("Service/File/", new WebServiceHostFactory(), typeof(FileService)));
+            RouteTable.Routes.Add(new ServiceRoute("FileService.svc", new WebServiceHostFactory(), typeof(FileService)));
         }
     }
 }
