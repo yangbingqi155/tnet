@@ -31,6 +31,8 @@ function init() {
 }
 
 $(document.body).ready(init);
+
+
 function loadAddr() {
     var ao = Pub.getCache("Addr");
     if (ao) {
@@ -61,7 +63,7 @@ function selectAddr() {
 
 
 //下订单
-function submit() {    
+function submit() {
     var order_cart = Pub.getCache("order_cart");
     if (order_cart && order_cart.Merc && order_cart.Spec) {
         var u = Pub.getUser();
@@ -84,8 +86,7 @@ function submit() {
             if (order_cart.Setup) {
                 otype = "setup";
                 idc = $.trim(Pub.str($("#idc").val()));
-                if (!idc) {
-                    alert("请输入身份证号码");
+                if (!checkIdc(idc)) {
                     return;
                 }
                 idc_img1 = $.trim($("#idc_img1").attr("title"))
@@ -210,4 +211,13 @@ function uploadImg(imgData, id) {
             Pub.showError("上传失败");
         }
     });
+}
+
+
+function checkIdc(idc) {
+    if (!(/(^\d{15}$)|(^\d{17}([0-9]|[a-zA-Z])$)/.test(idc))) {
+        alert('身份证号码格式不对');
+        return false;
+    }
+    return true;
 }

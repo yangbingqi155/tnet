@@ -14,7 +14,7 @@
     display: block;
     height: 40px;
     line-height: 40px;
-    border-bottom: solid #cbcbcb 1px;
+    border-bottom: dotted #cbcbcb 1px;
 }
 
 .no {
@@ -32,8 +32,6 @@
     color: #222222;
     padding: 0px 10px 0px 0px;
     color:#ff6a00;
-
-    
 }
 
 
@@ -94,10 +92,11 @@
     position: absolute;
     top: 0px;
     right: 8px;
-    width: 60px;
+    width: 80px;
     height: 100%;
     padding: 0px 8px 0px 0px;
     text-align: right;
+    overflow:hidden;
 }
 
 #merc_price, #merc_count {
@@ -109,15 +108,3 @@
 
 /***********merc end********/
 
-.setup_tag {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    width: 80px;
-    height: 80px;
-    background-image: url("../../Images/Order/setup_tag.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size:cover;
-    opacity:0.5;
-}

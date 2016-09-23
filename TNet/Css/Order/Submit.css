@@ -1,6 +1,7 @@
 ﻿.OC {
     display: block;
     height: auto;
+    position: relative;
 }
 
 .addr {
@@ -80,7 +81,7 @@
 
 .merc {
     display: block;
-    height: 80px;
+    height: 90px;
     padding: 15px 8px 0px 8px;
     position: relative;
 }
@@ -140,7 +141,7 @@
 
 
 
-.buy {
+.buyhost, .buy {
     height: 60px;
     position: fixed;
     display: block;
@@ -205,15 +206,14 @@
 
 .notes {
     display: block;
-    height: 80px;
-    padding: 8px 8px 80px 8px;
-    margin-bottom: 80px;
+    height: 60px;
+    padding: 8px 8px 8px 8px;
 }
 
 .edit {
     display: block;
     height: 40px;
-    margin: 8px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     border-radius: 5px;
     border: solid 1px #d6d6d6;
     background-color: #ffffff;
@@ -230,41 +230,8 @@
         font-size: 14px;
     }
 
-.resource {
-    display: none;
-}
 
-    .resource a {
-        margin: 15px;
-        border: dashed #d6d6d6 1px;
-        position: relative;
-        overflow: hidden;
-    }
-
-        .resource a, .resource a img {
-            display: inline-block;
-            width: 80px;
-            height: 80px;
-            text-decoration: none;
-            outline: none;
-        }
-
-            .resource a img {
-                border: none;
-            }
-
-            .resource a input {
-                position: absolute;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 99;
-                opacity: 0;
-                overflow: hidden;
-            }
-
-.idc_num {
+.placeholder {
     display: block;
-    padding: 8px 10px 20px 8px;
+    height: 150px;
 }

@@ -6,18 +6,20 @@
 
 
 @section Head{
-    <link href="@Url.Content("~/Css/Order/Submit.css?v=20160923")" rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/Css/Order/Base.css?v=20160924")" r rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Submit.css?v=20160924")" rel="stylesheet" type="text/css" />
 
 
 
-    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20160923")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20160924")">
     </script>
 
-    <script type="text/javascript" src="@Url.Content("~/Js/Order/Submit.js?v=20160923")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Submit.js?v=20160924")">
 
     </script>
 
-    <script type="text/javascript" src="@Url.Content("~/Js/Lrz/lrz.bundle.js?v=20160923")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Lrz/lrz.bundle.js?v=20160924")">
 
     </script>
 
@@ -55,7 +57,7 @@
         <div class="title">身份证号码：</div>
         <div class="idc_num">
             <div class="edit">
-                <input type="text" id="idc" placeholder="身份证号..." maxlength="15" />
+                <input type="text" id="idc" placeholder="身份证号..." maxlength="18" />
             </div>
         </div>
         <div class="vline"></div>
@@ -75,14 +77,15 @@
     </div>
 
     <div class="vline"></div>
+    <div class="title">留言:</div>
     <div class="notes">
-        留言:
+
         <div class="edit">
             <input type="text" id="notes" placeholder="给卖家留言,最多15汉字..." maxlength="15" />
         </div>
     </div>
     <div class="vline"></div>
-
+    <div class="placeholder"></div>
 
     <div class="buyhost">
         <div class="buy">

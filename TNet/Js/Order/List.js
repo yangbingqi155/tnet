@@ -3,6 +3,7 @@
 //获取订单
 function getData() {
     var u = Pub.getUser();
+     
     if (u != null) {
         Pub.get({
             url: "Service/Order/List/" + u.iduser,
