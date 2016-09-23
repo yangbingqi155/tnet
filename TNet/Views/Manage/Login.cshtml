@@ -32,28 +32,30 @@
     </script>
 </head>
 <body>
+    <div class="login-wrapper">
+        <form method="post" id="loginForm">
 
-    <form method="post" id="loginForm">
-        
-        <div class="loginBox">
-            <fieldset>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UserName)
-                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.UserName)
+            <div class="loginBox">
+                <div class="content-wrap">
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName)
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ClearPassword)
+                            @Html.PasswordFor(model => model.ClearPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ClearPassword)
+                        </div>
+                        @Html.ValidationSummary(true)
+                        <input type="submit" value="登录" class="btn btn-default" />
+                        <input type="button" id="btnReset" value="重置" class="btn btn-default" />
+                    </fieldset>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ClearPassword)
-                    @Html.PasswordFor(model => model.ClearPassword, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ClearPassword)
-                </div>
-                @Html.ValidationSummary(true)
-                <input type="submit" value="登录" class="btn btn-default" />
-                <input type="button" id="btnReset" value="重置" class="btn btn-default" />
-            </fieldset>
-        </div>
+            </div>
 
-    </form>
-
+        </form>
+    </div>
 </body>
 </html>

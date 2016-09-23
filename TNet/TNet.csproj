@@ -294,6 +294,7 @@
     <Content Include="Css\bootstrap-fileinput\fileinput.min.css" />
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
+    <Content Include="Images\Manage\login_bg.jpg" />
     <Content Include="Images\Order\setup_tag.png" />
     <Content Include="Js\bootstrap-fileinput\fileinput.js" />
     <Content Include="Js\bootstrap-fileinput\fileinput.min.js" />
@@ -372,7 +373,6 @@
     <Content Include="Images\Com\load_ok.png" />
     <Content Include="Images\Com\load_error.png" />
     <Content Include="Images\default_bg.png" />
-    <Content Include="Images\Manage\login_bg.png" />
     <Content Include="Images\Merc\1001.png" />
     <Content Include="Images\Merc\1002.png" />
     <Content Include="Images\Merc\1003.png" />
@@ -450,6 +450,7 @@
     <Content Include="Js\Lrz\lrz.bundle.js" />
     <Content Include="Js\Lrz\README.txt" />
     <Content Include="Js\Lrz\那么多文件，应该引用哪个？.txt" />
+    <Content Include="Js\Manage\Base.js" />
     <Content Include="Js\Merc\Base.js" />
     <Content Include="Js\Merc\Detail.js" />
     <Content Include="Js\Merc\List.js" />
