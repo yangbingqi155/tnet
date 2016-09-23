@@ -17,6 +17,7 @@
     <script type="text/javascript" src="@Url.Content("~/Js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js")" charset="UTF-8"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.unobtrusive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Manage/Base.js")"></script>
 </head>
 <body>
     <div class="manageLeft">
@@ -25,22 +26,22 @@
             <div class="panel-heading parentMenu">产品管理</div>
             <!-- List group -->
             <div class="list-group">
-                <a class="list-group-item" href="@Url.Action("MercList","Manage")">商品管理</a>
-                <a class="list-group-item" href="@Url.Action("MercTypeList","Manage")">类型管理</a>
+                <a class="list-group-item" id="MercList" href="@Url.Action("MercList","Manage")">商品管理</a>
+                <a class="list-group-item" id="MercTypeList" href="@Url.Action("MercTypeList","Manage")">类型管理</a>
                 @*<a class="list-group-item" href="@Url.Action("SpecList","Manage")">规格管理</a>*@
             </div>
             <!-- Default panel contents -->
             <div class="panel-heading parentMenu">订单管理</div>
             <!-- List group -->
             <div class="list-group">
-                <a class="list-group-item" href="@Url.Action("OrderList","Manage")">订单列表</a>
+                <a class="list-group-item" id="OrderList" href="@Url.Action("OrderList","Manage")">订单列表</a>
                 @*<a class="list-group-item" href="">未完成的订单</a>*@
             </div>
             <!-- Default panel contents -->
             <div class="panel-heading parentMenu">商圈管理</div>
             <!-- List group -->
             <div class="list-group">
-                <a class="list-group-item" href="@Url.Action("BusinessList","Manage")">周边商圈</a>
+                <a class="list-group-item" id="BusinessList" href="@Url.Action("BusinessList","Manage")">周边商圈</a>
                 @*<a class="list-group-item" href="">未完成的订单</a>*@
             </div>
         </div>

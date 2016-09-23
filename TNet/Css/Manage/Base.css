@@ -300,26 +300,39 @@ body {
 
 .manageLeft {
     min-width: 220px;
-    width:19.9%;
-    float: left;
+    width: 220px;
+    /*width: 19.9%;*/
+    /*float: left;*/
     padding: 10px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
 }
 
 .manageRight {
-    min-width: 1200px;
-    width:79.9%;
-    float: left;
-    min-height:1000px;
-    padding: 10px;
+    /*min-width: 1200px;*/
+    /*width: 79.9%;*/
+    position: absolute;
+    left: 230px;
+    right: 0px;
+    top:0px;
+    bottom:10px;
+    /*width: 100%;*/
+    height: auto;
+    /*min-height: 1000px;*/
+    padding: 10px 10px 10px 10px;
+    overflow: auto;
 }
 
 .ManageRightTitle {
+    display: block;
     height: 50px;
 }
 
 .ManageRightContent {
-    height:auto;
-    min-height:950px;
+    display: block;
+    height: auto;
+    /*min-height: 950px;*/
 }
 
 .panel-default > .panel-heading {
@@ -328,16 +341,46 @@ body {
     font-size: 16px;
     font-weight: bold;
 }
+
 .embed-responsive-item {
-    width:102%;
-    height:900px;
-    border:0px;
+    width: 102%;
+    height: 900px;
+    border: 0px;
 }
 
 .merc-edit-box {
-    width:500px;
+    width: 500px;
+}
 
-}
 .form-group div.datetime_picker {
-    padding-left:15px;
+    padding-left: 15px;
 }
+
+
+
+table, .table {
+    min-width: unset;
+    width: auto;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+    table tr td, .table tr td, table thead tr th, .table thead tr th {
+        width: auto;
+        word-wrap: break-word;
+        white-space: nowrap;
+    }
+
+    table thead tr th, .table thead tr th {
+        white-space: nowrap;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    span.input-group-addon span.glyphicon-remove{
+         display:none;
+    }
+     
+    .manageLeft a:hover,a.select{
+         color:#337ab7;
+    }

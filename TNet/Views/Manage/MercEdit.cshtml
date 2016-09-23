@@ -55,7 +55,7 @@
                     @Html.LabelFor(model => model.stime, new { @class = "col-sm-2 control-label" })
                     <div id="@(Html.IdFor(model=>model.stime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.stime)" data-link-format="yyyy-mm-dd">
                         <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.stime)" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        @*<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>*@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                     @Html.HiddenFor(model => model.stime, new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", Model.stime) })
@@ -65,7 +65,7 @@
                     @Html.LabelFor(model => model.entime, new { @class = "col-sm-2 control-label" })
                     <div id="@(Html.IdFor(model=>model.entime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.entime)" data-link-format="yyyy-mm-dd">
                         <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.stime)" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        @*<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>*@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                     @Html.HiddenFor(model => model.entime, new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", Model.stime) })

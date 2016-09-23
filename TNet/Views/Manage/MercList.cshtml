@@ -21,7 +21,7 @@
         @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "MercList", "Manage", ViewContext.RouteData.Values))
     </div>
     <div>
-        <a class="btn btn-primary" target="_blank" href="@Url.Action("MercEdit","Manage")">新增产品</a>
+        <a class="btn btn-primary" @*target="_blank"*@ href="@Url.Action("MercEdit","Manage")">新增产品</a>
     </div>
     <div>
         @if (Model.Count > 0)
