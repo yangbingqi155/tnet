@@ -73,7 +73,7 @@ namespace TNet.Models.Order
         /// 交易取消
         /// </summary>
         public static readonly int Cancel = -99;
-
+        
         public static Dictionary<int, OrderStatusItem> s = new Dictionary<int, OrderStatusItem>()
         {
              {
@@ -141,6 +141,18 @@ namespace TNet.Models.Order
         public static OrderStatusItem get(int status)
         {
             return s.ContainsKey(status) ? s[status] : s[0];
+        }
+
+        public static List<SelectItemViewModel<int>> GetSelectItems() {
+            List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
+            foreach (var item in s)
+            {
+                SelectItemViewModel<int> model = new SelectItemViewModel<int>();
+                model.DisplayValue = item.Key;
+                model.DisplayText = item.Value.text;
+                list.Add(model);
+            }
+            return list;
         }
     }
 }
