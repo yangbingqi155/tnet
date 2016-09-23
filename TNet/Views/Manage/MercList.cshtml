@@ -37,6 +37,7 @@
                         @*<th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.imgs))</th>*@
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, DateTime?>(en => en.stime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, DateTime?>(en => en.entime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, int?>(en => en.sortno))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, bool?>(en => en.inuse))</th>
                         <th>操作</th>
                     </tr>
@@ -58,10 +59,11 @@
                             </td>
                             <td>
                                 @item.entime.Value.ToString("yyyy-MM-dd")
-
                             </td>
                             <td>
-                                @( item.inuse ? "启用" : "禁用")
+                                @item.sortno
+                            </td>
+                            <td>
                                 <a onclick="enableMerc('@Url.Action("MercEnable", "Manage", new { idmerc = item.idmerc, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
 
                             </td>

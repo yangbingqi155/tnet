@@ -30,6 +30,7 @@ namespace TNet.BLL
             oldMercType.idtype = mercType.idtype;
             oldMercType.name = mercType.name;
             oldMercType.notes = mercType.notes;
+            oldMercType.sortno = mercType.sortno;
             oldMercType.inuse = mercType.inuse;
 
             db.SaveChanges();

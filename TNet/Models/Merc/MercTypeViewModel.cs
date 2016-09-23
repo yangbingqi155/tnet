@@ -24,7 +24,10 @@ namespace TNet.Models
         [StringLength(50)]
         [Display(Name = "备注")]
         public string notes { get; set; }
-        
+
+        [Display(Name = "排序")]
+        public int? sortno { get; set; }
+
         [Display(Name = "启用")]
         [Required]
         public bool inuse { get; set; }
@@ -34,6 +37,7 @@ namespace TNet.Models
             this.idtype = mercType.idtype;
             this.name = mercType.name;
             this.notes = mercType.notes;
+            this.sortno = mercType.sortno;
             this.inuse = mercType.inuse;
         }
 
@@ -42,8 +46,8 @@ namespace TNet.Models
             mercType.idtype = this.idtype;
             mercType.name = this.name;
             mercType.notes = this.notes;
+            mercType.sortno = this.sortno;
             mercType.inuse = this.inuse;
-           
         }
     }
 }

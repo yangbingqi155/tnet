@@ -1,4 +1,10 @@
-﻿/* =========================================================
+﻿/*
+ *不要使用官方的版本覆盖
+ *yangbinqi修复了官方的bug-在Firefox下无法使用
+ *将插件中的this.defaultTimeZone=(new Date).toString().split("(")[1].slice(0,-1);改为this.defaultTimeZone='GMT '+(new Date()).getTimezoneOffset()/60;
+*/
+
+/* =========================================================
  * bootstrap-datetimepicker.js
  * =========================================================
  * Copyright 2012 Stefan Petre
@@ -109,7 +115,7 @@
     this.initialDate = options.initialDate || new Date();
     this.zIndex = options.zIndex || this.element.data('z-index') || undefined;
     this.title = typeof options.title === 'undefined' ? false : options.title;
-    this.defaultTimeZone = (new Date).toString().split('(')[1].slice(0, -1);
+    this.defaultTimeZone = 'GMT ' + (new Date()).getTimezoneOffset() / 60;
     this.timezone = options.timezone || this.defaultTimeZone;
 
     this.icons = {

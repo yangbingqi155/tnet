@@ -599,6 +599,7 @@
     <Content Include="Js\Lrz\lrz.all.bundle.js.map" />
     <Content Include="Js\Lrz\lrz.bundle.js.map" />
     <Content Include="Views\Manage\BusinessEdit.cshtml" />
+    <Content Include="Views\Manage\OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

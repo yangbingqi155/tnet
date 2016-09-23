@@ -1,0 +1,166 @@
+﻿@model TNet.Models.MyOrderViewModel
+@{ 
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "订单详细";
+
+}
+<link rel="stylesheet" href="@Url.Content("~/Css/bootstrap-fileinput/fileinput.min.css")" />
+<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/fileinput.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/locales/zh.js")"></script>
+
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">订单管理</a></li>
+        <li><a href="@Url.Action("OrderList","Manage")">订单列表</a></li>
+        <li><a href="#" class="active">订单详细</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.orderno, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.orderno</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.iduser, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.iduser</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.merc, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.merc</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.spec, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.spec</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.month, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.month</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.attmonth, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.attmonth</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.orderno, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.orderno</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.count, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.count</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.price, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.price</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.contact, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.contact</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.addr, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.addr</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.phone</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.cretime, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.cretime</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.stime, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.stime</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.entime, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.entime</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.otype, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.otype</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.status, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.status</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.img, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.img</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.notes</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idc, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.idc</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idc_img1, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.idc_img1</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idc_img2, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@Model.idc_img2</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        <p class="form-control-static">@(Model.inuse?"启用":"禁用")</p>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+
+    </form>
+
+</div>

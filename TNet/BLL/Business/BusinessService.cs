@@ -14,7 +14,7 @@ namespace TNet.BLL
             return db.Businesses.ToList();
         }
 
-        public static Business GetBusiness(int idbuss)
+        public static Business GetBusiness(long idbuss)
         {
             return GetALL().Where(en => en.idbuss == idbuss).FirstOrDefault();
         }
