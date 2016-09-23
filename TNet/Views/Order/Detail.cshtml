@@ -8,23 +8,20 @@
 
 
 @section Head{
-    <link href="@Url.Content("~/Css/Order/Base.css?v=20160923")" r rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Css/Order/Detail.css?v=20160923")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Base.css?v=20160924")" r rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Detail.css?v=20160924")" rel="stylesheet" type="text/css" />
 
-
-    <script type="text/javascript" src="@Url.Content("~/Js/Order/Base.js?v=20160923")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Base.js?v=20160924")">
 
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Order/Detail.js?v=20160923")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Order/Detail.js?v=20160924")">
     </script>
-
-
-
 
 }
 
 <div id="OC" class="OC" orderno="@ViewBag.orderno">
-    <div class="title">订单信息：</div>
+    <div class='setup_tag'></div>
+    @*<div class="title">订单信息：</div>*@
     <div class="order">
         <div class="no" id="orderno">订单...</div>
         <div class="status" id="status">状态...</div>
@@ -62,6 +59,24 @@
         </div>
     </a>
     <div class="merc_st_et">期间：<span id="merc_st_et"></span></div>
+    <div class="resource">
+        <div class="vline"></div>
+        <div class="merc_st_et">身份证号：<span id="idc"></span></div>
+
+        <div class="vline"></div>
+
+        <div class="title">身份证照片：</div>
+        <div>
+            <a href="javascript:void(0)">
+                <img id="idc_img1" src="@Url.Content("~/Images/default_bg.png")" />
+
+            </a>
+            <a href="javascript:void(0)">
+                <img id="idc_img2" src="@Url.Content("~/Images/default_bg.png")" />
+            </a>
+        </div>
+
+    </div>
     <div class="vline"></div>
     <div class="title">处理进度：</div>
     <div class="Presses" id="Presses"></div>

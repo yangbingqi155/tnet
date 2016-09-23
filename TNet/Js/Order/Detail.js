@@ -15,21 +15,26 @@ function getData() {
                         var html = "";
                         try {
                             var o = data.Data.Order;
-                            $("#merc").attr("href", Pub.rootUrl() + "Merc/Detail/" + o.idmerc);
+                            var tag = "";
+                            if (o.otype == 2) {
+                                tag = "?tag=Setup";
+                                $(".setup_tag").show();
+                                $(".resource").show();
+                                $("#idc").html(o.idc);
+                                $("#idc_img1").attr("src", getImgUrl(o.idc_img1));
+                                $("#idc_img2").attr("src", getImgUrl(o.idc_img2));
+
+                            }
+                            $("#merc").attr("href", Pub.rootUrl() + "Merc/Detail/" + o.idmerc + tag);
                             $("#contacts").html(o.contact);
                             $("#phones").html(o.phone);
                             $("#realAddr").html(o.addr);
-                            var img = o.img;
-                            var ur = Pub.rootUrl() + "Images/default_bg.png";
-                            if (img) {
-                                ur = Pub.rootUrl() + "Images/Merc/" + img;
-                            }
-                            $("#ico").attr("src", ur);
+                            $("#ico").attr("src", getImgUrl(o.img, "Images/Merc/"));
                             $("#merc_title").html(o.merc);
                             $("#merc_spec").html(o.spec);
                             $("#merc_price").html("￥" + o.price);
                             $("#merc_count").html("x" + o.count);
-                            var so = data.Data.Status; 
+                            var so = data.Data.Status;
                             $("#status").html(so.text);
                             $("#notes").val(o.notes);
                             $("#attmonth").html("送: " + o.attmonth + "  月");
@@ -62,5 +67,18 @@ function getData() {
         });
     }
 }
+
+function getImgUrl(img, rdir) {
+    if (!rdir) {
+        rdir = "";
+    }
+    var ur = Pub.rootUrl() + "Images/default_bg.png";
+    var imgu = ur;
+    if (img) {
+        imgu = Pub.rootUrl() + rdir + img;
+    }
+    return imgu;
+}
+
 
 $(document).ready(getData);

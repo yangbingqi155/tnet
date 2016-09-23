@@ -36,14 +36,16 @@ namespace TNet.Service.File
                     byte[] fData = Pub.DeBase64ToBytes(data.data);
                     if (fData != null && fData.Length > 0)
                     {
-                        string fp = HostingEnvironment.MapPath("~/Resource/Images/r");
+                        string df = "Resource/Images/r";
+                        string fp = HostingEnvironment.MapPath("~/" + df);
                         if (!Directory.Exists(fp))
                         {
                             Directory.CreateDirectory(fp);
                         }
-                        string f = "/"+Pub.ID() + "." + lfn;
+                        string rf = Pub.ID() + "." + lfn;
+                        string f = "/" + rf;
                         fp += f;
-                        f = "Resource/Images/r" + Pub.ID() + "." + lfn;
+                        f = df + "/" + rf;
                         FileStream imgFile = System.IO.File.Open(fp, FileMode.OpenOrCreate);
                         imgFile.Write(fData, 0, fData.Length);
                         imgFile.Flush();
