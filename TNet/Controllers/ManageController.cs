@@ -170,11 +170,17 @@ namespace TNet.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult OrderList(int pageIndex = 0)
+        public ActionResult OrderList(DateTime? startOrDate,DateTime? endOrDate,int orderTypes=0,int orderStatus=0, long orderNo =0,long userNo=0, int pageIndex = 0)
         {
             int pageCount = 0;
             int pageSize = 10;
-            List<MyOrder> entities = MyOrderService.GetALL();
+            if (startOrDate==null) {
+                startOrDate = DateTime.Now.AddDays(-1);
+            }
+            if (endOrDate==null) {
+                endOrDate = DateTime.Now;
+            }
+            List<MyOrder> entities = MyOrderService.GetOrderByFilter(startOrDate,endOrDate,orderTypes,orderStatus,orderNo,userNo);
             List<MyOrder> pageList = entities.Pager<MyOrder>(pageIndex, pageSize, out pageCount);
 
             List<MyOrderViewModel> viewModels = pageList.Select(model =>
@@ -186,6 +192,13 @@ namespace TNet.Controllers
 
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
+
+            ViewData["startOrDate"] = startOrDate;
+            ViewData["endOrDate"] = endOrDate;
+            ViewData["orderTypes"] = orderTypes;
+            ViewData["orderStatus"] = orderStatus;
+            ViewData["orderNo"] = orderNo;
+            ViewData["userNo"] = userNo;
 
             return View(viewModels);
         }

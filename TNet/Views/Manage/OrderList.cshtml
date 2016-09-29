@@ -9,7 +9,14 @@
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     var pageCount = Convert.ToInt32(ViewData["pageCount"]);
     var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
-}
+
+    DateTime? startOrDate=Convert.ToDateTime( ViewData["startOrDate"]);
+    DateTime? endOrDate= Convert.ToDateTime(ViewData["endOrDate"]) ;
+    int orderTypes=Convert.ToInt32( ViewData["orderTypes"]);
+    int orderStatus= Convert.ToInt32(ViewData["orderStatus"]);
+    long orderNo = Convert.ToInt64(ViewData["orderNo"]);
+    long userNo = Convert.ToInt64(ViewData["userNo"]);
+        }
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">订单管理</a></li>
@@ -18,36 +25,36 @@
 </div>
 <div class="ManageRightContent">
     <div>
-        <form action="@Url.Action("OrderList","Manage")">
+        <form action="@Url.Action("OrderList","Manage")" method="post">
             <div class="row">
                 <div class="col-xs-1">
-                    <input type="text" class="form-control"  placeholder="订单号">
+                    <input type="text" class="form-control"  placeholder="订单号" name="orderNo" value="@(orderNo==0?"":orderNo.ToString())">
                 </div>
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="用户编号">
+                    <input type="text" class="form-control" placeholder="用户编号" name="userNo" value="@(userNo==0?"":userNo.ToString())">
                 </div>
                 <div class="col-xs-2">
                     <div id="startOrDate_datepicker" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="startOrDate" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", DateTime.Now)" readonly>
+                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}",startOrDate.Value!=DateTime.MinValue?startOrDate: DateTime.Now)" readonly>
                         @*<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>*@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
-                    @Html.Hidden("startOrDate", new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", DateTime.Now) } )
+                    @Html.Hidden("startOrDate", String.Format("{0:yyyy-MM-dd}", startOrDate.Value != DateTime.MinValue ? startOrDate : DateTime.Now))
                 </div>
                 <div class="col-xs-2">
                     <div id="endOrDate_datepicker" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="endOrDate" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", DateTime.Now)" readonly>
+                        <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", endOrDate.Value!=DateTime.MinValue ? endOrDate : DateTime.Now)" readonly>
                         @*<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>*@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
-                    @Html.Hidden("endOrDate", new { @class = "form-control", Value = String.Format("{0:yyyy-MM-dd}", DateTime.Now) })
+                    @Html.Hidden("endOrDate", String.Format("{0:yyyy-MM-dd}", endOrDate.Value != DateTime.MinValue ? endOrDate : DateTime.Now))
                 </div>
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="订单类型">
+                    @Html.DropDownList("orderTypes", new SelectList(TNet.Models.Order.OrderType.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control",Value=orderTypes })
                 </div>
                 <div class="col-xs-2">
-                    @Html.DropDownList("orderStatus", new SelectList(TNet.Models.Order.OrderStatus.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control" })
-                    @*<input type="text" class="form-control" placeholder="订单状态">*@
+                    @Html.DropDownList("orderStatus", new SelectList(TNet.Models.Order.OrderStatus.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control", Value = orderStatus })
+                 
                 </div>
                 <div class="col-xs-1">
                     <input type="submit" value="搜索" class="btn btn-primary"  placeholder=".col-xs-1" />

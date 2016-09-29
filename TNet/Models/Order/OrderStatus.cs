@@ -145,12 +145,19 @@ namespace TNet.Models.Order
 
         public static List<SelectItemViewModel<int>> GetSelectItems() {
             List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
+            list.Add(new SelectItemViewModel<int>() {
+                DisplayText = "所有订单状态",
+                DisplayValue=0
+            });
             foreach (var item in s)
             {
-                SelectItemViewModel<int> model = new SelectItemViewModel<int>();
-                model.DisplayValue = item.Key;
-                model.DisplayText = item.Value.text;
-                list.Add(model);
+                if (item.Key!=0) {
+                    SelectItemViewModel<int> model = new SelectItemViewModel<int>();
+                    model.DisplayValue = item.Key;
+                    model.DisplayText = item.Value.text;
+                    list.Add(model);
+                }
+               
             }
             return list;
         }

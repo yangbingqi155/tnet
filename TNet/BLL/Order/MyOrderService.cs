@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web;
 using TNet.EF;
@@ -20,10 +21,20 @@ namespace TNet.BLL
             return GetALL().Where(en => en.orderno == orderno).FirstOrDefault();
         }
 
-        public static List<MyOrder> GetOrderByFilter(DateTime startDate,DateTime endDate) {
-            return GetALL();
+        public static List<MyOrder> GetOrderByFilter(DateTime? startOrDate, DateTime? endOrDate, int orderTypes = 0, int orderStatus = 0, long orderNo = 0, long userNo = 0) {
+            TN db = new TN();
+            
+            return db.MyOrders.Where(en =>
+                (startOrDate.Value == null || SqlFunctions.DateDiff("dd",startOrDate.Value,en.cretime)>=0 )
+                && (endOrDate.Value == null || SqlFunctions.DateDiff("dd", endOrDate.Value, en.cretime) <= 0)
+                && (orderTypes == 0 || orderTypes == en.otype)
+                && (orderStatus == 0 || orderStatus == en.status)
+                || orderNo == en.orderno
+                && (userNo == 0 || userNo==en.iduser)
+            ).ToList();
         }
-
+        
+       
 
         public static MyOrder Edit(MyOrder order)
         {
