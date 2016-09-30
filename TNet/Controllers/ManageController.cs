@@ -190,6 +190,13 @@ namespace TNet.Controllers
                 return viewModel;
             }).ToList();
 
+            RouteData.Values.Add("startOrDate",startOrDate);
+            RouteData.Values.Add("endOrDate", endOrDate);
+            RouteData.Values.Add("orderTypes", orderTypes);
+            RouteData.Values.Add("orderStatus", orderStatus);
+            RouteData.Values.Add("orderNo", orderNo);
+            RouteData.Values.Add("userNo", userNo);
+            
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
 
