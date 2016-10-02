@@ -36,7 +36,7 @@
     /*****进度条******/
     var msgTimeTag = 0, cur_toast_id = "";
     function showLoading(msg) {
-        doShowMsg(msg, 'l', true);
+        doShowMsg(msg, 'l', false);
     }
     function showMsg(msg) {
         doShowMsg(msg, 'f', true);
@@ -70,11 +70,12 @@
             if (i == ix) {
                 if (i == 2) {
                     cur_toast_id = tids[i];
+                    tobj = null;
+                } else {
+                    tobj = tids[i];
                 }
-                tobj = tids[i];
                 $(tids[i]).show();
                 $(tids[i] + "_c").html(msg);
-
             } else {
                 $(tids[i]).hide();
             }
@@ -83,7 +84,7 @@
             clearMsgTime();
             msgTimeTag = window.setTimeout(function () {
                 hieLoading(tobj + "");
-            }, 1000 * 5);
+            }, 1000 * 3);
         }
     }
 
@@ -94,7 +95,7 @@
         if (tobj) {
             $(tobj).hide();
             if (tobj == cur_toast_id) {
-                cur_toast_id = "";
+                cur_toast_id = null;
             }
             showCount--;
             clearMsgTime();
@@ -139,17 +140,25 @@
     //ajax请求-跨域解决
     function _ajax_call(request) {
         request.url = rootUrl() + request.url;
-        request.headers = {
-            accept: "application/json"
-        };
-        request.contentType = "application/json";
+        var isJson = false;
+        if (request.headers == undefined) {
+            request.headers = {
+                accept: "application/json"
+            };
+        }
+        if (request.headers && request.headers.accept == "application/json") {
+            isJson = true;
+        }
+        if (request.contentType == undefined) {
+            request.contentType = "application/json";
+        }
         request.xhrFields = {
             withCredentials: true
         };
         request.crossDomain = true;
         request.cache = false;
         request.async = true;
-        if (!request.dataType) {
+        if (request.dataType == undefined) {
             request.dataType = "json";
         }
         request.timeout = 1000 * 60 * 3;
@@ -157,7 +166,12 @@
         request.success = function (data) {
             hieLoading();
             if (success) {
-                data = jsonDate(data);
+                try{
+                    data = jsonDate(data);
+                } catch (e) {
+
+                }
+                
                 success(data);
             }
         };

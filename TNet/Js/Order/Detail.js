@@ -38,7 +38,7 @@ function getData() {
                             $("#status").html(so.text);
                             $("#notes").val(o.notes);
                             $("#attmonth").html("送: " + o.attmonth + "  月");
-                            $("#amount").html("￥" + (o.price * o.count));
+                            $("#amount").html("￥" + o.totalfee);
                             $("#ops").html(getOps(so, o));
                             $("#merc_st_et").html(getTime(o.stime) + " 至 " + getTime(o.entime));
                             var phtml = "";

@@ -112,3 +112,13 @@ a.winxin_pay {
             text-align: center;
             cursor: pointer;
         }
+
+.totalfee {
+    color: #ff0000;
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+a.winxin_pay i.weui_icon_success_no_circle {
+    float: right;
+}

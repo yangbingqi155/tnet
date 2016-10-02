@@ -10,6 +10,7 @@ namespace TNet.EF
         public TN()
             : base("name=TN")
         {
+            
         }
 
         public virtual DbSet<Business> Businesses { get; set; }
@@ -20,12 +21,16 @@ namespace TNet.EF
         public virtual DbSet<Merc> Mercs { get; set; }
         public virtual DbSet<MercImage> MercImages { get; set; }
         public virtual DbSet<MercType> MercTypes { get; set; }
+        public virtual DbSet<Msg> Msgs { get; set; }
         public virtual DbSet<MyAddr> MyAddrs { get; set; }
         public virtual DbSet<MyOrder> MyOrders { get; set; }
         public virtual DbSet<MyOrderPress> MyOrderPresses { get; set; }
         public virtual DbSet<Setup> Setups { get; set; }
         public virtual DbSet<SetupAddr> SetupAddrs { get; set; }
         public virtual DbSet<Spec> Specs { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<TaskPress> TaskPresses { get; set; }
+        public virtual DbSet<TaskRecver> TaskRecvers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -83,15 +88,7 @@ namespace TNet.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<ManageUser>()
-                .Property(e => e.UserName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ManageUser>()
-                .Property(e => e.Password)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ManageUser>()
-                .Property(e => e.MD5Salt)
+                .Property(e => e.idweixin)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MenuItem>()
@@ -136,6 +133,26 @@ namespace TNet.EF
 
             modelBuilder.Entity<MercType>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Msg>()
+                .Property(e => e.idmsg)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Msg>()
+                .Property(e => e.idweixin)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Msg>()
+                .Property(e => e.iduser)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Msg>()
+                .Property(e => e.error)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Msg>()
+                .Property(e => e.orderno)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyAddr>()
@@ -188,6 +205,10 @@ namespace TNet.EF
 
             modelBuilder.Entity<MyOrder>()
                 .Property(e => e.phone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrder>()
+                .Property(e => e.payway)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyOrder>()
@@ -268,6 +289,70 @@ namespace TNet.EF
 
             modelBuilder.Entity<Spec>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.idtask)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.orderno)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.idsend)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.send)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskPress>()
+                .Property(e => e.idtask)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskPress>()
+                .Property(e => e.idpress)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskPress>()
+                .Property(e => e.orderno)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskPress>()
+                .Property(e => e.mcode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskPress>()
+                .Property(e => e.mname)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskPress>()
+                .Property(e => e.ptext)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskPress>()
+                .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskRecver>()
+                .Property(e => e.idrecver)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskRecver>()
+                .Property(e => e.idtask)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskRecver>()
+                .Property(e => e.orderno)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskRecver>()
+                .Property(e => e.mcode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaskRecver>()
+                .Property(e => e.mname)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()

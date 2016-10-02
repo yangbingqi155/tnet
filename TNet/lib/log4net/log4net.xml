@@ -342,7 +342,7 @@
             delegating actual logging to the subclasses specific 
             <see cref="M:Append(LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             This method cannot be overridden by derived classes. A
@@ -385,7 +385,7 @@
             delegating actual logging to the subclasses specific 
             <see cref="M:Append(LoggingEvent[])"/> method.
             </summary>
-            <param name="loggingEvents">The array of events to log.</param>
+            <param name="loggingEvents">The array of events to //Log.</param>
             <remarks>
             <para>
             This method cannot be overridden by derived classes. A
@@ -1264,7 +1264,7 @@
             Cleanup the existing command.
             </summary>
             <param name="ignoreException">
-            If true, a message will be written using LogLog.Warn if an exception is encountered when calling Dispose.
+            If true, a message will be written using Log//Log.Warn if an exception is encountered when calling Dispose.
             </param>
         </member>
         <member name="M:log4net.Appender.AdoNetAppender.DiposeConnection">
@@ -1879,7 +1879,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the event to the console.
@@ -2906,7 +2906,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(log4net.Core.LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the event to the console.
@@ -3161,7 +3161,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the event to the console.
@@ -3242,7 +3242,7 @@
             <summary>
             Writes the logging event to the <see cref="T:System.Diagnostics.Debug"/> system.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the logging event to the <see cref="T:System.Diagnostics.Debug"/> system.
@@ -3301,7 +3301,7 @@
         </member>
         <member name="T:log4net.Appender.EventLogAppender">
             <summary>
-            Writes events to the system event log.
+            Writes events to the system event //Log.
             </summary>
             <remarks>
             <para>
@@ -3456,7 +3456,7 @@
         </member>
         <member name="F:log4net.Appender.EventLogAppender.m_machineName">
             <summary>
-            The name of the machine which holds the event log. This is
+            The name of the machine which holds the event //Log. This is
             currently only allowed to be '.' i.e. the current machine.
             </summary>
         </member>
@@ -3529,7 +3529,7 @@
             eventually corrupt the log (based on testing).
             
             The maxEventMsgSize size is based on the max buffer size of the lpStrings parameter of the ReportEvent API.
-            The documented max size for EventLog.WriteEntry for Windows Vista and higher is 31839, but I'm leaving room for a
+            The documented max size for Event//Log.WriteEntry for Windows Vista and higher is 31839, but I'm leaving room for a
             terminator of #0#0, as we cannot see the source of ReportEvent (though we could use an API monitor to examine the
             buffer, given enough time).
             </remarks>
@@ -3568,7 +3568,7 @@
             <para>This should not be used to distinguish your event log messages
             from those of other applications, the <see cref="P:log4net.Appender.EventLogAppender.ApplicationName"/>
             property should be used to distinguish events. This property should be 
-            used to group together events into a single log.
+            used to group together events into a single //Log.
             </para>
             </remarks>
         </member>
@@ -3601,14 +3601,14 @@
         </member>
         <member name="P:log4net.Appender.EventLogAppender.SecurityContext">
             <summary>
-            Gets or sets the <see cref="P:log4net.Appender.EventLogAppender.SecurityContext"/> used to write to the EventLog.
+            Gets or sets the <see cref="P:log4net.Appender.EventLogAppender.SecurityContext"/> used to write to the Event//Log.
             </summary>
             <value>
-            The <see cref="P:log4net.Appender.EventLogAppender.SecurityContext"/> used to write to the EventLog.
+            The <see cref="P:log4net.Appender.EventLogAppender.SecurityContext"/> used to write to the Event//Log.
             </value>
             <remarks>
             <para>
-            The system security context used to write to the EventLog.
+            The system security context used to write to the Event//Log.
             </para>
             <para>
             Unless a <see cref="P:log4net.Appender.EventLogAppender.SecurityContext"/> specified here for this appender
@@ -3802,7 +3802,7 @@
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/>
             method. 
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes a log statement to the output stream if the output stream exists 
@@ -3818,7 +3818,7 @@
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent[])"/>
             method. 
             </summary>
-            <param name="loggingEvents">The array of events to log.</param>
+            <param name="loggingEvents">The array of events to //Log.</param>
             <remarks>
             <para>
             This method writes all the bulk logged events to the output writer
@@ -4090,7 +4090,7 @@
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/>
             method. 
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes a log statement to the output stream if the output stream exists 
@@ -4106,7 +4106,7 @@
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent[])"/>
             method. 
             </summary>
-            <param name="loggingEvents">The array of events to log.</param>
+            <param name="loggingEvents">The array of events to //Log.</param>
             <remarks>
             <para>
             Acquires the output file locks once before writing all the events to
@@ -4744,7 +4744,7 @@
             <summary>
             Forward the logging event to the attached appenders 
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Delivers the logging event to all the attached appenders.
@@ -4755,7 +4755,7 @@
             <summary>
             Forward the logging events to the attached appenders 
             </summary>
-            <param name="loggingEvents">The array of events to log.</param>
+            <param name="loggingEvents">The array of events to //Log.</param>
             <remarks>
             <para>
             Delivers the logging events to all the attached appenders.
@@ -4918,7 +4918,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the event to a remote syslog daemon.
@@ -5346,7 +5346,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(log4net.Core.LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the event to the console.
@@ -5697,7 +5697,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Sends the event using a network message.
@@ -6042,7 +6042,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Sends the event using an UDP datagram.
@@ -6306,7 +6306,7 @@
             <summary>
             This method is called by the <see cref="M:AppenderSkeleton.DoAppend(LoggingEvent)"/> method.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the event to a remote syslog daemon.
@@ -6784,7 +6784,7 @@
             <summary>
             Delivers logging events to the remote sink
             </summary>
-            <param name="events">Array of events to log.</param>
+            <param name="events">Array of events to //Log.</param>
             <remarks>
             <para>
             Delivers logging events to the remote sink
@@ -7434,11 +7434,11 @@
             </para>
             <para>
             By default newer files have lower numbers (<see cref="P:log4net.Appender.RollingFileAppender.CountDirection"/> &lt; 0),
-            i.e. log.1 is most recent, log.5 is the 5th backup, etc...
+            i.e. //Log.1 is most recent, //Log.5 is the 5th backup, etc...
             </para>
             <para>
             <see cref="P:log4net.Appender.RollingFileAppender.CountDirection"/> &gt;= 0 does the opposite i.e.
-            log.1 is the first backup made, log.5 is the 5th backup made, etc.
+            //Log.1 is the first backup made, //Log.5 is the 5th backup made, etc.
             For infinite backups use <see cref="P:log4net.Appender.RollingFileAppender.CountDirection"/> &gt;= 0 to reduce 
             rollover costs.
             </para>
@@ -7471,7 +7471,7 @@
             </value>
             <remarks>
             <para>
-            By default file.log is rolled to file.log.yyyy-MM-dd or file.log.curSizeRollBackup.
+            By default file.log is rolled to file.//Log.yyyy-MM-dd or file.//Log.curSizeRollBackup.
             However, under Windows the new file name will loose any program associations as the
             extension is changed. Optionally file.log can be renamed to file.yyyy-MM-dd.log or
             file.curSizeRollBackup.log to maintain any program associations.
@@ -7489,9 +7489,9 @@
             <remarks>
             <para>
             By default file.log is always the current file.  Optionally
-            file.log.yyyy-mm-dd for current formatted datePattern can by the currently
-            logging file (or file.log.curSizeRollBackup or even
-            file.log.yyyy-mm-dd.curSizeRollBackup).
+            file.//Log.yyyy-mm-dd for current formatted datePattern can by the currently
+            logging file (or file.//Log.curSizeRollBackup or even
+            file.//Log.yyyy-mm-dd.curSizeRollBackup).
             </para>
             <para>
             This will make time based rollovers with a large number of backups 
@@ -8189,7 +8189,7 @@
             <summary>
             Writes the logging event to each connected client.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the logging event to each connected client.
@@ -8403,7 +8403,7 @@
             <summary>
             Writes the logging event to the <see cref="T:System.Diagnostics.Trace"/> system.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Writes the logging event to the <see cref="T:System.Diagnostics.Trace"/> system.
@@ -8975,7 +8975,7 @@
             <code lang="XML" escaped="true">
             <configuration>
             	<appSettings>
-            		<add key="log4net-config-file" value="log.config"/>
+            		<add key="log4net-config-file" value="//Log.config"/>
             	</appSettings>
             </configuration>
             </code>
@@ -9040,7 +9040,7 @@
             <code lang="XML" escaped="true">
             <configuration>
             	<appSettings>
-            		<add key="log4net-config-file" value="log.config"/>
+            		<add key="log4net-config-file" value="//Log.config"/>
             	</appSettings>
             </configuration>
             </code>
@@ -9676,7 +9676,7 @@
             <code lang="XML" escaped="true">
             <configuration>
             	<appSettings>
-            		<add key="log4net-config-file" value="log.config"/>
+            		<add key="log4net-config-file" value="//Log.config"/>
             	</appSettings>
             </configuration>
             </code>
@@ -9762,7 +9762,7 @@
             <code lang="XML" escaped="true">
             <configuration>
             	<appSettings>
-            		<add key="log4net-config-file" value="log.config"/>
+            		<add key="log4net-config-file" value="//Log.config"/>
             	</appSettings>
             </configuration>
             </code>
@@ -10818,7 +10818,7 @@
             <param name="callerStackBoundaryDeclaringType">The declaring type of the method that is
             the stack boundary into the logging system for this call.</param>
             <param name="level">The level of the message to be logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">the exception to log, including its stack trace. Pass <c>null</c> to not log an exception.</param>
             <remarks>
             <para>
@@ -10991,7 +10991,7 @@
             </para>
             <para>
             Each level has a <see cref="P:log4net.Core.Level.DisplayName"/> in addition to its <see cref="P:log4net.Core.Level.Name"/>. The 
-            <see cref="P:log4net.Core.Level.DisplayName"/> is the string that is written into the output log. By default
+            <see cref="P:log4net.Core.Level.DisplayName"/> is the string that is written into the output //Log. By default
             the display name is the same as the level name, but this can be used to alias levels
             or to localize the log output.
             </para>
@@ -13692,12 +13692,12 @@
             <code lang="C#">
             ILog log = LogManager.GetLogger("application-log");
             
-            log.Info("Application Start");
-            log.Debug("This is a debug message");
+            //Log.Info("Application Start");
+            //Log.Debug("This is a debug message");
             
-            if (log.IsDebugEnabled)
+            if (//Log.IsDebugEnabled)
             {
-            	log.Debug("This is another debug message");
+            	//Log.Debug("This is another debug message");
             }
             </code>
             </example>
@@ -13706,12 +13706,12 @@
             <author>Nicko Cadell</author>
             <author>Gert Driesen</author>
         </member>
-        <member name="M:log4net.ILog.Debug(System.Object)">
+        <member name="M:log4net.I//Log.Debug(System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level.</overloads>
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>DEBUG</c>
@@ -13731,15 +13731,15 @@
             </para>
             </remarks>
             <seealso cref="M:Debug(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Debug(System.Object,System.Exception)">
+        <member name="M:log4net.I//Log.Debug(System.Object,System.Exception)">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level including
             the stack trace of the <see cref="T:System.Exception"/> passed
             as a parameter.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -13747,9 +13747,9 @@
             </para>
             </remarks>
             <seealso cref="M:Debug(object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="M:log4net.ILog.DebugFormat(System.String,System.Object[])">
+        <member name="M:log4net.I//Log.DebugFormat(System.String,System.Object[])">
             <overloads>Log a formatted string with the <see cref="F:log4net.Core.Level.Debug"/> level.</overloads>
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Debug"/> level.
@@ -13769,9 +13769,9 @@
             </para>
             </remarks>
             <seealso cref="M:Debug(object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="M:log4net.ILog.DebugFormat(System.String,System.Object)">
+        <member name="M:log4net.I//Log.DebugFormat(System.String,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
@@ -13790,9 +13790,9 @@
             </para>
             </remarks>
             <seealso cref="M:Debug(object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="M:log4net.ILog.DebugFormat(System.String,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.DebugFormat(System.String,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
@@ -13812,9 +13812,9 @@
             </para>
             </remarks>
             <seealso cref="M:Debug(object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="M:log4net.ILog.DebugFormat(System.String,System.Object,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.DebugFormat(System.String,System.Object,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
@@ -13835,9 +13835,9 @@
             </para>
             </remarks>
             <seealso cref="M:Debug(object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="M:log4net.ILog.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+        <member name="M:log4net.I//Log.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
@@ -13857,9 +13857,9 @@
             </para>
             </remarks>
             <seealso cref="M:Debug(object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Info(System.Object)">
+        <member name="M:log4net.I//Log.Info(System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Info"/> level.</overloads>
             <summary>
             Logs a message object with the <see cref="F:log4net.Core.Level.Info"/> level.
@@ -13882,17 +13882,17 @@
             <see cref="M:Info(object,Exception)"/> form instead.
             </para>
             </remarks>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <seealso cref="M:Info(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Info(System.Object,System.Exception)">
+        <member name="M:log4net.I//Log.Info(System.Object,System.Exception)">
             <summary>
             Logs a message object with the <c>INFO</c> level including
             the stack trace of the <see cref="T:System.Exception"/> passed
             as a parameter.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -13900,9 +13900,9 @@
             </para>
             </remarks>
             <seealso cref="M:Info(object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
-        <member name="M:log4net.ILog.InfoFormat(System.String,System.Object[])">
+        <member name="M:log4net.I//Log.InfoFormat(System.String,System.Object[])">
             <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Info"/> level.</overloads>
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Info"/> level.
@@ -13922,9 +13922,9 @@
             </para>
             </remarks>
             <seealso cref="M:Info(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
-        <member name="M:log4net.ILog.InfoFormat(System.String,System.Object)">
+        <member name="M:log4net.I//Log.InfoFormat(System.String,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Info"/> level.
             </summary>
@@ -13943,9 +13943,9 @@
             </para>
             </remarks>
             <seealso cref="M:Info(object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
-        <member name="M:log4net.ILog.InfoFormat(System.String,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.InfoFormat(System.String,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Info"/> level.
             </summary>
@@ -13965,9 +13965,9 @@
             </para>
             </remarks>
             <seealso cref="M:Info(object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
-        <member name="M:log4net.ILog.InfoFormat(System.String,System.Object,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.InfoFormat(System.String,System.Object,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Info"/> level.
             </summary>
@@ -13988,9 +13988,9 @@
             </para>
             </remarks>
             <seealso cref="M:Info(object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
-        <member name="M:log4net.ILog.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+        <member name="M:log4net.I//Log.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Info"/> level.
             </summary>
@@ -14010,9 +14010,9 @@
             </para>
             </remarks>
             <seealso cref="M:Info(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Warn(System.Object)">
+        <member name="M:log4net.I//Log.Warn(System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level.</overloads>
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level.
@@ -14035,17 +14035,17 @@
             <see cref="M:Warn(object,Exception)"/> form instead.
             </para>
             </remarks>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <seealso cref="M:Warn(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Warn(System.Object,System.Exception)">
+        <member name="M:log4net.I//Log.Warn(System.Object,System.Exception)">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level including
             the stack trace of the <see cref="T:System.Exception"/> passed
             as a parameter.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -14053,9 +14053,9 @@
             </para>
             </remarks>
             <seealso cref="M:Warn(object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
-        <member name="M:log4net.ILog.WarnFormat(System.String,System.Object[])">
+        <member name="M:log4net.I//Log.WarnFormat(System.String,System.Object[])">
             <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Warn"/> level.</overloads>
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Warn"/> level.
@@ -14075,9 +14075,9 @@
             </para>
             </remarks>
             <seealso cref="M:Warn(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
-        <member name="M:log4net.ILog.WarnFormat(System.String,System.Object)">
+        <member name="M:log4net.I//Log.WarnFormat(System.String,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Warn"/> level.
             </summary>
@@ -14096,9 +14096,9 @@
             </para>
             </remarks>
             <seealso cref="M:Warn(object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
-        <member name="M:log4net.ILog.WarnFormat(System.String,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.WarnFormat(System.String,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Warn"/> level.
             </summary>
@@ -14118,9 +14118,9 @@
             </para>
             </remarks>
             <seealso cref="M:Warn(object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
-        <member name="M:log4net.ILog.WarnFormat(System.String,System.Object,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.WarnFormat(System.String,System.Object,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Warn"/> level.
             </summary>
@@ -14141,9 +14141,9 @@
             </para>
             </remarks>
             <seealso cref="M:Warn(object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
-        <member name="M:log4net.ILog.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+        <member name="M:log4net.I//Log.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Warn"/> level.
             </summary>
@@ -14163,14 +14163,14 @@
             </para>
             </remarks>
             <seealso cref="M:Warn(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Error(System.Object)">
+        <member name="M:log4net.I//Log.Error(System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Error"/> level.</overloads>
             <summary>
             Logs a message object with the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>ERROR</c>
@@ -14190,15 +14190,15 @@
             </para>
             </remarks>
             <seealso cref="M:Error(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Error(System.Object,System.Exception)">
+        <member name="M:log4net.I//Log.Error(System.Object,System.Exception)">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Error"/> level including
             the stack trace of the <see cref="T:System.Exception"/> passed
             as a parameter.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -14206,9 +14206,9 @@
             </para>
             </remarks>
             <seealso cref="M:Error(object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
-        <member name="M:log4net.ILog.ErrorFormat(System.String,System.Object[])">
+        <member name="M:log4net.I//Log.ErrorFormat(System.String,System.Object[])">
             <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Error"/> level.</overloads>
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Error"/> level.
@@ -14228,9 +14228,9 @@
             </para>
             </remarks>
             <seealso cref="M:Error(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
-        <member name="M:log4net.ILog.ErrorFormat(System.String,System.Object)">
+        <member name="M:log4net.I//Log.ErrorFormat(System.String,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
@@ -14249,9 +14249,9 @@
             </para>
             </remarks>
             <seealso cref="M:Error(object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
-        <member name="M:log4net.ILog.ErrorFormat(System.String,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.ErrorFormat(System.String,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
@@ -14271,9 +14271,9 @@
             </para>
             </remarks>
             <seealso cref="M:Error(object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
-        <member name="M:log4net.ILog.ErrorFormat(System.String,System.Object,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.ErrorFormat(System.String,System.Object,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
@@ -14294,9 +14294,9 @@
             </para>
             </remarks>
             <seealso cref="M:Error(object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
-        <member name="M:log4net.ILog.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+        <member name="M:log4net.I//Log.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
@@ -14316,9 +14316,9 @@
             </para>
             </remarks>
             <seealso cref="M:Error(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Fatal(System.Object)">
+        <member name="M:log4net.I//Log.Fatal(System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level.</overloads>
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level.
@@ -14341,17 +14341,17 @@
             <see cref="M:Fatal(object,Exception)"/> form instead.
             </para>
             </remarks>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <seealso cref="M:Fatal(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
-        <member name="M:log4net.ILog.Fatal(System.Object,System.Exception)">
+        <member name="M:log4net.I//Log.Fatal(System.Object,System.Exception)">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level including
             the stack trace of the <see cref="T:System.Exception"/> passed
             as a parameter.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -14359,9 +14359,9 @@
             </para>
             </remarks>
             <seealso cref="M:Fatal(object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
-        <member name="M:log4net.ILog.FatalFormat(System.String,System.Object[])">
+        <member name="M:log4net.I//Log.FatalFormat(System.String,System.Object[])">
             <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Fatal"/> level.</overloads>
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Fatal"/> level.
@@ -14381,9 +14381,9 @@
             </para>
             </remarks>
             <seealso cref="M:Fatal(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
-        <member name="M:log4net.ILog.FatalFormat(System.String,System.Object)">
+        <member name="M:log4net.I//Log.FatalFormat(System.String,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Fatal"/> level.
             </summary>
@@ -14402,9 +14402,9 @@
             </para>
             </remarks>
             <seealso cref="M:Fatal(object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
-        <member name="M:log4net.ILog.FatalFormat(System.String,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.FatalFormat(System.String,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Fatal"/> level.
             </summary>
@@ -14424,9 +14424,9 @@
             </para>
             </remarks>
             <seealso cref="M:Fatal(object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
-        <member name="M:log4net.ILog.FatalFormat(System.String,System.Object,System.Object,System.Object)">
+        <member name="M:log4net.I//Log.FatalFormat(System.String,System.Object,System.Object,System.Object)">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Fatal"/> level.
             </summary>
@@ -14447,9 +14447,9 @@
             </para>
             </remarks>
             <seealso cref="M:Fatal(object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
-        <member name="M:log4net.ILog.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+        <member name="M:log4net.I//Log.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
             <summary>
             Logs a formatted message string with the <see cref="F:log4net.Core.Level.Fatal"/> level.
             </summary>
@@ -14469,9 +14469,9 @@
             </para>
             </remarks>
             <seealso cref="M:Fatal(object,Exception)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
-        <member name="P:log4net.ILog.IsDebugEnabled">
+        <member name="P:log4net.I//Log.IsDebugEnabled">
             <summary>
             Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
@@ -14485,7 +14485,7 @@
             </para>
             <para> For some ILog interface <c>log</c>, when you write:</para>
             <code lang="C#">
-            log.Debug("This is entry number: " + i );
+            //Log.Debug("This is entry number: " + i );
             </code>
             <para>
             You incur the cost constructing the message, string construction and concatenation in
@@ -14495,9 +14495,9 @@
             If you are worried about speed (who isn't), then you should write:
             </para>
             <code lang="C#">
-            if (log.IsDebugEnabled)
+            if (//Log.IsDebugEnabled)
             { 
-                log.Debug("This is entry number: " + i );
+                //Log.Debug("This is entry number: " + i );
             }
             </code>
             <para>
@@ -14505,16 +14505,16 @@
             construction if debugging is disabled for <c>log</c>. On
             the other hand, if the <c>log</c> is debug enabled, you
             will incur the cost of evaluating whether the logger is debug
-            enabled twice. Once in <see cref="P:log4net.ILog.IsDebugEnabled"/> and once in
+            enabled twice. Once in <see cref="P:log4net.I//Log.IsDebugEnabled"/> and once in
             the <see cref="M:Debug(object)"/>.  This is an insignificant overhead
             since evaluating a logger takes about 1% of the time it
-            takes to actually log. This is the preferred style of logging.
+            takes to actually //Log. This is the preferred style of logging.
             </para>
             <para>Alternatively if your logger is available statically then the is debug
             enabled state can be stored in a static variable like this:
             </para>
             <code lang="C#">
-            private static readonly bool isDebugEnabled = log.IsDebugEnabled;
+            private static readonly bool isDebugEnabled = //Log.IsDebugEnabled;
             </code>
             <para>
             Then when you come to log you can write:
@@ -14522,7 +14522,7 @@
             <code lang="C#">
             if (isDebugEnabled)
             { 
-                log.Debug("This is entry number: " + i );
+                //Log.Debug("This is entry number: " + i );
             }
             </code>
             <para>
@@ -14542,7 +14542,7 @@
             <seealso cref="M:Debug(object)"/>
             <seealso cref="M:DebugFormat(IFormatProvider, string, object[])"/>
         </member>
-        <member name="P:log4net.ILog.IsInfoEnabled">
+        <member name="P:log4net.I//Log.IsInfoEnabled">
             <summary>
             Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Info"/> level.
             </summary>
@@ -14550,13 +14550,13 @@
             <c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Info"/> events, <c>false</c> otherwise.
             </value>
             <remarks>
-            For more information see <see cref="P:log4net.ILog.IsDebugEnabled"/>.
+            For more information see <see cref="P:log4net.I//Log.IsDebugEnabled"/>.
             </remarks>
             <seealso cref="M:Info(object)"/>
             <seealso cref="M:InfoFormat(IFormatProvider, string, object[])"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="P:log4net.ILog.IsWarnEnabled">
+        <member name="P:log4net.I//Log.IsWarnEnabled">
             <summary>
             Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Warn"/> level.
             </summary>
@@ -14564,13 +14564,13 @@
             <c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Warn"/> events, <c>false</c> otherwise.
             </value>
             <remarks>
-            For more information see <see cref="P:log4net.ILog.IsDebugEnabled"/>.
+            For more information see <see cref="P:log4net.I//Log.IsDebugEnabled"/>.
             </remarks>
             <seealso cref="M:Warn(object)"/>
             <seealso cref="M:WarnFormat(IFormatProvider, string, object[])"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="P:log4net.ILog.IsErrorEnabled">
+        <member name="P:log4net.I//Log.IsErrorEnabled">
             <summary>
             Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
@@ -14578,13 +14578,13 @@
             <c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Error"/> events, <c>false</c> otherwise.
             </value>
             <remarks>
-            For more information see <see cref="P:log4net.ILog.IsDebugEnabled"/>.
+            For more information see <see cref="P:log4net.I//Log.IsDebugEnabled"/>.
             </remarks>
             <seealso cref="M:Error(object)"/>
             <seealso cref="M:ErrorFormat(IFormatProvider, string, object[])"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
-        <member name="P:log4net.ILog.IsFatalEnabled">
+        <member name="P:log4net.I//Log.IsFatalEnabled">
             <summary>
             Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Fatal"/> level.
             </summary>
@@ -14592,11 +14592,11 @@
             <c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Fatal"/> events, <c>false</c> otherwise.
             </value>
             <remarks>
-            For more information see <see cref="P:log4net.ILog.IsDebugEnabled"/>.
+            For more information see <see cref="P:log4net.I//Log.IsDebugEnabled"/>.
             </remarks>
             <seealso cref="M:Fatal(object)"/>
             <seealso cref="M:FatalFormat(IFormatProvider, string, object[])"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Core.LogImpl.#ctor(log4net.Core.ILogger)">
             <summary>
@@ -14624,7 +14624,7 @@
             <summary>
             Logs a message object with the <c>DEBUG</c> level.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>DEBUG</c>
@@ -14649,7 +14649,7 @@
             <summary>
             Logs a message object with the <c>DEBUG</c> level
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -14786,7 +14786,7 @@
             <summary>
             Logs a message object with the <c>INFO</c> level.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>INFO</c>
@@ -14811,7 +14811,7 @@
             <summary>
             Logs a message object with the <c>INFO</c> level.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -14973,7 +14973,7 @@
             <summary>
             Logs a message object with the <c>WARN</c> level
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -15110,7 +15110,7 @@
             <summary>
             Logs a message object with the <c>ERROR</c> level.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>ERROR</c>
@@ -15135,7 +15135,7 @@
             <summary>
             Logs a message object with the <c>ERROR</c> level
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -15272,7 +15272,7 @@
             <summary>
             Logs a message object with the <c>FATAL</c> level.
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>FATAL</c>
@@ -15297,7 +15297,7 @@
             <summary>
             Logs a message object with the <c>FATAL</c> level
             </summary>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -15460,7 +15460,7 @@
             For some <c>log</c> Logger object, when you write:
             </para>
             <code lang="C#">
-            log.Debug("This is entry number: " + i );
+            //Log.Debug("This is entry number: " + i );
             </code>
             <para>
             You incur the cost constructing the message, concatenation in
@@ -15470,9 +15470,9 @@
             If you are worried about speed, then you should write:
             </para>
             <code lang="C#">
-            if (log.IsDebugEnabled())
+            if (//Log.IsDebugEnabled())
             { 
-             log.Debug("This is entry number: " + i );
+             //Log.Debug("This is entry number: " + i );
             }
             </code>
             <para>
@@ -15483,7 +15483,7 @@
             enabled twice. Once in <c>IsDebugEnabled</c> and once in
             the <c>Debug</c>.  This is an insignificant overhead
             since evaluating a logger takes about 1% of the time it
-            takes to actually log.
+            takes to actually //Log.
             </para>
             </remarks>
         </member>
@@ -15517,7 +15517,7 @@
             of using this method.
             </para>
             </remarks>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="P:log4net.Core.LogImpl.IsErrorEnabled">
             <summary>
@@ -15532,7 +15532,7 @@
             See <see cref="P:log4net.Core.LogImpl.IsDebugEnabled"/> for more information and examples of using this method.
             </para>
             </remarks>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="P:log4net.Core.LogImpl.IsFatalEnabled">
             <summary>
@@ -15547,7 +15547,7 @@
             See <see cref="P:log4net.Core.LogImpl.IsDebugEnabled"/> for more information and examples of using this method.
             </para>
             </remarks>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="T:log4net.Core.MethodItem">
             <summary>
@@ -18236,8 +18236,8 @@
             </para>
             <code lang="C#">
             ILog log = LogManager.GetLogger(typeof(TestApp));
-            log.Debug("Message 1");
-            log.Warn("Message 2");   
+            //Log.Debug("Message 1");
+            //Log.Warn("Message 2");   
             </code>
             <para>would yield the output</para>
             <code>
@@ -21189,7 +21189,7 @@
             <summary>
             Logs the events to the repository.
             </summary>
-            <param name="events">The events to log.</param>
+            <param name="events">The events to //Log.</param>
             <remarks>
             <para>
             The events passed are logged to the <see cref="T:log4net.Repository.ILoggerRepository"/>
@@ -21440,7 +21440,7 @@
             <param name="callerStackBoundaryDeclaringType">The declaring type of the method that is
             the stack boundary into the logging system for this call.</param>
             <param name="level">The level of the message to be logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -21488,7 +21488,7 @@
             <summary>
             Deliver the <see cref="T:log4net.Core.LoggingEvent"/> to the attached appenders.
             </summary>
-            <param name="loggingEvent">The event to log.</param>
+            <param name="loggingEvent">The event to //Log.</param>
             <remarks>
             <para>
             Call the appenders in the hierarchy starting at
@@ -21517,7 +21517,7 @@
             This is the most generic printing method. This generic form is intended to be used by wrappers
             </summary>
             <param name="level">The level of the message to be logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -21533,7 +21533,7 @@
             <param name="callerStackBoundaryDeclaringType">The declaring type of the method that is
             the stack boundary into the logging system for this call.</param>
             <param name="level">The level of the message to be logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
@@ -21955,7 +21955,7 @@
             <param name="logEvent">the event to log</param>
             <remarks>
             <para>
-            This method should not normally be used to log.
+            This method should not normally be used to //Log.
             The <see cref="T:log4net.ILog"/> interface should be used 
             for routine logging. This interface can be obtained
             using the <see cref="M:log4net.LogManager.GetLogger(string)"/> method.
@@ -22220,7 +22220,7 @@
             <param name="logEvent">the event to log</param>
             <remarks>
             <para>
-            This method should not normally be used to log.
+            This method should not normally be used to //Log.
             The <see cref="T:log4net.ILog"/> interface should be used 
             for routine logging. This interface can be obtained
             using the <see cref="M:log4net.LogManager.GetLogger(string)"/> method.
@@ -22664,7 +22664,7 @@
             <param name="logEvent">the event to log</param>
             <remarks>
             <para>
-            This method should not normally be used to log.
+            This method should not normally be used to //Log.
             The <see cref="T:log4net.ILog"/> interface should be used 
             for routine logging. This interface can be obtained
             using the <see cref="M:log4net.LogManager.GetLogger(string)"/> method.
@@ -22874,7 +22874,7 @@
             </para>
             <para>
             Otherwise, we set log's parent field to c's parent and set
-            c's parent field to log.
+            c's parent field to //Log.
             </para>
             </remarks>
         </member>
@@ -25936,8 +25936,8 @@
             
             ILog log = LogManager.GetLogger("application-log");
             
-            log.InfoExt("Application Start");
-            log.DebugExt("This is a debug message");
+            //Log.InfoExt("Application Start");
+            //Log.DebugExt("This is a debug message");
             </code>
             </example>
         </member>
@@ -25951,11 +25951,11 @@
             Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>INFO</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsDebugEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsDebugEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation.  If this logger is <c>INFO</c> enabled, then it converts 
             the message object (retrieved by invocation of the provided callback) to a 
@@ -25970,8 +25970,8 @@
             <see cref="M:log4net.Util.ILogExtensions.DebugExt(log4net.ILog,System.Func{System.Object},System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugExt(log4net.ILog,System.Func{System.Object},System.Exception)">
             <summary>
@@ -25980,15 +25980,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.DebugExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugExt(log4net.ILog,System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level.</overloads> //TODO
@@ -25996,11 +25996,11 @@
             Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>INFO</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsDebugEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsDebugEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation. If this logger is <c>INFO</c> enabled, then it converts 
             the message object (passed as parameter) to a string by invoking the appropriate
@@ -26015,8 +26015,8 @@
             <see cref="M:log4net.Util.ILogExtensions.DebugExt(log4net.ILog,System.Object,System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugExt(log4net.ILog,System.Object,System.Exception)">
             <summary>
@@ -26025,15 +26025,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.DebugExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugFormatExt(log4net.ILog,System.String,System.Object)">
             <summary>
@@ -26054,8 +26054,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugFormatExt(log4net.ILog,System.String,System.Object[])">
             <summary>
@@ -26076,8 +26076,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugFormatExt(log4net.ILog,System.IFormatProvider,System.String,System.Object[])">
             <summary>
@@ -26099,8 +26099,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugFormatExt(log4net.ILog,System.String,System.Object,System.Object)">
             <summary>
@@ -26122,8 +26122,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.DebugFormatExt(log4net.ILog,System.String,System.Object,System.Object,System.Object)">
             <summary>
@@ -26146,19 +26146,19 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
+            <seealso cref="M:log4net.I//Log.Debug(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsDebugEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Func{System.Object})">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Info"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>INFO</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsInfoEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsInfoEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation.  If this logger is <c>INFO</c> enabled, then it converts 
             the message object (retrieved by invocation of the provided callback) to a 
@@ -26173,8 +26173,8 @@
             <see cref="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Func{System.Object},System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Func{System.Object},System.Exception)">
             <summary>
@@ -26183,15 +26183,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Info"/> level.</overloads> //TODO
@@ -26199,11 +26199,11 @@
             Log a message object with the <see cref="F:log4net.Core.Level.Info"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>INFO</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsInfoEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsInfoEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation. If this logger is <c>INFO</c> enabled, then it converts 
             the message object (passed as parameter) to a string by invoking the appropriate
@@ -26218,8 +26218,8 @@
             <see cref="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Object,System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Object,System.Exception)">
             <summary>
@@ -26228,15 +26228,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.InfoExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoFormatExt(log4net.ILog,System.String,System.Object)">
             <summary>
@@ -26257,8 +26257,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoFormatExt(log4net.ILog,System.String,System.Object[])">
             <summary>
@@ -26279,8 +26279,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoFormatExt(log4net.ILog,System.IFormatProvider,System.String,System.Object[])">
             <summary>
@@ -26302,8 +26302,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoFormatExt(log4net.ILog,System.String,System.Object,System.Object)">
             <summary>
@@ -26325,8 +26325,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.InfoFormatExt(log4net.ILog,System.String,System.Object,System.Object,System.Object)">
             <summary>
@@ -26349,19 +26349,19 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Info(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
+            <seealso cref="M:log4net.I//Log.Info(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsInfoEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Func{System.Object})">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>WARN</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsWarnEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsWarnEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation.  If this logger is <c>WARN</c> enabled, then it converts 
             the message object (retrieved by invocation of the provided callback) to a 
@@ -26376,8 +26376,8 @@
             <see cref="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Func{System.Object},System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Func{System.Object},System.Exception)">
             <summary>
@@ -26386,15 +26386,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level.</overloads> //TODO
@@ -26402,11 +26402,11 @@
             Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>WARN</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsWarnEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsWarnEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation. If this logger is <c>WARN</c> enabled, then it converts 
             the message object (passed as parameter) to a string by invoking the appropriate
@@ -26421,8 +26421,8 @@
             <see cref="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Object,System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Object,System.Exception)">
             <summary>
@@ -26431,15 +26431,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.WarnExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnFormatExt(log4net.ILog,System.String,System.Object)">
             <summary>
@@ -26460,8 +26460,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnFormatExt(log4net.ILog,System.String,System.Object[])">
             <summary>
@@ -26482,8 +26482,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnFormatExt(log4net.ILog,System.IFormatProvider,System.String,System.Object[])">
             <summary>
@@ -26505,8 +26505,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnFormatExt(log4net.ILog,System.String,System.Object,System.Object)">
             <summary>
@@ -26528,8 +26528,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.WarnFormatExt(log4net.ILog,System.String,System.Object,System.Object,System.Object)">
             <summary>
@@ -26552,19 +26552,19 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
+            <seealso cref="M:log4net.I//Log.Warn(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsWarnEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Func{System.Object})">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>ERROR</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsErrorEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsErrorEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation.  If this logger is <c>ERROR</c> enabled, then it converts 
             the message object (retrieved by invocation of the provided callback) to a 
@@ -26579,8 +26579,8 @@
             <see cref="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Func{System.Object},System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Func{System.Object},System.Exception)">
             <summary>
@@ -26589,15 +26589,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Error"/> level.</overloads> //TODO
@@ -26605,11 +26605,11 @@
             Log a message object with the <see cref="F:log4net.Core.Level.Error"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>ERROR</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsErrorEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsErrorEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation. If this logger is <c>ERROR</c> enabled, then it converts 
             the message object (passed as parameter) to a string by invoking the appropriate
@@ -26624,8 +26624,8 @@
             <see cref="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Object,System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Object,System.Exception)">
             <summary>
@@ -26634,15 +26634,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.ErrorExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorFormatExt(log4net.ILog,System.String,System.Object)">
             <summary>
@@ -26663,8 +26663,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorFormatExt(log4net.ILog,System.String,System.Object[])">
             <summary>
@@ -26685,8 +26685,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorFormatExt(log4net.ILog,System.IFormatProvider,System.String,System.Object[])">
             <summary>
@@ -26708,8 +26708,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorFormatExt(log4net.ILog,System.String,System.Object,System.Object)">
             <summary>
@@ -26731,8 +26731,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.ErrorFormatExt(log4net.ILog,System.String,System.Object,System.Object,System.Object)">
             <summary>
@@ -26755,19 +26755,19 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Error(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
+            <seealso cref="M:log4net.I//Log.Error(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsErrorEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Func{System.Object})">
             <summary>
             Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>FATAL</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsFatalEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsFatalEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation.  If this logger is <c>FATAL</c> enabled, then it converts 
             the message object (retrieved by invocation of the provided callback) to a 
@@ -26782,8 +26782,8 @@
             <see cref="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Func{System.Object},System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Func{System.Object},System.Exception)">
             <summary>
@@ -26792,15 +26792,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="callback">The lambda expression that gets the object to log.</param>
+            <param name="callback">The lambda expression that gets the object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Object)">
             <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level.</overloads> //TODO
@@ -26808,11 +26808,11 @@
             Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <remarks>
             <para>
             This method first checks if this logger is <c>FATAL</c>
-            enabled by reading the value <seealso cref="P:log4net.ILog.IsFatalEnabled"/> property.
+            enabled by reading the value <seealso cref="P:log4net.I//Log.IsFatalEnabled"/> property.
             This check happens always and does not depend on the <seealso cref="T:log4net.ILog"/>
             implementation. If this logger is <c>FATAL</c> enabled, then it converts 
             the message object (passed as parameter) to a string by invoking the appropriate
@@ -26827,8 +26827,8 @@
             <see cref="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Object,System.Exception)"/> form instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Object,System.Exception)">
             <summary>
@@ -26837,15 +26837,15 @@
             as a parameter.
             </summary>
             <param name="logger">The logger on which the message is logged.</param>
-            <param name="message">The message object to log.</param>
+            <param name="message">The message object to //Log.</param>
             <param name="exception">The exception to log, including its stack trace.</param>
             <remarks>
             <para>
             See the <see cref="M:log4net.Util.ILogExtensions.FatalExt(log4net.ILog,System.Object)"/> form for more detailed information.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalFormatExt(log4net.ILog,System.String,System.Object)">
             <summary>
@@ -26866,8 +26866,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalFormatExt(log4net.ILog,System.String,System.Object[])">
             <summary>
@@ -26888,8 +26888,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalFormatExt(log4net.ILog,System.IFormatProvider,System.String,System.Object[])">
             <summary>
@@ -26911,8 +26911,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalFormatExt(log4net.ILog,System.String,System.Object,System.Object)">
             <summary>
@@ -26934,8 +26934,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="M:log4net.Util.ILogExtensions.FatalFormatExt(log4net.ILog,System.String,System.Object,System.Object,System.Object)">
             <summary>
@@ -26958,8 +26958,8 @@
             methods instead.
             </para>
             </remarks>
-            <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
-            <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
+            <seealso cref="M:log4net.I//Log.Fatal(System.Object)"/>
+            <seealso cref="P:log4net.I//Log.IsFatalEnabled"/>
         </member>
         <member name="T:log4net.Util.LevelMapping">
             <summary>
@@ -27166,14 +27166,14 @@
             <author>Nicko Cadell</author>
             <author>Gert Driesen</author>
         </member>
-        <member name="M:log4net.Util.LogLog.ToString">
+        <member name="M:log4net.Util.Log//Log.ToString">
             <summary>
             Formats Prefix, Source, and Message in the same format as the value
             sent to Console.Out and Trace.Write.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:log4net.Util.LogLog.#ctor(System.Type,System.String,System.String,System.Exception)">
+        <member name="M:log4net.Util.Log//Log.#ctor(System.Type,System.String,System.String,System.Exception)">
             <summary>
             Initializes a new instance of the <see cref="T:log4net.Util.LogLog"/> class. 
             </summary>
@@ -27182,7 +27182,7 @@
             <param name="message"></param>
             <param name="exception"></param>
         </member>
-        <member name="M:log4net.Util.LogLog.#cctor">
+        <member name="M:log4net.Util.Log//Log.#cctor">
             <summary>
             Static constructor that initializes logging by reading 
             settings from the application configuration file.
@@ -27201,7 +27201,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.OnLogReceived(System.Type,System.String,System.String,System.Exception)">
+        <member name="M:log4net.Util.Log//Log.OnLogReceived(System.Type,System.String,System.String,System.Exception)">
             <summary>
             Raises the LogReceived event when an internal messages is received.
             </summary>
@@ -27210,13 +27210,13 @@
             <param name="message"></param>
             <param name="exception"></param>
         </member>
-        <member name="M:log4net.Util.LogLog.Debug(System.Type,System.String)">
+        <member name="M:log4net.Util.Log//Log.Debug(System.Type,System.String)">
             <summary>
             Writes log4net internal debug messages to the 
             standard output stream.
             </summary>
             <param name="source"></param>
-            <param name="message">The message to log.</param>
+            <param name="message">The message to //Log.</param>
             <remarks>
             <para>
             All internal debug messages are prepended with 
@@ -27224,14 +27224,14 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.Debug(System.Type,System.String,System.Exception)">
+        <member name="M:log4net.Util.Log//Log.Debug(System.Type,System.String,System.Exception)">
             <summary>
             Writes log4net internal debug messages to the 
             standard output stream.
             </summary>
             <param name="source">The Type that generated this message.</param>
-            <param name="message">The message to log.</param>
-            <param name="exception">An exception to log.</param>
+            <param name="message">The message to //Log.</param>
+            <param name="exception">An exception to //Log.</param>
             <remarks>
             <para>
             All internal debug messages are prepended with 
@@ -27239,13 +27239,13 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.Warn(System.Type,System.String)">
+        <member name="M:log4net.Util.Log//Log.Warn(System.Type,System.String)">
             <summary>
             Writes log4net internal warning messages to the 
             standard error stream.
             </summary>
             <param name="source">The Type that generated this message.</param>
-            <param name="message">The message to log.</param>
+            <param name="message">The message to //Log.</param>
             <remarks>
             <para>
             All internal warning messages are prepended with 
@@ -27253,14 +27253,14 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.Warn(System.Type,System.String,System.Exception)">
+        <member name="M:log4net.Util.Log//Log.Warn(System.Type,System.String,System.Exception)">
             <summary>
             Writes log4net internal warning messages to the 
             standard error stream.
             </summary>
             <param name="source">The Type that generated this message.</param>
-            <param name="message">The message to log.</param>
-            <param name="exception">An exception to log.</param>
+            <param name="message">The message to //Log.</param>
+            <param name="exception">An exception to //Log.</param>
             <remarks>
             <para>
             All internal warning messages are prepended with 
@@ -27268,13 +27268,13 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.Error(System.Type,System.String)">
+        <member name="M:log4net.Util.Log//Log.Error(System.Type,System.String)">
             <summary>
             Writes log4net internal error messages to the 
             standard error stream.
             </summary>
             <param name="source">The Type that generated this message.</param>
-            <param name="message">The message to log.</param>
+            <param name="message">The message to //Log.</param>
             <remarks>
             <para>
             All internal error messages are prepended with 
@@ -27282,14 +27282,14 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.Error(System.Type,System.String,System.Exception)">
+        <member name="M:log4net.Util.Log//Log.Error(System.Type,System.String,System.Exception)">
             <summary>
             Writes log4net internal error messages to the 
             standard error stream.
             </summary>
             <param name="source">The Type that generated this message.</param>
-            <param name="message">The message to log.</param>
-            <param name="exception">An exception to log.</param>
+            <param name="message">The message to //Log.</param>
+            <param name="exception">An exception to //Log.</param>
             <remarks>
             <para>
             All internal debug messages are prepended with 
@@ -27297,11 +27297,11 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.EmitOutLine(System.String)">
+        <member name="M:log4net.Util.Log//Log.EmitOutLine(System.String)">
             <summary>
             Writes output to the standard output stream.  
             </summary>
-            <param name="message">The message to log.</param>
+            <param name="message">The message to //Log.</param>
             <remarks>
             <para>
             Writes to both Console.Out and System.Diagnostics.Trace.
@@ -27315,11 +27315,11 @@
             </para>
             </remarks>
         </member>
-        <member name="M:log4net.Util.LogLog.EmitErrorLine(System.String)">
+        <member name="M:log4net.Util.Log//Log.EmitErrorLine(System.String)">
             <summary>
             Writes output to the standard error stream.  
             </summary>
-            <param name="message">The message to log.</param>
+            <param name="message">The message to //Log.</param>
             <remarks>
             <para>
             Writes to both Console.Error and System.Diagnostics.Trace.
@@ -27333,32 +27333,32 @@
             </para>
             </remarks>
         </member>
-        <member name="F:log4net.Util.LogLog.s_debugEnabled">
+        <member name="F:log4net.Util.Log//Log.s_debugEnabled">
             <summary>
              Default debug level
             </summary>
         </member>
-        <member name="F:log4net.Util.LogLog.s_quietMode">
+        <member name="F:log4net.Util.Log//Log.s_quietMode">
             <summary>
             In quietMode not even errors generate any output.
             </summary>
         </member>
-        <member name="E:log4net.Util.LogLog.LogReceived">
+        <member name="E:log4net.Util.Log//Log.LogReceived">
             <summary>
             The event raised when an internal message has been received.
             </summary>
         </member>
-        <member name="P:log4net.Util.LogLog.Source">
+        <member name="P:log4net.Util.Log//Log.Source">
             <summary>
             The Type that generated the internal message.
             </summary>
         </member>
-        <member name="P:log4net.Util.LogLog.TimeStamp">
+        <member name="P:log4net.Util.Log//Log.TimeStamp">
             <summary>
             The DateTime stamp of when the internal message was received.
             </summary>
         </member>
-        <member name="P:log4net.Util.LogLog.Prefix">
+        <member name="P:log4net.Util.Log//Log.Prefix">
             <summary>
             A string indicating the severity of the internal message.
             </summary>
@@ -27368,12 +27368,12 @@
             "log4net:WARN "
             </remarks>
         </member>
-        <member name="P:log4net.Util.LogLog.Message">
+        <member name="P:log4net.Util.Log//Log.Message">
             <summary>
             The internal log message.
             </summary>
         </member>
-        <member name="P:log4net.Util.LogLog.Exception">
+        <member name="P:log4net.Util.Log//Log.Exception">
             <summary>
             The Exception related to the message.
             </summary>
@@ -27381,7 +27381,7 @@
             Optional. Will be null if no Exception was passed.
             </remarks>
         </member>
-        <member name="P:log4net.Util.LogLog.InternalDebugging">
+        <member name="P:log4net.Util.Log//Log.InternalDebugging">
             <summary>
             Gets or sets a value indicating whether log4net internal logging
             is enabled or disabled.
@@ -27419,7 +27419,7 @@
             </code>
             </example>
         </member>
-        <member name="P:log4net.Util.LogLog.QuietMode">
+        <member name="P:log4net.Util.Log//Log.QuietMode">
             <summary>
             Gets or sets a value indicating whether log4net should generate no output
             from internal logging, not even for errors. 
@@ -27432,7 +27432,7 @@
             <para>
             When set to <c>true</c> will cause internal logging at all levels to be 
             suppressed. This means that no warning or error reports will be logged. 
-            This option overrides the <see cref="P:log4net.Util.LogLog.InternalDebugging"/> setting and 
+            This option overrides the <see cref="P:log4net.Util.Log//Log.InternalDebugging"/> setting and 
             disables all debug also.
             </para>
             <para>This value can be set by setting the application setting
@@ -27455,68 +27455,68 @@
             </code>
             </example>
         </member>
-        <member name="P:log4net.Util.LogLog.EmitInternalMessages">
+        <member name="P:log4net.Util.Log//Log.EmitInternalMessages">
             <summary>
             
             </summary>
         </member>
-        <member name="P:log4net.Util.LogLog.IsDebugEnabled">
+        <member name="P:log4net.Util.Log//Log.IsDebugEnabled">
             <summary>
-            Test if LogLog.Debug is enabled for output.
+            Test if Log//Log.Debug is enabled for output.
             </summary>
             <value>
             <c>true</c> if Debug is enabled
             </value>
             <remarks>
             <para>
-            Test if LogLog.Debug is enabled for output.
+            Test if Log//Log.Debug is enabled for output.
             </para>
             </remarks>
         </member>
-        <member name="P:log4net.Util.LogLog.IsWarnEnabled">
+        <member name="P:log4net.Util.Log//Log.IsWarnEnabled">
             <summary>
-            Test if LogLog.Warn is enabled for output.
+            Test if Log//Log.Warn is enabled for output.
             </summary>
             <value>
             <c>true</c> if Warn is enabled
             </value>
             <remarks>
             <para>
-            Test if LogLog.Warn is enabled for output.
+            Test if Log//Log.Warn is enabled for output.
             </para>
             </remarks>
         </member>
-        <member name="P:log4net.Util.LogLog.IsErrorEnabled">
+        <member name="P:log4net.Util.Log//Log.IsErrorEnabled">
             <summary>
-            Test if LogLog.Error is enabled for output.
+            Test if Log//Log.Error is enabled for output.
             </summary>
             <value>
             <c>true</c> if Error is enabled
             </value>
             <remarks>
             <para>
-            Test if LogLog.Error is enabled for output.
+            Test if Log//Log.Error is enabled for output.
             </para>
             </remarks>
         </member>
-        <member name="T:log4net.Util.LogLog.LogReceivedAdapter">
+        <member name="T:log4net.Util.Log//Log.LogReceivedAdapter">
             <summary>
-            Subscribes to the LogLog.LogReceived event and stores messages
+            Subscribes to the Log//Log.LogReceived event and stores messages
             to the supplied IList instance.
             </summary>
         </member>
-        <member name="M:log4net.Util.LogLog.LogReceivedAdapter.#ctor(System.Collections.IList)">
+        <member name="M:log4net.Util.Log//Log.LogReceivedAdapter.#ctor(System.Collections.IList)">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:log4net.Util.LogLog.LogReceivedAdapter.Dispose">
+        <member name="M:log4net.Util.Log//Log.LogReceivedAdapter.Dispose">
             <summary>
             
             </summary>
         </member>
-        <member name="P:log4net.Util.LogLog.LogReceivedAdapter.Items">
+        <member name="P:log4net.Util.Log//Log.LogReceivedAdapter.Items">
             <summary>
             
             </summary>
@@ -30118,7 +30118,7 @@
             <code lang="C#">
             using(log4net.ThreadContext.Stacks["NDC"].Push("Stack_Message"))
             {
-            	log.Warn("This should have an ThreadContext Stack message");
+            	//Log.Warn("This should have an ThreadContext Stack message");
             }
             </code>
             </example>
@@ -30707,14 +30707,14 @@
             <example>Example of using the thread context properties to store a username.
             <code lang="C#">
             LogicalThreadContext.Properties["user"] = userName;
-            log.Info("This log message has a LogicalThreadContext Property called 'user'");
+            //Log.Info("This log message has a LogicalThreadContext Property called 'user'");
             </code>
             </example>
             <example>Example of how to push a message into the context stack
             <code lang="C#">
             using(LogicalThreadContext.Stacks["LDC"].Push("my context message"))
             {
-            	log.Info("This log message has a LogicalThreadContext Stack message that includes 'my context message'");
+            	//Log.Info("This log message has a LogicalThreadContext Stack message that includes 'my context message'");
             
             } // at the end of the using block the message is automatically popped 
             </code>
@@ -30787,12 +30787,12 @@
             <code lang="C#">
             ILog log = LogManager.GetLogger("application-log");
             
-            log.Info("Application Start");
-            log.Debug("This is a debug message");
+            //Log.Info("Application Start");
+            //Log.Debug("This is a debug message");
             
-            if (log.IsDebugEnabled)
+            if (//Log.IsDebugEnabled)
             {
-            	log.Debug("This is another debug message");
+            	//Log.Debug("This is another debug message");
             }
             </code>
             </example>
@@ -31653,7 +31653,7 @@
             <code lang="C#">
             using(log4net.NDC.Push("NDC_Message"))
             {
-            	log.Warn("This should have an NDC message");
+            	//Log.Warn("This should have an NDC message");
             }
             </code>
             </example>
@@ -31748,14 +31748,14 @@
             <example>Example of using the thread context properties to store a username.
             <code lang="C#">
             ThreadContext.Properties["user"] = userName;
-            log.Info("This log message has a ThreadContext Property called 'user'");
+            //Log.Info("This log message has a ThreadContext Property called 'user'");
             </code>
             </example>
             <example>Example of how to push a message into the context stack
             <code lang="C#">
             using(ThreadContext.Stacks["NDC"].Push("my context message"))
             {
-            	log.Info("This log message has a ThreadContext Stack message that includes 'my context message'");
+            	//Log.Info("This log message has a ThreadContext Stack message that includes 'my context message'");
             
             } // at the end of the using block the message is automatically popped 
             </code>

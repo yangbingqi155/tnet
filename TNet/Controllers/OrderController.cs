@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TNet.BLL.Pay;
 
 namespace TNet.Controllers
 {
@@ -37,6 +38,16 @@ namespace TNet.Controllers
             ViewBag.orderno = orderno;
             return View();
         }
+
+
+        public ActionResult WeixinPayNotice()
+        {
+            PayNoticeBll.Press();
+            return View();
+        }
+
+
+
 
     }
 }

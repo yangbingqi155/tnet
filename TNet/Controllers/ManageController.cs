@@ -769,7 +769,7 @@ namespace TNet.Controllers
             }
             catch (Exception ex)
             {
-                log.Error(ex.ToString());
+                //Log.Error(ex.ToString());
                 resultEntity.Code = ResponseCodeType.Fail;
                 resultEntity.Message = "没有选择要上传的文件.";
                 return Content(resultEntity.SerializeToJson());
@@ -819,7 +819,7 @@ namespace TNet.Controllers
             catch (Exception ex)
             {
                 result = false;
-                log.Error(ex.ToString());
+                //Log.Error(ex.ToString());
             }
             finally
             {

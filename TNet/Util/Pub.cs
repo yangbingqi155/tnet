@@ -34,7 +34,7 @@ namespace Util
                     Interlocked.Exchange(ref un, 0);
                 }
 
-                return long.Parse(t  + "" + un);
+                return long.Parse(t + "" + un);
             }
         }
         /// <summary>
@@ -59,6 +59,20 @@ namespace Util
             }
         }
 
+        /// <summary>
+        /// 商家号r_mch_id
+        /// </summary>
+        public static string mchid
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["r_mch_id"];
+            }
+        }
+
+
+
+
 
         /// <summary>
         /// 微信公众号secret
@@ -73,6 +87,27 @@ namespace Util
 
 
         /// <summary>
+        /// 微信公众号secret
+        /// </summary>
+        public static string key
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["r_key"];
+            }
+        }
+
+        public static string weixin_notify_url
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["r_notify_url_weixin"];
+            }
+        }
+
+        
+
+        /// <summary>
         /// 从本地获取accessToken
         /// </summary>
         public static string accessToken
@@ -80,20 +115,19 @@ namespace Util
 
             get
             {
-                string filepath = HttpContext.Current.Server.MapPath("../App_Data/XMLToken.xml");
-                StreamReader str = new StreamReader(filepath, System.Text.Encoding.UTF8);
-                XmlDocument xml = new XmlDocument();
-                xml.Load(str);
-                str.Close();
-                str.Dispose();
-                string Token = xml.SelectSingleNode("xml").SelectSingleNode("AccessToken").InnerText;
-                DateTime AccessExpires = Convert.ToDateTime(xml.SelectSingleNode("xml").SelectSingleNode("AccessExpires").InnerText);
-                if (DateTime.Now >= AccessExpires)
-                {
-                    Token = getAccessToken();
-                }
+                string k = "";
 
-                return Token;
+                if (HttpContext.Current.Application["WEIXINF_ACCESSTOKEN"] != null)
+                {
+                    AccessToken m = (AccessToken)HttpContext.Current.Application["WEIXINF_ACCESSTOKEN"];
+                    DateTime t = m.expires.AddMinutes(-5);
+                    if (DateTime.Now >= t)
+                    {
+                        m = getAccessToken();
+                        HttpContext.Current.Application["WEIXINF_ACCESSTOKEN"] = m;
+                    }
+                }
+                return k;
             }
         }
 
@@ -103,9 +137,9 @@ namespace Util
         /// 从微信服务器获取accessToken，并保存在本地xml中
         /// </summary>
         /// <returns></returns>
-        private static string getAccessToken()
+        private static AccessToken getAccessToken()
         {
-            AccessTokenM mode = null;
+            AccessToken m = null;
             string url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret=" + secret;
 
             try
@@ -114,29 +148,16 @@ namespace Util
                 if (!string.IsNullOrWhiteSpace(reqStr))
                 {
                     JavaScriptSerializer Serializer = new JavaScriptSerializer();
-                    mode = Serializer.Deserialize<AccessTokenM>(reqStr);
-
-                    if (mode != null)
-                    {
-                        string filepath = HttpContext.Current.Server.MapPath("../App_Data/XMLToken.xml");
-                        StreamReader str = new StreamReader(filepath, System.Text.Encoding.UTF8);
-                        XmlDocument xml = new XmlDocument();
-                        xml.Load(str);
-                        str.Close();
-                        str.Dispose();
-                        xml.SelectSingleNode("xml").SelectSingleNode("AccessToken").InnerText = mode.access_token;
-                        DateTime _accessExpires = DateTime.Now.AddSeconds(int.Parse(mode.Expires_in));
-                        xml.SelectSingleNode("xml").SelectSingleNode("AccessExpires").InnerText = _accessExpires.ToString();
-                        xml.Save(filepath);
-                    }
+                    m = Serializer.Deserialize<AccessToken>(reqStr);
+                    m.expires = DateTime.Now.AddSeconds(m.expires_in);
                 }
-                return mode.access_token;
+
             }
             catch (Exception)
             {
 
             }
-            return "";
+            return m;
         }
 
 

@@ -43,6 +43,8 @@ namespace TNet.EF
 
         public double? price { get; set; }
 
+        public double? totalfee { get; set; }
+
         [StringLength(50)]
         public string contact { get; set; }
 
@@ -59,6 +61,9 @@ namespace TNet.EF
         public DateTime? entime { get; set; }
 
         public int? otype { get; set; }
+
+        [StringLength(10)]
+        public string payway { get; set; }
 
         public int? status { get; set; }
 

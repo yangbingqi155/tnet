@@ -50,7 +50,7 @@ function getData() {
                                 html += '</div>';
                                 html += '</a>';
                                 html += '<div class="order_ops">';
-                                html += '<div class="amont">￥' + (o.price * o.count) + '</div>';
+                                html += '<div class="amont">￥' + o.totalfee + '</div>';
                                 html += '<div class="ops">' + getOps(so, o) + '</div>';
                                 html += '</div>';
                                 html += '</div>';

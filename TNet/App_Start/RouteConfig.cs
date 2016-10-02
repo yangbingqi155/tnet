@@ -31,7 +31,7 @@ namespace TNet
 
             routes.MapRoute(
                  "Order_Pay",
-                 "Order/Pay/{orderno}",
+                 "Order/Pay",
                   new { controller = "Order", action = "Pay", orderno = UrlParameter.Optional },
                   new { controller = "^(?!Service).*" }
               );

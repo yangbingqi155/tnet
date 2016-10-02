@@ -1,16 +1,21 @@
-﻿namespace WeChatApp.Models
+﻿using System;
+
+namespace WeChatApp.Models
 {
-    public class AccessTokenM
+    public class AccessToken
     {
         /// <summary>
         /// 接口调用凭据
         /// </summary>
-        public string access_token { get; set; }
+        public string access_oken { get; set; }
 
 
         /// <summary>
         /// 凭证有效时间，单位：秒
         /// </summary>
-        public string Expires_in { get; set; }
+        public int expires_in { get; set; }
+
+        public DateTime expires { get; set; }
+        
     }
 }

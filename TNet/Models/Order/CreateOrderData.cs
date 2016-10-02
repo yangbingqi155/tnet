@@ -62,6 +62,7 @@ namespace TNet.Models.Order
             o.month = this.month;
             o.attmonth = this.attmonth;
             o.price = this.price;
+            o.totalfee = this.count * this.price;
             o.count = this.count;
             o.contact = this.contact;
             o.addr = this.addr;

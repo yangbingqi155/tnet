@@ -137,7 +137,7 @@ function submit() {
                         if (data.Data) {
                             Pub.delCache("order_cart")
                             //alert("\n下单成功,订单号: " + data.Data.orderno);
-                            window.location.href = Pub.rootUrl() + "Order/Pay/" + data.Data.orderno;
+                            window.location.href = Pub.rootUrl() + "Order/Pay/?orderno=" + data.Data.orderno;
                             return;
                         }
                     }

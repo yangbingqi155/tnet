@@ -1146,7 +1146,7 @@
             if (!self.$modal || !self.$modal.length) {
                 $dialog = $(document.createElement('div')).html(modalMain).insertAfter(self.$container);
                 self.$modal = $('#' + MODAL_ID).insertBefore($dialog);
-                $dialog.remove();
+                $dia//Log.remove();
             }
             self.$modal.html(self._getModalContent());
             self._listenModalEvent('show');
@@ -1706,7 +1706,7 @@
                     }
                 }
             }
-            return (self.uploadAsyncCount === self.uploadLog.length);
+            return (self.uploadAsyncCount === self.upload//Log.length);
         },
         _uploadExtra: function (previewId, index) {
             var self = this, data = self._getExtraData(previewId, index);
@@ -1734,7 +1734,7 @@
             }
             updateUploadLog = function (i, previewId) {
                 self.updateStack(i, undefined);
-                self.uploadLog.push(previewId);
+                self.upload//Log.push(previewId);
                 if (self._checkAsyncComplete()) {
                     self.fileBatchCompleted = true;
                 }

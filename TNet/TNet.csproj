@@ -184,9 +184,18 @@
     <Compile Include="BLL\Merc\MercImageService.cs" />
     <Compile Include="BLL\Merc\SpecService.cs" />
     <Compile Include="BLL\Order\MyOrderService.cs" />
+    <Compile Include="BLL\Pay\JsApiPay.cs" />
+    <Compile Include="BLL\Pay\Pay.cs" />
+    <Compile Include="BLL\Pay\PayNoticeBll.cs" />
     <Compile Include="BLL\User\UserBll.cs" />
     <Compile Include="BLL\Merc\MercService.cs" />
     <Compile Include="BLL\Merc\MercTypeService.cs" />
+    <Compile Include="BLL\WeixinPay\Data.cs" />
+    <Compile Include="BLL\WeixinPay\Exception.cs" />
+    <Compile Include="BLL\WeixinPay\HttpService.cs" />
+    <Compile Include="BLL\WeixinPay\Log.cs" />
+    <Compile Include="BLL\WeixinPay\Notify.cs" />
+    <Compile Include="BLL\WeixinPay\WxPayApi.cs" />
     <Compile Include="Controllers\BussController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -197,17 +206,22 @@
     <Compile Include="EF\Business.cs" />
     <Compile Include="EF\City.cs" />
     <Compile Include="EF\Discount.cs" />
+    <Compile Include="EF\Ext\TN.cs" />
     <Compile Include="EF\ManageUser.cs" />
     <Compile Include="EF\MenuItem.cs" />
     <Compile Include="EF\Merc.cs" />
     <Compile Include="EF\MercImage.cs" />
     <Compile Include="EF\MercType.cs" />
+    <Compile Include="EF\Msg.cs" />
     <Compile Include="EF\MyAddr.cs" />
     <Compile Include="EF\MyOrder.cs" />
     <Compile Include="EF\MyOrderPress.cs" />
     <Compile Include="EF\Setup.cs" />
     <Compile Include="EF\SetupAddr.cs" />
     <Compile Include="EF\Spec.cs" />
+    <Compile Include="EF\Task.cs" />
+    <Compile Include="EF\TaskPress.cs" />
+    <Compile Include="EF\TaskRecver.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
@@ -239,6 +253,8 @@
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\Order\OrderStatusItem.cs" />
     <Compile Include="Models\Order\OrderType.cs" />
+    <Compile Include="Models\Pay\PayData.cs" />
+    <Compile Include="Models\Pay\PayResult.cs" />
     <Compile Include="Models\ResponseCodeType.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\Service\R.cs" />
@@ -273,10 +289,15 @@
     <Compile Include="Service\Order\OrderService.svc.cs">
       <DependentUpon>OrderService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Service\Pay\IPayService.cs" />
+    <Compile Include="Service\Pay\PayService.svc.cs">
+      <DependentUpon>PayService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
     <Compile Include="Util\HttpExtension.cs" />
+    <Compile Include="Util\AMsg.cs" />
     <Compile Include="Util\UrlHelperExtension.cs" />
     <Compile Include="Util\HttpHelp.cs" />
     <Compile Include="Util\ListExtension.cs" />
@@ -560,6 +581,7 @@
     <Content Include="Service\File\FileService.svc" />
     <Content Include="Service\Merc\MercService.svc" />
     <Content Include="Service\Order\OrderService.svc" />
+    <Content Include="Service\Pay\PayService.svc" />
     <Content Include="Service\README.txt" />
     <Content Include="Views\Home\README.txt" />
     <Content Include="Views\Manage\README.txt" />
@@ -601,6 +623,7 @@
     <Content Include="Js\Lrz\lrz.bundle.js.map" />
     <Content Include="Views\Manage\BusinessEdit.cshtml" />
     <Content Include="Views\Manage\OrderDetail.cshtml" />
+    <Content Include="Views\Order\WeixinPayNotice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

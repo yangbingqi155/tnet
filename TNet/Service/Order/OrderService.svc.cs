@@ -10,6 +10,7 @@ using System.Text;
 using TNet.EF;
 using TNet.Models.Order;
 using TNet.Models.Service.Com;
+using TNet.Util;
 using Util;
 
 namespace TNet.Service.Order
@@ -36,9 +37,19 @@ namespace TNet.Service.Order
 
                     db.MyOrderPresses.Add(s);
 
-
+                    EF.Msg mo = new EF.Msg();
+                    mo.idmsg = Pub.ID().ToString();
+                    mo.cretime = DateTime.Now;
+                    mo.status = 0;
+                    mo.orderno = o.orderno+"";
+                    mo.otype = o.otype;
+                    mo.type = 1;
+                    mo.inuse = true;
+                    db.Msgs.Add(mo);
+                   
                     if (db.SaveChanges() > 0)
                     {
+                        AMsg.Send();
                         result.Data = new CreateOrderResult();
                         result.Data.orderno = o.orderno;
                         result.Code = R.Ok;
@@ -51,7 +62,7 @@ namespace TNet.Service.Order
                     // result.Data = m;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 result.Code = R.Error;
                 result.Msg = "出现异常";
@@ -160,12 +171,42 @@ namespace TNet.Service.Order
                         result.Data.Presses = db.MyOrderPresses.Where(m => m.inuse == true && m.orderno == orderno).ToList();
                         result.Code = R.Ok;
                     }
+                }else
+                {
+                    result.Code = R.Error;
+                    result.Msg = "没找到订单";
                 }
             }
             catch (Exception e)
             {
                 result.Code = R.Error;
-                result.Msg = "出现异常" + e.InnerException;
+                result.Msg = "出现异常";
+            }
+            return result;
+        }
+
+
+        public Result<EF.MyOrder> DetailFoyPay(string iduser, string orderno)
+        {
+            Result<EF.MyOrder> result = new Result<EF.MyOrder>();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(iduser) && !string.IsNullOrWhiteSpace(orderno))
+                {
+                    long _iduser = long.Parse(iduser);
+                    long _orderno = long.Parse(orderno);
+                    using (TN db = new TN())
+                    {
+                        EF.MyOrder o = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault();
+                        result.Data = o;
+                        result.Code = R.Ok;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Code = R.Error;
+                result.Msg = "出现异常";
             }
             return result;
         }

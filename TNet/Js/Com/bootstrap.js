@@ -62,7 +62,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     }
   }
 
-  // http://blog.alexmaccaw.com/css-transitions
+  // http://b//Log.alexmaccaw.com/css-transitions
   $.fn.emulateTransitionEnd = function (duration) {
     var called = false, $el = this
     $(this).one($.support.transition.end, function () { called = true })

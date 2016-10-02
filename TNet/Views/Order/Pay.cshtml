@@ -5,12 +5,18 @@
 }
 
 @section Head{
-    <link href="@Url.Content("~/Css/Order/Pay.css?v=20160924")" r rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Order/Pay.css?v=20161004")" rel="stylesheet" type="text/css" />
 
 
-    <script type="text/javascript" src="@Url.Content("~/Js/Order/Pay.js?v=20160924")">
+    <script type=" text/javascript" src="@Url.Content("~/Js/Order/Pay.js?v=20161004" + DateTime.Now.Ticks)" >
 
     </script>
+    <script type="text/javascript">
+
+    </script>
+
+
+
 
 }
 
@@ -22,7 +28,7 @@
 </div>
 <div class="order_item mu20">
     <div class="order_name">金额：</div>
-    <div class="order_value"></div>
+    <div class="order_value totalfee" id="totalfee">￥ 0.00</div>
 </div>
 
 <div class="vline"></div>
@@ -30,7 +36,9 @@
 
 <div class="order_title">支付方式:</div>
 <div class="pay_item">
-    <a class="winxin_pay" href="#">微信</a>
+    <a class="winxin_pay" href="#">
+        微信<i class="weui_icon_success_no_circle"></i>
+    </a>
 </div>
 
 <div class="buyhost">
@@ -40,7 +48,8 @@
             <a href="javascript:void(0)" class="buy_att_month">请尽快完成支付.</a>
             <a href="javascript:void(0)" id="buy_amount" class="buy_amount">您的信任,是我们的动力...</a>
         </div>
-        <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="submit()">支付</a></div>
+        <div class="buy_r"><a href="javascript:void(0)" class="go_buy" onclick="create()">支付</a></div>
+
     </div>
 </div>
 

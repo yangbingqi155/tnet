@@ -41,8 +41,12 @@ namespace TNet.Service.Order
         [WebInvoke(Method = "GET", UriTemplate = "Detail/{iduser}/{orderno}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Result<MyOrderDetail> Detail(string iduser,string orderno);
 
+        [WebInvoke(Method = "GET", UriTemplate = "DetailFoyPay/{iduser}/{orderno}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
 
-        
+        Result<EF.MyOrder> DetailFoyPay(string iduser, string orderno);
+
+
+
 
     }
 }

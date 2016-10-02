@@ -64,7 +64,7 @@ function getOps(status, order) {
             if (p == "cancel") {
                 html += '<a class="cancel" href="javascript:void(0)" onclick="cancelOrder(\'' + order.orderno + '\')">取消</a>';
             } else if (p == "pay") {
-                var pu = Pub.rootUrl() + "Order/Pay/" + order.orderno;
+                var pu = Pub.rootUrl() + "Order/Pay/?orderno=" + order.orderno;
                 html += '<a class="pay" href="' + pu + '">支付</a>';
             }
         }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TNet.Models.Service.Com
 {
-    public class Result<T> where T : new()
+    public class Result<T>
     {
         public T Data { get; set; }
 
