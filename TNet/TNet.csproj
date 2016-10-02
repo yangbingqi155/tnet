@@ -257,6 +257,7 @@
     <Compile Include="Models\Pay\PayResult.cs" />
     <Compile Include="Models\ResponseCodeType.cs" />
     <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\SelectItemViewModel.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\User\UserInfo.cs" />
