@@ -5,5 +5,7 @@
 .suo
 /.vs/TNet/v14/*.suo
 /.vs/TNet/v14/.suo
-/TNet/obj/
-/TNet/bin/
+/Com/bin
+/TNetService/bin
+/Com/obj
+/TNetService/obj

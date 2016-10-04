@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Com
 {
-    public class Class1
+    public class AMsgType
     {
     }
 }
