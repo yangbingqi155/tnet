@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models;
 
 namespace TNet.BLL

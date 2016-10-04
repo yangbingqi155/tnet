@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TNet.EF;
+using TCom.EF;
 using Util;
 
 namespace TNet.Models.Order
@@ -49,7 +49,7 @@ namespace TNet.Models.Order
 
         public string idc_img2 { get; set; }
 
-        public EF.MyOrder getData()
+        public TCom.EF.MyOrder getData()
         {
             MyOrder o = new MyOrder();
             o.orderno = Pub.ID();

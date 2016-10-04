@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -62,12 +63,18 @@ namespace WeChatApp.Controllers
             string token = Pub.token;
             string[] ArrTmp = { token, model.timestamp, model.nonce };
             Array.Sort(ArrTmp);
-            string tmpStr = string.Join("", ArrTmp);
-
-            tmpStr = FormsAuthentication.HashPasswordForStoringInConfigFile(tmpStr, "SHA1");
-            tmpStr = tmpStr.ToLower();
-
-            if (tmpStr == model.signature)
+            string tmpStr = string.Join("", ArrTmp); 
+            string signature = "";
+            try
+            {
+                byte[] cleanBytes = Encoding.ASCII.GetBytes(tmpStr);
+                byte[] hashedBytes = System.Security.Cryptography.SHA1.Create().ComputeHash(cleanBytes);
+                signature = BitConverter.ToString(hashedBytes).Replace("-","").ToLower();
+            }
+            catch (Exception)
+            {
+            }
+            if (signature == model.signature)
             {
                 return true;
             }
@@ -78,6 +85,6 @@ namespace WeChatApp.Controllers
         }
 
 
-   
+
     }
 }

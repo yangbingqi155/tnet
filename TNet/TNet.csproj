@@ -203,27 +203,6 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
-    <Compile Include="EF\Business.cs" />
-    <Compile Include="EF\City.cs" />
-    <Compile Include="EF\Discount.cs" />
-    <Compile Include="EF\Ext\TN.cs" />
-    <Compile Include="EF\ManageUser.cs" />
-    <Compile Include="EF\MenuItem.cs" />
-    <Compile Include="EF\Merc.cs" />
-    <Compile Include="EF\MercImage.cs" />
-    <Compile Include="EF\MercType.cs" />
-    <Compile Include="EF\Msg.cs" />
-    <Compile Include="EF\MyAddr.cs" />
-    <Compile Include="EF\MyOrder.cs" />
-    <Compile Include="EF\MyOrderPress.cs" />
-    <Compile Include="EF\Setup.cs" />
-    <Compile Include="EF\SetupAddr.cs" />
-    <Compile Include="EF\Spec.cs" />
-    <Compile Include="EF\Task.cs" />
-    <Compile Include="EF\TaskPress.cs" />
-    <Compile Include="EF\TaskRecver.cs" />
-    <Compile Include="EF\TN.cs" />
-    <Compile Include="EF\User.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
     <Compile Include="Models\File\UploadData.cs" />
     <Compile Include="Models\File\UploadDataResult.cs" />
@@ -656,6 +635,12 @@
     <EmbeddedResource Include="Migrations\201608300500213_update.resx">
       <DependentUpon>201608300500213_update.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TNetCom\TCom.csproj">
+      <Project>{ae0a4f28-18d5-4b05-a9e4-b9a571ff281e}</Project>
+      <Name>TCom</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

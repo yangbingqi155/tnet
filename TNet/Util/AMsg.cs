@@ -10,9 +10,9 @@ namespace TNet.Util
 {
     public class AMsg
     {
-        public static bool SendOrderFinishPay(string orderno, int otype, EF.TN db)
+        public static bool SendOrderFinishPay(string orderno, int otype, TCom.EF.TN db)
         {
-            EF.Msg mo = new EF.Msg();
+            TCom.EF.Msg mo = new TCom.EF.Msg();
             mo.idmsg = Pub.ID().ToString();
             mo.cretime = DateTime.Now;
             mo.status = 0;
@@ -22,7 +22,7 @@ namespace TNet.Util
             mo.inuse = true;
             if (db == null)
             {
-                using (db = new EF.TN())
+                using (db = new TCom.EF.TN())
                 {
                     db.Msgs.Add(mo);
                     if (db.SaveChanges() > 0)
@@ -53,7 +53,7 @@ namespace TNet.Util
                     return true;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }

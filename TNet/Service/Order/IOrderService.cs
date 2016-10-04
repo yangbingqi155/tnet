@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models.File;
 using TNet.Models.Order;
 using TNet.Models.Service.Com;
@@ -43,7 +43,7 @@ namespace TNet.Service.Order
 
         [WebInvoke(Method = "GET", UriTemplate = "DetailFoyPay/{iduser}/{orderno}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
 
-        Result<EF.MyOrder> DetailFoyPay(string iduser, string orderno);
+        Result<TCom.EF.MyOrder> DetailFoyPay(string iduser, string orderno);
 
 
 

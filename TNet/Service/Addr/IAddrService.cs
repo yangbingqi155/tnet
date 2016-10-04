@@ -23,7 +23,7 @@ namespace TNet.Service.Addr
         /// </summary>
         /// <returns></returns>
         [WebInvoke(Method = "GET", UriTemplate = "All/{iduser}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Result<List<EF.MyAddr>> GetAll(string iduser);
+        Result<List<TCom.EF.MyAddr>> GetAll(string iduser);
 
         /// <summary>
         /// 更新地址
@@ -33,7 +33,7 @@ namespace TNet.Service.Addr
 
         [WebInvoke(Method = "POST", UriTemplate = "Update", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
 
-        Result<long> Update(EF.MyAddr data);
+        Result<long> Update(TCom.EF.MyAddr data);
 
     }
 }

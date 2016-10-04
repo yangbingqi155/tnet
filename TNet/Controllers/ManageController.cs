@@ -8,7 +8,7 @@ using Util;
 using System.IO;
 using WeChatApp.Models;
 using TNet.Models;
-using TNet.EF;
+using TCom.EF;
 using TNet.BLL;
 using TNet.Authorize;
 using TNet.Util;
@@ -787,7 +787,7 @@ namespace TNet.Controllers
                     return Content(resultEntity.SerializeToJson());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Log.Error(ex.ToString());
                 resultEntity.Code = ResponseCodeType.Fail;
@@ -836,7 +836,7 @@ namespace TNet.Controllers
                 buffer = r.ReadByte();
                 fileclass += buffer.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 result = false;
                 //Log.Error(ex.ToString());

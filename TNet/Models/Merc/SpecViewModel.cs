@@ -4,62 +4,62 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TNet.EF;
+using TCom.EF;
 
 namespace TNet.Models
 {
     [NotMapped]
-    public class SpecViewModel:Spec
+    public  class SpecViewModel:Spec
     {
         [Display(Name = "产品编号")]
-        public int idmerc { get; set; }
+        public new  int idmerc { get; set; }
 
         [Display(Name = "规格号")]
-        public int idspec { get; set; }
+        public new  int idspec { get; set; }
 
         [Display(Name = "规格")]
         [StringLength(60)]
-        public string spec1 { get; set; }
+        public new  string spec1 { get; set; }
 
         [Display(Name = "单价")]
-        public double? price { get; set; }
+        public new  double? price { get; set; }
 
         [Display(Name = "销量")]
-        public int? sellcount { get; set; }
+        public new  int? sellcount { get; set; }
 
         [Display(Name = "实际月数")]
-        public int? month { get; set; }
+        public new  int? month { get; set; }
 
         [Display(Name = "单位（月为单位）")]
-        public int? unit { get; set; }
+        public new  int? unit { get; set; }
 
         [Display(Name = "上行")]
-        public int? up { get; set; }
+        public new  int? up { get; set; }
 
         [Display(Name = "下行")]
-        public int? down { get; set; }
+        public new  int? down { get; set; }
 
         [Display(Name = "附送月份")]
-        public int? attmonth { get; set; }
+        public new  int? attmonth { get; set; }
 
         [Display(Name = "初装费")]
-        public double? stuprice { get; set; }
+        public new  double? stuprice { get; set; }
 
         [Display(Name = "移机费")]
-        public double? moveprice { get; set; }
+        public new  double? moveprice { get; set; }
 
         [Display(Name = "产品类型家庭、企业")]
         [StringLength(50)]
-        public string usertype { get; set; }
+        public new  string usertype { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(100)]
-        public string notes { get; set; }
+        public new  string notes { get; set; }
 
         [Display(Name = "是否启用")]
-        public bool inuse { get; set; }
+        public new  bool inuse { get; set; }
 
-        public void CopyFromBase(Spec spec)
+        public   void CopyFromBase(Spec spec)
         {
             this.idmerc = spec.idmerc;
             this.idspec = spec.idspec;
@@ -78,7 +78,7 @@ namespace TNet.Models
             this.inuse = spec.inuse;
         }
 
-        public void CopyToBase(Spec spec)
+        public   void CopyToBase(Spec spec)
         {
             spec.idmerc = this.idmerc;
             spec.idspec = this.idspec;

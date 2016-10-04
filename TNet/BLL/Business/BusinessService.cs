@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TNet.EF;
+using TCom.EF;
 
 namespace TNet.BLL
 {

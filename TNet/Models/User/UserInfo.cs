@@ -7,7 +7,7 @@ namespace TNet.Models.User
 {
     public class UserInfo
     {
-        public UserInfo(EF.User u)
+        public UserInfo(TCom.EF.User u)
         {
             this.idweixin = u.idweixin;
             this.iduser = u.iduser+"";

@@ -7,8 +7,8 @@ namespace TNet.Models.Merc
 {
     public class MercList
     {
-        public List<EF.Merc> Mercs { get; set; }
+        public List<TCom.EF.Merc> Mercs { get; set; }
 
-        public List<EF.MercType> Types { get; set; }
+        public List<TCom.EF.MercType> Types { get; set; }
     }
 }

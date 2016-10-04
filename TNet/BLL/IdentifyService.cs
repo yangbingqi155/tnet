@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
-using TNet.EF;
+using TCom.EF;
 using System.Data.Entity;
 using System.Linq.Expressions;
 

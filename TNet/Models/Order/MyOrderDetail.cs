@@ -9,11 +9,11 @@ namespace TNet.Models.Order
     //[NotMapped]
     public class MyOrderDetail
     {
-        public EF.MyOrder Order { get; set; }
+        public TCom.EF.MyOrder Order { get; set; }
 
 
 
-        public List<EF.MyOrderPress> Presses { get; set; }
+        public List<TCom.EF.MyOrderPress> Presses { get; set; }
 
 
         public OrderStatusItem Status

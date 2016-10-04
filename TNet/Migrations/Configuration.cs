@@ -5,14 +5,14 @@ namespace TNet.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TNet.EF.TN>
+    internal sealed class Configuration : DbMigrationsConfiguration<TCom.EF.TN>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TNet.EF.TN context)
+        protected override void Seed(TCom.EF.TN context)
         {
             //  This method will be called after migrating to the latest version.
 

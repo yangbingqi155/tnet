@@ -9,15 +9,15 @@ namespace TNet.Models.Service.Merc
     
     public class MercDataSingle
     {
-        public EF.Merc Merc { get; set; }
+        public TCom.EF.Merc Merc { get; set; }
 
-        public List<EF.Spec> Spec { get; set; }
+        public List<TCom.EF.Spec> Spec { get; set; }
 
-        public List<EF.Discount> Discount { get; set; }
+        public List<TCom.EF.Discount> Discount { get; set; }
 
-        public List<EF.Setup> Setups { get; set; }
+        public List<TCom.EF.Setup> Setups { get; set; }
 
-        public List<EF.SetupAddr> SetupAddrs { get; set; }
+        public List<TCom.EF.SetupAddr> SetupAddrs { get; set; }
 
     }
 }

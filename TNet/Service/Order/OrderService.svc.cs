@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.Text;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models.Order;
 using TNet.Models.Service.Com;
 using TNet.Util;
@@ -53,7 +53,7 @@ namespace TNet.Service.Order
                     // result.Data = m;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 result.Code = R.Error;
                 result.Msg = "出现异常";
@@ -156,7 +156,7 @@ namespace TNet.Service.Order
                     long _orderno = long.Parse(orderno);
                     using (TN db = new TN())
                     {
-                        EF.MyOrder o = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault();
+                        TCom.EF.MyOrder o = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault();
                         result.Data = new MyOrderDetail();
                         result.Data.Order = o;
                         result.Data.Presses = db.MyOrderPresses.Where(m => m.inuse == true && m.orderno == orderno).ToList();
@@ -169,7 +169,7 @@ namespace TNet.Service.Order
                     result.Msg = "没找到订单";
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 result.Code = R.Error;
                 result.Msg = "出现异常";
@@ -178,9 +178,9 @@ namespace TNet.Service.Order
         }
 
 
-        public Result<EF.MyOrder> DetailFoyPay(string iduser, string orderno)
+        public Result<TCom.EF.MyOrder> DetailFoyPay(string iduser, string orderno)
         {
-            Result<EF.MyOrder> result = new Result<EF.MyOrder>();
+            Result<TCom.EF.MyOrder> result = new Result<TCom.EF.MyOrder>();
             try
             {
                 if (!string.IsNullOrWhiteSpace(iduser) && !string.IsNullOrWhiteSpace(orderno))
@@ -189,13 +189,13 @@ namespace TNet.Service.Order
                     long _orderno = long.Parse(orderno);
                     using (TN db = new TN())
                     {
-                        EF.MyOrder o = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault();
+                        TCom.EF.MyOrder o = db.MyOrders.Where(m => m.inuse == true && m.iduser == _iduser && m.orderno == _orderno).FirstOrDefault();
                         result.Data = o;
                         result.Code = R.Ok;
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 result.Code = R.Error;
                 result.Msg = "出现异常";

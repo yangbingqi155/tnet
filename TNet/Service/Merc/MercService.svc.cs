@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.Text;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models.Merc;
 using TNet.Models.Service.Com;
 using TNet.Models.Service.Merc;

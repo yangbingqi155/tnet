@@ -4,33 +4,33 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using TNet.EF;
+using TCom.EF;
 
 namespace TNet.Models
 {
     [NotMapped]
-    public class MercImageViewModel:MercImage
+    public   class MercImageViewModel:MercImage
     {
         [Display(Name ="图片编号")]
         [Required]
-        public int MercImageId { get; set; }
+        public new  int MercImageId { get; set; }
 
         [Required]
-        public int idmerc { get; set; }
+        public new  int idmerc { get; set; }
 
         [Display(Name ="产品图片")]
         [StringLength(500)]
         [Required]
-        public string Path { get; set; }
+        public new  string Path { get; set; }
 
         [Display(Name ="排序")]
         [Required]
-        public int? SortID { get; set; }
+        public new  int? SortID { get; set; }
 
         [Display(Name ="是否启用")]
-        public bool InUse { get; set; }
+        public new  bool InUse { get; set; }
 
-        public void CopyFromBase(MercImage mercImage)
+        public   void CopyFromBase(MercImage mercImage)
         {
             this.MercImageId = mercImage.MercImageId;
             this.idmerc = mercImage.idmerc;
@@ -40,7 +40,7 @@ namespace TNet.Models
             
         }
 
-        public void CopyToBase(MercImage mercImage)
+        public   void CopyToBase(MercImage mercImage)
         {
             mercImage.MercImageId = this.MercImageId;
             mercImage.idmerc = this.idmerc;

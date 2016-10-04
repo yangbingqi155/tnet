@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.Text;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models.Service.Com;
 using Util;
 
@@ -19,9 +19,9 @@ namespace TNet.Service.Addr
     [AspNetCompatibilityRequirementsAttribute(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class AddrService : IAddrService
     {
-        public Result<List<EF.MyAddr>> GetAll(string iduser)
+        public Result<List<TCom.EF.MyAddr>> GetAll(string iduser)
         {
-            Result<List<EF.MyAddr>> result = new Result<List<EF.MyAddr>>();
+            Result<List<TCom.EF.MyAddr>> result = new Result<List<TCom.EF.MyAddr>>();
             try
             {
                 long _iduser = long.Parse(iduser);
@@ -42,7 +42,7 @@ namespace TNet.Service.Addr
 
 
 
-        public Result<long> Update(EF.MyAddr data)
+        public Result<long> Update(TCom.EF.MyAddr data)
         {
             Result<long> result = new Result<long>();
 
@@ -57,7 +57,7 @@ namespace TNet.Service.Addr
                     }
                     else
                     {
-                        DbEntityEntry<EF.MyAddr> entry = db.Entry<EF.MyAddr>(data);
+                        DbEntityEntry<TCom.EF.MyAddr> entry = db.Entry<TCom.EF.MyAddr>(data);
                         if (data.inuse == false)
                         {
                             entry.State = EntityState.Deleted;

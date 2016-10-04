@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models.User;
 using Util;
 
@@ -29,7 +29,7 @@ namespace TNet.BLL.User
 
                         using (TN db = new TN())
                         {
-                            EF.User us = db.Users.Where(m => m.idweixin == openid).FirstOrDefault();
+                            TCom.EF.User us = db.Users.Where(m => m.idweixin == openid).FirstOrDefault();
                             if (us == null)
                             {
                                 string nickname = "", headimgurl = "";
@@ -44,7 +44,7 @@ namespace TNet.BLL.User
                                         headimgurl = json["headimgurl"] + "";
                                     }
                                 }
-                                us = new EF.User();
+                                us = new TCom.EF.User();
                                 us.iduser = Pub.ID();
                                 us.idweixin = openid;
                                 us.inuse = true;
@@ -79,7 +79,7 @@ namespace TNet.BLL.User
 
 
 
-        private static string setUser(EF.User u)
+        private static string setUser(TCom.EF.User u)
         {
             UserInfo uo = new UserInfo(u);
             string c = JsonConvert.SerializeObject(uo);

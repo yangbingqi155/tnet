@@ -23,7 +23,7 @@ namespace WxPayAPI
          * @return 统一下单结果
          * @失败时抛异常WxPayException
          */
-        public static string PayOrder(TNet.EF.MyOrder order, TNet.EF.User user)
+        public static string PayOrder(TCom.EF.MyOrder order, TCom.EF.User user)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace WxPayAPI
                 }
                 return GetJsOrder(result);
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
             return null;

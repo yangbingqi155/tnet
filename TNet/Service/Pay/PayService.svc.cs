@@ -28,12 +28,12 @@ namespace TNet.Service.Pay
                 {
                     long _iduser = long.Parse(data.iduser);
                     long _orderno = long.Parse(data.orderno);
-                    using (EF.TN db = new EF.TN())
+                    using (TCom.EF.TN db = new TCom.EF.TN())
                     {
-                        EF.User u = db.Users.Where(m => m.iduser == _iduser && m.inuse == true).FirstOrDefault();
+                        TCom.EF.User u = db.Users.Where(m => m.iduser == _iduser && m.inuse == true).FirstOrDefault();
                         if (u != null)
                         {
-                            EF.MyOrder o = db.MyOrders.Where(m => m.orderno == _orderno && m.inuse == true).FirstOrDefault();
+                            TCom.EF.MyOrder o = db.MyOrders.Where(m => m.orderno == _orderno && m.inuse == true).FirstOrDefault();
                             if (o != null)
                             {
                                 if (o.paystatus == PayStatus.WeiXin_CLOSED)

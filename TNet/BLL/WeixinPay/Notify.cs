@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
 using System.Linq;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models.Order;
 using Util;
 using TNet.Models.Pay;
@@ -105,10 +105,10 @@ namespace WxPayAPI
                         using (TN db = new TN())
                         {
 
-                            TNet.EF.User u = db.Users.Where(m => m.idweixin == openid && m.inuse == true).FirstOrDefault();
+                            TCom.EF.User u = db.Users.Where(m => m.idweixin == openid && m.inuse == true).FirstOrDefault();
                             if (u != null)
                             {
-                                TNet.EF.MyOrder o = db.MyOrders.Where(m => m.orderno == _orderno && m.inuse == true).FirstOrDefault();
+                                TCom.EF.MyOrder o = db.MyOrders.Where(m => m.orderno == _orderno && m.inuse == true).FirstOrDefault();
                                 if (o != null)
                                 {
                                     bool ok = false;

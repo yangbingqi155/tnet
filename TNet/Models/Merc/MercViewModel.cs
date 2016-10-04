@@ -4,75 +4,75 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TNet.EF;
+using TCom.EF;
 
 namespace TNet.Models
 {
     [NotMapped]
-    public class MercViewModel: EF.Merc
+    public   class MercViewModel: TCom.EF.Merc
     {
         [Display(Name = "产品编号")]
-        public int idmerc { get; set; }
+        public new   int idmerc { get; set; }
 
         [Display(Name = "产品类型")]
         [Required]
-        public int? idtype { get; set; }
+        public new  int? idtype { get; set; }
 
         /// <summary>
         /// 产品类型
         /// </summary>
         [Display(Name = "产品类型")]
-        public string MercTypeName { get; set; }
+        public   string MercTypeName { get; set; }
 
         [Display(Name = "产品名称")]
         [Required]
         [StringLength(60)]
-        public string merc1 { get; set; }
+        public new  string merc1 { get; set; }
 
         [Display(Name = "卖点")]
         [StringLength(80)]
-        public string sellpt { get; set; }
+        public new  string sellpt { get; set; }
 
         [Display(Name ="基本价格")]
-        public double? baseprice { get; set; }
+        public new  double? baseprice { get; set; }
 
         [Display(Name = "销量")]
-        public int? sellcount { get; set; }
+        public new  int? sellcount { get; set; }
 
         [Display(Name = "销售开始时间")]
-        public DateTime? stime { get; set; }
+        public new  DateTime? stime { get; set; }
 
         [Display(Name = "创建时间")]
-        public DateTime? cretime { get; set; }
+        public new  DateTime? cretime { get; set; }
 
         [Display(Name = "销售结束时间")]
-        public DateTime? entime { get; set; }
+        public new  DateTime? entime { get; set; }
 
         [Display(Name = "接入方式")]
-        public int? netype { get; set; }
+        public new  int? netype { get; set; }
 
         [Display(Name = "图片")]
         [StringLength(255)]
-        public string imgs { get; set; }
+        public new  string imgs { get; set; }
 
         [Display(Name = "描述图片集合")]
         [StringLength(255)]
-        public string descs { get; set; }
+        public new  string descs { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(50)]
-        public string notes { get; set; }
+        public new  string notes { get; set; }
 
         [Display(Name = "排序")]
-        public int? sortno { get; set; }
+        public new  int? sortno { get; set; }
 
         [Display(Name = "是否启用")]
         [Required]
-        public bool inuse { get; set; }
+        public new  bool inuse { get; set; }
         
-        public List<MercTypeViewModel> mercTypes { get; set; }
+        public   List<MercTypeViewModel> mercTypes { get; set; }
 
-        public void CopyFromBase(EF.Merc merc) {
+        public   void CopyFromBase(TCom.EF.Merc merc) {
             this.idmerc = merc.idmerc;
             this.idtype = merc.idtype;
             this.merc1 = merc.merc1;
@@ -90,7 +90,7 @@ namespace TNet.Models
             this.inuse = merc.inuse;
         }
 
-        public void CopyToBase(EF.Merc merc) {
+        public   void CopyToBase(TCom.EF.Merc merc) {
             merc.idmerc = this.idmerc;
             merc.idtype = this.idtype;
             merc.merc1 = this.merc1;

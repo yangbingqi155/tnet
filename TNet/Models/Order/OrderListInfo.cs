@@ -7,7 +7,7 @@ namespace TNet.Models.Order
 {
     public class OrderListInfo
     {
-        public List<EF.MyOrder> Order { get; set; }
+        public List<TCom.EF.MyOrder> Order { get; set; }
 
         public Dictionary<int, OrderStatusItem> Status
         {

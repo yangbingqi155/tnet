@@ -21,11 +21,11 @@ namespace TNet.Service.Buss
 
 
         [WebInvoke(Method = "GET", UriTemplate = "List", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Result<List<EF.Business>> List();
+        Result<List<TCom.EF.Business>> List();
 
 
 
         [WebInvoke(Method = "GET", UriTemplate = "Detail/{idbuss}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Result<EF.Business> Detail(string idbuss);
+        Result<TCom.EF.Business> Detail(string idbuss);
     }
 }

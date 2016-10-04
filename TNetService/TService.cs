@@ -138,9 +138,9 @@ namespace TNetService
                 {
                     try
                     {
-                        using (EF.TN db = new EF.TN())
+                        using (TCom.EF.TN db = new TCom.EF.TN())
                         {
-                            List<EF.Msg> ms = db.Msgs.Where(m => m.inuse == true && m.status != 1).ToList();
+                            List<TCom.EF.Msg> ms = db.Msgs.Where(m => m.inuse == true && m.status != 1).ToList();
                             var mus = (from muo in db.ManageUsers
                                        join uo in db.Users on muo.idweixin equals uo.idweixin
                                        where (muo.idweixin != null && muo.idweixin.Trim() != string.Empty && muo.inuse == true && uo.inuse == true)
@@ -155,7 +155,7 @@ namespace TNetService
                             {
                                 for (int i = 0; i < ms.Count; i++)
                                 {
-                                    EF.Msg m = ms[i];
+                                    TCom.EF.Msg m = ms[i];
 
                                     if (m.type == 1 || m.type == 2)//订单创建信息，等待派发通知
                                     {
@@ -181,7 +181,7 @@ namespace TNetService
                                             //jdo["name"] = getJobj(mu.name);                                            
                                             jo["data"] = jdo;
 
-                                            EF.Msg mo = new EF.Msg();
+                                            TCom.EF.Msg mo = new TCom.EF.Msg();
                                             mo.idmsg = Pub.ID().ToString();
                                             mo.idweixin = mu.idweixin;
                                             mo.msg1 = jo.ToString();

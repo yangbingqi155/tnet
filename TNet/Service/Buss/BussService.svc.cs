@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using TNet.EF;
+using TCom.EF;
 using TNet.Models.Service.Com;
 
 namespace TNet.Service.Buss
@@ -13,9 +13,9 @@ namespace TNet.Service.Buss
     // 注意: 为了启动 WCF 测试客户端以测试此服务，请在解决方案资源管理器中选择 BussService.svc 或 BussService.svc.cs，然后开始调试。
     public class BussService : IBussService
     {
-        public Result<List<EF.Business>> List()
+        public Result<List<TCom.EF.Business>> List()
         {
-            Result<List<EF.Business>> result = new Result<List<EF.Business>>();
+            Result<List<TCom.EF.Business>> result = new Result<List<TCom.EF.Business>>();
             try
             {
                 using (TN db = new TN())
@@ -33,9 +33,9 @@ namespace TNet.Service.Buss
         }
 
 
-        public Result<EF.Business> Detail(string idbuss)
+        public Result<TCom.EF.Business> Detail(string idbuss)
         {
-            Result<EF.Business> result = new Result<EF.Business>();
+            Result<TCom.EF.Business> result = new Result<TCom.EF.Business>();
             try
             {
                 if (!string.IsNullOrWhiteSpace(idbuss))

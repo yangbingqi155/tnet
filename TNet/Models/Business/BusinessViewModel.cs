@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TNet.EF;
+using TCom.EF;
 
 namespace TNet.Models
 {
@@ -13,78 +13,78 @@ namespace TNet.Models
     {
         [Display(Name = "商家ID")]
         [Required]
-        public long idbuss { get; set; }
+        public new long idbuss { get; set; }
 
         [Display(Name = "商家")]
         [Required]
         [StringLength(60)]
-        public string buss { get; set; }
+        public new string buss { get; set; }
 
         [Display(Name = "联系人")]
         [Required]
         [StringLength(50)]
-        public string contact { get; set; }
+        public new string contact { get; set; }
 
         [Display(Name = "手机号")]
         [Required]
         [StringLength(13)]
-        public string phone { get; set; }
+        public new string phone { get; set; }
 
         [Display(Name = "城市")]
         [Required]
         [StringLength(60)]
-        public string city { get; set; }
+        public new string city { get; set; }
 
         [Display(Name = "地址")]
         [Required]
         [StringLength(100)]
-        public string addr { get; set; }
+        public new string addr { get; set; }
 
         [Display(Name = "卖点")]
         [Required]
         [StringLength(60)]
-        public string sellpt { get; set; }
+        public new string sellpt { get; set; }
 
         [Display(Name = "图片")]
         [StringLength(255)]
-        public string imgs { get; set; }
+        public new string imgs { get; set; }
 
         [Display(Name = "创建时间")]
         [Required]
-        public DateTime? cretime { get; set; }
+        public new DateTime? cretime { get; set; }
 
         [Display(Name = "成立时间")]
         [Required]
-        public DateTime? busstime { get; set; }
+        public new DateTime? busstime { get; set; }
 
         [Display(Name = "价格")]
         [Required]
-        public double? price { get; set; }
+        public new double? price { get; set; }
 
         [Display(Name = "经度")]
         [Required]
-        public double? longitude { get; set; }
+        public new double? longitude { get; set; }
 
         [Display(Name = "纬度")]
         [Required]
-        public double? latitude { get; set; }
+        public new double? latitude { get; set; }
 
         [Display(Name = "营业时间")]
         [Required]
         [StringLength(50)]
-        public string runtime { get; set; }
+        public new string runtime { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(350)]
-        public string notes { get; set; }
+        public new string notes { get; set; }
 
         [Display(Name = "等级1-5")]
         [Required]
-        public int? blevel { get; set; }
+        public new int? blevel { get; set; }
 
         [Display(Name = "启用")]
         [Required]
-        public bool inuse { get; set; }
+        public new bool inuse { get; set; }
 
         public void CopyFromBase(Business business)
         {
