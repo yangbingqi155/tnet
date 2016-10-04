@@ -73,7 +73,13 @@ namespace TNet.Models.Order
         /// 交易取消
         /// </summary>
         public static readonly int Cancel = -99;
-        
+
+
+        /// <summary>
+        /// 关闭取消
+        /// </summary>
+        public static readonly int Close = -999;
+
         public static Dictionary<int, OrderStatusItem> s = new Dictionary<int, OrderStatusItem>()
         {
              {
@@ -125,6 +131,14 @@ namespace TNet.Models.Order
                 }
             },
             {
+                Close,
+                new OrderStatusItem()
+                {
+                    text = "已关闭",
+                    ops = ""
+                }
+            },
+            {
                 0,
                 new OrderStatusItem()
                 {
@@ -143,21 +157,24 @@ namespace TNet.Models.Order
             return s.ContainsKey(status) ? s[status] : s[0];
         }
 
-        public static List<SelectItemViewModel<int>> GetSelectItems() {
+        public static List<SelectItemViewModel<int>> GetSelectItems()
+        {
             List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
-            list.Add(new SelectItemViewModel<int>() {
+            list.Add(new SelectItemViewModel<int>()
+            {
                 DisplayText = "所有订单状态",
-                DisplayValue=0
+                DisplayValue = 0
             });
             foreach (var item in s)
             {
-                if (item.Key!=0) {
+                if (item.Key != 0)
+                {
                     SelectItemViewModel<int> model = new SelectItemViewModel<int>();
                     model.DisplayValue = item.Key;
                     model.DisplayText = item.Value.text;
                     list.Add(model);
                 }
-               
+
             }
             return list;
         }

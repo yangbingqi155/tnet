@@ -39,7 +39,7 @@ namespace TNet.Controllers
             return View();
         }
 
-
+        //微信支付通知
         public ActionResult WeixinPayNotice()
         {
             PayNoticeBll.Press();

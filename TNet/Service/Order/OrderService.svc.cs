@@ -37,16 +37,7 @@ namespace TNet.Service.Order
 
                     db.MyOrderPresses.Add(s);
 
-                    EF.Msg mo = new EF.Msg();
-                    mo.idmsg = Pub.ID().ToString();
-                    mo.cretime = DateTime.Now;
-                    mo.status = 0;
-                    mo.orderno = o.orderno+"";
-                    mo.otype = o.otype;
-                    mo.type = 1;
-                    mo.inuse = true;
-                    db.Msgs.Add(mo);
-                   
+
                     if (db.SaveChanges() > 0)
                     {
                         AMsg.Send();
@@ -171,7 +162,8 @@ namespace TNet.Service.Order
                         result.Data.Presses = db.MyOrderPresses.Where(m => m.inuse == true && m.orderno == orderno).ToList();
                         result.Code = R.Ok;
                     }
-                }else
+                }
+                else
                 {
                     result.Code = R.Error;
                     result.Msg = "没找到订单";

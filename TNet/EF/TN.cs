@@ -10,7 +10,6 @@ namespace TNet.EF
         public TN()
             : base("name=TN")
         {
-            
         }
 
         public virtual DbSet<Business> Businesses { get; set; }
@@ -209,6 +208,10 @@ namespace TNet.EF
 
             modelBuilder.Entity<MyOrder>()
                 .Property(e => e.payway)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrder>()
+                .Property(e => e.paystatus)
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyOrder>()

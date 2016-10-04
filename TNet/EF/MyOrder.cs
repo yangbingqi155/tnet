@@ -67,6 +67,9 @@ namespace TNet.EF
 
         public int? status { get; set; }
 
+        [StringLength(50)]
+        public string paystatus { get; set; }
+
         [StringLength(255)]
         public string img { get; set; }
 

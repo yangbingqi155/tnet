@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.Text;
+using TNet.Models.Order;
 using TNet.Models.Pay;
 using TNet.Models.Service.Com;
 using WxPayAPI;
@@ -35,22 +36,33 @@ namespace TNet.Service.Pay
                             EF.MyOrder o = db.MyOrders.Where(m => m.orderno == _orderno && m.inuse == true).FirstOrDefault();
                             if (o != null)
                             {
-                                string order = JsApiPay.PayOrder(o, u);
-                                if (!string.IsNullOrWhiteSpace(order) && o.payway != "weixin")
+                                if (o.paystatus == PayStatus.WeiXin_CLOSED)
                                 {
-                                    o.payway = "weixin";
-                                    if (db.SaveChanges() <= 0)
-                                    {
-                                        result.Msg = "更新支付方式失败";
-                                        return result;
-                                    }
-
+                                    o.status = OrderStatus.Close;
+                                    db.SaveChanges();
+                                    result.Msg = "订单已关闭";
                                 }
-                                result.Data = new PayResult
+                                else
                                 {
-                                    order = JsApiPay.PayOrder(o, u)
-                                };
-                                result.Code = R.Ok;
+                                    o.paystatus = PayStatus.WaitPay;
+                                    if (o.payway != "weixin")
+                                    {
+                                        o.payway = "weixin";
+                                        if (db.SaveChanges() <= 0)
+                                        {
+                                            result.Msg = "更新支付方式失败";
+                                            return result;
+                                        }
+
+                                    }
+                                    result.Data = new PayResult
+                                    {
+                                        order = JsApiPay.PayOrder(o, u)
+                                    };
+                                    result.Code = R.Ok;
+                                }
+
+
                             }
 
                         }

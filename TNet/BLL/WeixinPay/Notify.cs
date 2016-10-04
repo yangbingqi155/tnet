@@ -8,6 +8,7 @@ using System.Linq;
 using TNet.EF;
 using TNet.Models.Order;
 using Util;
+using TNet.Models.Pay;
 
 namespace WxPayAPI
 {
@@ -84,8 +85,10 @@ namespace WxPayAPI
                 {
                     string orderno = data.GetValue("out_trade_no") + "";
                     string openid = data.GetValue("openid") + "";
+
                     if (!string.IsNullOrWhiteSpace(orderno) && !string.IsNullOrWhiteSpace(openid))
                     {
+                        string trade_state = data.GetValue("trade_state") + "";
                         long _orderno = long.Parse(orderno);
                         DateTime paytime = DateTime.Now;
                         try
@@ -109,18 +112,27 @@ namespace WxPayAPI
                                 if (o != null)
                                 {
                                     bool ok = false;
-                                    if (o.status == OrderStatus.WaitPay)
+                                    if (o.status == OrderStatus.WaitPay
+                                         && o.paystatus != PayStatus.WeiXin_SUCCESS &&
+                                         o.paystatus != PayStatus.WeiXin_CLOSED)
                                     {
-                                        o.status = OrderStatus.PayFinish;
-                                        MyOrderPress s = new MyOrderPress();
-                                        s.idpress = Pub.ID().ToString();
-                                        s.orderno = orderno;
-                                        s.status = OrderStatus.PayFinish;
-                                        s.statust = OrderStatus.get(s.status).text;
-                                        s.oper = u.name;
-                                        s.inuse = true;
-                                        s.cretime = paytime;
-                                        db.MyOrderPresses.Add(s);
+                                        if (trade_state == PayStatus.WeiXin_SUCCESS)
+                                        {
+                                            o.status = OrderStatus.PayFinish;
+                                            MyOrderPress s = new MyOrderPress();
+                                            s.idpress = Pub.ID().ToString();
+                                            s.orderno = orderno;
+                                            s.status = OrderStatus.PayFinish;
+                                            s.statust = OrderStatus.get(s.status).text;
+                                            s.oper = u.name;
+                                            s.inuse = true;
+                                            s.cretime = paytime;
+                                            db.MyOrderPresses.Add(s);
+                                        }else
+                                        {
+                                            o.status = OrderStatus.WaitPay;
+                                        }
+                                        o.paystatus = trade_state;
                                         if (db.SaveChanges() > 0)
                                         {
                                             ok = true;
