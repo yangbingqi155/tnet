@@ -1,9 +1,10 @@
-D:\tnet\TNetCom\bin\Debug\TNetCom.dll.config
-D:\tnet\TNetCom\bin\Debug\TNetCom.dll
-D:\tnet\TNetCom\bin\Debug\TNetCom.pdb
+D:\tnet\TNetCom\bin\Debug\TCom.dll.config
+D:\tnet\TNetCom\bin\Debug\TCom.dll
+D:\tnet\TNetCom\bin\Debug\TCom.pdb
 D:\tnet\TNetCom\bin\Debug\EntityFramework.dll
 D:\tnet\TNetCom\bin\Debug\EntityFramework.SqlServer.dll
 D:\tnet\TNetCom\bin\Debug\EntityFramework.xml
 D:\tnet\TNetCom\bin\Debug\EntityFramework.SqlServer.xml
-D:\tnet\TNetCom\obj\Debug\TNetCom.dll
-D:\tnet\TNetCom\obj\Debug\TNetCom.pdb
+D:\tnet\TNetCom\obj\Debug\TCom.dll
+D:\tnet\TNetCom\obj\Debug\TCom.pdb
+D:\tnet\TNetCom\obj\Debug\TCom.csprojResolveAssemblyReference.cache

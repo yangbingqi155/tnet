@@ -9,6 +9,7 @@ using TCom.EF;
 using TNet.Models.Order;
 using Util;
 using TNet.Models.Pay;
+using TCom.Msg;
 
 namespace WxPayAPI
 {
@@ -24,15 +25,13 @@ namespace WxPayAPI
         /// 接收从微信支付后台发送过来的数据并验证签名
         /// </summary>
         /// <returns>微信支付后台返回的数据</returns>
-        public WxPayData GetData()
+        public static WxPayData OrdeQquery()
         {
             WxPayData data = null;
             //接收从微信后台POST过来的数据
             string orderno = HttpContext.Current.Request.QueryString["orderno"];
             if (string.IsNullOrWhiteSpace(orderno))
             {
-
-
                 System.IO.Stream s = HttpContext.Current.Request.InputStream;
                 int count = 0;
                 byte[] buffer = new byte[1024];
@@ -55,7 +54,7 @@ namespace WxPayAPI
                 }
                 catch (WxPayException ex)
                 {
-                    returnPayPressResult("FAIL", ex.Message);
+                    //returnPayPressResult("FAIL", ex.Message);
                     data = null;
                 }
             }
@@ -67,7 +66,7 @@ namespace WxPayAPI
             return data;
         }
 
-        public WxPayData OrdeQquery(string orderno)
+        public static WxPayData OrdeQquery(string orderno)
         {
             WxPayData data = new WxPayData();
             data.SetValue("out_trade_no", orderno);
@@ -75,9 +74,9 @@ namespace WxPayAPI
         }
 
         //派生类需要重写这个方法，进行不同的回调处理
-        public void Press()
+        public static int Press()
         {
-            WxPayData data = GetData();
+            WxPayData data = OrdeQquery();
             if (data != null)
             {
                 string return_code = data.GetValue("return_code") + "";
@@ -128,24 +127,23 @@ namespace WxPayAPI
                                             s.inuse = true;
                                             s.cretime = paytime;
                                             db.MyOrderPresses.Add(s);
-                                        }else
+                                        }
+                                        else
                                         {
                                             o.status = OrderStatus.WaitPay;
                                         }
                                         o.paystatus = trade_state;
+                                        MsgMgr.FinishPay(o.orderno + "", o.otype != null ? o.otype.Value : 0, db);
                                         if (db.SaveChanges() > 0)
                                         {
-                                            ok = true;
+                                            MsgMgr.Send();
+                                            return PayNotifyResult.Pay;
                                         }
                                     }
                                     else
                                     {
-                                        ok = true;
-                                    }
-                                    if (ok)
-                                    {
-                                        returnPayPressResult("SUCCESS", "OK");
-                                        return;
+                                        return PayNotifyResult.Payed;
+
                                     }
 
                                 }
@@ -158,12 +156,13 @@ namespace WxPayAPI
                 }
 
             }
-            returnPayPressResult("FAIL");
+            return PayNotifyResult.Fail;
+            //returnPayPressResult("FAIL");
 
         }
 
 
-        private void returnPayPressResult(string code, string msg = "")
+        public static void ResponsePayPressResult(string code, string msg = "")
         {
             WxPayData res = new WxPayData();
             res.SetValue("return_code", code);

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TCom</RootNamespace>
-    <AssemblyName>TNetCom</AssemblyName>
+    <AssemblyName>TCom</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="Discount.cs" />
+    <Compile Include="Com\P.cs" />
+    <Compile Include="Msg\MsgMgr.cs" />
+    <Compile Include="Msg\MsgType.cs" />
     <Compile Include="EF\Business.cs" />
     <Compile Include="EF\City.cs" />
     <Compile Include="EF\Discount.cs" />
@@ -76,24 +76,7 @@
     <Compile Include="EF\TaskRecver.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
-    <Compile Include="ManageUser.cs" />
-    <Compile Include="MenuItem.cs" />
-    <Compile Include="Merc.cs" />
-    <Compile Include="MercImage.cs" />
-    <Compile Include="MercType.cs" />
-    <Compile Include="Msg.cs" />
-    <Compile Include="MyAddr.cs" />
-    <Compile Include="MyOrder.cs" />
-    <Compile Include="MyOrderPress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup.cs" />
-    <Compile Include="SetupAddr.cs" />
-    <Compile Include="Spec.cs" />
-    <Compile Include="Task.cs" />
-    <Compile Include="TaskPress.cs" />
-    <Compile Include="TaskRecver.cs" />
-    <Compile Include="TN.cs" />
-    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
