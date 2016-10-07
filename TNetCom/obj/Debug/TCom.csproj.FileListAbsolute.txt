@@ -7,3 +7,5 @@ D:\tnet\TNetCom\bin\Debug\EntityFramework.xml
 D:\tnet\TNetCom\bin\Debug\EntityFramework.SqlServer.xml
 D:\tnet\TNetCom\obj\Debug\TCom.dll
 D:\tnet\TNetCom\obj\Debug\TCom.pdb
+D:\tnet\TNetCom\bin\Debug\Newtonsoft.Json.dll
+D:\tnet\TNetCom\bin\Debug\Newtonsoft.Json.xml

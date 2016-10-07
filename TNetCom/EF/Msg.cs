@@ -20,7 +20,7 @@ namespace TCom.EF
         public string iduser { get; set; }
 
         [Column("msg")]
-        [StringLength(600)]
+        [StringLength(1000)]
         public string msg1 { get; set; }
 
         public DateTime? cretime { get; set; }

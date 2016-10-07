@@ -127,7 +127,7 @@ namespace WxPayAPI
                                             s.inuse = true;
                                             s.cretime = paytime;
                                             db.MyOrderPresses.Add(s);
-                                            MsgMgr.FinishPay(o.orderno + "", o.otype != null ? o.otype.Value : 0, db);
+                                            MsgMgr.PostFinishPay(o.orderno + "", o.otype != null ? o.otype.Value : 0, db);
 
                                         }
                                         else
@@ -138,7 +138,7 @@ namespace WxPayAPI
 
                                         if (db.SaveChanges() > 0)
                                         {
-                                            MsgMgr.Send();
+                                            MsgMgr.Post();
                                             return PayNotifyResult.Pay;
                                         }
                                     }
