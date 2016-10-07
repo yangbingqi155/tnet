@@ -12,30 +12,45 @@ namespace TCom.Msg
     /// </summary>
     public sealed class MsgType
     {
+
+        /// <summary>
+        /// 投递支付订单
+        /// </summary>
+        public readonly static int PostCreateOrder = 10;
+
+
+        /// <summary>
+        /// 投递支付订单
+        /// </summary>
+        public readonly static int PostPayFinishOrder = 20;
+
+
         /// <summary>
         /// 创建订单
         /// </summary>
-        public readonly static int CreateOrder = 10;
+        public readonly static int CreateOrder = 100;
+
+
 
         /// <summary>
         /// 支付订单
         /// </summary>
-        public readonly static int PayFinishOrder = 20;
+        public readonly static int PayFinishOrder = 200;
 
         /// <summary>
         /// 报装订单
         /// </summary>
-        public readonly static int SetupOrder = 30;
+        public readonly static int SetupOrder = 300;
 
 
         /// <summary>
         /// 快过期订单
         /// </summary>
-        public readonly static int ExpirePreOrder = 40;
+        public readonly static int ExpirePreOrder = 400;
 
         /// <summary>
         /// 过期订单
         /// </summary>
-        public readonly static int ExpireOrder = 50;
+        public readonly static int ExpireOrder = 500;
     }
 }

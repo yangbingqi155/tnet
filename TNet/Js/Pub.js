@@ -6,6 +6,7 @@
         get: _ajax_get,
         jsonDate: jsonDate,
         rootUrl: rootUrl,
+        urlParam: urlParam,
         wsCheck: wsCheck,//服务检查
         showLoading: showLoading,// 
         showMsg: showMsg,// 
@@ -133,6 +134,16 @@
             root_url += "/";
         }
         return root_url;
+    }
+
+
+
+
+    //获取url参数
+    function urlParam(key) {
+        var reg = new RegExp('[?|&]' + key + '=([^&]+)');
+        var match = window.location.search.match(reg);
+        return match && match[1];
     }
 
     /**********Ajax请求***************/

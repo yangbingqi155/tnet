@@ -28,7 +28,7 @@ namespace TCom.Msg
             mo.status = 0;
             mo.orderno = orderno;
             mo.otype = otype;
-            mo.type = MsgType.PayFinishOrder;
+            mo.type = MsgType.PostPayFinishOrder;
             mo.inuse = true;
             if (db == null)
             {

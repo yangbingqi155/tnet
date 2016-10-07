@@ -2,12 +2,19 @@
 //获取订单
 function getData() {
     var orderno = $("#OC").attr("orderno");
-    var u = Pub.getUser();
-    if (u != null && orderno) {
+    var iduser = Pub.urlParam("iduser");
+    if (!iduser) {
+        var u = Pub.getUser();
+        if (u) {
+            iduser = u.iduser;
+        }
+    }
+
+    if (iduser != null && orderno) {
 
         $("#orderno").html("单号：" + orderno);
         Pub.get({
-            url: "Service/Order/Detail/" + u.iduser + "/" + orderno,
+            url: "Service/Order/Detail/" + iduser + "/" + orderno,
             loadingMsg: "加载中...",
             success: function (data) {
                 if (Pub.wsCheck(data)) {

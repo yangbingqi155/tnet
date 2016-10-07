@@ -278,7 +278,6 @@
     <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
     <Compile Include="Util\HttpExtension.cs" />
-    <Compile Include="Util\AMsg.cs" />
     <Compile Include="Util\UrlHelperExtension.cs" />
     <Compile Include="Util\HttpHelp.cs" />
     <Compile Include="Util\ListExtension.cs" />
