@@ -37,10 +37,8 @@ namespace TNet.Service.Order
 
                     db.MyOrderPresses.Add(s);
 
-
                     if (db.SaveChanges() > 0)
                     {
-                        AMsg.Send();
                         result.Data = new CreateOrderResult();
                         result.Data.orderno = o.orderno;
                         result.Code = R.Ok;

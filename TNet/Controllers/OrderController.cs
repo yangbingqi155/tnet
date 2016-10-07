@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TNet.BLL.Pay;
+using TNet.Models.Pay;
 
 namespace TNet.Controllers
 {
@@ -42,7 +43,14 @@ namespace TNet.Controllers
         //微信支付通知
         public ActionResult WeixinPayNotice()
         {
-            PayNoticeBll.Press();
+            if (PayNotice.Press() != PayNotifyResult.Fail)
+            {
+                PayNotice.ResponsePayPressResult("SUCCESS", "OK");
+            }
+            else
+            {
+                PayNotice.ResponsePayPressResult("FAIL", "ERROR");
+            }
             return View();
         }
 

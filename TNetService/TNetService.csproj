@@ -90,9 +90,7 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Bll\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TNetCom\TCom.csproj">
       <Project>{ae0a4f28-18d5-4b05-a9e4-b9a571ff281e}</Project>
