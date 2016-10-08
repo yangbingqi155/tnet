@@ -719,23 +719,25 @@ namespace TNet.Controllers
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "文件上传成功";
             string GUID = System.Guid.NewGuid().ToString();
-            string path = "~/Resouce/Images/Merc/";
+            string path = "~/Resource/Images/Merc/";
             string filename = string.Empty;
             string message = string.Empty;
             try
             {
                 if (Request.Files != null && Request.Files.Count > 0)
                 {
-                    if (Request.Files.Count > 1)
-                    {
-                        resultEntity.Code = ResponseCodeType.Fail;
-                        resultEntity.Message = "请选择文件.";
-                        return Content(resultEntity.SerializeToJson());
-                    }
+                    //if (Request.Files.Count > 1)
+                    //{
+                    //    resultEntity.Code = ResponseCodeType.Fail;
+                    //    resultEntity.Message = "请选择文件.";
+                    //    return Content(resultEntity.SerializeToJson());
+                    //}
                     resultEntity.Content = new List<MercImageViewModel>();
+                    int i = 0;
                     foreach (string upload in Request.Files)
                     {
-                        if (!Request.Files[upload].HasFile())
+                        GUID = System.Guid.NewGuid().ToString();
+                        if (!Request.Files[i].HasFile())
                         {
                             resultEntity.Code = ResponseCodeType.Fail;
                             resultEntity.Message = "文件大小不能0.";
@@ -743,7 +745,7 @@ namespace TNet.Controllers
                         }
 
 
-                        if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[upload]))
+                        if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[i]))
                         {
                             resultEntity.Code = ResponseCodeType.Fail;
                             resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
@@ -751,7 +753,7 @@ namespace TNet.Controllers
                         }
 
                         //获取文件后缀名
-                        string originFileName = Request.Files[upload].FileName;
+                        string originFileName = Request.Files[i].FileName;
                         string originFileNameSuffix = string.Empty;
                         int lastIndex = originFileName.LastIndexOf(".");
                         if (lastIndex < 0)
@@ -768,15 +770,23 @@ namespace TNet.Controllers
                             Directory.CreateDirectory(Server.MapPath(path));
                         }
 
-                        Request.Files[upload].SaveAs(Path.Combine(Server.MapPath(path), filename));
-                        resultEntity.Content.Add(new MercImageViewModel()
+                        Request.Files[i].SaveAs(Path.Combine(Server.MapPath(path), filename));
+                        MercImageViewModel model = new MercImageViewModel()
                         {
                             idmerc = mercId,
                             Path = path + filename,
                             SortID = 0,
                             InUse = true
-                        });
+                        };
 
+                        MercImage img = new MercImage();
+                        model.CopyToBase(img);
+                        MercImageService.Add(img);
+
+                        model.CopyFromBase(img);
+
+                        resultEntity.Content.Add(model);
+                        i ++;
                     }
 
                 }
@@ -787,11 +797,35 @@ namespace TNet.Controllers
                     return Content(resultEntity.SerializeToJson());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log.Error(ex.ToString());
+                log.Error(ex.ToString());
                 resultEntity.Code = ResponseCodeType.Fail;
                 resultEntity.Message = "没有选择要上传的文件.";
+                return Content(resultEntity.SerializeToJson());
+            }
+            return Content(resultEntity.SerializeToJson());
+
+        }
+
+        [ManageLoginValidation]
+        public ActionResult DeleteMercImage(int mercId)
+        {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件删除成功";
+           
+            try
+            {
+               
+                
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "文件删除失败.";
                 return Content(resultEntity.SerializeToJson());
             }
             return Content(resultEntity.SerializeToJson());

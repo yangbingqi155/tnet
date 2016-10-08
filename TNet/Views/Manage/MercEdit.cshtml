@@ -8,9 +8,10 @@
     }
 }
 <link rel="stylesheet" href="@Url.Content("~/Css/bootstrap-fileinput/fileinput.min.css")" />
+<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/plugins/sortable.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/fileinput.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/locales/zh.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/plugins/sortable.min.js")"></script>
+
 
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
@@ -110,7 +111,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.imgs, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-10">
-                        <input type="file" name="image" id="mymercimage" class="projectfile" />
+                        <input type="file" name="image" id="mymercimage" multiple class="projectfile" />
                     </div>
                 </div>
                 @Html.ValidationSummary(true)
@@ -129,12 +130,14 @@
 
 <script type="text/javascript">
     //初始化fileinput控件（第一次初始化）
-    function initFileInput(ctrlName, uploadUrl) {
+    function initFileInput(ctrlName, uploadUrl,initialPreview) {
         var control = $('#' + ctrlName);
         control.fileinput({
+            initialPreview: initialPreview,
+            initialPreviewAsData: true,
             language: 'zh', //设置语言
             uploadUrl: uploadUrl, //上传的地址
-            uploadAsync: true,
+            uploadAsync: false,
             maxFileCount: 5,
             overwriteInitial: false,
             allowedPreviewTypes: ['image'],
@@ -143,6 +146,8 @@
             showCaption: false,//是否显示标题
             browseClass: "btn btn-primary", //按钮样式
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        }).on("filebatchselected", function (event, files) {
+            control.fileinput("upload");
         }).on('fileuploaded', function (event, data, id, index) {
             var responseData = data.response;
             if (responseData.Code == "1") {
@@ -157,7 +162,15 @@
     }
 
     $(function () {
-        initFileInput("mymercimage", "@Url.Action("UploadMercImage","Manage",new { mercId = Model.idmerc })");
+        initFileInput("mymercimage", "@Url.Action("UploadMercImage","Manage",new { mercId = Model.idmerc })", ['@Url.Content("~/Resouce/Images/Merc/76315bb8-4d70-45c7-9ec3-e09f13fa5c71.jpg")', '@Url.Content("~/Resouce/Images/Merc/5c825fe2-f771-49e7-ac1d-c8293bd531d7.jpg")']);
+        $(".file-initial-thumbs").attr("id", "simpleList");
+        $(".file-preview-initial").addClass("list-group-item");
+        $(".file-preview-initial").addClass("glyphicon-move");
+        KvSortable.create(document.getElementById('simpleList'), {
+            handle: '.glyphicon-move',
+            animation: 150
+        });
+
         $('#@(Html.NameFor(model => model.stime)+"_datepicker")').datetimepicker({
             language: 'zh-CN',
             weekStart: 1,
