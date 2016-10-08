@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +8,23 @@ using Util;
 
 namespace TNetService.BLL
 {
-    public class Msg
+    public sealed class Msg
     {
-        public static string sendMsg(string data)
+        public static JObject Send(string data)
         {
-            string url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + Pub.accessToken;
-            Pub.e("sendMsg-url=" + url);
-            string m = HttpHelp.Post(url, data);
-            Pub.e("sendMsg-result=" + m);
-            return m;
+            try
+            {
+                string url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + Pub.accessToken;
+                Pub.e("sendMsg-url=" + url);
+                string m = HttpHelp.Post(url, data);
+                Pub.e("sendMsg-result=" + m);
+                JObject j = JObject.Parse(m);
+                return j;
+            }
+            catch (Exception)
+            {
+            }
+            return null;
 
         }
     }

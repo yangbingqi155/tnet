@@ -49,6 +49,7 @@ namespace Util
         }
         public static void e(string t)
         {
+            return;
             lock (lk)
             {
 

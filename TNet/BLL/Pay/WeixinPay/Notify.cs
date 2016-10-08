@@ -52,7 +52,7 @@ namespace WxPayAPI
                 {
                     data.FromXml(builder.ToString());
                 }
-                catch (WxPayException ex)
+                catch (WxPayException)
                 {
                     //returnPayPressResult("FAIL", ex.Message);
                     data = null;
@@ -110,7 +110,7 @@ namespace WxPayAPI
                                 TCom.EF.MyOrder o = db.MyOrders.Where(m => m.orderno == _orderno && m.inuse == true).FirstOrDefault();
                                 if (o != null)
                                 {
-                                    bool ok = false;
+                                    // bool ok = false;
                                     if (o.status == OrderStatus.WaitPay
                                          && o.paystatus != PayStatus.WeiXin_SUCCESS &&
                                          o.paystatus != PayStatus.WeiXin_CLOSED)
@@ -127,16 +127,18 @@ namespace WxPayAPI
                                             s.inuse = true;
                                             s.cretime = paytime;
                                             db.MyOrderPresses.Add(s);
+                                            MsgMgr.PostFinishPay(o.orderno + "", o.otype != null ? o.otype.Value : 0, db);
+
                                         }
                                         else
-                                        {
+                                        {  
                                             o.status = OrderStatus.WaitPay;
                                         }
                                         o.paystatus = trade_state;
-                                        MsgMgr.FinishPay(o.orderno + "", o.otype != null ? o.otype.Value : 0, db);
+
                                         if (db.SaveChanges() > 0)
                                         {
-                                            MsgMgr.Send();
+                                            MsgMgr.Post();
                                             return PayNotifyResult.Pay;
                                         }
                                     }
