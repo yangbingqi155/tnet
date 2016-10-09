@@ -25,37 +25,38 @@
         <div class="merc-edit-box ">
             <fieldset>
                 @Html.HiddenFor(model => model.idmerc)
+                @Html.HiddenFor(model => model.imgs)
                 <div class="form-group">
                     @Html.LabelFor(model => model.idtype, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.DropDownListFor(model => model.idtype, new SelectList(Model.mercTypes, "idtype", "name"), new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.idtype)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.merc1, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.merc1, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.merc1)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.sellpt, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.sellpt, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.sellpt)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.baseprice, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.baseprice, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.baseprice)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.stime, new { @class = "col-sm-2 control-label" })
-                    <div id="@(Html.IdFor(model=>model.stime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.stime)" data-link-format="yyyy-mm-dd">
+                    <div id="@(Html.IdFor(model=>model.stime)+"_datepicker")" class="input-group date form_date col-sm-4 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.stime)" data-link-format="yyyy-mm-dd">
                         <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.stime)" readonly>
                         @*<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>*@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -65,7 +66,7 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.entime, new { @class = "col-sm-2 control-label" })
-                    <div id="@(Html.IdFor(model=>model.entime)+"_datepicker")" class="input-group date form_date col-sm-10 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.entime)" data-link-format="yyyy-mm-dd">
+                    <div id="@(Html.IdFor(model=>model.entime)+"_datepicker")" class="input-group date form_date col-sm-4 datetime_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="@Html.IdFor(model=>model.entime)" data-link-format="yyyy-mm-dd">
                         <input class="form-control" size="16" type="text" value="@String.Format("{0:yyyy-MM-dd}", Model.stime)" readonly>
                         @*<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>*@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -75,35 +76,35 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.netype, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.netype, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.netype)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.descs, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.descs, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.descs)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.notes)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.sortno, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.sortno, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.sortno)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.inuse)
@@ -130,29 +131,34 @@
 
 <script type="text/javascript">
     //初始化fileinput控件（第一次初始化）
-    function initFileInput(ctrlName, uploadUrl,initialPreview) {
+    function initFileInput(ctrlName, uploadUrl, initialPreview, initialPreviewConfig) {
         var control = $('#' + ctrlName);
         control.fileinput({
             initialPreview: initialPreview,
+            initialPreviewConfig:initialPreviewConfig,
             initialPreviewAsData: true,
             language: 'zh', //设置语言
             uploadUrl: uploadUrl, //上传的地址
-            uploadAsync: false,
+            uploadAsync: true,
             maxFileCount: 5,
             overwriteInitial: false,
             allowedPreviewTypes: ['image'],
             allowedFileExtensions: ['jpg', 'png', 'gif'],//接收的文件后缀
             showUpload: false, //是否显示上传按钮
             showCaption: false,//是否显示标题
+            showDrag:true,
             browseClass: "btn btn-primary", //按钮样式
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
         }).on("filebatchselected", function (event, files) {
             control.fileinput("upload");
-        }).on('fileuploaded', function (event, data, id, index) {
+        });
+        control.on('fileuploaded', function (event, data, id, index) {
             var responseData = data.response;
             if (responseData.Code == "1") {
                 //$("#").val(responseData.Content[0].Path);
-                alert(responseData.Message);
+                control.fileinput('destroy');
+                initMercImages();
+                //alert(responseData.Message);
             }
             else if (responseData.Code == "2") {
                 alert(responseData.Message);
@@ -161,16 +167,70 @@
         });
     }
 
-    $(function () {
-        initFileInput("mymercimage", "@Url.Action("UploadMercImage","Manage",new { mercId = Model.idmerc })", ['@Url.Content("~/Resouce/Images/Merc/76315bb8-4d70-45c7-9ec3-e09f13fa5c71.jpg")', '@Url.Content("~/Resouce/Images/Merc/5c825fe2-f771-49e7-ac1d-c8293bd531d7.jpg")']);
-        $(".file-initial-thumbs").attr("id", "simpleList");
-        $(".file-preview-initial").addClass("list-group-item");
-        $(".file-preview-initial").addClass("glyphicon-move");
-        KvSortable.create(document.getElementById('simpleList'), {
-            handle: '.glyphicon-move',
-            animation: 150
-        });
+    function initMercImages() {
+        var uploadUrl = "@Url.Action("UploadMercImage","Manage",new { mercId = Model.idmerc })";
+        var getMercImageUrl = "@Url.Action("AjaxMercImageList", "Manage")";
+        var deleteMercImageUrl = "@Url.Action("DeleteMercImage", "Manage",new { isAjax =true})";
+        var sortMercImagesUrl = "@Url.Action("SortMercImage", "Manage",new { isAjax =true})";
+        $.post(getMercImageUrl, { mercId: "@Model.idmerc",isAjax:true }, function (returndata) {
+            returndata = eval("(" + returndata+")");
+            var initPreviewImage = [];
+            var initialPreviewConfig = [];
+            if (returndata.Code == 1) {
+                if (returndata.Content.length > 0) {
+                    for (var i = 0; i < returndata.Content.length; i++) {
+                        initPreviewImage.push(returndata.Content[i].Path);
+                        var initialPreviewConfigItem = {
+                            url: deleteMercImageUrl,
+                            key: returndata.Content[i].MercImageId,
+                            extra: { mercImageId: returndata.Content[i].MercImageId,idmerc: "@Model.idmerc" }
+                        };
+                        initialPreviewConfig.push(initialPreviewConfigItem);
+                    }
+                }
+            }
+            else if (returndata.Code == 2) {
+                alert("无法获取产品图片。");
+            }
+            initFileInput("mymercimage", uploadUrl, initPreviewImage, initialPreviewConfig);
+            $(".file-initial-thumbs").attr("id", "simpleList");
+            $(".file-preview-initial").addClass("list-group-item");
+            $(".file-preview-initial").addClass("glyphicon-move");
+            $(".file-preview-initial").each(function (i, d) {
+                $(d).attr("key", initialPreviewConfig[i].key);
+            });
+            KvSortable.create(document.getElementById('simpleList'), {
+                handle: '.glyphicon-move',
+                animation: 150,
+                onEnd: function (evt) {
+                    var list = [];
+                    $(".file-preview-initial").each(function (i, d) {
+                        var item = { MercImageId: $(d).attr("key"), SortID: i + 1 };
+                        list.push(item);
+                    });
 
+                    $.ajax({
+                        type: "post",
+                        url: sortMercImagesUrl,
+                        data: { mercImageViewModelListJson: JSON.stringify(list),idmerc: "@Model.idmerc"  },
+                        dataType: "json",
+                        success: function (rdata) {
+                            rdata = eval("(" + rdata + ")");
+                            if (rdata.Code == 1) {
+
+                            }
+                            else {
+
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    $(function () {
+        initMercImages();
         $('#@(Html.NameFor(model => model.stime)+"_datepicker")').datetimepicker({
             language: 'zh-CN',
             weekStart: 1,

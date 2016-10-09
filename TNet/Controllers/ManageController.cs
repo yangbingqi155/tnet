@@ -610,6 +610,36 @@ namespace TNet.Controllers
         }
 
         /// <summary>
+        /// 获取产品图片
+        /// </summary>
+        /// <param name="mercId"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AjaxMercImageList(int mercId,bool isAjax) {
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try {
+                List<MercImage> entities = MercImageService.GetMercImagesByMercId(mercId);
+                List<MercImageViewModel> viewModels = entities.Select(model =>
+                {
+                    MercImageViewModel viewModel = new MercImageViewModel();
+                    viewModel.CopyFromBase(model);
+                    viewModel.Path = Url.Content( viewModel.Path);
+                    return viewModel;
+                }).ToList();
+                resultEntity.Content = viewModels;
+            }
+            catch (Exception ex) {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
         /// 产品图片管理
         /// </summary>
         /// <param name="mercId"></param>
@@ -775,13 +805,15 @@ namespace TNet.Controllers
                         {
                             idmerc = mercId,
                             Path = path + filename,
-                            SortID = 0,
+                            SortID = MercImageService.MaxMercImageSortID(mercId)+1,
                             InUse = true
                         };
 
                         MercImage img = new MercImage();
                         model.CopyToBase(img);
                         MercImageService.Add(img);
+
+                        MercService.SetDefaultMercImage(mercId);
 
                         model.CopyFromBase(img);
 
@@ -809,16 +841,32 @@ namespace TNet.Controllers
         }
 
         [ManageLoginValidation]
-        public ActionResult DeleteMercImage(int mercId)
+        public ActionResult DeleteMercImage(int mercImageId,int idmerc,bool isAjax)
         {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "文件删除成功";
-           
-            try
-            {
-               
+
+            try {
+                MercImage image = MercImageService.GetMercImage(mercImageId);
+                if (image==null) {
+                    resultEntity.Code = ResponseCodeType.Fail;
+                    resultEntity.Message = "该商品图片已经不存在，请刷新页面重试.";
+                    return Content(resultEntity.SerializeToJson());
+                }
+                try {
+                    if (!string.IsNullOrEmpty(image.Path) && System.IO.File.Exists(Server.MapPath(image.Path))) {
+                        System.IO.File.Delete(Server.MapPath(image.Path));
+                    }
+                    MercImageService.Delete(mercImageId);
+                    MercService.SetDefaultMercImage(idmerc);
+                }
+                catch (Exception ex) {
+                    resultEntity.Code = ResponseCodeType.Fail;
+                    resultEntity.Message = "文件删除失败.";
+                    return Content(resultEntity.SerializeToJson());
+                }
                 
             }
             catch (Exception ex)
@@ -830,6 +878,44 @@ namespace TNet.Controllers
             }
             return Content(resultEntity.SerializeToJson());
 
+        }
+
+        [ManageLoginValidation]
+        public ActionResult SortMercImage(string mercImageViewModelListJson,int idmerc,bool isAjax) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            List<MercImageViewModel> entities = new List<MercImageViewModel>();
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "移动商品图片成功";
+            try {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                entities = js.Deserialize<List<MercImageViewModel>>(mercImageViewModelListJson);
+
+                List<MercImage> images = entities.Select(model =>
+                {
+                    MercImage img = new MercImage();
+                    model.CopyToBase(img);
+                    return img;
+                }  ).ToList();
+
+               bool result= MercImageService.BatchChangSort(images);
+                if (!result) {
+                    resultEntity.Code = ResponseCodeType.Success;
+                    resultEntity.Message = "移动商品图片失败";
+                    return Content(resultEntity.SerializeToJson());
+                }
+                else {
+                    MercService.SetDefaultMercImage(idmerc);
+                }
+            }
+            catch (Exception ex) {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Success;
+                resultEntity.Message = "移动商品图片失败";
+                return Content(resultEntity.SerializeToJson());
+            }
+            
+            return Content(resultEntity.SerializeToJson());
         }
 
         /// <summary>

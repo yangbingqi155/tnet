@@ -9,3 +9,15 @@ D:\tnet\TNetCom\obj\Debug\TCom.dll
 D:\tnet\TNetCom\obj\Debug\TCom.pdb
 D:\tnet\TNetCom\bin\Debug\Newtonsoft.Json.dll
 D:\tnet\TNetCom\bin\Debug\Newtonsoft.Json.xml
+F:\MyCode\tnet\TNetCom\bin\Debug\TCom.dll.config
+F:\MyCode\tnet\TNetCom\bin\Debug\TCom.dll
+F:\MyCode\tnet\TNetCom\bin\Debug\TCom.pdb
+F:\MyCode\tnet\TNetCom\bin\Debug\EntityFramework.dll
+F:\MyCode\tnet\TNetCom\bin\Debug\EntityFramework.SqlServer.dll
+F:\MyCode\tnet\TNetCom\bin\Debug\Newtonsoft.Json.dll
+F:\MyCode\tnet\TNetCom\bin\Debug\EntityFramework.xml
+F:\MyCode\tnet\TNetCom\bin\Debug\EntityFramework.SqlServer.xml
+F:\MyCode\tnet\TNetCom\bin\Debug\Newtonsoft.Json.xml
+F:\MyCode\tnet\TNetCom\obj\Debug\TCom.csprojResolveAssemblyReference.cache
+F:\MyCode\tnet\TNetCom\obj\Debug\TCom.dll
+F:\MyCode\tnet\TNetCom\obj\Debug\TCom.pdb
