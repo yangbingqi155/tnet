@@ -44,6 +44,21 @@ namespace TNet.BLL
             
             return result;
         }
+        public static bool DeleteMercImages(int idmerc) {
+            bool result = false;
+            try {
+                TN db = new TN();
+                db.MercImages.RemoveRange(db.MercImages.Where(en => en.idmerc == idmerc));
+                db.SaveChanges();
+                result = true;
+            }
+            catch (Exception ex) {
+                result = false;
+            }
+
+            return result;
+        }
+
         public static MercImage Edit(MercImage mercImage)
         {
             TN db = new TN();
@@ -57,6 +72,13 @@ namespace TNet.BLL
 
             db.SaveChanges();
             return oldMercImage;
+        }
+
+        public static List<MercImage> AddMuti(List<MercImage> mercImages) {
+            TN db = new TN();
+            db.MercImages.AddRange(mercImages);
+            db.SaveChanges();
+            return mercImages;
         }
 
         public static MercImage Add(MercImage mercImage)

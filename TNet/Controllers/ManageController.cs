@@ -742,7 +742,7 @@ namespace TNet.Controllers
         }
 
         [ManageLoginValidation]
-        public ActionResult UploadMercImage(int mercId)
+        public ActionResult UploadMercImage(int mercId=0)
         {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
@@ -808,14 +808,6 @@ namespace TNet.Controllers
                             SortID = MercImageService.MaxMercImageSortID(mercId)+1,
                             InUse = true
                         };
-
-                        MercImage img = new MercImage();
-                        model.CopyToBase(img);
-                        MercImageService.Add(img);
-
-                        MercService.SetDefaultMercImage(mercId);
-
-                        model.CopyFromBase(img);
 
                         resultEntity.Content.Add(model);
                         i ++;

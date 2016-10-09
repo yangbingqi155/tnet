@@ -21,7 +21,7 @@
     </ol>
 </div>
 <div class="ManageRightContent">
-    <form action="@Url.Action("MercEdit","Manage")" method="post" class="form-horizontal">
+    <form id="form1" action="@Url.Action("MercEdit","Manage")" method="post" class="form-horizontal">
         <div class="merc-edit-box ">
             <fieldset>
                 @Html.HiddenFor(model => model.idmerc)
@@ -118,7 +118,7 @@
                 @Html.ValidationSummary(true)
                 <div class="form-group">
                     <div class="col-sm-10">
-                        <input type="submit" value="保存" class="btn btn-primary" />
+                        <input type="button" value="保存" class="btn btn-primary" />
                     </div>
                 </div>
             </fieldset>
@@ -155,10 +155,7 @@
         control.on('fileuploaded', function (event, data, id, index) {
             var responseData = data.response;
             if (responseData.Code == "1") {
-                //$("#").val(responseData.Content[0].Path);
-                control.fileinput('destroy');
-                initMercImages();
-                //alert(responseData.Message);
+                alert(responseData.Message);
             }
             else if (responseData.Code == "2") {
                 alert(responseData.Message);
@@ -170,7 +167,6 @@
     function initMercImages() {
         var uploadUrl = "@Url.Action("UploadMercImage","Manage",new { mercId = Model.idmerc })";
         var getMercImageUrl = "@Url.Action("AjaxMercImageList", "Manage")";
-        var deleteMercImageUrl = "@Url.Action("DeleteMercImage", "Manage",new { isAjax =true})";
         var sortMercImagesUrl = "@Url.Action("SortMercImage", "Manage",new { isAjax =true})";
         $.post(getMercImageUrl, { mercId: "@Model.idmerc",isAjax:true }, function (returndata) {
             returndata = eval("(" + returndata+")");
@@ -180,12 +176,6 @@
                 if (returndata.Content.length > 0) {
                     for (var i = 0; i < returndata.Content.length; i++) {
                         initPreviewImage.push(returndata.Content[i].Path);
-                        var initialPreviewConfigItem = {
-                            url: deleteMercImageUrl,
-                            key: returndata.Content[i].MercImageId,
-                            extra: { mercImageId: returndata.Content[i].MercImageId,idmerc: "@Model.idmerc" }
-                        };
-                        initialPreviewConfig.push(initialPreviewConfigItem);
                     }
                 }
             }
@@ -197,33 +187,13 @@
             $(".file-preview-initial").addClass("list-group-item");
             $(".file-preview-initial").addClass("glyphicon-move");
             $(".file-preview-initial").each(function (i, d) {
-                $(d).attr("key", initialPreviewConfig[i].key);
+                $(d).attr("key", returndata.Content[i].MercImageId);
             });
             KvSortable.create(document.getElementById('simpleList'), {
                 handle: '.glyphicon-move',
                 animation: 150,
                 onEnd: function (evt) {
-                    var list = [];
-                    $(".file-preview-initial").each(function (i, d) {
-                        var item = { MercImageId: $(d).attr("key"), SortID: i + 1 };
-                        list.push(item);
-                    });
 
-                    $.ajax({
-                        type: "post",
-                        url: sortMercImagesUrl,
-                        data: { mercImageViewModelListJson: JSON.stringify(list),idmerc: "@Model.idmerc"  },
-                        dataType: "json",
-                        success: function (rdata) {
-                            rdata = eval("(" + rdata + ")");
-                            if (rdata.Code == 1) {
-
-                            }
-                            else {
-
-                            }
-                        }
-                    });
                 }
             });
         });
