@@ -15,6 +15,7 @@ using TNet.Util;
 using log4net;
 using System.Reflection;
 using System;
+using System.Text;
 
 namespace TNet.Controllers
 {
@@ -811,6 +812,19 @@ namespace TNet.Controllers
 
                         resultEntity.Content.Add(model);
                         i ++;
+                        StringBuilder strResult = new StringBuilder();
+                        strResult.Append("{\"initialPreview\":[");
+                        for (int k = 0; k < resultEntity.Content.Count; k++)
+                        {
+                            if (k == 0) {
+                                strResult.AppendFormat("\"{0}\"",Url.Content(resultEntity.Content[k].Path));
+                            }
+                            else {
+                                strResult.AppendFormat("\",{0}\"", Url.Content(resultEntity.Content[k].Path));
+                            }
+                        }
+                        strResult.Append("]}");
+                        return Content(strResult.ToString());
                     }
 
                 }
@@ -829,6 +843,7 @@ namespace TNet.Controllers
                 return Content(resultEntity.SerializeToJson());
             }
             return Content(resultEntity.SerializeToJson());
+            
 
         }
 
