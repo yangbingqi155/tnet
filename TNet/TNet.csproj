@@ -205,6 +205,7 @@
     <Compile Include="Models\Business\BusinessViewModel.cs" />
     <Compile Include="Models\File\UploadData.cs" />
     <Compile Include="Models\File\UploadDataResult.cs" />
+    <Compile Include="Models\Manage\ManageUserType.cs" />
     <Compile Include="Models\Manage\ManageUserViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -604,6 +605,8 @@
     <Content Include="Views\Manage\BusinessEdit.cshtml" />
     <Content Include="Views\Manage\OrderDetail.cshtml" />
     <Content Include="Views\Order\WeixinPayNotice.cshtml" />
+    <Content Include="Views\Manage\ManageUserList.cshtml" />
+    <Content Include="Views\Manage\ManageUserEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

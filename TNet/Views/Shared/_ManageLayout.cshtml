@@ -22,27 +22,23 @@
 <body>
     <div class="manageLeft">
         <div class="panel panel-default">
-            <!-- Default panel contents -->
             <div class="panel-heading parentMenu">产品管理</div>
-            <!-- List group -->
             <div class="list-group">
                 <a class="list-group-item" id="MercList" href="@Url.Action("MercList","Manage")">商品管理</a>
                 <a class="list-group-item" id="MercTypeList" href="@Url.Action("MercTypeList","Manage")">类型管理</a>
                 @*<a class="list-group-item" href="@Url.Action("SpecList","Manage")">规格管理</a>*@
             </div>
-            <!-- Default panel contents -->
             <div class="panel-heading parentMenu">订单管理</div>
-            <!-- List group -->
             <div class="list-group">
                 <a class="list-group-item" id="OrderList" href="@Url.Action("OrderList","Manage")">订单列表</a>
-                @*<a class="list-group-item" href="">未完成的订单</a>*@
             </div>
-            <!-- Default panel contents -->
             <div class="panel-heading parentMenu">商圈管理</div>
-            <!-- List group -->
             <div class="list-group">
                 <a class="list-group-item" id="BusinessList" href="@Url.Action("BusinessList","Manage")">周边商圈</a>
-                @*<a class="list-group-item" href="">未完成的订单</a>*@
+            </div>
+            <div class="panel-heading parentMenu">工人管理</div>
+            <div class="list-group">
+                <a class="list-group-item" id="ManageUserList" href="@Url.Action("ManageUserList","Manage")">工人管理</a>
             </div>
         </div>
 

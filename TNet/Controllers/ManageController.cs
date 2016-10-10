@@ -31,9 +31,9 @@ namespace TNet.Controllers
         public ActionResult Login(ManageUserViewModel model)
         {
             ManageUser user = ManageUserService.GetManageUserByUserName(model.UserName);
-            if (user == null)
+            if (user == null|| user.UserType==(int)ManageUserType.Worker)
             {
-                ModelState.AddModelError("", "没有找到该用户名.");
+                ModelState.AddModelError("", "没有找到该用户名或者帐号被禁用或者没有权限登录.");
                 return View(model);
             }
             string md5Password = string.Empty;
@@ -948,6 +948,118 @@ namespace TNet.Controllers
                 return Content(resultEntity.SerializeToJson());
             }
             
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
+        /// 管理员列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult ManageUserList(int pageIndex = 0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<ManageUser> entities = ManageUserService.GetALL();
+            List<ManageUser> pageList = entities.Pager<ManageUser>(pageIndex, pageSize, out pageCount);
+            
+            List<ManageUserViewModel> viewModels = pageList.Select(model =>
+            {
+                ManageUserViewModel viewModel = new ManageUserViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+
+            return View(viewModels);
+        }
+
+
+        /// <summary>
+        /// 创建/编辑管理员
+        /// </summary>
+        /// <param name="idmerc"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult ManageUserEdit(int manageUserId = 0)
+        {
+            ManageUserViewModel model = new ManageUserViewModel();
+            if (manageUserId > 0)
+            {
+                ManageUser manageUser = ManageUserService.Get(manageUserId);
+                if (manageUser != null) { model.CopyFromBase(manageUser); }
+            }
+            else
+            {
+                model.inuse = true;
+            }
+            
+            
+            return View(model);
+        }
+
+        /// <summary>
+        /// 创建/编辑管理员
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult ManageUserEdit(ManageUserViewModel model)
+        {
+
+            ManageUser manageUser = new ManageUser();
+            model.CopyToBase(manageUser);
+            if (manageUser.ManageUserId == 0)
+            {
+                //新增
+                manageUser = ManageUserService.Add(manageUser);
+            }
+            else
+            {
+                //编辑
+                manageUser = ManageUserService.Edit(manageUser);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(manageUser);
+
+            ModelState.AddModelError("", "保存成功.");
+            return View(model);
+        }
+
+
+        /// <summary>
+        /// 启用或者禁用管理员
+        /// </summary>
+        /// <param name="ManageUserId"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult ManageUserEnable(int ManageUserId, bool enable, bool isAjax)
+        {
+            ResultModel<ManageUserViewModel> resultEntity = new ResultModel<ManageUserViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                ManageUser manageUser = ManageUserService.Get(ManageUserId);
+                manageUser.inuse = enable;
+                ManageUserService.Edit(manageUser);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
             return Content(resultEntity.SerializeToJson());
         }
 
