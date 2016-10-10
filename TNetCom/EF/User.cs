@@ -21,8 +21,6 @@ namespace TCom.EF
 
         public DateTime? cretime { get; set; }
 
-        public bool? isoper { get; set; }
-
         [StringLength(15)]
         public string phone { get; set; }
 

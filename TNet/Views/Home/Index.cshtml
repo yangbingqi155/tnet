@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Head{
-    <link href="@Url.Content("~/Css/Home/Index.css?v=20161007")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Css/Merc/List.css?v=20161007")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20161007")">
+    <link href="@Url.Content("~/Css/Home/Index.css?v=20161010")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Merc/List.css?v=20161010")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20161010")">
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20161007")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20161010")">
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Merc/List.js?v=20161007")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/List.js?v=20161010")">
     </script>
     <script type="text/javascript">
         // Pub.delUser();
@@ -69,7 +69,7 @@
                 </td>
                 <td>
 
-                    <a href="#"><i class="zhinan"></i><span>调查</span> </a>
+                    <a id="Task" href="@Url.Content("~/Task/List")" ><i class="zhinan"></i><span>我的工单</span> </a>
                 </td>
             </tr>
         </table>

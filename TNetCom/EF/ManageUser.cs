@@ -28,11 +28,15 @@ namespace TCom.EF
 
         public bool? recv_order { get; set; }
 
+        public bool? recv_setup { get; set; }
+
         public bool? send_setup { get; set; }
 
         [StringLength(60)]
         public string notes { get; set; }
 
-        public bool? inuse { get; set; }
+        public bool inuse { get; set; }
+
+        public int UserType { get; set; }
     }
 }

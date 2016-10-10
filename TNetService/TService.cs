@@ -12,7 +12,6 @@ using System.Net.Sockets;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using TCom.Msg;
 using TNetService.BLL;
 using Util;
@@ -147,7 +146,7 @@ namespace TNetService
                                 isPub = false;
                                 var mus = (from muo in db.ManageUsers
                                            join uo in db.Users on muo.idweixin equals uo.idweixin
-                                           where (muo.idweixin != null && muo.idweixin.Trim() != string.Empty && muo.inuse == true && uo.inuse == true)
+                                           where (muo.idweixin != null && muo.idweixin.Trim() != string.Empty && muo.inuse == true && uo.inuse == true && (muo.recv_order == true || muo.recv_setup == true || muo.send_setup == true))
                                            select new
                                            {
                                                idweixin = muo.idweixin,

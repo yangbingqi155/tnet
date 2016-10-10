@@ -177,12 +177,12 @@
         request.success = function (data) {
             hieLoading();
             if (success) {
-                try{
+                try {
                     data = jsonDate(data);
                 } catch (e) {
 
                 }
-                
+
                 success(data);
             }
         };
@@ -328,9 +328,9 @@
         realu = window.location.href + "";
         //}
         var u = "";
-        var uurl = full_root_url + "user?ru=" + encodeURIComponent(realu);
+        var uurl = "";
         if (!tn_u) {
-            uurl = encodeURIComponent(uurl);
+            uurl = encodeURIComponent(full_root_url + "user?ru=" + encodeURIComponent(realu));
             u = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc530ec3ce6a52233&redirect_uri=' + uurl + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
             if (go) {
                 if (window.navigator.userAgent.indexOf("MicroMesseng") > 0) {
@@ -341,9 +341,10 @@
             }
             //return false;
         } else {
-            u = uurl;
+            u = full_root_url + "user" + "?idweixin=" + tn_u.idweixin;
         }
         $(".Top_User").attr("href", u);
+        //alert(u);
         if (tn_u && tn_u.avatar) {
             var uo = $("#Top_User");
             uo.css("background-image", "url(" + tn_u.avatar + ")");

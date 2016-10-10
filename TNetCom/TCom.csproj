@@ -56,12 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Com\P.cs" />
-    <Compile Include="Msg\MsgMgr.cs" />
-    <Compile Include="Msg\MsgType.cs" />
     <Compile Include="EF\Business.cs" />
     <Compile Include="EF\City.cs" />
     <Compile Include="EF\Discount.cs" />
-    <Compile Include="EF\Ext\TN.cs" />
     <Compile Include="EF\ManageUser.cs" />
     <Compile Include="EF\MenuItem.cs" />
     <Compile Include="EF\Merc.cs" />
@@ -79,11 +76,17 @@
     <Compile Include="EF\TaskRecver.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="Msg\MsgMgr.cs" />
+    <Compile Include="Msg\MsgType.cs" />
+    <Compile Include="EF\Ext\TN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

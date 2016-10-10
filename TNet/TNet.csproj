@@ -214,6 +214,7 @@
       <DependentUpon>201608300500213_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Manage\MUser.cs" />
     <Compile Include="Models\Merc\MercImageViewModel.cs" />
     <Compile Include="Models\Merc\MercList.cs" />
     <Compile Include="Models\Merc\MercTypeViewModel.cs" />
@@ -295,6 +296,7 @@
     <Content Include="Css\bootstrap-fileinput\fileinput.min.css" />
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
+    <Content Include="Css\User\Index.css" />
     <Content Include="Images\Manage\login_bg.jpg" />
     <Content Include="Images\Order\setup_tag.png" />
     <Content Include="Js\bootstrap-fileinput\fileinput.js" />

@@ -6,13 +6,127 @@
 
 
 @section Head{
+    <link href="@Url.Content("~/Css/User/Index.css?v=20161010")" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         var ru = "@ViewBag.ru";
         var tn_u = @ViewBag.u;
         Pub.setUser(tn_u);
-        if (ru) {
-            window.location.href = ru;
+        function initParam(){
+            if (ru) {
+                $(".Jump").show();
+                window.location.href = ru;
+            }else{
+                $("#base").show();
+
+                $(".avatar").css("background-image","url("+tn_u.avatar+")");
+                $(".name").html(tn_u.name);
+                setV("phone",tn_u.phone);
+                setV("comp",tn_u.comp);
+                if(tn_u.sex != null && tn_u.sex != undefined && tn_u.sex != -1){
+                    setV("sex",tn_u.sex?"男":"女");
+                }
+                setV("cretime",tn_u.cretime);
+                setV("notes",tn_u.notes);
+
+                if(tn_u.mu){
+                    $("#muser").show();
+
+                    setV("muphone",tn_u.mu.phone);
+                    setV("muname",tn_u.mu.name);
+
+                    if(tn_u.mu.recvOrder){
+                        $("#recv_order").attr("checked",'true');
+                    }
+
+                    if(tn_u.mu.recvSetup){
+                        $("#recv_setup").attr("checked",'true');
+                    }
+
+                    if(tn_u.mu.sendSetup){
+                        $("#send_setup").attr("checked",'true');
+                    }
+
+
+                }
+
+            }
         }
+
+        function setV(id,v){
+            if(!v){
+                v = "...";
+            }
+            $("#"+id).html(v);
+        }
+        $(document.body).ready(initParam);
     </script>
 }
-@ViewBag.ok
+<div class="Jump">跳转中...</div>
+<div class="InfoHost">
+    <div class="InfoBox weui_cells weui_cells_access" id="base">
+        <div class="avatarHox">
+            <div class="avatar">
+
+            </div>
+            <div class="name"></div>
+        </div>
+        <div class="vline"></div>
+
+        <div class="weui_cell Title_Cells">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>基本信息:</p>
+            </div>
+            <div class="weui_cell_ft">
+
+            </div>
+        </div>
+
+        <div class="Item">电话：<span id="phone">...</span></div>
+        <div class="Item">公司：<span id="comp">...</span></div>
+        <div class="Item">性别：<span id="sex">...</span></div>
+        <div class="Item">注册：<span id="cretime">...</span></div>
+        <div class="Item">备注：<span id="notes">...</span></div>
+    </div>
+
+    <div class="InfoBox" id="muser">
+        <div class="vline"></div>
+        <div class="Title">职员信息：</div>
+        <div class="Item">姓名：<span id="muname">...</span></div>
+        <div class="Item">电话：<span id="muphone">...</span></div>
+        <div class="Item">备注：<span id="notes">...</span></div>
+        <div class="Item NoBorder">通知 & 权限：</div>
+        <div class="weui_cells weui_cells_checkbox">
+            <label class="weui_cell weui_check_label" for="recv_order">
+                <div class="weui_cell_hd">
+                    <input value="coding" class="weui_check" name="hobby" id="recv_order" disabled type="checkbox">
+                    <i class="weui_icon_checked"></i>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>订单通知</p>
+                </div>
+            </label>
+            <label class="weui_cell weui_check_label" for="recv_setup">
+                <div class="weui_cell_hd">
+                    <input value="fixBug" name="hobby" disabled class="weui_check" id="recv_setup" type="checkbox">
+                    <i class="weui_icon_checked"></i>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>工单通知</p>
+                </div>
+            </label>
+            <label class="weui_cell weui_check_label" for="send_order">
+                <div class="weui_cell_hd">
+                    <input value="fixOtherDeBug" disabled name="hobby" class="weui_check" id="send_order" type="checkbox">
+                    <i class="weui_icon_checked"></i>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>派单</p>
+                </div>
+            </label>
+        </div>
+
+
+    </div>
+
+
+</div>

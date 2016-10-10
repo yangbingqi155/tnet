@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TCom.Com;
 
+
 namespace TCom.Msg
 {
     //发送消息
@@ -36,7 +37,8 @@ namespace TCom.Msg
             jo["touser"] = idweixin;
             jo["template_id"] = "_5rsT-d9H1iLDHr8B7IN5IYo4QftrnNxNofEeTn4EyI";
 
-            jo["url"] = "http://app.i5shang.com/tnet/order/detail/" + mo.orderno + "?iduser=" + iduser;
+            jo["url"] = "http://app.i5shang.com/tnet/order/detail/" + mo.orderno + "?iduser=" + iduser
+                + "&updateUser=1";
             JObject jdo = new JObject();
             jdo["first"] = getJobj(mo.merc + "(" + mo.spec + ")");
             jdo["tradeDateTime"] = getJobj(mo.cretime != null ? mo.cretime.Value.ToString("MM月dd日 HH时mm分") : "无");
