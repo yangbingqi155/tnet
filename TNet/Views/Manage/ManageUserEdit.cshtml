@@ -1,0 +1,93 @@
+﻿@model TNet.Models.ManageUserViewModel
+@using TNet.Models
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "编辑工人信息";
+    if (Model.ManageUserId == 0)
+    {
+        ViewBag.Title = "新增工人信息";
+    }
+}
+
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">工人管理</a></li>
+        <li><a href="@Url.Action("ManageUserList","Manage")">工人列表</a></li>
+        <li><a href="#" class="active">@(Model.ManageUserId == 0 ? "新增工人信息" : "编辑工人信息")</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form id="form1" action="@Url.Action("ManageUserEdit","Manage")" method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                @Html.HiddenFor(model => model.ManageUserId)
+                @Html.HiddenFor(model=>model.idweixin)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserType, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(model => model.UserType, new SelectList(ManageUserViewModel.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.UserType)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.phone, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.phone)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.recv_order, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.CheckBoxFor(model => model.recv_order, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.recv_order)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.recv_setup, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.CheckBoxFor(model => model.recv_setup, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.recv_setup)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.send_setup, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.CheckBoxFor(model => model.send_setup, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.send_setup)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inuse)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.notes)
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="submit" id="btnSave" value="保存" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+
+    </form>
+
+</div>

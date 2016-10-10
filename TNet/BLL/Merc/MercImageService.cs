@@ -21,12 +21,42 @@ namespace TNet.BLL
         public static List<MercImage> GetMercImagesByMercId(int idmerc)
         {
             TN db = new TN();
-            return db.MercImages.Where(en=>en.idmerc== idmerc).ToList();
+            return db.MercImages.Where(en=>en.idmerc== idmerc).OrderBy(en=>en.SortID).ToList();
         }
 
-        public static MercImage GetMercImage(int MercImageId)
+        public static MercImage GetMercImage(int mercImageId)
         {
-            return GetALL().Where(en => en.MercImageId == MercImageId).FirstOrDefault();
+            return GetALL().Where(en => en.MercImageId == mercImageId).FirstOrDefault();
+        }
+
+        public static bool Delete(int mercImageId) {
+            bool result = false;
+            try {
+                TN db = new TN();
+
+                db.MercImages.Remove(db.MercImages.Find(mercImageId));
+                db.SaveChanges();
+                result = true;
+            }
+            catch (Exception ex) {
+                result = false;
+            }
+            
+            return result;
+        }
+        public static bool DeleteMercImages(int idmerc) {
+            bool result = false;
+            try {
+                TN db = new TN();
+                db.MercImages.RemoveRange(db.MercImages.Where(en => en.idmerc == idmerc));
+                db.SaveChanges();
+                result = true;
+            }
+            catch (Exception ex) {
+                result = false;
+            }
+
+            return result;
         }
 
         public static MercImage Edit(MercImage mercImage)
@@ -44,12 +74,42 @@ namespace TNet.BLL
             return oldMercImage;
         }
 
+        public static List<MercImage> AddMuti(List<MercImage> mercImages) {
+            TN db = new TN();
+            db.MercImages.AddRange(mercImages);
+            db.SaveChanges();
+            return mercImages;
+        }
+
         public static MercImage Add(MercImage mercImage)
         {
             TN db = new TN();
             db.MercImages.Add(mercImage);
             db.SaveChanges();
             return mercImage;
+        }
+
+        public static bool BatchChangSort(List<MercImage> list) {
+            bool result = false;
+            try {
+                TN db = new TN();
+                for (int i = 0; i < list.Count; i++) {
+                    MercImage img= db.MercImages.Find(list[i].MercImageId);
+                    img.SortID = list[i].SortID;
+                    db.SaveChanges();
+                }
+                    result = true;
+            }
+            catch (Exception ex) {
+                result = false;
+            }
+            
+            return result;
+        }
+
+        public static int MaxMercImageSortID(int idmerc) {
+            TN db = new TN();
+            return db.MercImages.Where(en => en.idmerc == idmerc).Max(en=>en.SortID)??0;
         }
     }
 }

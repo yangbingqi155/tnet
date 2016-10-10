@@ -15,6 +15,7 @@ using TNet.Util;
 using log4net;
 using System.Reflection;
 using System;
+using System.Text;
 
 namespace TNet.Controllers
 {
@@ -30,9 +31,9 @@ namespace TNet.Controllers
         public ActionResult Login(ManageUserViewModel model)
         {
             ManageUser user = ManageUserService.GetManageUserByUserName(model.UserName);
-            if (user == null)
+            if (user == null|| user.UserType==(int)ManageUserType.Worker)
             {
-                ModelState.AddModelError("", "没有找到该用户名.");
+                ModelState.AddModelError("", "没有找到该用户名或者帐号被禁用或者没有权限登录.");
                 return View(model);
             }
             string md5Password = string.Empty;
@@ -358,7 +359,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpPost]
-        public ActionResult MercEdit(MercViewModel model)
+        public ActionResult MercEdit(MercViewModel model,string mercImages="")
         {
 
             Merc merc = new Merc();
@@ -374,7 +375,26 @@ namespace TNet.Controllers
                 //编辑
                 merc = MercService.Edit(merc);
             }
-
+            
+            MercImageService.DeleteMercImages(merc.idmerc);
+            
+            if (!string.IsNullOrEmpty(mercImages)) {
+                List<MercImage> list = new List<MercImage>();
+                string[] imgs = mercImages.Split(',');
+                int i = 0;
+                foreach (var item in imgs) {
+                    list.Add(new MercImage() {
+                         idmerc=merc.idmerc,
+                          InUse=true,
+                           Path=item,
+                            SortID=i+1
+                    });
+                    i++;
+                }
+                if (list.Count>0) {
+                    MercImageService.AddMuti(list);
+                }
+            }
 
             //修改后重新加载
             model.CopyFromBase(merc);
@@ -610,6 +630,36 @@ namespace TNet.Controllers
         }
 
         /// <summary>
+        /// 获取产品图片
+        /// </summary>
+        /// <param name="mercId"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AjaxMercImageList(int mercId,bool isAjax) {
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try {
+                List<MercImage> entities = MercImageService.GetMercImagesByMercId(mercId);
+                List<MercImageViewModel> viewModels = entities.Select(model =>
+                {
+                    MercImageViewModel viewModel = new MercImageViewModel();
+                    viewModel.CopyFromBase(model);
+                    viewModel.Path = Url.Content( viewModel.Path);
+                    return viewModel;
+                }).ToList();
+                resultEntity.Content = viewModels;
+            }
+            catch (Exception ex) {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
         /// 产品图片管理
         /// </summary>
         /// <param name="mercId"></param>
@@ -712,30 +762,32 @@ namespace TNet.Controllers
         }
 
         [ManageLoginValidation]
-        public ActionResult UploadMercImage(int mercId)
+        public ActionResult UploadMercImage(int mercId=0)
         {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "文件上传成功";
             string GUID = System.Guid.NewGuid().ToString();
-            string path = "~/Resouce/Images/Merc/";
+            string path = "~/Resource/Images/Merc/";
             string filename = string.Empty;
             string message = string.Empty;
             try
             {
                 if (Request.Files != null && Request.Files.Count > 0)
                 {
-                    if (Request.Files.Count > 1)
-                    {
-                        resultEntity.Code = ResponseCodeType.Fail;
-                        resultEntity.Message = "请选择文件.";
-                        return Content(resultEntity.SerializeToJson());
-                    }
+                    //if (Request.Files.Count > 1)
+                    //{
+                    //    resultEntity.Code = ResponseCodeType.Fail;
+                    //    resultEntity.Message = "请选择文件.";
+                    //    return Content(resultEntity.SerializeToJson());
+                    //}
                     resultEntity.Content = new List<MercImageViewModel>();
+                    int i = 0;
                     foreach (string upload in Request.Files)
                     {
-                        if (!Request.Files[upload].HasFile())
+                        GUID = System.Guid.NewGuid().ToString();
+                        if (!Request.Files[i].HasFile())
                         {
                             resultEntity.Code = ResponseCodeType.Fail;
                             resultEntity.Message = "文件大小不能0.";
@@ -743,7 +795,7 @@ namespace TNet.Controllers
                         }
 
 
-                        if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[upload]))
+                        if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[i]))
                         {
                             resultEntity.Code = ResponseCodeType.Fail;
                             resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
@@ -751,7 +803,7 @@ namespace TNet.Controllers
                         }
 
                         //获取文件后缀名
-                        string originFileName = Request.Files[upload].FileName;
+                        string originFileName = Request.Files[i].FileName;
                         string originFileNameSuffix = string.Empty;
                         int lastIndex = originFileName.LastIndexOf(".");
                         if (lastIndex < 0)
@@ -768,34 +820,247 @@ namespace TNet.Controllers
                             Directory.CreateDirectory(Server.MapPath(path));
                         }
 
-                        Request.Files[upload].SaveAs(Path.Combine(Server.MapPath(path), filename));
-                        resultEntity.Content.Add(new MercImageViewModel()
+                        Request.Files[i].SaveAs(Path.Combine(Server.MapPath(path), filename));
+                        MercImageViewModel model = new MercImageViewModel()
                         {
                             idmerc = mercId,
                             Path = path + filename,
-                            SortID = 0,
+                            SortID = MercImageService.MaxMercImageSortID(mercId)+1,
                             InUse = true
-                        });
+                        };
 
+                        resultEntity.Content.Add(model);
+                        i ++;
+                        StringBuilder initialPreview = new StringBuilder();
+                        StringBuilder initialPreviewConfig = new StringBuilder();
+                        initialPreviewConfig.Append(",\"initialPreviewConfig\":[");
+                        initialPreview.Append("{\"initialPreview\":[");
+                        for (int k = 0; k < resultEntity.Content.Count; k++)
+                        {
+                            if (k == 0) {
+                                initialPreview.AppendFormat("\"{0}\"",Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append("{\"url\":\"" + Url.Action("DeleteMercImage", "Manage") + "\"}");
+                            }
+                            else {
+                                initialPreview.AppendFormat("\",{0}\"", Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append(",{\"url\":\""+ Url.Action("DeleteMercImage", "Manage") + "\"}");
+                            }
+                        }
+                        initialPreview.Append("]");
+                        initialPreviewConfig.Append("]");
+                        initialPreview.Append(initialPreviewConfig.ToString());
+                        initialPreview.Append("}");
+                        return Content(initialPreview.ToString());
                     }
 
                 }
                 else
                 {
                     resultEntity.Code = ResponseCodeType.Fail;
-                    resultEntity.Message = "没有选择要上传的文件.";
+                    resultEntity.Message = "文件上传失败.";
                     return Content(resultEntity.SerializeToJson());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Log.Error(ex.ToString());
+                log.Error(ex.ToString());
                 resultEntity.Code = ResponseCodeType.Fail;
                 resultEntity.Message = "没有选择要上传的文件.";
                 return Content(resultEntity.SerializeToJson());
             }
             return Content(resultEntity.SerializeToJson());
+            
 
+        }
+
+        [ManageLoginValidation]
+        public ActionResult DeleteMercImage(int mercImageId=0,int idmerc=0,bool isAjax=true)
+        {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件删除成功";
+
+            //try {
+            //    MercImage image = MercImageService.GetMercImage(mercImageId);
+            //    if (image==null) {
+            //        resultEntity.Code = ResponseCodeType.Fail;
+            //        resultEntity.Message = "该商品图片已经不存在，请刷新页面重试.";
+            //        return Content(resultEntity.SerializeToJson());
+            //    }
+            //    try {
+            //        if (!string.IsNullOrEmpty(image.Path) && System.IO.File.Exists(Server.MapPath(image.Path))) {
+            //            System.IO.File.Delete(Server.MapPath(image.Path));
+            //        }
+            //        MercImageService.Delete(mercImageId);
+            //        MercService.SetDefaultMercImage(idmerc);
+            //    }
+            //    catch (Exception ex) {
+            //        resultEntity.Code = ResponseCodeType.Fail;
+            //        resultEntity.Message = "文件删除失败.";
+            //        return Content(resultEntity.SerializeToJson());
+            //    }
+                
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error(ex.ToString());
+            //    resultEntity.Code = ResponseCodeType.Fail;
+            //    resultEntity.Message = "文件删除失败.";
+            //    return Content(resultEntity.SerializeToJson());
+            //}
+            return Content(resultEntity.SerializeToJson());
+
+        }
+
+        [ManageLoginValidation]
+        public ActionResult SortMercImage(string mercImageViewModelListJson,int idmerc,bool isAjax) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            List<MercImageViewModel> entities = new List<MercImageViewModel>();
+            ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "移动商品图片成功";
+            try {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                entities = js.Deserialize<List<MercImageViewModel>>(mercImageViewModelListJson);
+
+                List<MercImage> images = entities.Select(model =>
+                {
+                    MercImage img = new MercImage();
+                    model.CopyToBase(img);
+                    return img;
+                }  ).ToList();
+
+               bool result= MercImageService.BatchChangSort(images);
+                if (!result) {
+                    resultEntity.Code = ResponseCodeType.Success;
+                    resultEntity.Message = "移动商品图片失败";
+                    return Content(resultEntity.SerializeToJson());
+                }
+                else {
+                    MercService.SetDefaultMercImage(idmerc);
+                }
+            }
+            catch (Exception ex) {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Success;
+                resultEntity.Message = "移动商品图片失败";
+                return Content(resultEntity.SerializeToJson());
+            }
+            
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
+        /// 管理员列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult ManageUserList(int pageIndex = 0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<ManageUser> entities = ManageUserService.GetALL();
+            List<ManageUser> pageList = entities.Pager<ManageUser>(pageIndex, pageSize, out pageCount);
+            
+            List<ManageUserViewModel> viewModels = pageList.Select(model =>
+            {
+                ManageUserViewModel viewModel = new ManageUserViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+
+            return View(viewModels);
+        }
+
+
+        /// <summary>
+        /// 创建/编辑管理员
+        /// </summary>
+        /// <param name="idmerc"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult ManageUserEdit(int manageUserId = 0)
+        {
+            ManageUserViewModel model = new ManageUserViewModel();
+            if (manageUserId > 0)
+            {
+                ManageUser manageUser = ManageUserService.Get(manageUserId);
+                if (manageUser != null) { model.CopyFromBase(manageUser); }
+            }
+            else
+            {
+                model.inuse = true;
+            }
+            
+            
+            return View(model);
+        }
+
+        /// <summary>
+        /// 创建/编辑管理员
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult ManageUserEdit(ManageUserViewModel model)
+        {
+
+            ManageUser manageUser = new ManageUser();
+            model.CopyToBase(manageUser);
+            if (manageUser.ManageUserId == 0)
+            {
+                //新增
+                manageUser = ManageUserService.Add(manageUser);
+            }
+            else
+            {
+                //编辑
+                manageUser = ManageUserService.Edit(manageUser);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(manageUser);
+
+            ModelState.AddModelError("", "保存成功.");
+            return View(model);
+        }
+
+
+        /// <summary>
+        /// 启用或者禁用管理员
+        /// </summary>
+        /// <param name="ManageUserId"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult ManageUserEnable(int ManageUserId, bool enable, bool isAjax)
+        {
+            ResultModel<ManageUserViewModel> resultEntity = new ResultModel<ManageUserViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                ManageUser manageUser = ManageUserService.Get(ManageUserId);
+                manageUser.inuse = enable;
+                ManageUserService.Edit(manageUser);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
         }
 
         /// <summary>

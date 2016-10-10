@@ -32,7 +32,7 @@ namespace TNet.BLL
             oldMerc.stime = merc.stime;
             oldMerc.entime = merc.entime;
             oldMerc.netype = merc.netype;
-            oldMerc.imgs = merc.imgs;
+            //oldMerc.imgs = merc.imgs;
             oldMerc.descs = merc.descs;
             oldMerc.notes = merc.notes;
             oldMerc.sortno = merc.sortno;
@@ -48,6 +48,24 @@ namespace TNet.BLL
             db.Mercs.Add(merc);
             db.SaveChanges();
             return merc;
+        }
+
+        public static bool SetDefaultMercImage(int idmerc) {
+            bool result = false;
+            try {
+                TN db = new TN();
+                MercImage firstImage= db.MercImages.Where(en => en.idmerc == idmerc).OrderBy(en=>en.SortID).First();
+                string imagPath = firstImage == null ? "" : firstImage.Path;
+                Merc merc= db.Mercs.Find(idmerc);
+                merc.imgs = imagPath;
+                db.SaveChanges();
+
+            }
+            catch (Exception ex) {
+                result = false;
+            }
+
+            return result;
         }
     }
 }

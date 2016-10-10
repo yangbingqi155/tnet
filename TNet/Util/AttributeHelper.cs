@@ -18,6 +18,21 @@ namespace TNet.Util
            return GetPropertyOnAttributeOfModelProperty<TModel,TValue,DisplayAttribute,string>(expression,"Name");
         }
 
+        /// <summary>
+        /// 获取枚举的Display的Name值
+        /// </summary>
+        /// <param name="val">枚举值</param>
+        /// <returns></returns>
+        public static string GetDisplayName<T>(T val)
+        {
+            Type type = val.GetType();
+            FieldInfo fd = type.GetField(val.ToString());
+            if (fd == null)
+                return string.Empty;
+            Attribute attr = fd.GetCustomAttribute(typeof(DisplayAttribute), false);
+            return ((DisplayAttribute)attr).Name;
+        }
+
         private static TAttributeProperty GetPropertyOnAttributeOfModelProperty<TModel, TValue,TAttribute,TAttributeProperty>(Expression<Func<TModel, TValue>> expression,string propertyNameOfAttribute) where TAttribute : Attribute
         {
             var memberExpression = GetMemberInfo(expression);
