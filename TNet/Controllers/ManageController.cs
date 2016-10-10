@@ -359,7 +359,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpPost]
-        public ActionResult MercEdit(MercViewModel model)
+        public ActionResult MercEdit(MercViewModel model,string mercImages="")
         {
 
             Merc merc = new Merc();
@@ -375,7 +375,26 @@ namespace TNet.Controllers
                 //编辑
                 merc = MercService.Edit(merc);
             }
-
+            
+            MercImageService.DeleteMercImages(merc.idmerc);
+            
+            if (!string.IsNullOrEmpty(mercImages)) {
+                List<MercImage> list = new List<MercImage>();
+                string[] imgs = mercImages.Split(',');
+                int i = 0;
+                foreach (var item in imgs) {
+                    list.Add(new MercImage() {
+                         idmerc=merc.idmerc,
+                          InUse=true,
+                           Path=item,
+                            SortID=i+1
+                    });
+                    i++;
+                }
+                if (list.Count>0) {
+                    MercImageService.AddMuti(list);
+                }
+            }
 
             //修改后重新加载
             model.CopyFromBase(merc);
@@ -812,26 +831,33 @@ namespace TNet.Controllers
 
                         resultEntity.Content.Add(model);
                         i ++;
-                        StringBuilder strResult = new StringBuilder();
-                        strResult.Append("{\"initialPreview\":[");
+                        StringBuilder initialPreview = new StringBuilder();
+                        StringBuilder initialPreviewConfig = new StringBuilder();
+                        initialPreviewConfig.Append(",\"initialPreviewConfig\":[");
+                        initialPreview.Append("{\"initialPreview\":[");
                         for (int k = 0; k < resultEntity.Content.Count; k++)
                         {
                             if (k == 0) {
-                                strResult.AppendFormat("\"{0}\"",Url.Content(resultEntity.Content[k].Path));
+                                initialPreview.AppendFormat("\"{0}\"",Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append("{\"url\":\"" + Url.Action("DeleteMercImage", "Manage") + "\"}");
                             }
                             else {
-                                strResult.AppendFormat("\",{0}\"", Url.Content(resultEntity.Content[k].Path));
+                                initialPreview.AppendFormat("\",{0}\"", Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append(",{\"url\":\""+ Url.Action("DeleteMercImage", "Manage") + "\"}");
                             }
                         }
-                        strResult.Append("]}");
-                        return Content(strResult.ToString());
+                        initialPreview.Append("]");
+                        initialPreviewConfig.Append("]");
+                        initialPreview.Append(initialPreviewConfig.ToString());
+                        initialPreview.Append("}");
+                        return Content(initialPreview.ToString());
                     }
 
                 }
                 else
                 {
                     resultEntity.Code = ResponseCodeType.Fail;
-                    resultEntity.Message = "没有选择要上传的文件.";
+                    resultEntity.Message = "文件上传失败.";
                     return Content(resultEntity.SerializeToJson());
                 }
             }
@@ -848,41 +874,41 @@ namespace TNet.Controllers
         }
 
         [ManageLoginValidation]
-        public ActionResult DeleteMercImage(int mercImageId,int idmerc,bool isAjax)
+        public ActionResult DeleteMercImage(int mercImageId=0,int idmerc=0,bool isAjax=true)
         {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             ResultModel<MercImageViewModel> resultEntity = new ResultModel<MercImageViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "文件删除成功";
 
-            try {
-                MercImage image = MercImageService.GetMercImage(mercImageId);
-                if (image==null) {
-                    resultEntity.Code = ResponseCodeType.Fail;
-                    resultEntity.Message = "该商品图片已经不存在，请刷新页面重试.";
-                    return Content(resultEntity.SerializeToJson());
-                }
-                try {
-                    if (!string.IsNullOrEmpty(image.Path) && System.IO.File.Exists(Server.MapPath(image.Path))) {
-                        System.IO.File.Delete(Server.MapPath(image.Path));
-                    }
-                    MercImageService.Delete(mercImageId);
-                    MercService.SetDefaultMercImage(idmerc);
-                }
-                catch (Exception ex) {
-                    resultEntity.Code = ResponseCodeType.Fail;
-                    resultEntity.Message = "文件删除失败.";
-                    return Content(resultEntity.SerializeToJson());
-                }
+            //try {
+            //    MercImage image = MercImageService.GetMercImage(mercImageId);
+            //    if (image==null) {
+            //        resultEntity.Code = ResponseCodeType.Fail;
+            //        resultEntity.Message = "该商品图片已经不存在，请刷新页面重试.";
+            //        return Content(resultEntity.SerializeToJson());
+            //    }
+            //    try {
+            //        if (!string.IsNullOrEmpty(image.Path) && System.IO.File.Exists(Server.MapPath(image.Path))) {
+            //            System.IO.File.Delete(Server.MapPath(image.Path));
+            //        }
+            //        MercImageService.Delete(mercImageId);
+            //        MercService.SetDefaultMercImage(idmerc);
+            //    }
+            //    catch (Exception ex) {
+            //        resultEntity.Code = ResponseCodeType.Fail;
+            //        resultEntity.Message = "文件删除失败.";
+            //        return Content(resultEntity.SerializeToJson());
+            //    }
                 
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.ToString());
-                resultEntity.Code = ResponseCodeType.Fail;
-                resultEntity.Message = "文件删除失败.";
-                return Content(resultEntity.SerializeToJson());
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error(ex.ToString());
+            //    resultEntity.Code = ResponseCodeType.Fail;
+            //    resultEntity.Message = "文件删除失败.";
+            //    return Content(resultEntity.SerializeToJson());
+            //}
             return Content(resultEntity.SerializeToJson());
 
         }

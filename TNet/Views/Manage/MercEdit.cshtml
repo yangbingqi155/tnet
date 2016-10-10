@@ -26,6 +26,7 @@
             <fieldset>
                 @Html.HiddenFor(model => model.idmerc)
                 @Html.HiddenFor(model => model.imgs)
+                <input type="hidden" name="mercImages" id="mercImages" value="" />
                 <div class="form-group">
                     @Html.LabelFor(model => model.idtype, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
@@ -174,7 +175,7 @@
         }).on("filebatchselected", function (event, files) {
             $control.fileinput("upload");
         }).on('fileuploaded', function (event, data, id, index) {
-            alert(id);
+            bindDrag();
             var responseData = data.response;
             if (responseData.Code == "1") {
                 alert(responseData.Message);
@@ -182,7 +183,7 @@
             else if (responseData.Code == "2") {
                 alert(responseData.Message);
             }
-            
+
         });
     }
 
@@ -190,6 +191,7 @@
         var uploadUrl = "@Url.Action("UploadMercImage","Manage",new { mercId = Model.idmerc })";
         var getMercImageUrl = "@Url.Action("AjaxMercImageList", "Manage")";
         var sortMercImagesUrl = "@Url.Action("SortMercImage", "Manage",new { isAjax =true})";
+        var deleteMercImageUrl = "@Url.Action("DeleteMercImage", "Manage",new { isAjax =true})";
         $.post(getMercImageUrl, { mercId: "@Model.idmerc",isAjax:true }, function (returndata) {
             returndata = eval("(" + returndata+")");
             var initPreviewImage = [];
@@ -198,6 +200,12 @@
                 if (returndata.Content.length > 0) {
                     for (var i = 0; i < returndata.Content.length; i++) {
                         initPreviewImage.push(returndata.Content[i].Path);
+                        var initialPreviewConfigItem = {
+                            url: deleteMercImageUrl,
+                            key: returndata.Content[i].MercImageId,
+                            extra: { mercImageId: returndata.Content[i].MercImageId, idmerc: "@Model.idmerc" }
+                        };
+                        initialPreviewConfig.push(initialPreviewConfigItem);
                     }
                 }
             }
@@ -205,12 +213,15 @@
                 alert("无法获取产品图片。");
             }
             initFileInput("mymercimage", uploadUrl, initPreviewImage, initialPreviewConfig);
-            $(".file-initial-thumbs").attr("id", "simpleList");
-            $(".file-preview-initial").addClass("list-group-item");
-            $(".file-preview-initial").addClass("glyphicon-move");
-            $(".file-preview-initial").each(function (i, d) {
-                $(d).attr("key", returndata.Content[i].MercImageId);
-            });
+            bindDrag();
+        });
+    }
+
+    function bindDrag() {
+        $(".file-initial-thumbs").attr("id", "simpleList");
+        $(".file-preview-initial").addClass("list-group-item");
+        $(".file-preview-initial").addClass("glyphicon-move");
+        if (document.getElementById('simpleList') != null) {
             KvSortable.create(document.getElementById('simpleList'), {
                 handle: '.glyphicon-move',
                 animation: 150,
@@ -218,14 +229,24 @@
 
                 }
             });
-        });
+        }
     }
 
     $(function () {
         initMercImages();
+        var timeout = window.setInterval(bindDrag, 1000);
+
         $("#btnSave").click(function () {
-
-
+            var mercImages = "";
+            $(".kv-file-content").find("img").each(function (i, d) {
+                if (i == 0) {
+                    mercImages += $(d).attr("src");
+                }
+                else {
+                    mercImages += ","+$(d).attr("src");
+                }
+            });
+            $("#mercImages").val(mercImages);
             $("#form1").submit();
         });
         $('#@(Html.NameFor(model => model.stime)+"_datepicker")').datetimepicker({
