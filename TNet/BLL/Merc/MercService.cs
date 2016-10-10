@@ -61,7 +61,7 @@ namespace TNet.BLL
                 db.SaveChanges();
 
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 result = false;
             }
 

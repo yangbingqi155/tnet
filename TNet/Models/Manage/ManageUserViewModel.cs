@@ -10,7 +10,7 @@ using TNet.Util;
 namespace TNet.Models
 {
     [NotMapped]
-    public class ManageUserViewModel:ManageUser
+    public class ManageUserViewModel : ManageUser
     {
         [Display(Name = "用户名")]
         [StringLength(50)]
@@ -25,56 +25,62 @@ namespace TNet.Models
         [Display(Name = "密码")]
         [Required]
         [StringLength(100)]
-        public string Password { get; set; }
+        public new string Password { get; set; }
 
         [Display(Name = "MD5盐")]
         [StringLength(100)]
-        public string MD5Salt { get; set; }
+        public new string MD5Salt { get; set; }
 
         [Display(Name = "手机号")]
         [StringLength(15)]
-        public string phone { get; set; }
+        public new string phone { get; set; }
 
         [Display(Name = "微信openid")]
         [StringLength(50)]
-        public string idweixin { get; set; }
+        public new string idweixin { get; set; }
 
         [Display(Name = "接受订单信息")]
-        public bool recv_order { get; set; }
+        public new bool recv_order { get; set; }
 
         [Display(Name = "可否接单")]
-        public bool recv_setup { get; set; }
+        public new bool recv_setup { get; set; }
 
         [Display(Name = "是否可派单")]
-        public bool send_setup { get; set; }
+        public new bool send_setup { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(60)]
-        public string notes { get; set; }
+        public new string notes { get; set; }
 
         [Required]
         [Display(Name = "启用")]
-        public bool inuse { get; set; }
+        public new bool inuse { get; set; }
 
         [Display(Name = "管理员类型")]
         /// <summary>
         /// 管理员类型
         /// </summary>
-        public ManageUserType UserType { get; set; }
+        public new ManageUserType UserType { get; set; }
 
         [Display(Name = "管理员类型")]
         /// <summary>
         /// 管理员类型
         /// </summary>
-        public string UserTypeName { get {
+        public string UserTypeName
+        {
+            get
+            {
                 return AttributeHelper.GetDisplayName<ManageUserType>(UserType);
-            } }
+            }
+        }
 
-        public static List<SelectItemViewModel<int>> GetSelectItems() {
+        public static List<SelectItemViewModel<int>> GetSelectItems()
+        {
             List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
-            list.Add(new SelectItemViewModel<int>() {
+            list.Add(new SelectItemViewModel<int>()
+            {
                 DisplayText = AttributeHelper.GetDisplayName<ManageUserType>(ManageUserType.ManageUser),
-                  DisplayValue= (int)ManageUserType.ManageUser
+                DisplayValue = (int)ManageUserType.ManageUser
             });
             list.Add(new SelectItemViewModel<int>()
             {
@@ -93,13 +99,13 @@ namespace TNet.Models
             this.MD5Salt = user.MD5Salt;
             this.phone = user.phone;
             this.idweixin = user.idweixin;
-            this.recv_order = user.recv_order;
-            this.recv_setup = user.recv_setup;
-            this.send_setup = user.send_setup;
+            this.recv_order = user.recv_order != null ? user.recv_order.Value : false;
+            this.recv_setup = user.recv_setup != null ? user.recv_setup.Value : false;
+            this.send_setup = user.send_setup != null ? user.send_setup.Value : false;
             this.notes = user.notes;
             this.inuse = user.inuse;
-            this.UserType =(ManageUserType) user.UserType;
-          
+            this.UserType = (ManageUserType)user.UserType;
+
         }
 
         public void CopyToBase(ManageUser user)
