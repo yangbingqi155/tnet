@@ -14,14 +14,46 @@ namespace TNet.BLL
             TN db = new TN();
             return db.Specs.ToList();
         }
-        public static List<Spec> GetSpecsByIdMerc(int idmerc)
+        public static List<SpecViewModel> GetSpecsByIdMerc(int idmerc)
         {
-            return GetALL().Where(en => en.idmerc == idmerc).ToList();
+            List<SpecViewModel> specs = new List<SpecViewModel>();
+            TN tn = new TN();
+            List<Spec> entities =GetALL().Where(en => en.idmerc == idmerc).ToList();
+          
+            if (entities!=null&&entities.Count>0) {
+                specs = entities.Select(model => {
+                    SpecViewModel viewModel = new SpecViewModel();
+                    viewModel.CopyFromBase(model);
+                    return viewModel;
+                }).ToList();
+                List<Merc> mercs = tn.Mercs.ToList();
+                specs=specs.Select(en=> {
+                    Merc merc = mercs.Find(model=>model.idmerc==en.idmerc);
+                    en.merc = merc != null ? merc.merc1 : "";
+                    return en;
+                }).ToList();
+            }
+
+            return specs;
         }
 
-        public static Spec GetSpecs(int idspec)
+        public static SpecViewModel GetSpec(int idspec)
         {
-            return GetALL().Where(en => en.idspec == idspec).FirstOrDefault();
+            SpecViewModel viewModel = null;
+            Spec spec= GetALL().Where(en => en.idspec == idspec).FirstOrDefault();
+            if (spec!=null) {
+                viewModel = new SpecViewModel();
+                viewModel.CopyFromBase(spec);
+                Merc merc= MercService.GetMerc(viewModel.idmerc);
+                viewModel.merc = merc != null ? merc.merc1 : "";
+            }
+            return viewModel;
+        }
+
+        public static Spec Get(int idspec)
+        {
+            Spec spec = GetALL().Where(en => en.idspec == idspec).FirstOrDefault();
+            return spec;
         }
 
         public static Spec Edit(Spec spec)

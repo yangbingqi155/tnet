@@ -77,9 +77,7 @@
                     <tr>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, long>(en => en.orderno))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, long>(en => en.iduser))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int>(en => en.idmerc))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.merc))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int>(en => en.idspec))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.spec))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.month))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.attmonth))</th>
@@ -93,7 +91,6 @@
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, DateTime?>(en => en.entime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.otype))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.status))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.img))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.notes))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, bool>(en => en.inuse))</th>
                         <th>操作</th>
@@ -103,11 +100,15 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.orderno</td>
+                            <td>@item.orderno
+                            @if (!string.IsNullOrEmpty(item.img))
+                            {
+                                <br />
+                            <img class="smallMercImage" src="@Url.Content(@item.img)" title="@item.merc" />
+                            }
+                            </td>
                             <td>@item.iduser</td>
-                            <td>@item.idmerc</td>
                             <td>@item.merc</td>
-                            <td>@item.idspec</td>
                             <td>@item.spec</td>
                             <td>@item.month</td>
                             <td>@item.attmonth</td>
@@ -121,7 +122,6 @@
                             <td>@item.entime.Value.ToString("yyyy-MM-dd")</td>
                             <td>@item.otype</td>
                             <td>@item.status</td>
-                            <td>@item.img</td>
                             <td>@item.notes</td>
 
                             <td>

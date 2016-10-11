@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TCom.EF;
+using TNet.Util;
 
 namespace TNet.Models
 {
@@ -33,29 +34,34 @@ namespace TNet.Models
         [StringLength(80)]
         public new  string sellpt { get; set; }
 
-        [Display(Name ="基本价格")]
+        [Display(Name ="单价")]
         public new  double? baseprice { get; set; }
 
         [Display(Name = "销量")]
         public new  int? sellcount { get; set; }
 
-        [Display(Name = "销售开始时间")]
+        [Display(Name = "开始时间")]
         public new  DateTime? stime { get; set; }
 
         [Display(Name = "创建时间")]
         public new  DateTime? cretime { get; set; }
 
-        [Display(Name = "销售结束时间")]
+        [Display(Name = "结束时间")]
         public new  DateTime? entime { get; set; }
 
         [Display(Name = "接入方式")]
-        public new  int? netype { get; set; }
+        public new Netype netype { get; set; }
+
+        [Display(Name = "接入方式")]
+        public string netypeName { get {
+                return AttributeHelper.GetDisplayName<Netype>(netype);
+            } }
 
         [Display(Name = "图片")]
         [StringLength(255)]
         public new  string imgs { get; set; }
 
-        [Display(Name = "描述图片集合")]
+        [Display(Name = "描述")]
         [StringLength(255)]
         public new  string descs { get; set; }
 
@@ -72,6 +78,22 @@ namespace TNet.Models
         
         public   List<MercTypeViewModel> mercTypes { get; set; }
 
+        public static List<SelectItemViewModel<int>> GetNeTypeSelectItems()
+        {
+            List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
+            list.Add(new SelectItemViewModel<int>()
+            {
+                DisplayText = AttributeHelper.GetDisplayName<Netype>(Netype.Optical),
+                DisplayValue = (int)Netype.Optical
+            });
+            list.Add(new SelectItemViewModel<int>()
+            {
+                DisplayText = AttributeHelper.GetDisplayName<Netype>(Netype.NoOptical),
+                DisplayValue = (int)Netype.NoOptical
+            });
+            return list;
+        }
+
         public   void CopyFromBase(TCom.EF.Merc merc) {
             this.idmerc = merc.idmerc;
             this.idtype = merc.idtype;
@@ -82,7 +104,7 @@ namespace TNet.Models
             this.stime = merc.stime;
             this.cretime = merc.cretime;
             this.entime = merc.entime;
-            this.netype = merc.netype;
+            this.netype = (Netype)merc.netype;
             this.imgs = merc.imgs;
             this.descs = merc.descs;
             this.notes = merc.notes;
@@ -100,7 +122,7 @@ namespace TNet.Models
             merc.stime = this.stime;
             merc.cretime = this.cretime;
             merc.entime = this.entime;
-            merc.netype = this.netype;
+            merc.netype = (int)this.netype;
             merc.imgs = this.imgs;
             merc.descs = this.descs;
             merc.notes = this.notes;

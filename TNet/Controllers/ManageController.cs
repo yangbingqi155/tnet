@@ -403,6 +403,8 @@ namespace TNet.Controllers
                 }
             }
 
+            MercService.SetDefaultMercImage(merc.idmerc);
+
             //修改后重新加载
             model.CopyFromBase(merc);
             List<MercType> entities = MercTypeService.GetALL();
@@ -537,16 +539,9 @@ namespace TNet.Controllers
         {
             int pageCount = 0;
             int pageSize = 10;
-            List<Spec> entities = SpecService.GetSpecsByIdMerc(idmerc);
-            List<Spec> pageList = entities.Pager<Spec>(pageIndex, pageSize, out pageCount);
-
-            List<SpecViewModel> viewModels = pageList.Select(model =>
-            {
-                SpecViewModel viewModel = new SpecViewModel();
-                viewModel.CopyFromBase(model);
-                return viewModel;
-            }).ToList();
-
+            List<SpecViewModel> entities = SpecService.GetSpecsByIdMerc(idmerc);
+            List<SpecViewModel> viewModels = entities.Pager<SpecViewModel>(pageIndex, pageSize, out pageCount);
+            
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
             ViewData["mercId"] = idmerc;
@@ -571,7 +566,7 @@ namespace TNet.Controllers
             resultEntity.Message = "成功";
             try
             {
-                Spec spec = SpecService.GetSpecs(idspec);
+                Spec spec = SpecService.Get(idspec);
                 spec.inuse = enable;
                 SpecService.Edit(spec);
             }
@@ -596,8 +591,7 @@ namespace TNet.Controllers
             SpecViewModel model = new SpecViewModel();
             if (idspec > 0)
             {
-                Spec spec = SpecService.GetSpecs(idspec);
-                if (spec != null) { model.CopyFromBase(spec); }
+                model = SpecService.GetSpec(idspec);
             }
             else
             {

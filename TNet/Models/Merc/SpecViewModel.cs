@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TCom.EF;
+using TNet.Util;
 
 namespace TNet.Models
 {
@@ -13,6 +14,9 @@ namespace TNet.Models
     {
         [Display(Name = "产品编号")]
         public new  int idmerc { get; set; }
+
+        [Display(Name = "产品名称")]
+        public string merc { get; set; }
 
         [Display(Name = "规格号")]
         public new  int idspec { get; set; }
@@ -27,10 +31,10 @@ namespace TNet.Models
         [Display(Name = "销量")]
         public new  int? sellcount { get; set; }
 
-        [Display(Name = "实际月数")]
+        [Display(Name = "月数")]
         public new  int? month { get; set; }
 
-        [Display(Name = "单位（月为单位）")]
+        [Display(Name = "单位/月")]
         public new  int? unit { get; set; }
 
         [Display(Name = "上行")]
@@ -48,7 +52,7 @@ namespace TNet.Models
         [Display(Name = "移机费")]
         public new  double? moveprice { get; set; }
 
-        [Display(Name = "产品类型家庭、企业")]
+        [Display(Name = "产品类型")]
         [StringLength(50)]
         public new  string usertype { get; set; }
 
@@ -58,6 +62,24 @@ namespace TNet.Models
 
         [Display(Name = "启用")]
         public new  bool inuse { get; set; }
+
+        public List<MercTypeViewModel> mercTypes { get; set; }
+
+        public static List<SelectItemViewModel<string>> GetUserTypeSelectItems()
+        {
+            List<SelectItemViewModel<string>> list = new List<SelectItemViewModel<string>>();
+            list.Add(new SelectItemViewModel<string>()
+            {
+                DisplayText = "家庭",
+                DisplayValue = "家庭"
+            });
+            list.Add(new SelectItemViewModel<string>()
+            {
+                DisplayText = "企业",
+                DisplayValue = "企业"
+            });
+            return list;
+        }
 
         public   void CopyFromBase(Spec spec)
         {

@@ -1,4 +1,5 @@
 ﻿@model TNet.Models.MercViewModel
+@using TNet.Models
 @{
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     ViewBag.Title = "编辑产品";
@@ -16,7 +17,7 @@
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">产品管理</a></li>
-        <li><a href="@Url.Action("MercList","Manage")">商品管理</a></li>
+        <li><a href="@Url.Action("MercList","Manage")">产品列表</a></li>
         <li><a href="#" class="active">@(Model.idmerc == 0 ? "新增产品" : "编辑产品")</a></li>
     </ol>
 </div>
@@ -78,7 +79,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.netype, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.netype, new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.netype, new SelectList(MercViewModel.GetNeTypeSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.netype)
                 </div>
@@ -220,7 +221,7 @@
     function bindDrag() {
         $(".file-initial-thumbs").attr("id", "simpleList");
         $(".file-preview-initial").addClass("list-group-item");
-        $(".file-preview-initial").addClass("glyphicon-move");
+        //$(".file-preview-initial").addClass("glyphicon-move");
         if (document.getElementById('simpleList') != null) {
             KvSortable.create(document.getElementById('simpleList'), {
                 handle: '.glyphicon-move',

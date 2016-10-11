@@ -39,7 +39,7 @@ namespace TNet.Models
         [StringLength(50)]
         public new string idweixin { get; set; }
 
-        [Display(Name = "接受订单信息")]
+        [Display(Name = "接收订单")]
         public new bool recv_order { get; set; }
 
         [Display(Name = "可否接单")]
@@ -74,7 +74,7 @@ namespace TNet.Models
             }
         }
 
-        public static List<SelectItemViewModel<int>> GetSelectItems()
+        public static List<SelectItemViewModel<int>> GetUserTypeSelectItems()
         {
             List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
             list.Add(new SelectItemViewModel<int>()

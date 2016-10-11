@@ -25,7 +25,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserType, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
-                        @Html.DropDownListFor(model => model.UserType, new SelectList(ManageUserViewModel.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.UserType, new SelectList(ManageUserViewModel.GetUserTypeSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.UserType)
                 </div>

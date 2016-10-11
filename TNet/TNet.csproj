@@ -222,6 +222,7 @@
     <Compile Include="Models\Merc\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
+    <Compile Include="Models\Merc\Netype.cs" />
     <Compile Include="Models\Merc\SetupList.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
     <Compile Include="Models\NULLViewModel.cs" />

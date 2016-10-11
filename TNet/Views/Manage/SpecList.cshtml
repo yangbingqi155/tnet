@@ -13,7 +13,7 @@
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">产品管理</a></li>
-        <li><a href="@Url.Action("MercList","Manage")">商品管理</a></li>
+        <li><a href="@Url.Action("MercList","Manage")">产品列表</a></li>
         <li><a href="#" class="active">规格管理</a></li>
     </ol>
 </div>
@@ -30,8 +30,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int>(en => en.idmerc))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int>(en => en.idspec))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, string>(en => en.merc))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, String>(en => en.spec1))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, double?>(en => en.price))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<SpecViewModel, int?>(en => en.sellcount))</th>
@@ -52,8 +51,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.idmerc</td>
-                            <td>@item.idspec</td>
+                            <td>@item.merc</td>
                             <td>@item.spec1</td>
                             <td>@item.price</td>
                             <td>@item.sellcount</td>
@@ -67,7 +65,6 @@
                             <td>@item.usertype</td>
                             <td>@item.notes</td>
                             <td>
-                                @( item.inuse ? "启用" : "禁用")
                                 <a onclick="enableSpec('@Url.Action("SpecEnable", "Manage", new { idspec = item.idspec, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
                             </td>
                             <td>

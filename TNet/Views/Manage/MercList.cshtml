@@ -13,7 +13,7 @@
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">产品管理</a></li>
-        <li><a href="#" class="active">商品管理</a></li>
+        <li><a href="#" class="active">产品列表</a></li>
     </ol>
 </div>
 <div class="ManageRightContent">
@@ -34,7 +34,6 @@
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.sellpt))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, double?>(en => en.baseprice))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, int?>(en => en.sellcount))</th>
-                        @*<th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.imgs))</th>*@
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, DateTime?>(en => en.stime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, DateTime?>(en => en.entime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, int?>(en => en.sortno))</th>
@@ -47,13 +46,16 @@
                     {
                         <tr>
                             <td>@item.MercTypeName</td>
-                            <td>@item.merc1</td>
+                            <td>@item.merc1
+                                @if (!string.IsNullOrEmpty(item.imgs))
+                                {<br />
+                                    <img class="smallMercImage" src="@Url.Content(item.imgs)" alt="@item.merc1" title="@item.merc1" />
+                                }
+                                
+                            </td>
                             <td>@item.sellpt</td>
                             <td>@item.baseprice</td>
                             <td>@item.sellcount</td>
-                            @*<td>
-                                <img src="@item.imgs" alt="@item.merc1" title="@item.merc1" />
-                            </td>*@
                             <td>
                                 @item.stime.Value.ToString("yyyy-MM-dd") 
                             </td>
@@ -70,7 +72,7 @@
                             <td>
                                 <a href="@Url.Action("MercEdit","Manage",new {idmerc=item.idmerc })" class="btn btn-default">编辑</a>
                                 @*<a href="@Url.Action("MercImageList","Manage",new {mercId=item.idmerc })" class="btn btn-default">管理图片</a>*@
-                                <a href="@Url.Action("SpecList","Manage",new {idmerc=item.idmerc })" class="btn btn-default">管理规格</a>
+                                <a href="@Url.Action("SpecList","Manage",new {idmerc=item.idmerc })" class="btn btn-default">规格</a>
                             </td>
                         </tr>
                     }
