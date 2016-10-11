@@ -76,6 +76,7 @@
     <Compile Include="EF\TaskRecver.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="Model\ToKey\AccessToken.cs" />
     <Compile Include="Msg\MsgMgr.cs" />
     <Compile Include="Msg\MsgType.cs" />
     <Compile Include="EF\Ext\TN.cs" />
@@ -85,9 +86,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

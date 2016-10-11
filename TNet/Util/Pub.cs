@@ -7,12 +7,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Xml;
+using TCom.Model.ToKey;
 using WeChatApp.Models;
 
 namespace Util
 {
     public static class Pub
     {
+        static AccessToken am;
         static long t = DateTime.Now.Ticks / 10000;
         volatile static int un = 0;
         static int tid = Thread.CurrentThread.ManagedThreadId;
@@ -105,28 +107,33 @@ namespace Util
             }
         }
 
-        
+
 
         /// <summary>
         /// 从本地获取accessToken
         /// </summary>
         public static string accessToken
         {
-
             get
             {
                 string k = "";
-
-                if (HttpContext.Current.Application["WEIXINF_ACCESSTOKEN"] != null)
+                if (am == null)
                 {
-                    AccessToken m = (AccessToken)HttpContext.Current.Application["WEIXINF_ACCESSTOKEN"];
-                    DateTime t = m.expires.AddMinutes(-5);
+                    am = getAccessToken();
+                }
+                else
+                {
+                    DateTime t = am.expires.AddMinutes(-5);
                     if (DateTime.Now >= t)
                     {
-                        m = getAccessToken();
-                        HttpContext.Current.Application["WEIXINF_ACCESSTOKEN"] = m;
+                        am = getAccessToken();
+
                     }
                 }
+                if (am != null)
+                {
+                    k = am.access_token;
+                }              
                 return k;
             }
         }
@@ -141,15 +148,16 @@ namespace Util
         {
             AccessToken m = null;
             string url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret=" + secret;
-
+           
             try
             {
                 string reqStr = HttpHelp.Get(url);
+
                 if (!string.IsNullOrWhiteSpace(reqStr))
                 {
                     JavaScriptSerializer Serializer = new JavaScriptSerializer();
                     m = Serializer.Deserialize<AccessToken>(reqStr);
-                    m.expires = DateTime.Now.AddSeconds(m.expires_in);
+                    m.expires = DateTime.Now.AddSeconds(m.expires_in);                    
                 }
 
             }
@@ -159,6 +167,7 @@ namespace Util
             }
             return m;
         }
+
 
 
 

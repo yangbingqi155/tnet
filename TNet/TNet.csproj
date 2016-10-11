@@ -243,7 +243,6 @@
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\User\UserInfo.cs" />
-    <Compile Include="Models\Weixin\AccessToken.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
     <Compile Include="Models\Weixin\ReplyType.cs" />
     <Compile Include="Models\Weixin\RMaterialItemParam.cs" />
@@ -298,6 +297,7 @@
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
     <Content Include="Css\User\Index.css" />
+    <Content Include="Images\Manage\headerbg4.png" />
     <Content Include="Images\Manage\login_bg.jpg" />
     <Content Include="Images\Order\setup_tag.png" />
     <Content Include="Js\bootstrap-fileinput\fileinput.js" />

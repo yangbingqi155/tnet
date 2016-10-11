@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WeChatApp.Models
+namespace TCom.Model.ToKey
 {
     public class AccessToken
     {
         /// <summary>
         /// 接口调用凭据
         /// </summary>
-        public string access_oken { get; set; }
+        public string access_token { get; set; }
 
 
         /// <summary>
@@ -16,6 +20,6 @@ namespace WeChatApp.Models
         public int expires_in { get; set; }
 
         public DateTime expires { get; set; }
-        
+
     }
 }

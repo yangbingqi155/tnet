@@ -11,6 +11,11 @@ function initParam() {
     } else if ((/(Manage\/BusinessList)/gi).test(href) || (/(Manage\/BusinessEdit)/gi).test(href)) {
         $("#BusinessList").addClass("select");
     }
+    else if ((/(Manage\/Menu)/gi).test(href)) {
+        $("#Menu").addClass("select");
+    }
+
+    
 
 }
 

@@ -31,6 +31,5 @@ D:\tnet\TNetCom\bin\Debug\Newtonsoft.Json.dll
 D:\tnet\TNetCom\bin\Debug\EntityFramework.xml
 D:\tnet\TNetCom\bin\Debug\EntityFramework.SqlServer.xml
 D:\tnet\TNetCom\bin\Debug\Newtonsoft.Json.xml
-D:\tnet\TNetCom\obj\Debug\TCom.csprojResolveAssemblyReference.cache
 D:\tnet\TNetCom\obj\Debug\TCom.dll
 D:\tnet\TNetCom\obj\Debug\TCom.pdb
