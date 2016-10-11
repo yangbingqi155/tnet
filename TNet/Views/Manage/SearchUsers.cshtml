@@ -1,0 +1,53 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+@model List<UserViewModel>
+@{
+    Layout = null;
+    int bindManageUserId = Convert.ToInt32(ViewData["bindManageUserId"]);
+}
+@if (Model.Count > 0) {
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.name))</th>
+                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.phone))</th>
+                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.comp))</th>
+                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, int?>(en => en.sex))</th>
+                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.notes))</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@item.name</td>
+                    <td>@item.phone</td>
+                    <td>@item.comp</td>
+                    <td>@(item.sex==1?"男":"女")</td>
+                    <td>@item.notes</td>
+                    <td>
+                        <a href="javascript:void(0);" onclick='bindWechat("@bindManageUserId","@item.iduser")' class="btn btn-default">绑定</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<script type="text/javascript">
+        function bindWechat(bindManageUserId, iduser)
+        {
+            var url = "@Url.Action("BindManageUserWechat", "Manage")";
+            var data = { manageUserId: bindManageUserId, iduser: iduser, isAjax: true };
+            $.post(url, data, function (returndata) {
+                returndata =eval("(" + returndata + ")");
+                if (returndata.Code == 1) {
+                    alert(returndata.Message);
+                }
+                else if (returndata.Code == 2) {
+                    alert(returndata.Message);
+                }
+            });
+        }
+    </script>
