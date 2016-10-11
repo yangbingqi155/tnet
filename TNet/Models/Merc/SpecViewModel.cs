@@ -56,7 +56,7 @@ namespace TNet.Models
         [StringLength(100)]
         public new  string notes { get; set; }
 
-        [Display(Name = "是否启用")]
+        [Display(Name = "启用")]
         public new  bool inuse { get; set; }
 
         public   void CopyFromBase(Spec spec)

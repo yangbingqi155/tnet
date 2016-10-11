@@ -30,14 +30,14 @@
                 <thead>
                     <tr>
                         <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, String>(en => en.UserName))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, String>(en => en.UserTypeName))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, String>(en => en.phone))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, String>(en => en.idweixin))</th>
+                        @*<th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, String>(en => en.idweixin))</th>*@
                         <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, bool?>(en => en.recv_order))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, bool?>(en => en.recv_setup))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, bool?>(en => en.send_setup))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, String>(en => en.notes))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, bool>(en => en.inuse))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, String>(en => en.UserTypeName))</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -46,8 +46,9 @@
                     {
                         <tr>
                             <td>@item.UserName</td>
+                            <td>@item.UserTypeName</td>
                             <td>@item.phone</td>
-                            <td>@item.idweixin</td>
+                            @*<td>@item.idweixin</td>*@
                             <td>@(item.recv_order?"是":"否")</td>
                             <td>@(item.recv_setup? "是" : "否")</td>
                             <td>@(item.send_setup? "是" : "否")</td>
@@ -55,7 +56,6 @@
                             <td>
                                 <a onclick="enableManageUser('@Url.Action("ManageUserEnable", "Manage", new { ManageUserId = item.ManageUserId, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
                             </td>
-                            <td>@item.UserTypeName</td>
                             <td>
                                 <a href="@Url.Action("ManageUserEdit","Manage",new {ManageUserId=item.ManageUserId })" class="btn btn-default">编辑</a>
                             </td>

@@ -47,6 +47,12 @@ namespace TNet.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
+        [ManageLoginValidation]
+        public ActionResult SignOut() {
+            Session["ManageUser"] = null;
+            return RedirectToAction("Login", "Manage");
+        }
+
         /// <summary>
         /// 后台管理首页
         /// </summary>

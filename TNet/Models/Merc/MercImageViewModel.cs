@@ -27,7 +27,7 @@ namespace TNet.Models
         [Required]
         public new  int? SortID { get; set; }
 
-        [Display(Name ="是否启用")]
+        [Display(Name ="启用")]
         public new  bool InUse { get; set; }
 
         public   void CopyFromBase(MercImage mercImage)

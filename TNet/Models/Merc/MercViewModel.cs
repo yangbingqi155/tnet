@@ -66,7 +66,7 @@ namespace TNet.Models
         [Display(Name = "排序")]
         public new  int? sortno { get; set; }
 
-        [Display(Name = "是否启用")]
+        [Display(Name = "启用")]
         [Required]
         public new  bool inuse { get; set; }
         
