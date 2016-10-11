@@ -297,6 +297,7 @@
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
     <Content Include="Css\User\Index.css" />
+    <Content Include="Images\Com\me_bg.jpg" />
     <Content Include="Images\Manage\headerbg4.png" />
     <Content Include="Images\Manage\login_bg.jpg" />
     <Content Include="Images\Order\setup_tag.png" />
