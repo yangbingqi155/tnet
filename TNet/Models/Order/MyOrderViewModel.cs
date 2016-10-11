@@ -97,7 +97,7 @@ namespace TNet.Models
         [StringLength(50)]
         public new  string notes { get; set; }
 
-        [Display(Name = "是否启用")]
+        [Display(Name = "启用")]
         [Required]
         public new  bool inuse { get; set; }
 

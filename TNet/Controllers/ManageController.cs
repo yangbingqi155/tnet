@@ -10,6 +10,7 @@ using WeChatApp.Models;
 using TNet.Models;
 using TCom.EF;
 using TNet.BLL;
+using TNet.BLL.User;
 using TNet.Authorize;
 using TNet.Util;
 using log4net;
@@ -45,6 +46,12 @@ namespace TNet.Controllers
             }
             Session["ManageUser"] = user;
             return RedirectToAction("Index", "Manage");
+        }
+
+        [ManageLoginValidation]
+        public ActionResult SignOut() {
+            Session["ManageUser"] = null;
+            return RedirectToAction("Login", "Manage");
         }
 
         /// <summary>
@@ -1064,6 +1071,44 @@ namespace TNet.Controllers
         }
 
         /// <summary>
+        /// 搜索用户(用于绑定工人微信)
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult SearchUsers(string phone,int bindManageUserId,bool isAjax) {
+            List<TCom.EF.User> entities = UserBll.SearchByPhone(phone);
+            List<UserViewModel> viewModels = entities.Select(model => {
+                UserViewModel viewModel = new UserViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["bindManageUserId"] = bindManageUserId;
+
+            return View(viewModels);
+        }
+
+        [ManageLoginValidation]
+        public ActionResult BindManageUserWechat(int manageUserId,long iduser,bool isAjax) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<ManageUserViewModel> resultEntity = new ResultModel<ManageUserViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "绑定微信成功";
+            try {
+                ManageUser manageUser = ManageUserService.Get(manageUserId);
+                TCom.EF.User user = UserBll.Get(iduser);
+                manageUser.idweixin = user.idweixin;
+                ManageUserService.Edit(manageUser);
+            }
+            catch (Exception ex) {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "绑定微信失败";
+            }
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
         /// 判断上传文件类型
         /// </summary>
         private bool CheckFileType(HttpPostedFileWrapper postedFile)
@@ -1121,6 +1166,8 @@ namespace TNet.Controllers
             return result;
 
         }
+
+
 
         [HttpGet]
         public ActionResult Menu()

@@ -243,6 +243,7 @@
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
     <Compile Include="Models\User\UserInfo.cs" />
+    <Compile Include="Models\User\UserViewModel.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
     <Compile Include="Models\Weixin\ReplyType.cs" />
     <Compile Include="Models\Weixin\RMaterialItemParam.cs" />
@@ -610,6 +611,7 @@
     <Content Include="Views\Order\WeixinPayNotice.cshtml" />
     <Content Include="Views\Manage\ManageUserList.cshtml" />
     <Content Include="Views\Manage\ManageUserEdit.cshtml" />
+    <Content Include="Views\Manage\SearchUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

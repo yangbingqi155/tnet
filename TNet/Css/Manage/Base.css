@@ -434,3 +434,10 @@ span.input-group-addon span.glyphicon-remove {
 .manageLeft a:hover, a.select {
     color: #337ab7;
 }
+
+.userSearchResults{
+    margin-top:15px;
+}
+.modal .modal-dialog {
+    margin:90px auto;
+}
