@@ -10,18 +10,12 @@ namespace TCom.EF
     public partial class TaskRecver
     {
         [Key]
-        [Column(Order = 0)]
         [StringLength(60)]
         public string idrecver { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [StringLength(60)]
-        public string idtask { get; set; }
-
         [Required]
         [StringLength(60)]
-        public string orderno { get; set; }
+        public string idtask { get; set; }
 
         [StringLength(60)]
         public string mcode { get; set; }

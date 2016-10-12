@@ -1,15 +1,12 @@
-namespace TCom.EF
-{
+namespace TCom.EF {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class TN : DbContext
-    {
+    public partial class TN : DbContext {
         public TN()
-            : base("name=TN")
-        {
+            : base("name=TN") {
         }
 
         public virtual DbSet<Business> Businesses { get; set; }
@@ -24,6 +21,7 @@ namespace TCom.EF
         public virtual DbSet<MyAddr> MyAddrs { get; set; }
         public virtual DbSet<MyOrder> MyOrders { get; set; }
         public virtual DbSet<MyOrderPress> MyOrderPresses { get; set; }
+        public virtual DbSet<Notice> Notices { get; set; }
         public virtual DbSet<Setup> Setups { get; set; }
         public virtual DbSet<SetupAddr> SetupAddrs { get; set; }
         public virtual DbSet<Spec> Specs { get; set; }
@@ -32,8 +30,7 @@ namespace TCom.EF
         public virtual DbSet<TaskRecver> TaskRecvers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             modelBuilder.Entity<Business>()
                 .Property(e => e.buss)
                 .IsUnicode(false);
@@ -234,6 +231,22 @@ namespace TCom.EF
                 .Property(e => e.oper)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Notice>()
+                .Property(e => e.idnotice)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notice>()
+                .Property(e => e.publish)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notice>()
+                .Property(e => e.title)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Notice>()
+                .Property(e => e.content)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Setup>()
                 .Property(e => e.idsetup)
                 .IsUnicode(false);
@@ -344,10 +357,6 @@ namespace TCom.EF
 
             modelBuilder.Entity<TaskRecver>()
                 .Property(e => e.idtask)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<TaskRecver>()
-                .Property(e => e.orderno)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaskRecver>()

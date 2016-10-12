@@ -1102,6 +1102,78 @@ namespace TNet.Controllers
             return Content(resultEntity.SerializeToJson());
         }
 
+
+        /// <summary>
+        /// 公告通知列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult NoticeList(int pageIndex = 0) {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<Notice> entities = NoticeService.GetALL();
+            List<Notice> pageList = entities.Pager<Notice>(pageIndex, pageSize, out pageCount);
+
+
+            List<NoticeViewModel> viewModels = pageList.Select(model => {
+                NoticeViewModel viewModel = new NoticeViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+            return View(viewModels);
+        }
+
+        /// <summary>
+        /// 创建/编辑公告通知
+        /// </summary>
+        /// <param name="idnotice"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult NoticeEdit(string idnotice = "") {
+            NoticeViewModel model = new NoticeViewModel();
+            if (!string.IsNullOrEmpty(idnotice)) {
+                Notice notice = NoticeService.Get(idnotice);
+                if (notice != null) { model.CopyFromBase(notice); }
+            }
+            else {
+          
+            }
+            return View(model);
+        }
+
+        /// <summary>
+        /// 编辑公告通知
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult NoticeEdit(NoticeViewModel model) {
+
+            Notice notice = new Notice();
+            model.CopyToBase(notice);
+            if (string.IsNullOrEmpty(notice.idnotice) ) {
+
+                notice.idnotice = Pub.ID().ToString();
+                //新增
+                //notice = NoticeService.Add(notice);
+            }
+            else {
+                //编辑
+                notice = NoticeService.Edit(notice);
+            }
+
+            ModelState.AddModelError("", "保存成功.");
+            return View(model);
+        }
+
+
         /// <summary>
         /// 判断上传文件类型
         /// </summary>

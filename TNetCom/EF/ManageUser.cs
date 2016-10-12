@@ -26,11 +26,11 @@ namespace TCom.EF
         [StringLength(50)]
         public string idweixin { get; set; }
 
-        public bool? recv_order { get; set; }
+        public bool recv_order { get; set; }
 
-        public bool? recv_setup { get; set; }
+        public bool recv_setup { get; set; }
 
-        public bool? send_setup { get; set; }
+        public bool send_setup { get; set; }
 
         [StringLength(60)]
         public string notes { get; set; }

@@ -99,9 +99,9 @@ namespace TNet.Models
             this.MD5Salt = user.MD5Salt;
             this.phone = user.phone;
             this.idweixin = user.idweixin;
-            this.recv_order = user.recv_order != null ? user.recv_order.Value : false;
-            this.recv_setup = user.recv_setup != null ? user.recv_setup.Value : false;
-            this.send_setup = user.send_setup != null ? user.send_setup.Value : false;
+            this.recv_order =  user.recv_order ;
+            this.recv_setup =  user.recv_setup ;
+            this.send_setup =  user.send_setup ;
             this.notes = user.notes;
             this.inuse = user.inuse;
             this.UserType = (ManageUserType)user.UserType;

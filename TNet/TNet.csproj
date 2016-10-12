@@ -183,6 +183,7 @@
     <Compile Include="BLL\Manage\MenuItemService.cs" />
     <Compile Include="BLL\Merc\MercImageService.cs" />
     <Compile Include="BLL\Merc\SpecService.cs" />
+    <Compile Include="BLL\Notice\NoticeService.cs" />
     <Compile Include="BLL\Order\MyOrderService.cs" />
     <Compile Include="BLL\Pay\WeixinPay\JsApiPay.cs" />
     <Compile Include="BLL\Pay\PayNotice.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Models\Merc\Netype.cs" />
     <Compile Include="Models\Merc\SetupList.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
+    <Compile Include="Models\Notice\NoticeViewModel.cs" />
     <Compile Include="Models\NULLViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
@@ -558,6 +560,11 @@
     <Content Include="Js\Com\_references.js" />
     <Content Include="Js\Manage\Menu.js" />
     <Content Include="Js\Home\Home.js" />
+    <Content Include="ueditor\ueditor.all.js" />
+    <Content Include="ueditor\ueditor.all.min.js" />
+    <Content Include="ueditor\ueditor.config.js" />
+    <Content Include="ueditor\ueditor.parse.js" />
+    <Content Include="ueditor\ueditor.parse.min.js" />
     <Content Include="Js\WeiXin\Base.js" />
     <Content Include="lib\log4net\log4net.dll" />
     <Content Include="lib\log4net\log4net.xml" />
@@ -612,6 +619,8 @@
     <Content Include="Views\Manage\ManageUserList.cshtml" />
     <Content Include="Views\Manage\ManageUserEdit.cshtml" />
     <Content Include="Views\Manage\SearchUsers.cshtml" />
+    <Content Include="Views\Manage\NoticeList.cshtml" />
+    <Content Include="Views\Manage\NoticeEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />
@@ -628,6 +637,11 @@
     <Folder Include="Images\Addr\" />
     <Folder Include="Models\Addr\" />
     <Folder Include="Resource\Images\" />
+    <Folder Include="ueditor\dialogs\" />
+    <Folder Include="ueditor\lang\" />
+    <Folder Include="ueditor\net\" />
+    <Folder Include="ueditor\themes\" />
+    <Folder Include="ueditor\third-party\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\Fonts\glyphicons-halflings-regular.woff" />

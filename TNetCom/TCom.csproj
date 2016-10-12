@@ -68,6 +68,7 @@
     <Compile Include="EF\MyAddr.cs" />
     <Compile Include="EF\MyOrder.cs" />
     <Compile Include="EF\MyOrderPress.cs" />
+    <Compile Include="EF\Notice.cs" />
     <Compile Include="EF\Setup.cs" />
     <Compile Include="EF\SetupAddr.cs" />
     <Compile Include="EF\Spec.cs" />
