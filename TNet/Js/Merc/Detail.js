@@ -23,13 +23,15 @@ function getDetailData() {
                             $(".sellpt").html(data.Data.Merc.sellpt);
                             $(".price").html("￥" + data.Data.Merc.baseprice);
                             $(".sellcount").html("销量：" + data.Data.Merc.sellcount);
-                            var imgs = data.Data.Merc.imgs;
+                            var imgs = data.Data.Imgs;
+                            if (!imgs || imgs.length <= 0) {
+                                imgs = ["Images/default_bg.png"];
+                            }
                             if (imgs) {
-                                imgs = imgs.split('|');
                                 var imgHtml = "";
                                 for (var i = 0; i < imgs.length; i++) {
-                                    var ur = Pub.rootUrl() + "Images/Merc/" + imgs[i];
-                                    var bur = Pub.rootUrl() + "Images/default_bg.png";
+                                    var ur = Pub.url(imgs[i], "Images/default_bg.png");
+                                    var bur = Pub.url("Images/default_bg.png");
                                     imgHtml += "<div class='swiper-slide'><img src='" + bur + "' data-src='" + ur + "' class='swiper-lazy' /><div class='swiper-lazy-preloader swiper-lazy-preloader-white'></div></div>";
                                 }
                                 if (imgHtml) {
@@ -147,7 +149,7 @@ function save() {
         alert("亲！请选择一个宝贝");
         return;
     }
-    if (Pub.setCache("order_cart", { Merc: mercData.Data.Merc, Spec: selectSpec, Count: sepcCount, Setup: isSetup() })) {
+    if (Pub.setCache("order_cart", { Merc: mercData.Data.Merc, Spec: selectSpec, Imgs: mercData.Data.Imgs, Count: sepcCount, Setup: isSetup() })) {
         window.location.href = Pub.rootUrl() + "Order/Submit";
         return;
     }

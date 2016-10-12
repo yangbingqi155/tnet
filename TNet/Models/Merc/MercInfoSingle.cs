@@ -19,5 +19,8 @@ namespace TNet.Models.Service.Merc
 
         public List<TCom.EF.SetupAddr> SetupAddrs { get; set; }
 
+
+        public List<TCom.EF.MercImage> Imgs { get; set; }
+
     }
 }

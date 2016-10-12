@@ -12,10 +12,10 @@ function init() {
         $("#buy_att_month").html("送:" + order_cart.Spec.attmonth + " 月");
         $("#amount").html("￥ " + (order_cart.Spec.price * order_cart.Count));
         var ur = Pub.rootUrl() + "Images/default_bg.png";
-        var imgs = order_cart.Merc.imgs;
+        var imgs = order_cart.Imgs;
         if (imgs) {
-            imgs = imgs.split('|')[0];
-            ur = Pub.rootUrl() + "Images/Merc/" + imgs;
+            imgs = imgs[0];
+            ur = Pub.url(imgs, "Images/default_bg.png");
 
         }
         $("#ico").attr("src", ur);

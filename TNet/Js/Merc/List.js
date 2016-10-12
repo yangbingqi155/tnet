@@ -6,7 +6,7 @@ function getListUrl() {
     return "Service/Merc/List";
 }
 
- 
+
 function getMercList() {
     Pub.get({
         url: getListUrl(),
@@ -101,16 +101,11 @@ function crateItem(o, tag, o2) {
                 }
                 img = null;
             }
-            if (img) {
-                img = 'Images/Merc/' + img;
-            }
-        }
-        if (!img) {
-            img = "Images/default_bg.png";
+
         }
         html += '<div class="pitem_' + tag + '">';
-        html += '<a href="' + Pub.rootUrl() + 'Merc/Detail/' + o.idmerc + setup + '">';
-        html += '<img src="' + Pub.rootUrl() + img + '" />';
+        html += '<a href="' + Pub.url('Merc/Detail/' + o.idmerc + setup) + '">';
+        html += '<img src="' + Pub.url(img, "Images/default_bg.png") + '" />';
         html += o.merc1 + '</a>';
         if (tag == "l") {
             html += '<div class="HLive"></div>';

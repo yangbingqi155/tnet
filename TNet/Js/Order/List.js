@@ -29,12 +29,9 @@ function getData() {
                                 var da = Pub.rootUrl() + "/Order/Detail/" + o.orderno;
                                 html += '<a href="' + da + '" id="merc" class="merc">';
                                 html += '<div class="merc_l">';
-                                var img = o.img;
-                                var ur = " src='" + Pub.rootUrl() + "Images/default_bg.png' ";
-                                if (img) {
-                                    ur = " src='" + Pub.rootUrl() + "Images/Merc/" + img + " ' ";
-                                }
-                               
+                                 
+                                var ur = " src='" +  Pub.url(o.img,"Images/default_bg.png") + "' ";
+                                
                                 html += '<img id="ico" ' + ur + ' />';
                                 html += '</div>';
                                 html += '<div class="merc_c">';

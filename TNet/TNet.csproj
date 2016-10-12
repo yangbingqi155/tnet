@@ -612,6 +612,8 @@
     <Content Include="Views\Manage\ManageUserList.cshtml" />
     <Content Include="Views\Manage\ManageUserEdit.cshtml" />
     <Content Include="Views\Manage\SearchUsers.cshtml" />
+    <Content Include="Views\Task\MyTask.cshtml" />
+    <Content Include="Views\Notice\NoticeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

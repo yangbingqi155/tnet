@@ -28,15 +28,15 @@ function getData() {
                                 $(".setup_tag").show();
                                 $(".resource").show();
                                 $("#idc").html(o.idc);
-                                $("#idc_img1").attr("src", getImgUrl(o.idc_img1));
-                                $("#idc_img2").attr("src", getImgUrl(o.idc_img2));
+                                $("#idc_img1").attr("src", Pub.url(o.idc_img1, "Images/default_bg.png"));
+                                $("#idc_img2").attr("src", Pub.url(o.idc_img2, "Images/default_bg.png"));
 
                             }
                             $("#merc").attr("href", Pub.rootUrl() + "Merc/Detail/" + o.idmerc + tag);
                             $("#contacts").html(o.contact);
                             $("#phones").html(o.phone);
                             $("#realAddr").html(o.addr);
-                            $("#ico").attr("src", getImgUrl(o.img, "Images/Merc/"));
+                            $("#ico").attr("src", Pub.url(o.img, "Images/default_bg.png"));
                             $("#merc_title").html(o.merc);
                             $("#merc_spec").html(o.spec);
                             $("#merc_price").html("￥" + o.price);
@@ -74,18 +74,7 @@ function getData() {
         });
     }
 }
-
-function getImgUrl(img, rdir) {
-    if (!rdir) {
-        rdir = "";
-    }
-    var ur = Pub.rootUrl() + "Images/default_bg.png";
-    var imgu = ur;
-    if (img) {
-        imgu = Pub.rootUrl() + rdir + img;
-    }
-    return imgu;
-}
+ 
 
 
 $(document).ready(getData);

@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Head{
-    <link href="@Url.Content("~/Css/Home/Index.css?v=20161010")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Css/Merc/List.css?v=20161010")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20161010")">
+    <link href="@Url.Content("~/Css/Home/Index.css?v=20161012")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Merc/List.css?v=20161012")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20161012")">
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20161010")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20161012")">
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Merc/List.js?v=20161010")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/List.js?v=20161012")">
     </script>
     <script type="text/javascript">
         // Pub.delUser();
@@ -45,7 +45,7 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <a href="#"><i class="tongzhi"></i><span>公告通知</span> </a>
+                    <a href="@Url.Content("~/Notice/NoticeList")"><i class="tongzhi"></i><span>公告通知</span> </a>
                 </td>
                 <td>
                     <a href="@Url.Content("~/Merc/List")"><i class="baoxiu"></i><span>宽带销售</span> </a>
@@ -65,11 +65,11 @@
                     <a href="@Url.Content("~/Order/List")"><i class="juece"></i><span>我的订单</span> </a>
                 </td>
                 <td>
-                    <a href="#"><i class="diaocha"></i><span>报修</span> </a>
+                    <a href="#"><i class="diaocha"></i><span>报修申请</span> </a>
                 </td>
                 <td>
 
-                    <a id="Task" href="@Url.Content("~/Task/List")" ><i class="zhinan"></i><span>我的工单</span> </a>
+                    <a id="Task" href="@Url.Content("~/Task/MyTask")"><i class="zhinan"></i><span>我的工单</span> </a>
                 </td>
             </tr>
         </table>

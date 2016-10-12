@@ -6,6 +6,7 @@
         get: _ajax_get,
         jsonDate: jsonDate,
         rootUrl: rootUrl,
+        url: url,
         urlParam: urlParam,
         wsCheck: wsCheck,//服务检查
         showLoading: showLoading,// 
@@ -135,6 +136,39 @@
         }
         return root_url;
     }
+    function url(rurl, durl) {
+        if (rurl) {
+            try {
+                rurl = rurl.trimLeft();
+            } catch (e) {
+
+            }
+            if (rurl) {
+                var ru = rootUrl();
+                if (rurl.indexOf(ru) == 0) {
+                    return rurl;
+                }
+                if (rurl.indexOf("~/") == 0) {
+                    rurl = ru + rurl.substring(2, rurl.length);
+                    return rurl;
+                }
+                if (rurl.indexOf("/") == 0) {
+                    rurl = ru + rurl.substring(1, rurl.length);
+                    return rurl;
+                }
+                return ru + rurl;
+            }
+        }
+        if (!durl) {
+            durl = "";
+        } else {
+            durl = url(durl, "");
+        }
+        return durl;
+    }
+
+
+
 
 
 
