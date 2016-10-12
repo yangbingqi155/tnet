@@ -9,7 +9,7 @@ namespace TNet.BLL {
 
         public static List<Notice> GetALL() {
             TN db = new TN();
-            return db.Notices.OrderBy(en=>en.publish_time).ToList();
+            return db.Notices.OrderByDescending(en=>en.publish_time).ToList();
         }
 
         public static Notice Get(string idnotice) {

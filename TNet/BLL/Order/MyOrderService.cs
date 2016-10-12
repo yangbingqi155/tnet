@@ -33,8 +33,25 @@ namespace TNet.BLL
                 && (userNo == 0 || userNo==en.iduser)
             ).ToList();
         }
-        
-       
+
+        public static List<MyOrderViewModel> GetOrdersViewModelByFilter(DateTime? startOrDate, DateTime? endOrDate, int orderTypes = 0, int orderStatus = 0, long orderNo = 0, long userNo = 0)
+        {
+            List<MyOrderViewModel> viewModels = new List<MyOrderViewModel>();
+            List<MyOrder> orders= GetOrderByFilter(startOrDate, endOrDate, orderTypes, orderStatus, orderNo, userNo);
+            if (orders!=null&& orders.Count>0) {
+                TN tn = new TN();
+                List<TCom.EF.User> users= tn.Users.ToList();
+                viewModels=orders.Select(en=> {
+                    MyOrderViewModel viewModel = new MyOrderViewModel();
+                    viewModel.CopyFromBase(en);
+                    TCom.EF.User user= users.Where(model => model.iduser == viewModel.iduser).First();
+                    viewModel.user_name = user != null ? user.name : "";
+                    return viewModel;
+                }).ToList();
+            }
+            return viewModels;
+        }
+
 
         public static MyOrder Edit(MyOrder order)
         {

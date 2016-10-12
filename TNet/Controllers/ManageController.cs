@@ -188,16 +188,9 @@ namespace TNet.Controllers
             if (endOrDate==null) {
                 endOrDate = DateTime.Now;
             }
-            List<MyOrder> entities = MyOrderService.GetOrderByFilter(startOrDate,endOrDate,orderTypes,orderStatus,orderNo,userNo);
-            List<MyOrder> pageList = entities.Pager<MyOrder>(pageIndex, pageSize, out pageCount);
-
-            List<MyOrderViewModel> viewModels = pageList.Select(model =>
-            {
-                MyOrderViewModel viewModel = new MyOrderViewModel();
-                viewModel.CopyFromBase(model);
-                return viewModel;
-            }).ToList();
-
+            List<MyOrderViewModel> entities = MyOrderService.GetOrdersViewModelByFilter(startOrDate,endOrDate,orderTypes,orderStatus,orderNo,userNo);
+            List<MyOrderViewModel> viewModels = entities.Pager<MyOrderViewModel>(pageIndex, pageSize, out pageCount);
+            
             RouteData.Values.Add("startOrDate",startOrDate);
             RouteData.Values.Add("endOrDate", endOrDate);
             RouteData.Values.Add("orderTypes", orderTypes);
@@ -1152,6 +1145,7 @@ namespace TNet.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [ValidateInput(false)]
         [ManageLoginValidation]
         [HttpPost]
         public ActionResult NoticeEdit(NoticeViewModel model) {
@@ -1159,10 +1153,10 @@ namespace TNet.Controllers
             Notice notice = new Notice();
             model.CopyToBase(notice);
             if (string.IsNullOrEmpty(notice.idnotice) ) {
-
+                notice.publish_time = DateTime.Now;
                 notice.idnotice = Pub.ID().ToString();
                 //新增
-                //notice = NoticeService.Add(notice);
+                notice = NoticeService.Add(notice);
             }
             else {
                 //编辑

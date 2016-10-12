@@ -76,7 +76,7 @@
                 <thead>
                     <tr>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, long>(en => en.orderno))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, long>(en => en.iduser))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.user_name))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.merc))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.spec))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.month))</th>
@@ -107,7 +107,7 @@
                             <img class="smallMercImage" src="@Url.Content(@item.img)" title="@item.merc" />
                             }
                             </td>
-                            <td>@item.iduser</td>
+                            <td>@item.user_name</td>
                             <td>@item.merc</td>
                             <td>@item.spec</td>
                             <td>@item.month</td>
@@ -120,14 +120,23 @@
                             <td>@item.cretime</td>
                             <td>@item.stime.Value.ToString("yyyy-MM-dd")</td>
                             <td>@item.entime.Value.ToString("yyyy-MM-dd")</td>
-                            <td>@item.otype</td>
-                            <td>@item.status</td>
+                            <td>
+                                @TNet.Models.Order.OrderType.GetSelectItems().Where(en=>en.DisplayValue== item.otype).FirstOrDefault().DisplayText
+                            </td>
+                            <td>
+                                @TNet.Models.Order.OrderStatus.GetSelectItems().Where(en => en.DisplayValue == item.status).FirstOrDefault().DisplayText
+                            </td>
                             <td>@item.notes</td>
 
                             <td>
                                 <a onclick="enableOrder('@Url.Action("OrderEnable", "Manage", new { orderno = item.orderno, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
                             </td>
                             <td>
+                                @if (item.otype == TNet.Models.Order.OrderType.Setup)
+                                {
+                                    <a href="javascript:void(0);" class="btn btn-default">派单</a>
+                                }
+                                
                                 <a href="@Url.Action("OrderDetail","Manage",new { orderno=item.orderno})" class="btn btn-default">详细</a>
                             </td>
                         </tr>

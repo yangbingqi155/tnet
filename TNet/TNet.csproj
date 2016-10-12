@@ -185,6 +185,8 @@
     <Compile Include="BLL\Merc\SpecService.cs" />
     <Compile Include="BLL\Notice\NoticeService.cs" />
     <Compile Include="BLL\Order\MyOrderService.cs" />
+    <Compile Include="BLL\Order\TaskRecverService.cs" />
+    <Compile Include="BLL\Order\TaskService.cs" />
     <Compile Include="BLL\Pay\WeixinPay\JsApiPay.cs" />
     <Compile Include="BLL\Pay\PayNotice.cs" />
     <Compile Include="BLL\User\UserBll.cs" />
@@ -236,6 +238,8 @@
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\Order\OrderStatusItem.cs" />
     <Compile Include="Models\Order\OrderType.cs" />
+    <Compile Include="Models\Order\TaskRecverViewModel.cs" />
+    <Compile Include="Models\Order\TaskViewModel.cs" />
     <Compile Include="Models\Pay\PayData.cs" />
     <Compile Include="Models\Pay\PayNotifyResult.cs" />
     <Compile Include="Models\Pay\PayResult.cs" />
