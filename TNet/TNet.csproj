@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
     <Compile Include="BLL\Business\BusinessService.cs" />
+    <Compile Include="BLL\Business\BussImageService.cs" />
     <Compile Include="BLL\IdentifyService.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
+    <Compile Include="Models\Business\BussImageViewModel.cs" />
     <Compile Include="Models\File\UploadData.cs" />
     <Compile Include="Models\File\UploadDataResult.cs" />
     <Compile Include="Models\Manage\ManageUserType.cs" />

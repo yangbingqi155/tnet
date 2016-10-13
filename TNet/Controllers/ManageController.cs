@@ -149,7 +149,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpPost]
-        public ActionResult BusinessEdit(BusinessViewModel model)
+        public ActionResult BusinessEdit(BusinessViewModel model, string bussImages = "")
         {
             Business business = new Business();
             model.CopyToBase(business);
@@ -168,8 +168,171 @@ namespace TNet.Controllers
             //修改后重新加载
             model.CopyFromBase(business);
 
+
+            BussImageService.DeleteBussImages(business.idbuss);
+
+            if (!string.IsNullOrEmpty(bussImages)) {
+                List<BussImage> list = new List<BussImage>();
+                string[] imgs = bussImages.Split(',');
+                int i = 0;
+                foreach (var item in imgs) {
+                    list.Add(new BussImage() {
+                        BussImageId=Pub.ID(),
+                        idbuss = business.idbuss,
+                        InUse = true,
+                        Path = item,
+                        SortID = i + 1
+                    });
+                    i++;
+                }
+                if (list.Count > 0) {
+                    BussImageService.AddMuti(list);
+                }
+            }
+            BusinessService.SetDefaultBussImage(business.idbuss);
+
+
             ModelState.AddModelError("", "保存成功.");
             return View(model);
+        }
+
+
+        /// <summary>
+        /// 获取商圈图片
+        /// </summary>
+        /// <param name="idbuss"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AjaxBussImageList(int idbuss, bool isAjax) {
+            ResultModel<BussImageViewModel> resultEntity = new ResultModel<BussImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try {
+                List<BussImage> entities = BussImageService.GetBussImagesByBussId(idbuss);
+                List<BussImageViewModel> viewModels = entities.Select(model => {
+                    BussImageViewModel viewModel = new BussImageViewModel();
+                    viewModel.CopyFromBase(model);
+                    viewModel.Path = Url.Content(viewModel.Path);
+                    return viewModel;
+                }).ToList();
+                resultEntity.Content = viewModels;
+            }
+            catch (Exception ex) {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        [ManageLoginValidation]
+        public ActionResult UploadBussImage(int idbuss = 0) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<BussImageViewModel> resultEntity = new ResultModel<BussImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件上传成功";
+            string GUID = System.Guid.NewGuid().ToString();
+            string path = "~/Resource/Images/Buss/";
+            string filename = string.Empty;
+            string message = string.Empty;
+            try {
+                if (Request.Files != null && Request.Files.Count > 0) {
+                    //if (Request.Files.Count > 1)
+                    //{
+                    //    resultEntity.Code = ResponseCodeType.Fail;
+                    //    resultEntity.Message = "请选择文件.";
+                    //    return Content(resultEntity.SerializeToJson());
+                    //}
+                    resultEntity.Content = new List<BussImageViewModel>();
+                    int i = 0;
+                    foreach (string upload in Request.Files) {
+                        GUID = System.Guid.NewGuid().ToString();
+                        if (!Request.Files[i].HasFile()) {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件大小不能0.";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+
+
+                        if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[i])) {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+
+                        //获取文件后缀名
+                        string originFileName = Request.Files[i].FileName;
+                        string originFileNameSuffix = string.Empty;
+                        int lastIndex = originFileName.LastIndexOf(".");
+                        if (lastIndex < 0) {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+                        originFileNameSuffix = originFileName.Substring(lastIndex, originFileName.Length - lastIndex);
+
+                        filename = GUID + originFileNameSuffix;
+                        if (!Directory.Exists(Server.MapPath(path))) {
+                            Directory.CreateDirectory(Server.MapPath(path));
+                        }
+
+                        Request.Files[i].SaveAs(Path.Combine(Server.MapPath(path), filename));
+                        BussImageViewModel model = new BussImageViewModel() {
+                            idbuss = idbuss,
+                            Path = path + filename,
+                            SortID = BussImageService.MaxBussImageSortID(idbuss) + 1,
+                            InUse = true
+                        };
+
+                        resultEntity.Content.Add(model);
+                        i++;
+                        StringBuilder initialPreview = new StringBuilder();
+                        StringBuilder initialPreviewConfig = new StringBuilder();
+                        initialPreviewConfig.Append(",\"initialPreviewConfig\":[");
+                        initialPreview.Append("{\"initialPreview\":[");
+                        for (int k = 0; k < resultEntity.Content.Count; k++) {
+                            if (k == 0) {
+                                initialPreview.AppendFormat("\"{0}\"", Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append("{\"url\":\"" + Url.Action("DeleteBussImage", "Manage") + "\"}");
+                            }
+                            else {
+                                initialPreview.AppendFormat("\",{0}\"", Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append(",{\"url\":\"" + Url.Action("DeleteBussImage", "Manage") + "\"}");
+                            }
+                        }
+                        initialPreview.Append("]");
+                        initialPreviewConfig.Append("]");
+                        initialPreview.Append(initialPreviewConfig.ToString());
+                        initialPreview.Append("}");
+                        return Content(initialPreview.ToString());
+                    }
+
+                }
+                else {
+                    resultEntity.Code = ResponseCodeType.Fail;
+                    resultEntity.Message = "文件上传失败.";
+                    return Content(resultEntity.SerializeToJson());
+                }
+            }
+            catch (Exception ex) {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "没有选择要上传的文件.";
+                return Content(resultEntity.SerializeToJson());
+            }
+            return Content(resultEntity.SerializeToJson());
+
+
+        }
+
+        [ManageLoginValidation]
+        public ActionResult DeleteBussImage(int BussImageId = 0, int idbuss = 0, bool isAjax = true) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<BussImageViewModel> resultEntity = new ResultModel<BussImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件删除成功";
+            return Content(resultEntity.SerializeToJson());
         }
 
         /// <summary>

@@ -13,9 +13,11 @@ namespace TCom.EF
         [StringLength(100)]
         public string idnotice { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string publish { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string title { get; set; }
 
@@ -26,6 +28,7 @@ namespace TCom.EF
         public DateTime? end_time { get; set; }
 
         [Column(TypeName = "text")]
+        [Required]
         public string content { get; set; }
     }
 }

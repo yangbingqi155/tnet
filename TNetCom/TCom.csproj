@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Com\P.cs" />
     <Compile Include="EF\Business.cs" />
+    <Compile Include="EF\BussImage.cs" />
     <Compile Include="EF\City.cs" />
     <Compile Include="EF\Discount.cs" />
     <Compile Include="EF\ManageUser.cs" />

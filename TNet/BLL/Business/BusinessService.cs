@@ -31,7 +31,6 @@ namespace TNet.BLL
             oldBusiness.city = business.city;
             oldBusiness.addr = business.addr;
             oldBusiness.sellpt = business.sellpt;
-            oldBusiness.imgs = business.imgs;
             oldBusiness.cretime = business.cretime;
             oldBusiness.busstime = business.busstime;
             oldBusiness.price = business.price;
@@ -54,5 +53,24 @@ namespace TNet.BLL
             return business;
         }
 
+
+
+        public static bool SetDefaultBussImage(long idbuss) {
+            bool result = false;
+            try {
+                TN db = new TN();
+                BussImage firstImage = db.BussImages.Where(en => en.idbuss == idbuss).OrderBy(en => en.SortID).First();
+                string imagPath = firstImage == null ? "" : firstImage.Path;
+                Business business = db.Businesses.Find(idbuss);
+                business.imgs = imagPath;
+                db.SaveChanges();
+
+            }
+            catch (Exception) {
+                result = false;
+            }
+
+            return result;
+        }
     }
 }

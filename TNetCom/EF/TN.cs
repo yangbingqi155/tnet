@@ -10,6 +10,7 @@ namespace TCom.EF {
         }
 
         public virtual DbSet<Business> Businesses { get; set; }
+        public virtual DbSet<BussImage> BussImages { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
         public virtual DbSet<ManageUser> ManageUsers { get; set; }
@@ -65,6 +66,10 @@ namespace TCom.EF {
 
             modelBuilder.Entity<Business>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BussImage>()
+                .Property(e => e.Path)
                 .IsUnicode(false);
 
             modelBuilder.Entity<City>()
