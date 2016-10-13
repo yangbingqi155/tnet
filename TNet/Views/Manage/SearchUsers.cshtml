@@ -44,6 +44,7 @@
                 returndata =eval("(" + returndata + ")");
                 if (returndata.Code == 1) {
                     alert(returndata.Message);
+                    window.Location.href = window.Location.href;
                 }
                 else if (returndata.Code == 2) {
                     alert(returndata.Message);

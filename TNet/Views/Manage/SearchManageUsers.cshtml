@@ -1,0 +1,34 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+@model List<ManageUserViewModel>
+@{
+    Layout = null;
+    string bindOrderNo = ViewData["bindOrderNo"].ToString();
+}
+@if (Model.Count > 0) {
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>选中</th>
+                <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, string>(en => en.UserName))</th>
+                <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, string>(en => en.phone))</th>
+                <th>@(AttributeHelper.DisplayAttributeFor<ManageUserViewModel, string>(en => en.notes))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        <input type="checkbox" value="@item.ManageUserId" class="checkbox" id="chkManageUser_@item.ManageUserId" name="chkManageUser" />
+
+                    </td>
+                    <td>@item.UserName</td>
+                    <td>@item.phone</td>
+                    <td>@item.notes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

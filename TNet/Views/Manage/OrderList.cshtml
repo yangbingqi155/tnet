@@ -10,13 +10,13 @@
     var pageCount = Convert.ToInt32(ViewData["pageCount"]);
     var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
 
-    DateTime? startOrDate=Convert.ToDateTime( ViewData["startOrDate"]);
-    DateTime? endOrDate= Convert.ToDateTime(ViewData["endOrDate"]) ;
-    int orderTypes=Convert.ToInt32( ViewData["orderTypes"]);
-    int orderStatus= Convert.ToInt32(ViewData["orderStatus"]);
+    DateTime? startOrDate = Convert.ToDateTime(ViewData["startOrDate"]);
+    DateTime? endOrDate = Convert.ToDateTime(ViewData["endOrDate"]);
+    int orderTypes = Convert.ToInt32(ViewData["orderTypes"]);
+    int orderStatus = Convert.ToInt32(ViewData["orderStatus"]);
     long orderNo = Convert.ToInt64(ViewData["orderNo"]);
     long userNo = Convert.ToInt64(ViewData["userNo"]);
-        }
+}
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
         <li><a href="#">订单管理</a></li>
@@ -28,7 +28,7 @@
         <form action="@Url.Action("OrderList","Manage")" method="post">
             <div class="row">
                 <div class="col-xs-1">
-                    <input type="text" class="form-control"  placeholder="订单号" name="orderNo" value="@(orderNo==0?"":orderNo.ToString())">
+                    <input type="text" class="form-control" placeholder="订单号" name="orderNo" value="@(orderNo==0?"":orderNo.ToString())">
                 </div>
                 <div class="col-xs-2">
                     <input type="text" class="form-control" placeholder="用户编号" name="userNo" value="@(userNo==0?"":userNo.ToString())">
@@ -50,19 +50,19 @@
                     @Html.Hidden("endOrDate", String.Format("{0:yyyy-MM-dd}", endOrDate.Value != DateTime.MinValue ? endOrDate : DateTime.Now))
                 </div>
                 <div class="col-xs-2">
-                    @Html.DropDownList("orderTypes", new SelectList(TNet.Models.Order.OrderType.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control",Value=orderTypes })
+                    @Html.DropDownList("orderTypes", new SelectList(TNet.Models.Order.OrderType.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control", Value = orderTypes })
                 </div>
                 <div class="col-xs-2">
                     @Html.DropDownList("orderStatus", new SelectList(TNet.Models.Order.OrderStatus.GetSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control", Value = orderStatus })
-                 
+
                 </div>
                 <div class="col-xs-1">
-                    <input type="submit" value="搜索" class="btn btn-primary"  placeholder=".col-xs-1" />
+                    <input type="submit" value="搜索" class="btn btn-primary" placeholder=".col-xs-1" />
                 </div>
             </div>
 
         </form>
-        
+
 
     </div>
     <div>
@@ -70,11 +70,11 @@
     </div>
 
     <div @*style="overflow:scroll;min-width:2180px;"*@>
-        @if (Model.Count > 0)
-        {
+        @if (Model.Count > 0) {
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>操作</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, long>(en => en.orderno))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.user_name))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.merc))</th>
@@ -93,67 +93,142 @@
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, int?>(en => en.status))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, string>(en => en.notes))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MyOrderViewModel, bool>(en => en.inuse))</th>
-                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {
+                    @foreach (var item in Model) {
                         <tr>
-                            <td>@item.orderno
-                            @if (!string.IsNullOrEmpty(item.img))
-                            {
-                                <br />
-                            <img class="smallMercImage" src="@Url.Content(@item.img)" title="@item.merc" />
-                            }
-                            </td>
-                            <td>@item.user_name</td>
-                            <td>@item.merc</td>
-                            <td>@item.spec</td>
-                            <td>@item.month</td>
-                            <td>@item.attmonth</td>
-                            <td>@item.count</td>
-                            <td>@item.price</td>
-                            <td>@item.contact</td>
-                            <td>@item.addr</td>
-                            <td>@item.phone</td>
-                            <td>@item.cretime</td>
-                            <td>@item.stime.Value.ToString("yyyy-MM-dd")</td>
-                            <td>@item.entime.Value.ToString("yyyy-MM-dd")</td>
                             <td>
-                                @TNet.Models.Order.OrderType.GetSelectItems().Where(en=>en.DisplayValue== item.otype).FirstOrDefault().DisplayText
-                            </td>
-                            <td>
-                                @TNet.Models.Order.OrderStatus.GetSelectItems().Where(en => en.DisplayValue == item.status).FirstOrDefault().DisplayText
-                            </td>
-                            <td>@item.notes</td>
-
-                            <td>
-                                <a onclick="enableOrder('@Url.Action("OrderEnable", "Manage", new { orderno = item.orderno, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
-                            </td>
-                            <td>
-                                @if (item.otype == TNet.Models.Order.OrderType.Setup)
-                                {
-                                    <a href="javascript:void(0);" class="btn btn-default">派单</a>
+                                @if (item.otype == TNet.Models.Order.OrderType.Setup) {
+                                    <a href="javascript:void(0);" onclick='openModal("@item.orderno");' class="btn btn-default">派单</a>
                                 }
-                                
+
                                 <a href="@Url.Action("OrderDetail","Manage",new { orderno=item.orderno})" class="btn btn-default">详细</a>
                             </td>
-                        </tr>
+                            <td>
+                                @item.orderno
+                            @if (!string.IsNullOrEmpty(item.img)) {
+                                <br />
+                                <img class="smallMercImage" src="@Url.Content(@item.img)" title="@item.merc" />
+                            }
+                        </td>
+                        <td>@item.user_name</td>
+                        <td>@item.merc</td>
+                        <td>@item.spec</td>
+                        <td>@item.month</td>
+                        <td>@item.attmonth</td>
+                        <td>@item.count</td>
+                        <td>@item.price</td>
+                        <td>@item.contact</td>
+                        <td>@item.addr</td>
+                        <td>@item.phone</td>
+                        <td>@item.cretime</td>
+                        <td>@item.stime.Value.ToString("yyyy-MM-dd")</td>
+                        <td>@item.entime.Value.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            @TNet.Models.Order.OrderType.GetSelectItems().Where(en => en.DisplayValue == item.otype).FirstOrDefault().DisplayText
+                        </td>
+                        <td>
+                            @TNet.Models.Order.OrderStatus.GetSelectItems().Where(en => en.DisplayValue == item.status).FirstOrDefault().DisplayText
+                        </td>
+                        <td>@item.notes</td>
+
+                        <td>
+                            <a onclick="enableOrder('@Url.Action("OrderEnable", "Manage", new { orderno = item.orderno, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
         }
-        else
-        {
+        else {
             <h2>没有找到任何订单.</h2>
         }
 
     </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title" id="currentSetManageUser"></h4>
+                <input type="hidden" id="currentSetOrderNo" value="" />
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <input type="hidden" id="currentSetManageUserId" value="" />
+                        <input type="text" class="form-control" placeholder="用户名" name="searchUserName" value="" id="searchUserName" />
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="submit" value="搜索" class="btn btn-primary" placeholder=".col-xs-1" id="btnSearch" />
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="button" value="指派选定的工人" class="btn btn-primary" placeholder=".col-xs-1" id="btnAssign" />
+                    </div>
+                </div>
+                <div id="searchResults" class="userSearchResults"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
+    $(function () {
+        $("#btnSearch").click(function () {
+            searchUsers();
+        });
+        $("#btnAssign").click(function () {
+            var selectedManageUsers = $('input[name="chkManageUser"]:checked');
+            if (selectedManageUsers.length == 0) {
+                alert("还没选中任何工人,请先选中。");
+                return;
+            }
+            var selectedManageUserIds = "";
+            $(selectedManageUsers).each(function (i, d) {
+                if (i == 0) {
+                    selectedManageUserIds += $(d).val();
+                }
+                else {
+                    selectedManageUserIds += "," + $(d).val();
+                }
+            });
+            var url = "@Url.Action("AssignTask", "Manage")";
+            var data = { bindOrderNo: $("#currentSetOrderNo").val(), manageUserIds: selectedManageUserIds, isAjax: true };
+            $.post(url, data, function (returndata) {
+                returndata = eval("(" + returndata + ")");
+                if (returndata.Code == 1) {
+                    closeModal();
+                    alert(returndata.Message);
+                }
+                else if (returndata.Code == 2) {
+                    alert(returndata.Message);
+                }
+            });
+        });
+    });
+    function searchUsers() {
+        var url = "@Url.Action("SearchManageUsers","Manage")";
+        var data = { userName: $("#searchUserName").val(), bindOrderNo: $("#currentSetOrderNo").val(), isAjax: true };
+        $.get(url, data, function (returndata) {
+            $("#searchResults").html(returndata);
+        })
+    }
+    function openModal(bindOrderNo) {
+        $("#currentSetManageUser").text("为订单:" + bindOrderNo + "指派工人");
+        $("#currentSetOrderNo").val(bindOrderNo);
+        $('#myModal').modal({
+            keyboard: false
+        })
+    }
+    function closeModal() {
+        $('#myModal').modal('hide')
+    }
     function enableOrder(url) {
         var manageLoginUrl = "@Url.Action("Login","Manage")";
         $.post(url, null, function (returndata) {

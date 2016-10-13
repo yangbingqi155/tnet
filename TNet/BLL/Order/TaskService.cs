@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using TCom.EF;
 
-namespace TNet.BLL.Order
+namespace TNet.BLL
 {
     public class TaskService
     {

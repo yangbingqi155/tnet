@@ -1027,6 +1027,72 @@ namespace TNet.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 搜索工人
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult SearchManageUsers(string userName, string bindOrderNo, bool isAjax) {
+            List<ManageUser> entities = ManageUserService.SearchByUserName(userName);
+            List<ManageUserViewModel> viewModels = entities.Select(model => {
+                ManageUserViewModel viewModel = new ManageUserViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["bindOrderNo"] = bindOrderNo;
+
+            return View(viewModels);
+        }
+
+        /// <summary>
+        /// 指派任务
+        /// </summary>
+        /// <param name="bindOrderNo"></param>
+        /// <param name="manageUserIds"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AssignTask(string bindOrderNo,string manageUserIds, bool isAjax) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<ManageUserViewModel> resultEntity = new ResultModel<ManageUserViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "报装订单指派工人成功";
+            try {
+                Task task = new Task();
+                task.idtask = Pub.ID().ToString();
+                task.orderno = bindOrderNo;
+                task.cretime = DateTime.Now;
+                task.idsend = ((ManageUser)Session["ManageUser"]).ManageUserId.ToString();
+                task.send = ((ManageUser)Session["ManageUser"]).UserName;
+                task.inuse = true;
+                Task newTask= TaskService.Add(task);
+                List<ManageUser> manageUsers = ManageUserService.GetALL();
+                if (newTask!=null&&!string.IsNullOrEmpty(manageUserIds)) {
+                    List<TaskRecver> taskRecvers = new List<TaskRecver>();
+                    string[] userArray = manageUserIds.Split(',');
+                    for (int i = 0; i < userArray.Count(); i++) {
+                        ManageUser manageUser = manageUsers.Where(en => en.ManageUserId == Convert.ToInt32(userArray[i])).First();
+                        taskRecvers.Add(new TaskRecver() {
+                            idrecver = Pub.ID().ToString(),
+                            idtask = newTask.idtask,
+                            mcode = userArray[i],
+                            mname= manageUser==null?"": manageUser.UserName,
+                            cretime=DateTime.Now,
+                            inuse=true
+                        });
+                    }
+                    TaskRecverService.AddMuil(taskRecvers);
+                }
+
+            }
+            catch (Exception ex) {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "报装订单指派工人失败";
+            }
+            return Content(resultEntity.SerializeToJson());
+        }
 
         /// <summary>
         /// 启用或者禁用管理员
