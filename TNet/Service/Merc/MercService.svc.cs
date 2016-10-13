@@ -82,7 +82,7 @@ namespace TNet.Service.Merc
                             Merc = db.Mercs.First(mr => mr.inuse == true && mr.idmerc == _idmerc),
                             Spec = db.Specs.Where(mr => mr.inuse == true && mr.idmerc == _idmerc).ToList(),
                             Discount = db.Discounts.Where(mr => mr.inuse == true && mr.idmerc == _idmerc).ToList(),
-                            Imgs = db.MercImages.Where(mr => mr.idmerc == _idmerc).ToList()
+                            Imgs = (from im in db.MercImages where (im.idmerc == _idmerc) select im.Path).ToList()
                         };
                         if (m.Merc != null)
                         {
