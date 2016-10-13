@@ -149,7 +149,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpPost]
-        public ActionResult BusinessEdit(BusinessViewModel model)
+        public ActionResult BusinessEdit(BusinessViewModel model, string bussImages = "")
         {
             Business business = new Business();
             model.CopyToBase(business);
@@ -168,8 +168,171 @@ namespace TNet.Controllers
             //修改后重新加载
             model.CopyFromBase(business);
 
+
+            BussImageService.DeleteBussImages(business.idbuss);
+
+            if (!string.IsNullOrEmpty(bussImages)) {
+                List<BussImage> list = new List<BussImage>();
+                string[] imgs = bussImages.Split(',');
+                int i = 0;
+                foreach (var item in imgs) {
+                    list.Add(new BussImage() {
+                        BussImageId=Pub.ID(),
+                        idbuss = business.idbuss,
+                        InUse = true,
+                        Path = item,
+                        SortID = i + 1
+                    });
+                    i++;
+                }
+                if (list.Count > 0) {
+                    BussImageService.AddMuti(list);
+                }
+            }
+            BusinessService.SetDefaultBussImage(business.idbuss);
+
+
             ModelState.AddModelError("", "保存成功.");
             return View(model);
+        }
+
+
+        /// <summary>
+        /// 获取商圈图片
+        /// </summary>
+        /// <param name="idbuss"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AjaxBussImageList(int idbuss, bool isAjax) {
+            ResultModel<BussImageViewModel> resultEntity = new ResultModel<BussImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try {
+                List<BussImage> entities = BussImageService.GetBussImagesByBussId(idbuss);
+                List<BussImageViewModel> viewModels = entities.Select(model => {
+                    BussImageViewModel viewModel = new BussImageViewModel();
+                    viewModel.CopyFromBase(model);
+                    viewModel.Path = Url.Content(viewModel.Path);
+                    return viewModel;
+                }).ToList();
+                resultEntity.Content = viewModels;
+            }
+            catch (Exception ex) {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        [ManageLoginValidation]
+        public ActionResult UploadBussImage(int idbuss = 0) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<BussImageViewModel> resultEntity = new ResultModel<BussImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件上传成功";
+            string GUID = System.Guid.NewGuid().ToString();
+            string path = "~/Resource/Images/Buss/";
+            string filename = string.Empty;
+            string message = string.Empty;
+            try {
+                if (Request.Files != null && Request.Files.Count > 0) {
+                    //if (Request.Files.Count > 1)
+                    //{
+                    //    resultEntity.Code = ResponseCodeType.Fail;
+                    //    resultEntity.Message = "请选择文件.";
+                    //    return Content(resultEntity.SerializeToJson());
+                    //}
+                    resultEntity.Content = new List<BussImageViewModel>();
+                    int i = 0;
+                    foreach (string upload in Request.Files) {
+                        GUID = System.Guid.NewGuid().ToString();
+                        if (!Request.Files[i].HasFile()) {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件大小不能0.";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+
+
+                        if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[i])) {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+
+                        //获取文件后缀名
+                        string originFileName = Request.Files[i].FileName;
+                        string originFileNameSuffix = string.Empty;
+                        int lastIndex = originFileName.LastIndexOf(".");
+                        if (lastIndex < 0) {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+                        originFileNameSuffix = originFileName.Substring(lastIndex, originFileName.Length - lastIndex);
+
+                        filename = GUID + originFileNameSuffix;
+                        if (!Directory.Exists(Server.MapPath(path))) {
+                            Directory.CreateDirectory(Server.MapPath(path));
+                        }
+
+                        Request.Files[i].SaveAs(Path.Combine(Server.MapPath(path), filename));
+                        BussImageViewModel model = new BussImageViewModel() {
+                            idbuss = idbuss,
+                            Path = path + filename,
+                            SortID = BussImageService.MaxBussImageSortID(idbuss) + 1,
+                            InUse = true
+                        };
+
+                        resultEntity.Content.Add(model);
+                        i++;
+                        StringBuilder initialPreview = new StringBuilder();
+                        StringBuilder initialPreviewConfig = new StringBuilder();
+                        initialPreviewConfig.Append(",\"initialPreviewConfig\":[");
+                        initialPreview.Append("{\"initialPreview\":[");
+                        for (int k = 0; k < resultEntity.Content.Count; k++) {
+                            if (k == 0) {
+                                initialPreview.AppendFormat("\"{0}\"", Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append("{\"url\":\"" + Url.Action("DeleteBussImage", "Manage") + "\"}");
+                            }
+                            else {
+                                initialPreview.AppendFormat("\",{0}\"", Url.Content(resultEntity.Content[k].Path));
+                                initialPreviewConfig.Append(",{\"url\":\"" + Url.Action("DeleteBussImage", "Manage") + "\"}");
+                            }
+                        }
+                        initialPreview.Append("]");
+                        initialPreviewConfig.Append("]");
+                        initialPreview.Append(initialPreviewConfig.ToString());
+                        initialPreview.Append("}");
+                        return Content(initialPreview.ToString());
+                    }
+
+                }
+                else {
+                    resultEntity.Code = ResponseCodeType.Fail;
+                    resultEntity.Message = "文件上传失败.";
+                    return Content(resultEntity.SerializeToJson());
+                }
+            }
+            catch (Exception ex) {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "没有选择要上传的文件.";
+                return Content(resultEntity.SerializeToJson());
+            }
+            return Content(resultEntity.SerializeToJson());
+
+
+        }
+
+        [ManageLoginValidation]
+        public ActionResult DeleteBussImage(int BussImageId = 0, int idbuss = 0, bool isAjax = true) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<BussImageViewModel> resultEntity = new ResultModel<BussImageViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件删除成功";
+            return Content(resultEntity.SerializeToJson());
         }
 
         /// <summary>
@@ -188,16 +351,9 @@ namespace TNet.Controllers
             if (endOrDate==null) {
                 endOrDate = DateTime.Now;
             }
-            List<MyOrder> entities = MyOrderService.GetOrderByFilter(startOrDate,endOrDate,orderTypes,orderStatus,orderNo,userNo);
-            List<MyOrder> pageList = entities.Pager<MyOrder>(pageIndex, pageSize, out pageCount);
-
-            List<MyOrderViewModel> viewModels = pageList.Select(model =>
-            {
-                MyOrderViewModel viewModel = new MyOrderViewModel();
-                viewModel.CopyFromBase(model);
-                return viewModel;
-            }).ToList();
-
+            List<MyOrderViewModel> entities = MyOrderService.GetOrdersViewModelByFilter(startOrDate,endOrDate,orderTypes,orderStatus,orderNo,userNo);
+            List<MyOrderViewModel> viewModels = entities.Pager<MyOrderViewModel>(pageIndex, pageSize, out pageCount);
+            
             RouteData.Values.Add("startOrDate",startOrDate);
             RouteData.Values.Add("endOrDate", endOrDate);
             RouteData.Values.Add("orderTypes", orderTypes);
@@ -403,6 +559,8 @@ namespace TNet.Controllers
                 }
             }
 
+            MercService.SetDefaultMercImage(merc.idmerc);
+
             //修改后重新加载
             model.CopyFromBase(merc);
             List<MercType> entities = MercTypeService.GetALL();
@@ -537,16 +695,9 @@ namespace TNet.Controllers
         {
             int pageCount = 0;
             int pageSize = 10;
-            List<Spec> entities = SpecService.GetSpecsByIdMerc(idmerc);
-            List<Spec> pageList = entities.Pager<Spec>(pageIndex, pageSize, out pageCount);
-
-            List<SpecViewModel> viewModels = pageList.Select(model =>
-            {
-                SpecViewModel viewModel = new SpecViewModel();
-                viewModel.CopyFromBase(model);
-                return viewModel;
-            }).ToList();
-
+            List<SpecViewModel> entities = SpecService.GetSpecsByIdMerc(idmerc);
+            List<SpecViewModel> viewModels = entities.Pager<SpecViewModel>(pageIndex, pageSize, out pageCount);
+            
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
             ViewData["mercId"] = idmerc;
@@ -571,7 +722,7 @@ namespace TNet.Controllers
             resultEntity.Message = "成功";
             try
             {
-                Spec spec = SpecService.GetSpecs(idspec);
+                Spec spec = SpecService.Get(idspec);
                 spec.inuse = enable;
                 SpecService.Edit(spec);
             }
@@ -596,8 +747,7 @@ namespace TNet.Controllers
             SpecViewModel model = new SpecViewModel();
             if (idspec > 0)
             {
-                Spec spec = SpecService.GetSpecs(idspec);
-                if (spec != null) { model.CopyFromBase(spec); }
+                model = SpecService.GetSpec(idspec);
             }
             else
             {
@@ -1040,6 +1190,72 @@ namespace TNet.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 搜索工人
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult SearchManageUsers(string userName, string bindOrderNo, bool isAjax) {
+            List<ManageUser> entities = ManageUserService.SearchByUserName(userName);
+            List<ManageUserViewModel> viewModels = entities.Select(model => {
+                ManageUserViewModel viewModel = new ManageUserViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["bindOrderNo"] = bindOrderNo;
+
+            return View(viewModels);
+        }
+
+        /// <summary>
+        /// 指派任务
+        /// </summary>
+        /// <param name="bindOrderNo"></param>
+        /// <param name="manageUserIds"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AssignTask(string bindOrderNo,string manageUserIds, bool isAjax) {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<ManageUserViewModel> resultEntity = new ResultModel<ManageUserViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "报装订单指派工人成功";
+            try {
+                Task task = new Task();
+                task.idtask = Pub.ID().ToString();
+                task.orderno = bindOrderNo;
+                task.cretime = DateTime.Now;
+                task.idsend = ((ManageUser)Session["ManageUser"]).ManageUserId.ToString();
+                task.send = ((ManageUser)Session["ManageUser"]).UserName;
+                task.inuse = true;
+                Task newTask= TaskService.Add(task);
+                List<ManageUser> manageUsers = ManageUserService.GetALL();
+                if (newTask!=null&&!string.IsNullOrEmpty(manageUserIds)) {
+                    List<TaskRecver> taskRecvers = new List<TaskRecver>();
+                    string[] userArray = manageUserIds.Split(',');
+                    for (int i = 0; i < userArray.Count(); i++) {
+                        ManageUser manageUser = manageUsers.Where(en => en.ManageUserId == Convert.ToInt32(userArray[i])).First();
+                        taskRecvers.Add(new TaskRecver() {
+                            idrecver = Pub.ID().ToString(),
+                            idtask = newTask.idtask,
+                            mcode = userArray[i],
+                            mname= manageUser==null?"": manageUser.UserName,
+                            cretime=DateTime.Now,
+                            inuse=true
+                        });
+                    }
+                    TaskRecverService.AddMuil(taskRecvers);
+                }
+
+            }
+            catch (Exception ex) {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "报装订单指派工人失败";
+            }
+            return Content(resultEntity.SerializeToJson());
+        }
 
         /// <summary>
         /// 启用或者禁用管理员
@@ -1107,6 +1323,79 @@ namespace TNet.Controllers
             }
             return Content(resultEntity.SerializeToJson());
         }
+
+
+        /// <summary>
+        /// 公告通知列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult NoticeList(int pageIndex = 0) {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<Notice> entities = NoticeService.GetALL();
+            List<Notice> pageList = entities.Pager<Notice>(pageIndex, pageSize, out pageCount);
+
+
+            List<NoticeViewModel> viewModels = pageList.Select(model => {
+                NoticeViewModel viewModel = new NoticeViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+            return View(viewModels);
+        }
+
+        /// <summary>
+        /// 创建/编辑公告通知
+        /// </summary>
+        /// <param name="idnotice"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult NoticeEdit(string idnotice = "") {
+            NoticeViewModel model = new NoticeViewModel();
+            if (!string.IsNullOrEmpty(idnotice)) {
+                Notice notice = NoticeService.Get(idnotice);
+                if (notice != null) { model.CopyFromBase(notice); }
+            }
+            else {
+          
+            }
+            return View(model);
+        }
+
+        /// <summary>
+        /// 编辑公告通知
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ValidateInput(false)]
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult NoticeEdit(NoticeViewModel model) {
+
+            Notice notice = new Notice();
+            model.CopyToBase(notice);
+            if (string.IsNullOrEmpty(notice.idnotice) ) {
+                notice.publish_time = DateTime.Now;
+                notice.idnotice = Pub.ID().ToString();
+                //新增
+                notice = NoticeService.Add(notice);
+            }
+            else {
+                //编辑
+                notice = NoticeService.Edit(notice);
+            }
+
+            ModelState.AddModelError("", "保存成功.");
+            return View(model);
+        }
+
 
         /// <summary>
         /// 判断上传文件类型

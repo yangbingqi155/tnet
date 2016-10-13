@@ -58,7 +58,11 @@
                             <td>@item.city</td>
                             <td>@item.addr</td>
                             <td>@item.sellpt</td>
-                            <td>@item.imgs</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.imgs)) { 
+                                <img src="@Url.Content(item.imgs)"  class="smallMercImage" title="@item.buss" alt="@item.buss" />
+                                }
+                            </td>
                             <td>@item.cretime</td>
                             <td>
                                 @item.busstime.Value.ToString("yyyy-MM-dd")

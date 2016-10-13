@@ -58,5 +58,13 @@ namespace TNet.BLL
             db.SaveChanges();
             return oldManageUser;
         }
+
+        public static List<ManageUser> SearchByUserName(string userName) {
+            List<ManageUser> entities = new List<ManageUser>();
+            TN db = new TN();
+            entities = db.ManageUsers.Where(en => en.UserName.Contains(userName)).ToList();
+
+            return entities;
+        }
     }
 }

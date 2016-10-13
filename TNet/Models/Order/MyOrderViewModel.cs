@@ -20,6 +20,9 @@ namespace TNet.Models
         [Required]
         public new  long iduser { get; set; }
 
+        [Display(Name ="用户")]
+        public string user_name { get; set; }
+
         [Display(Name = "产品")]
         [Required]
         public new  int idmerc { get; set; }

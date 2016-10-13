@@ -39,7 +39,7 @@ namespace TNet.Models
         [StringLength(50)]
         public new string idweixin { get; set; }
 
-        [Display(Name = "接受订单信息")]
+        [Display(Name = "接收订单")]
         public new bool recv_order { get; set; }
 
         [Display(Name = "可否接单")]
@@ -74,7 +74,7 @@ namespace TNet.Models
             }
         }
 
-        public static List<SelectItemViewModel<int>> GetSelectItems()
+        public static List<SelectItemViewModel<int>> GetUserTypeSelectItems()
         {
             List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
             list.Add(new SelectItemViewModel<int>()
@@ -99,9 +99,9 @@ namespace TNet.Models
             this.MD5Salt = user.MD5Salt;
             this.phone = user.phone;
             this.idweixin = user.idweixin;
-            this.recv_order = user.recv_order != null ? user.recv_order.Value : false;
-            this.recv_setup = user.recv_setup != null ? user.recv_setup.Value : false;
-            this.send_setup = user.send_setup != null ? user.send_setup.Value : false;
+            this.recv_order =  user.recv_order ;
+            this.recv_setup =  user.recv_setup ;
+            this.send_setup =  user.send_setup ;
             this.notes = user.notes;
             this.inuse = user.inuse;
             this.UserType = (ManageUserType)user.UserType;

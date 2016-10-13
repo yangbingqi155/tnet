@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Com\P.cs" />
     <Compile Include="EF\Business.cs" />
+    <Compile Include="EF\BussImage.cs" />
     <Compile Include="EF\City.cs" />
     <Compile Include="EF\Discount.cs" />
     <Compile Include="EF\ManageUser.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="EF\MyAddr.cs" />
     <Compile Include="EF\MyOrder.cs" />
     <Compile Include="EF\MyOrderPress.cs" />
+    <Compile Include="EF\Notice.cs" />
     <Compile Include="EF\Setup.cs" />
     <Compile Include="EF\SetupAddr.cs" />
     <Compile Include="EF\Spec.cs" />

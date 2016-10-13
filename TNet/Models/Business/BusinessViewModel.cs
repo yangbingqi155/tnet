@@ -95,7 +95,6 @@ namespace TNet.Models
             this.city = business.city;
             this.addr = business.addr;
             this.sellpt = business.sellpt;
-            this.imgs = business.imgs;
             this.cretime = business.cretime;
             this.busstime = business.busstime;
             this.price = business.price;
@@ -103,6 +102,7 @@ namespace TNet.Models
             this.latitude = business.latitude;
             this.runtime = business.runtime;
             this.notes = business.notes;
+            this.imgs= business.imgs;
             this.blevel = business.blevel;
             this.inuse = business.inuse;
         }
@@ -116,7 +116,6 @@ namespace TNet.Models
             business.city = this.city;
             business.addr = this.addr;
             business.sellpt = this.sellpt;
-            business.imgs = this.imgs;
             business.cretime = this.cretime;
             business.busstime = this.busstime;
             business.price = this.price;
@@ -124,6 +123,7 @@ namespace TNet.Models
             business.latitude = this.latitude;
             business.runtime = this.runtime;
             business.notes = this.notes;
+            business.imgs = this.imgs;
             business.blevel = this.blevel;
             business.inuse = this.inuse;
         }

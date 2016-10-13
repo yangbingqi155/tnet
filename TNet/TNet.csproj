@@ -178,12 +178,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
     <Compile Include="BLL\Business\BusinessService.cs" />
+    <Compile Include="BLL\Business\BussImageService.cs" />
     <Compile Include="BLL\IdentifyService.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
     <Compile Include="BLL\Merc\MercImageService.cs" />
     <Compile Include="BLL\Merc\SpecService.cs" />
+    <Compile Include="BLL\Notice\NoticeService.cs" />
     <Compile Include="BLL\Order\MyOrderService.cs" />
+    <Compile Include="BLL\Order\TaskRecverService.cs" />
+    <Compile Include="BLL\Order\TaskService.cs" />
     <Compile Include="BLL\Pay\WeixinPay\JsApiPay.cs" />
     <Compile Include="BLL\Pay\PayNotice.cs" />
     <Compile Include="BLL\User\UserBll.cs" />
@@ -203,6 +207,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
+    <Compile Include="Models\Business\BussImageViewModel.cs" />
     <Compile Include="Models\File\UploadData.cs" />
     <Compile Include="Models\File\UploadDataResult.cs" />
     <Compile Include="Models\Manage\ManageUserType.cs" />
@@ -222,8 +227,10 @@
     <Compile Include="Models\Merc\MercViewModel.cs" />
     <Compile Include="Models\Merc\MercInfo.cs" />
     <Compile Include="Models\Merc\MercInfoSingle.cs" />
+    <Compile Include="Models\Merc\Netype.cs" />
     <Compile Include="Models\Merc\SetupList.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
+    <Compile Include="Models\Notice\NoticeViewModel.cs" />
     <Compile Include="Models\NULLViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
@@ -233,6 +240,8 @@
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\Order\OrderStatusItem.cs" />
     <Compile Include="Models\Order\OrderType.cs" />
+    <Compile Include="Models\Order\TaskRecverViewModel.cs" />
+    <Compile Include="Models\Order\TaskViewModel.cs" />
     <Compile Include="Models\Pay\PayData.cs" />
     <Compile Include="Models\Pay\PayNotifyResult.cs" />
     <Compile Include="Models\Pay\PayResult.cs" />
@@ -558,6 +567,11 @@
     <Content Include="Js\Com\_references.js" />
     <Content Include="Js\Manage\Menu.js" />
     <Content Include="Js\Home\Home.js" />
+    <Content Include="ueditor\ueditor.all.js" />
+    <Content Include="ueditor\ueditor.all.min.js" />
+    <Content Include="ueditor\ueditor.config.js" />
+    <Content Include="ueditor\ueditor.parse.js" />
+    <Content Include="ueditor\ueditor.parse.min.js" />
     <Content Include="Js\WeiXin\Base.js" />
     <Content Include="lib\log4net\log4net.dll" />
     <Content Include="lib\log4net\log4net.xml" />
@@ -612,6 +626,9 @@
     <Content Include="Views\Manage\ManageUserList.cshtml" />
     <Content Include="Views\Manage\ManageUserEdit.cshtml" />
     <Content Include="Views\Manage\SearchUsers.cshtml" />
+    <Content Include="Views\Manage\NoticeList.cshtml" />
+    <Content Include="Views\Manage\NoticeEdit.cshtml" />
+    <Content Include="Views\Manage\SearchManageUsers.cshtml" />
     <Content Include="Views\Task\MyTask.cshtml" />
     <Content Include="Views\Notice\NoticeList.cshtml" />
   </ItemGroup>
@@ -630,6 +647,11 @@
     <Folder Include="Images\Addr\" />
     <Folder Include="Models\Addr\" />
     <Folder Include="Resource\Images\" />
+    <Folder Include="ueditor\dialogs\" />
+    <Folder Include="ueditor\lang\" />
+    <Folder Include="ueditor\net\" />
+    <Folder Include="ueditor\themes\" />
+    <Folder Include="ueditor\third-party\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\Fonts\glyphicons-halflings-regular.woff" />

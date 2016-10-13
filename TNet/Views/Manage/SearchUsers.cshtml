@@ -11,11 +11,11 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.name))</th>
-                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.phone))</th>
-                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.comp))</th>
-                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, int?>(en => en.sex))</th>
-                <th>@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.notes))</th>
+                <th style="width:100px;">@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.name))</th>
+                <th style="width:100px;">@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.phone))</th>
+                <th style="width:100px;">@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.comp))</th>
+                <th style="width:100px;">@(AttributeHelper.DisplayAttributeFor<UserViewModel, int?>(en => en.sex))</th>
+                <th style="width:100px;">@(AttributeHelper.DisplayAttributeFor<UserViewModel, string>(en => en.notes))</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -44,6 +44,7 @@
                 returndata =eval("(" + returndata + ")");
                 if (returndata.Code == 1) {
                     alert(returndata.Message);
+                    window.Location.href = window.Location.href;
                 }
                 else if (returndata.Code == 2) {
                     alert(returndata.Message);
