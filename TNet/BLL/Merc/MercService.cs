@@ -12,18 +12,22 @@ namespace TNet.BLL
     /// </summary>
     public class MercService
     {
-        public static List<Merc> GetALL() {
+        public static List<Merc> GetALL()
+        {
             TN db = new TN();
-            return db.Mercs.ToList();
+            return (from mo in db.Mercs join mt in db.MercTypes on mo.idtype equals mt.idtype orderby mt.sortno descending,mo.sortno descending select mo).ToList() ;
+            //return db.Mercs.ToList();
         }
 
-        public static Merc GetMerc(int idmerc) {
+        public static Merc GetMerc(int idmerc)
+        {
             return GetALL().Where(en => en.idmerc == idmerc).FirstOrDefault();
         }
 
-        public static Merc Edit(Merc merc) {
+        public static Merc Edit(Merc merc)
+        {
             TN db = new TN();
-            Merc oldMerc= db.Mercs.Where(en => en.idmerc == merc.idmerc).FirstOrDefault();
+            Merc oldMerc = db.Mercs.Where(en => en.idmerc == merc.idmerc).FirstOrDefault();
 
             oldMerc.idtype = merc.idtype;
             oldMerc.merc1 = merc.merc1;
@@ -50,18 +54,21 @@ namespace TNet.BLL
             return merc;
         }
 
-        public static bool SetDefaultMercImage(int idmerc) {
+        public static bool SetDefaultMercImage(int idmerc)
+        {
             bool result = false;
-            try {
+            try
+            {
                 TN db = new TN();
-                MercImage firstImage= db.MercImages.Where(en => en.idmerc == idmerc).OrderBy(en=>en.SortID).First();
+                MercImage firstImage = db.MercImages.Where(en => en.idmerc == idmerc).OrderBy(en => en.SortID).First();
                 string imagPath = firstImage == null ? "" : firstImage.Path;
-                Merc merc= db.Mercs.Find(idmerc);
+                Merc merc = db.Mercs.Find(idmerc);
                 merc.imgs = imagPath;
                 db.SaveChanges();
 
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 result = false;
             }
 

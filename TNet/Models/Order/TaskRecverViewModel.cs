@@ -13,34 +13,34 @@ namespace TNet.Models
     {
         [Display(Name = "接受编号")]
         [StringLength(60)]
-        public string idrecver { get; set; }
+        public new string idrecver { get; set; }
 
         [Display(Name = "工单编号")]
         [Required]
         [StringLength(60)]
-        public string idtask { get; set; }
+        public new string idtask { get; set; }
 
         [Display(Name = "操作员编号")]
         [StringLength(60)]
-        public string mcode { get; set; }
+        public new string mcode { get; set; }
 
         [Display(Name = "操作员名称")]
         [StringLength(60)]
-        public string mname { get; set; }
+        public new string mname { get; set; }
 
         [Display(Name = "创建时间")]
-        public DateTime? cretime { get; set; }
+        public new DateTime? cretime { get; set; }
 
         [Display(Name = "发送者编号")]
         [StringLength(60)]
-        public string smcode { get; set; }
+        public new string smcode { get; set; }
 
         [Display(Name = "发送者名称")]
         [StringLength(60)]
-        public string smname { get; set; }
+        public new string smname { get; set; }
 
         [Display(Name = "启用")]
-        public bool? inuse { get; set; }
+        public new bool? inuse { get; set; }
 
         public void CopyFromBase(TaskRecver taskRecver)
         {

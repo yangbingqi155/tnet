@@ -10,6 +10,7 @@ function getListUrl() {
 function getMercList() {
     Pub.get({
         url: getListUrl(),
+        loadingMsg:"加载中...",
         success: function (data) {
             var html = "";
             if (Pub.wsCheck(data)) {

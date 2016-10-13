@@ -1,8 +1,9 @@
 ﻿.head_host {
     display: block;
+    
 }
 
-
+ 
 
 .swiper-banner .top_tool {
     position: absolute;
@@ -14,6 +15,7 @@
     border-radius: 2rem;
     background: rgba(0,0,0,0.5);
     padding: 0.5rem;
+    
 }
 
     .swiper-banner .top_tool i {

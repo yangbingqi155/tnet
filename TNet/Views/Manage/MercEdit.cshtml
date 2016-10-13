@@ -114,7 +114,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.imgs, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-10">
-                        <input type="file" name="image" id="mymercimage" multiple class="projectfile" />
+                        <input type="file" name="image" id="mymercimage" multiple class="file-loading" />
                     </div>
                 </div>
                 @Html.ValidationSummary(true)
@@ -172,7 +172,10 @@
             browseClass: "btn btn-primary", //按钮样式
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             showBrowse: false,
+            showClose: false,
+            showCancel: false, 
             browseOnZoneClick: true
+
         }).on("filebatchselected", function (event, files) {
             $control.fileinput("upload");
         }).on('fileuploaded', function (event, data, id, index) {

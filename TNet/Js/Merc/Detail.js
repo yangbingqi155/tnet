@@ -149,7 +149,10 @@ function save() {
         alert("亲！请选择一个宝贝");
         return;
     }
-    if (Pub.setCache("order_cart", { Merc: mercData.Data.Merc, Spec: selectSpec, Imgs: mercData.Data.Imgs, Count: sepcCount, Setup: isSetup() })) {
+    if (!mercData.Data.Merc.imgs && mercData.Data.Imgs && mercData.Data.Imgs.length > 0) {
+        mercData.Data.Merc.imgs = mercData.Data.Imgs[0];
+    }
+    if (Pub.setCache("order_cart", { Merc: mercData.Data.Merc, Spec: selectSpec, Img: mercData.Data.Merc.imgs, Count: sepcCount, Setup: isSetup() })) {
         window.location.href = Pub.rootUrl() + "Order/Submit";
         return;
     }

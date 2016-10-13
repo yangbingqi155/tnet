@@ -13,41 +13,41 @@ namespace TNet.Models
     {
         [Display(Name = "工单编号")]
         [StringLength(60)]
-        public string idtask { get; set; }
+        public new string idtask { get; set; }
 
         [Display(Name = "订单编号")]
         [StringLength(60)]
-        public string orderno { get; set; }
+        public new string orderno { get; set; }
 
         [Display(Name = "创建时间")]
-        public DateTime? cretime { get; set; }
+        public new DateTime? cretime { get; set; }
 
         [Display(Name = "发送者编号")]
         [StringLength(60)]
-        public string idsend { get; set; }
+        public new string idsend { get; set; }
 
         [Display(Name = "发送者")]
         [StringLength(60)]
-        public string send { get; set; }
+        public new string send { get; set; }
 
         [Display(Name = "接受时间")]
-        public DateTime? revctime { get; set; }
+        public new DateTime? revctime { get; set; }
 
         [Display(Name = "开始工作")]
-        public DateTime? dotime { get; set; }
+        public new DateTime? dotime { get; set; }
 
         [Display(Name = "完成工作")]
-        public DateTime? finishtime { get; set; }
+        public new DateTime? finishtime { get; set; }
 
         [Display(Name = "回复时间")]
-        public DateTime? echotime { get; set; }
+        public new DateTime? echotime { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(50)]
-        public string notes { get; set; }
+        public new string notes { get; set; }
 
         [Display(Name = "启用")]
-        public bool? inuse { get; set; }
+        public new bool? inuse { get; set; }
 
         public void CopyFromBase(Task task)
         {
