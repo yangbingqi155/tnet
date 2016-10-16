@@ -21,6 +21,19 @@ namespace TNet.BLL
             return GetALL().Where(en => en.orderno == orderno).FirstOrDefault();
         }
 
+        public static MyOrderViewModel GetViewModel(long orderno) {
+            MyOrder order = GetOrder(orderno);
+            MyOrderViewModel viewModel = null;
+            if (order!=null) {
+                viewModel = new MyOrderViewModel();
+                viewModel.CopyFromBase(order);
+                TN db = new TN();
+                List<TCom.EF.User> users= db.Users.Where(en => en.iduser == viewModel.iduser).ToList();
+                viewModel.user_name = (users == null||users.Count==0) ? "" : users.First().name;
+            }
+            return viewModel;
+        }
+
         public static List<MyOrder> GetOrderByFilter(DateTime? startOrDate, DateTime? endOrDate, int orderTypes = 0, int orderStatus = 0, long orderNo = 0, long userNo = 0) {
             TN db = new TN();
             

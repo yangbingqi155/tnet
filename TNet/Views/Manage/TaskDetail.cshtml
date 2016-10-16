@@ -65,7 +65,7 @@
                         </td>
                         <td>
                             <div class="col-sm-10">
-                                <p class="form-control-static">@(Model.cretime != null ? "" : Model.cretime.Value.ToString("yyyy-MM-dd"))</p>
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.cretime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
                     </tr>
@@ -75,7 +75,7 @@
                         </td>
                         <td>
                             <div class="col-sm-10">
-                                <p class="form-control-static">@(Model.cretime != null ? "" : Model.revctime.Value.ToString("yyyy-MM-dd"))</p>
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.revctime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
                         <td>
@@ -83,7 +83,7 @@
                         </td>
                         <td>
                             <div class="col-sm-10">
-                                <p class="form-control-static">@(Model.cretime != null ? "" : Model.dotime.Value.ToString("yyyy-MM-dd"))</p>
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.dotime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
                     </tr>
@@ -93,7 +93,7 @@
                         </td>
                         <td>
                             <div class="col-sm-10">
-                                <p class="form-control-static">@(Model.cretime != null ? "" : Model.finishtime.Value.ToString("yyyy-MM-dd"))</p>
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.finishtime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
                         <td>
@@ -101,7 +101,7 @@
                         </td>
                         <td>
                             <div class="col-sm-10">
-                                <p class="form-control-static">@(Model.cretime != null ? "" : Model.echotime.Value.ToString("yyyy-MM-dd"))</p>
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.echotime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
                     </tr>
@@ -174,8 +174,11 @@
 </div>
 <script type="text/javascript">
     $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
         $("#@Html.IdFor(model=>model.inuse)").bootstrapSwitch();
         $("[name='TaskRecverInUse']").bootstrapSwitch();
+       
     });
 
 </script>

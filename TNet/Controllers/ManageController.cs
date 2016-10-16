@@ -414,9 +414,7 @@ namespace TNet.Controllers
         [ManageLoginValidation]
         public ActionResult OrderDetail(long orderno)
         {
-            MyOrderViewModel model = new MyOrderViewModel();
-            MyOrder order = MyOrderService.GetOrder(orderno);
-            if (order != null) { model.CopyFromBase(order); }
+            MyOrderViewModel model = MyOrderService.GetViewModel(orderno);
             return View(model);
         }
 

@@ -120,8 +120,8 @@
                         <td>@item.addr</td>
                         <td>@item.phone</td>
                         <td>@item.cretime</td>
-                        <td>@item.stime==null?"":item.stime.Value.ToString("yyyy-MM-dd")</td>
-                        <td>@item.entime==null?"":item.entime.Value.ToString("yyyy-MM-dd")</td>
+                        <td>@(item.stime==null?"":item.stime.Value.ToString("yyyy-MM-dd"))</td>
+                        <td>@(item.entime==null?"":item.entime.Value.ToString("yyyy-MM-dd"))</td>
                         <td>
                             @TNet.Models.Order.OrderType.GetSelectItems().Where(en => en.DisplayValue == item.otype).FirstOrDefault().DisplayText
                         </td>
