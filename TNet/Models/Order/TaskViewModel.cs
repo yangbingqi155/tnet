@@ -5,11 +5,12 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TCom.EF;
+using System.Collections;
 
 namespace TNet.Models
 {
     [NotMapped]
-    public class TaskViewModel:Task
+    public class TaskViewModel:Task, IEqualityComparer<TaskViewModel>
     {
         [Display(Name = "工单编号")]
         [StringLength(60)]
@@ -47,7 +48,20 @@ namespace TNet.Models
         public new string notes { get; set; }
 
         [Display(Name = "启用")]
-        public new bool? inuse { get; set; }
+        public new bool inuse { get; set; }
+
+        [Display(Name ="任务接收者")]
+        public List<TaskRecverViewModel> TaskRecvers { get; set; }
+        
+        public bool Equals(TaskViewModel x, TaskViewModel y)
+        {
+            return x.idtask == y.idtask;
+        }
+
+        public int GetHashCode(TaskViewModel model)
+        {
+            return model.ToString().GetHashCode();
+        }
 
         public void CopyFromBase(Task task)
         {

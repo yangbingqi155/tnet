@@ -11,12 +11,14 @@
     <title>TNet管理</title>
     <link rel="stylesheet" href="@Url.Content("~/Css/Bootstrap/bootstrap.min.css?v=20161012")" />
     <link rel="stylesheet" href="@Url.Content("~/Css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css?v=20161012")" media="screen" />
+    <link rel="stylesheet" href="@Url.Content("~/Css/bootstrap-switch/bootstrap3/bootstrap-switch.min.css")" media="screen" />
     <link rel="stylesheet" href="@Url.Content("~/Css/com/jQuery.Validate.css?v=20161012")" />
     <link rel="stylesheet" href="@Url.Content("~/Css/Manage/Base.css?v=20161012")" />
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery-3.1.0.min.js?v=20161012")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Bootstrap/bootstrap.min.js?v=20161012")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/bootstrap-datetimepicker/bootstrap-datetimepicker.js?v=20161012")" charset="UTF-8"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js?v=20161012")" charset="UTF-8"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/bootstrap-switch/bootstrap-switch.min.js")" charset="UTF-8"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.min.js?v=20161012")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.unobtrusive.min.js?v=20161012")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Manage/Base.js?v=20161012")"></script>
@@ -33,11 +35,14 @@
                 <div class="list-group">
                     <a class="list-group-item" id="MercList" href="@Url.Action("MercList","Manage")">产品列表</a>
                     <a class="list-group-item" id="MercTypeList" href="@Url.Action("MercTypeList","Manage")">类型管理</a>
-                    @*<a class="list-group-item" href="@Url.Action("SpecList","Manage")">规格管理</a>*@
                 </div>
                 <div class="panel-heading parentMenu">订单管理</div>
                 <div class="list-group">
                     <a class="list-group-item" id="OrderList" href="@Url.Action("OrderList","Manage")">订单列表</a>
+                </div>
+                <div class="panel-heading parentMenu">派单管理</div>
+                <div class="list-group">
+                    <a class="list-group-item" id="OrderList" href="@Url.Action("TaskList","Manage")">派单列表</a>
                 </div>
                 <div class="panel-heading parentMenu">商圈管理</div>
                 <div class="list-group">

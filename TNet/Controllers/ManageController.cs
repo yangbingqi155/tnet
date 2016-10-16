@@ -335,32 +335,35 @@ namespace TNet.Controllers
             return Content(resultEntity.SerializeToJson());
         }
 
+
         /// <summary>
         /// 订单列表
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult OrderList(DateTime? startOrDate,DateTime? endOrDate,int orderTypes=0,int orderStatus=0, long orderNo =0,long userNo=0, int pageIndex = 0)
+        public ActionResult OrderList(DateTime? startOrDate, DateTime? endOrDate, int orderTypes = 0, int orderStatus = 0, long orderNo = 0, long userNo = 0, int pageIndex = 0)
         {
             int pageCount = 0;
             int pageSize = 10;
-            if (startOrDate==null) {
+            if (startOrDate == null)
+            {
                 startOrDate = DateTime.Now.AddDays(-1);
             }
-            if (endOrDate==null) {
+            if (endOrDate == null)
+            {
                 endOrDate = DateTime.Now;
             }
-            List<MyOrderViewModel> entities = MyOrderService.GetOrdersViewModelByFilter(startOrDate,endOrDate,orderTypes,orderStatus,orderNo,userNo);
+            List<MyOrderViewModel> entities = MyOrderService.GetOrdersViewModelByFilter(startOrDate, endOrDate, orderTypes, orderStatus, orderNo, userNo);
             List<MyOrderViewModel> viewModels = entities.Pager<MyOrderViewModel>(pageIndex, pageSize, out pageCount);
-            
-            RouteData.Values.Add("startOrDate",startOrDate);
+
+            RouteData.Values.Add("startOrDate", startOrDate);
             RouteData.Values.Add("endOrDate", endOrDate);
             RouteData.Values.Add("orderTypes", orderTypes);
             RouteData.Values.Add("orderStatus", orderStatus);
             RouteData.Values.Add("orderNo", orderNo);
             RouteData.Values.Add("userNo", userNo);
-            
+
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
 
@@ -375,9 +378,9 @@ namespace TNet.Controllers
         }
 
         /// <summary>
-        /// 启用或者禁用商圈
+        /// 启用或者禁用订单
         /// </summary>
-        /// <param name="idbuss"></param>
+        /// <param name="orderno"></param>
         /// <param name="enable"></param>
         /// <param name="isAjax"></param>
         /// <returns></returns>
@@ -415,6 +418,113 @@ namespace TNet.Controllers
             MyOrder order = MyOrderService.GetOrder(orderno);
             if (order != null) { model.CopyFromBase(order); }
             return View(model);
+        }
+
+        /// <summary>
+        /// 派单任务列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult TaskList(DateTime? startDate, DateTime? endDate, string orderno = "", string idsend = "", string idrevc = "", int pageIndex = 0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+            if (startDate == null)
+            {
+                startDate = DateTime.Now.AddDays(-1);
+            }
+            if (endDate == null)
+            {
+                endDate = DateTime.Now;
+            }
+
+            List<TaskViewModel> entities = TaskService.Search(startDate, endDate, orderno, idsend, idrevc);
+            List<TaskViewModel> viewModels = entities.Pager<TaskViewModel>(pageIndex, pageSize, out pageCount);
+           
+            List<ManageUser> manageUsers = new List<ManageUser>();
+            manageUsers = ManageUserService.GetALL();
+            List<SelectItemViewModel<string>> idsendSelectItems = manageUsers.Select(mod => {
+                SelectItemViewModel<string> model = new SelectItemViewModel<string>();
+                model.DisplayValue = mod.ManageUserId.ToString();
+                model.DisplayText = mod.UserName;
+                return model;
+            }).ToList();
+            idsendSelectItems.Insert(0,new SelectItemViewModel<string>() {
+                 DisplayText="选择派单发送者",
+                 DisplayValue=""
+            });
+
+            List<SelectItemViewModel<string>> idrevcSelectItems = manageUsers.Select(mod => {
+                SelectItemViewModel<string> model = new SelectItemViewModel<string>();
+                model.DisplayValue = mod.ManageUserId.ToString();
+                model.DisplayText = mod.UserName;
+                return model;
+            }).ToList();
+
+            idrevcSelectItems.Insert(0, new SelectItemViewModel<string>()
+            {
+                DisplayText = "选择派单接收者",
+                DisplayValue = ""
+            });
+
+            RouteData.Values.Add("startDate", startDate);
+            RouteData.Values.Add("endDate", endDate);
+            RouteData.Values.Add("orderno", orderno);
+            RouteData.Values.Add("idsend", idsend);
+            RouteData.Values.Add("idrevc", idrevc);
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+            ViewData["startDate"] = startDate;
+            ViewData["endDate"] = endDate;
+            ViewData["orderno"] = orderno;
+            ViewData["idsend"] = idsend;
+            ViewData["idrevc"] = idrevc;
+            ViewData["idsendSelectItems"] = idsendSelectItems;
+            ViewData["idrevcSelectItems"] = idrevcSelectItems;
+            return View(viewModels);
+        }
+        /// <summary>
+        /// 任务详细
+        /// </summary>
+        /// <param name="idtask"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult TaskDetail(string idtask)
+        {
+            TaskViewModel model= TaskService.GetViewModel(idtask);
+            return View(model);
+        }
+
+        /// <summary>
+        /// 启用或者禁用订单
+        /// </summary>
+        /// <param name="orderno"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult TaskEnable(string idtask, bool enable, bool isAjax)
+        {
+            ResultModel<TaskViewModel> resultEntity = new ResultModel<TaskViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                Task task = TaskService.Get(idtask);
+                task.inuse = enable;
+                TaskService.Edit(task);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "操作失败";
+            }
+
+            return Content(resultEntity.SerializeToJson());
         }
 
         /// <summary>
