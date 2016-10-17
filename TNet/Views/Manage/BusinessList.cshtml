@@ -72,7 +72,9 @@
                             <td>@item.notes</td>
                             <td>@item.blevel</td>
                             <td>
-                                <a onclick="enableBusiness('@Url.Action("BusinessEnable", "Manage", new { idbuss = item.idbuss, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                                <div class="switch">
+                                    <input type="checkbox" onchange="enableBusiness('@Url.Action("BusinessEnable", "Manage", new { idbuss = item.idbuss, enable = !item.inuse, isAjax = true })')" name="enableBusiness" @(item.inuse ? "checked" : "") />
+                                </div>
                             </td>
                             <td>
                                 <a href="@Url.Action("BusinessEdit","Manage",new { idbuss=item.idbuss})" class="btn btn-default">编辑</a>
@@ -90,6 +92,11 @@
     </div>
 </div>
 <script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("[name='enableBusiness']").bootstrapSwitch();
+    });
     function enableBusiness(url) {
         var manageLoginUrl = "@Url.Action("Login","Manage")";
         $.post(url, null, function (returndata) {
@@ -98,7 +105,7 @@
                 alert(returndata.Message);
                 window.Location.href = manageLoginUrl;
             } else if (returndata.Code == "1") {
-                alert("操作成功.");
+                //alert("操作成功.");
                 window.location.href = window.location.href;
             } else {
                 alert("系统出错，请稍后再试。");

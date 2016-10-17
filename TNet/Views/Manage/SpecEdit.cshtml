@@ -27,91 +27,91 @@
                 @Html.HiddenFor(model => model.sellcount)
                 <div class="form-group">
                     @Html.LabelFor(model => model.merc, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <p class="form-control-static">@Model.merc</p>
                     </div>
                     @Html.ValidationMessageFor(model => model.merc)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.spec1, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.spec1, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.spec1)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.price, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.price, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.price)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.month, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.month, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.month)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.unit, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.unit, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.unit)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.up, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.up, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.up)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.down, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.down, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.down)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.attmonth, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.attmonth, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.attmonth)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.stuprice, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.stuprice, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.stuprice)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.moveprice, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.moveprice, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.moveprice)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.usertype, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.DropDownListFor(model => model.usertype, new SelectList(SpecViewModel.GetUserTypeSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.usertype)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.notes)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.inuse)
@@ -127,3 +127,10 @@
     </form>
 
 </div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch();
+    });
+</script>
