@@ -1,4 +1,7 @@
-﻿@model TNet.Models.MyOrderViewModel
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.BLL;
+@model TNet.Models.MyOrderViewModel
 @{ 
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     ViewBag.Title = "订单详细";
@@ -179,6 +182,42 @@
                     </tr>
                 </tbody>
             </table>
+            if (Model.OrderPresses != null && Model.OrderPresses.Count > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <h3>
+                                    <strong>订单进度</strong>
+                                </h3>
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, String>(en => en.statust))</th>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, DateTime?>(en => en.cretime))</th>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, string>(en => en.oper))</th>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, bool?>(en => en.inuse))</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderPresses)
+                    {
+                            <tr>
+                                <td style="text-align:center;">@item.statust </td>
+                                <td style="text-align:center;">@(item.cretime == null ? "" : item.cretime.Value.ToString("yyyy-MM-dd"))</td>
+                                <td style="text-align:center;">@item.oper</td>
+                                <td style="text-align:center;">
+                                    <div class="switch">
+                                        <input type="checkbox" name="OrderPressInUse" @((item.inuse==null||!item.inuse.Value) ? "": "checked" ) disabled />
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
         }
         else
         {
@@ -187,3 +226,13 @@
     </form>
 
 </div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("#@Html.IdFor(model=>model.inuse)").bootstrapSwitch();
+        $("[name='OrderPressInUse']").bootstrapSwitch();
+
+    });
+
+</script>

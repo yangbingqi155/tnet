@@ -1,18 +1,22 @@
-namespace TCom.EF {
+namespace TCom.EF
+{
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class TN : DbContext {
+    public partial class TN : DbContext
+    {
         public TN()
-            : base("name=TN") {
+            : base("name=TN")
+        {
         }
 
         public virtual DbSet<Business> Businesses { get; set; }
         public virtual DbSet<BussImage> BussImages { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<Img> Imgs { get; set; }
         public virtual DbSet<ManageUser> ManageUsers { get; set; }
         public virtual DbSet<MenuItem> MenuItems { get; set; }
         public virtual DbSet<Merc> Mercs { get; set; }
@@ -31,7 +35,8 @@ namespace TCom.EF {
         public virtual DbSet<TaskRecver> TaskRecvers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Business>()
                 .Property(e => e.buss)
                 .IsUnicode(false);
@@ -86,6 +91,18 @@ namespace TCom.EF {
 
             modelBuilder.Entity<Discount>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Img>()
+                .Property(e => e.idimg)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Img>()
+                .Property(e => e.outkey)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Img>()
+                .Property(e => e.outpro)
                 .IsUnicode(false);
 
             modelBuilder.Entity<ManageUser>()
@@ -317,11 +334,11 @@ namespace TCom.EF {
                 .IsUnicode(false);
 
             modelBuilder.Entity<Task>()
-                .Property(e => e.orderno)
+                .Property(e => e.idsend)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Task>()
-                .Property(e => e.idsend)
+                .Property(e => e.orderno)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Task>()
@@ -329,11 +346,11 @@ namespace TCom.EF {
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaskPress>()
-                .Property(e => e.idtask)
+                .Property(e => e.idpress)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaskPress>()
-                .Property(e => e.idpress)
+                .Property(e => e.idtask)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaskPress>()

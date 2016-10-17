@@ -630,6 +630,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult MercEdit(MercViewModel model,string mercImages="")
         {
 

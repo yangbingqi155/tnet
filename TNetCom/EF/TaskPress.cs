@@ -10,14 +10,12 @@ namespace TCom.EF
     public partial class TaskPress
     {
         [Key]
-        [Column(Order = 0)]
-        [StringLength(60)]
-        public string idtask { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
         [StringLength(60)]
         public string idpress { get; set; }
+
+        [Required]
+        [StringLength(60)]
+        public string idtask { get; set; }
 
         [Required]
         [StringLength(60)]

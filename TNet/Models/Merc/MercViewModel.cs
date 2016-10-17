@@ -62,7 +62,6 @@ namespace TNet.Models
         public new  string imgs { get; set; }
 
         [Display(Name = "描述")]
-        [StringLength(255)]
         public new  string descs { get; set; }
 
         [Display(Name = "备注")]

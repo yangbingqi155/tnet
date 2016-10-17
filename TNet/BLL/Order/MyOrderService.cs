@@ -30,6 +30,14 @@ namespace TNet.BLL
                 TN db = new TN();
                 List<TCom.EF.User> users= db.Users.Where(en => en.iduser == viewModel.iduser).ToList();
                 viewModel.user_name = (users == null||users.Count==0) ? "" : users.First().name;
+
+                List<MyOrderPress> orderPresses= db.MyOrderPresses.Where(en => en.orderno == viewModel.orderno.ToString()).ToList();
+                List<MyOrderPressViewModel> orderPressViewModels = orderPresses.Select(mod=> {
+                    MyOrderPressViewModel orderPressViewModel = new MyOrderPressViewModel();
+                    orderPressViewModel.CopyFromBase(mod);
+                    return orderPressViewModel;
+                }).ToList();
+                viewModel.OrderPresses = orderPressViewModels;
             }
             return viewModel;
         }
@@ -38,12 +46,19 @@ namespace TNet.BLL
             TN db = new TN();
             
             return db.MyOrders.Where(en =>
-                (startOrDate.Value == null || SqlFunctions.DateDiff("dd",startOrDate.Value,en.cretime)>=0 )
-                && (endOrDate.Value == null || SqlFunctions.DateDiff("dd", endOrDate.Value, en.cretime) <= 0)
-                && (orderTypes == 0 || orderTypes == en.otype)
-                && (orderStatus == 0 || orderStatus == en.status)
-                || orderNo == en.orderno
-                && (userNo == 0 || userNo==en.iduser)
+            (
+                ( 
+                   (orderNo>0 && orderNo == en.orderno))
+                    ||
+                    (
+                        orderNo<=0
+                        && (startOrDate.Value == null || SqlFunctions.DateDiff("dd",startOrDate.Value,en.cretime)>=0 )
+                        && (endOrDate.Value == null || SqlFunctions.DateDiff("dd", endOrDate.Value, en.cretime) <= 0)
+                        && (orderTypes == 0 || orderTypes == en.otype)
+                        && (orderStatus == 0 || orderStatus == en.status)
+                        && (userNo == 0 || userNo==en.iduser)
+                    )
+                )
             ).ToList();
         }
 

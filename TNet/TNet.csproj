@@ -235,6 +235,7 @@
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
     <Compile Include="Models\Order\MyOrderDetail.cs" />
+    <Compile Include="Models\Order\MyOrderPressViewModel.cs" />
     <Compile Include="Models\Order\MyOrderViewModel.cs" />
     <Compile Include="Models\Order\OrderListInfo.cs" />
     <Compile Include="Models\Order\OrderStatus.cs" />

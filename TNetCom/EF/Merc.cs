@@ -38,7 +38,7 @@ namespace TCom.EF
         [StringLength(255)]
         public string imgs { get; set; }
 
-        [StringLength(255)]
+        [Column(TypeName = "text")]
         public string descs { get; set; }
 
         [StringLength(50)]
