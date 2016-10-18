@@ -63,7 +63,7 @@ namespace TNet.Models
             taskRecver.cretime = this.cretime;
             taskRecver.smcode = this.smcode;
             taskRecver.smname = this.smname;
-            taskRecver.inuse = this.inuse;
+            taskRecver.inuse = this.inuse != null ? this.inuse.Value:false;
         }
     }
 }

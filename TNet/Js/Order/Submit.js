@@ -14,7 +14,7 @@ function init() {
         var ur = Pub.rootUrl() + "Images/default_bg.png";
         var imgs = order_cart.Img;
         if (imgs) {
-            imgs = imgs[0];
+            
             ur = Pub.url(imgs, "Images/default_bg.png");
 
         }
@@ -101,10 +101,7 @@ function submit() {
                     return;
                 }
             }
-            var img = order_cart.Merc.imgs;
-            if (img) {
-                img = img.split('|')[0];
-            }
+            var img  = order_cart.Img;
             if (!img) {
                 img = "";
             }
@@ -154,7 +151,7 @@ function submit() {
 
 
 function toHome() {
-    alert("亲！您现在还没有挑选宝贝呢");
+    Pub.showMsg("亲！请选择宝贝");
     window.location.href = Pub.rootUrl();
 }
 

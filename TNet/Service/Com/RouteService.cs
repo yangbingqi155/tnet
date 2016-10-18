@@ -10,6 +10,7 @@ using TNet.Service.Order;
 using TNet.Service.Buss;
 using TNet.Service.File;
 using TNet.Service.Pay;
+using TNet.Service.Task;
 
 namespace TNet.Service.Com
 {
@@ -17,7 +18,7 @@ namespace TNet.Service.Com
     {
         public static void register()
         {
-            RouteTable.Routes.Add(new ServiceRoute("Service/Merc/", new WebServiceHostFactory(), typeof(MercService)));
+            RouteTable.Routes.Add(new ServiceRoute("Service/Merc/", new WebServiceHostFactory(), typeof(Merc.MercService)));
             // RouteTable.Routes.Add(new ServiceRoute("MercService.svc", new WebServiceHostFactory(), typeof(MercService)));
 
             RouteTable.Routes.Add(new ServiceRoute("Service/Addr/", new WebServiceHostFactory(), typeof(AddrService)));
@@ -36,6 +37,8 @@ namespace TNet.Service.Com
 
             RouteTable.Routes.Add(new ServiceRoute("Service/Pay/", new WebServiceHostFactory(), typeof(PayService)));
             //RouteTable.Routes.Add(new ServiceRoute("PayService.svc", new WebServiceHostFactory(), typeof(FileService)));
+
+            RouteTable.Routes.Add(new ServiceRoute("Service/Task/", new WebServiceHostFactory(), typeof(TaskService)));
 
         }
     }

@@ -10,22 +10,19 @@ namespace TCom.EF
     public partial class Task
     {
         [Key]
-        [Column(Order = 0)]
         [StringLength(60)]
         public string idtask { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [StringLength(60)]
-        public string orderno { get; set; }
-
-        public DateTime? cretime { get; set; }
 
         [StringLength(60)]
         public string idsend { get; set; }
 
         [StringLength(60)]
+        public string orderno { get; set; }
+
+        [StringLength(60)]
         public string send { get; set; }
+
+        public DateTime? cretime { get; set; }
 
         public DateTime? revctime { get; set; }
 
@@ -38,6 +35,23 @@ namespace TCom.EF
         [StringLength(50)]
         public string notes { get; set; }
 
-        public bool? inuse { get; set; }
+        public int? status { get; set; }
+
+        [StringLength(50)]
+        public string contact { get; set; }
+
+        [StringLength(100)]
+        public string addr { get; set; }
+
+        [StringLength(13)]
+        public string phone { get; set; }
+
+        [StringLength(150)]
+        public string title { get; set; }
+
+        [StringLength(200)]
+        public string text { get; set; }
+
+        public bool inuse { get; set; }
     }
 }

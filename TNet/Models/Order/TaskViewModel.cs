@@ -9,7 +9,7 @@ using TCom.EF;
 namespace TNet.Models
 {
     [NotMapped]
-    public class TaskViewModel:Task
+    public class TaskViewModel : TCom.EF.Task
     {
         [Display(Name = "工单编号")]
         [StringLength(60)]
@@ -49,7 +49,7 @@ namespace TNet.Models
         [Display(Name = "启用")]
         public new bool? inuse { get; set; }
 
-        public void CopyFromBase(Task task)
+        public void CopyFromBase(TCom.EF.Task task)
         {
             this.idtask = task.idtask;
             this.orderno = task.orderno;
@@ -64,7 +64,7 @@ namespace TNet.Models
             this.inuse = task.inuse;
         }
 
-        public void CopyToBase(Task task)
+        public void CopyToBase(TCom.EF.Task task)
         {
             task.idtask = this.idtask;
             task.orderno = this.orderno;
@@ -76,7 +76,7 @@ namespace TNet.Models
             task.finishtime = this.finishtime;
             task.echotime = this.echotime;
             task.notes = this.notes;
-            task.inuse = this.inuse;
+            task.inuse = this.inuse != null ? this.inuse.Value : false;
         }
     }
 }
