@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TCom.Model.Task
 {
+    /// <summary>
+    /// 任务状态
+    /// </summary>
     public sealed class TaskStatus
     {
         /// <summary>
