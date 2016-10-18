@@ -334,6 +334,14 @@ namespace TCom.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Task>()
+                .Property(e => e.iduser)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
                 .Property(e => e.idsend)
                 .IsUnicode(false);
 

@@ -1,0 +1,77 @@
+﻿.order_host {
+    display: block;
+    height: auto;
+}
+
+
+.order_item {
+    display: block;
+    height: auto;
+    position: relative;
+}
+
+.order {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: dotted #cbcbcb 1px;
+}
+
+.no {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    color: #222222;
+    padding: 0px 0px 0px 10px;
+}
+
+.status {
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    color: #222222;
+    padding: 0px 10px 0px 0px;
+    color: #ff6a00;
+}
+
+
+
+/***********merc begin********/
+.task {
+    display: block;
+    height: auto;
+    padding: 5px 0px 5px 0px;
+}
+
+.titem_host {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 8px 8px 8px 8px;
+}
+
+.ttitle {
+    float: left;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    color: #757575;
+}
+
+.tvalue {
+    float: left;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    color: #222222;
+}
+
+
+
+/***********merc end********/
+.task_ops {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    border-top:dotted 1px #d9d9d9;
+}
