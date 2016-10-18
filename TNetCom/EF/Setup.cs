@@ -32,6 +32,6 @@ namespace TCom.EF
         [StringLength(10)]
         public string notes { get; set; }
 
-        public bool? inuse { get; set; }
+        public bool inuse { get; set; }
     }
 }

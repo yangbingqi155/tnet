@@ -40,6 +40,7 @@ namespace TNet.BLL
             oldMerc.descs = merc.descs;
             oldMerc.notes = merc.notes;
             oldMerc.sortno = merc.sortno;
+            oldMerc.isetup = merc.isetup;
             oldMerc.inuse = merc.inuse;
 
             db.SaveChanges();

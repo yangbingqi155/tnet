@@ -71,10 +71,20 @@ namespace TNet.Models
         [Display(Name = "排序")]
         public new  int? sortno { get; set; }
 
+        [Display(Name = "可否报装")]
+        public bool isetup { get; set; }
+
         [Display(Name = "启用")]
         [Required]
         public new  bool inuse { get; set; }
-        
+
+        [Display(Name = "商家编号")]
+        [StringLength(50)]
+        public string idbuss { get; set; }
+
+        [Display(Name = "类型")]
+        public int? idclass { get; set; }
+
         public   List<MercTypeViewModel> mercTypes { get; set; }
 
         public static List<SelectItemViewModel<int>> GetNeTypeSelectItems()
@@ -108,7 +118,10 @@ namespace TNet.Models
             this.descs = merc.descs;
             this.notes = merc.notes;
             this.sortno = merc.sortno;
+            this.isetup = merc.isetup;
             this.inuse = merc.inuse;
+            this.idbuss = merc.idbuss;
+            this.idclass = merc.idclass;
         }
 
         public   void CopyToBase(TCom.EF.Merc merc) {
@@ -126,7 +139,10 @@ namespace TNet.Models
             merc.descs = this.descs;
             merc.notes = this.notes;
             merc.sortno = this.sortno;
+            merc.isetup = this.isetup;
             merc.inuse = this.inuse;
+            merc.idbuss = this.idbuss;
+            merc.idclass = this.idclass;
         }
     }
 }

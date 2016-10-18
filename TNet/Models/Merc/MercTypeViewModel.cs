@@ -32,6 +32,9 @@ namespace TNet.Models
         [Required]
         public new  bool inuse { get; set; }
 
+        [Display(Name ="报装")]
+        public SetupViewModel Setup { get; set; }
+
         public   void CopyFromBase(MercType mercType)
         {
             this.idtype = mercType.idtype;

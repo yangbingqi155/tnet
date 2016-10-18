@@ -51,7 +51,7 @@
                             </td>
                             <td>
                                 <a href="@Url.Action("MercTypeEdit","Manage",new {idtype=item.idtype })" class="btn btn-default">编辑</a>
-                                
+                                <a href="@Url.Action("SetupEdit","Manage",new {idsetup= (item.Setup==null?"":item.Setup.idsetup),idtype=item.idtype })" class="btn btn-default">报装</a>
                             </td>
                         </tr>
                     }

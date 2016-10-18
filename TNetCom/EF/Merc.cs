@@ -46,7 +46,7 @@ namespace TCom.EF
 
         public int? sortno { get; set; }
 
-        public bool? isetup { get; set; }
+        public bool isetup { get; set; }
 
         public bool inuse { get; set; }
 

@@ -706,6 +706,22 @@ namespace TNet.Controllers
                 return viewModel;
             }).ToList();
 
+            List<string> idtypes = viewModels.Select(mod=> {
+                return mod.idtype.ToString();
+            }).ToList();
+
+            List<Setup> setups= SetupService.GetByIdTypes(idtypes);
+
+            viewModels = viewModels.Select(mod=> {
+                List<Setup> temps= setups.Where(en => en.idtype == mod.idtype.ToString()).ToList();
+                if ((temps != null && temps.Count > 0)) {
+                    SetupViewModel viewModel = new SetupViewModel();
+                    viewModel.CopyFromBase(temps.First());
+                    mod.Setup = viewModel;
+                }
+                return mod;
+            }).ToList();
+
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
 
@@ -791,7 +807,184 @@ namespace TNet.Controllers
             //修改后重新加载
             model.CopyFromBase(mercType);
 
+            ModelState.AddModelError("", "保存成功.");
+
             return View(model);
+        }
+
+        /// <summary>
+        /// 新增\编辑报装
+        /// </summary>
+        /// <param name="idtype"></param>
+        /// <param name="idsetup"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult SetupEdit(string idtype,string idsetup = "")
+        {
+            SetupViewModel model = new SetupViewModel();
+            if (!string.IsNullOrEmpty(idsetup))
+            {
+                Setup setup = SetupService.Get(idsetup);
+                if (setup != null) { model.CopyFromBase(setup); }
+            }
+            else
+            {
+                model.idtype = idtype;
+                model.inuse = true;
+            }
+            MercType mercType= MercTypeService.GetMercType(Convert.ToInt32(idtype));
+            if (mercType!=null) {
+                MercTypeViewModel viewModel = new MercTypeViewModel();
+                viewModel.CopyFromBase(mercType);
+                model.merctype = viewModel;
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 新增\编辑报装
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult SetupEdit(SetupViewModel model)
+        {
+            Setup setup = new Setup();
+            model.CopyToBase(setup);
+            if (string.IsNullOrEmpty(setup.idsetup))
+            {
+                setup.idsetup = Pub.ID().ToString();
+                //新增
+                setup = SetupService.Add(setup);
+            }
+            else
+            {
+                //编辑
+                setup = SetupService.Edit(setup);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(setup);
+
+            ModelState.AddModelError("", "保存成功.");
+
+            return View(model);
+        }
+
+
+        /// <summary>
+        /// 报装地址列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult SetupAddrList(int pageIndex = 0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+            List<SetupAddr> entities = SetupAddrService.GetALL();
+            List<SetupAddr> pageList = entities.Pager<SetupAddr>(pageIndex, pageSize, out pageCount);
+
+
+            List<SetupAddrViewModel> viewModels = pageList.Select(model =>
+            {
+                SetupAddrViewModel viewModel = new SetupAddrViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+            return View(viewModels);
+        }
+
+
+        /// <summary>
+        /// 新增\编辑报装地址
+        /// </summary>
+        /// <param name="idaddr"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult SetupAddrEdit(string idaddr="")
+        {
+            SetupAddrViewModel model = new SetupAddrViewModel();
+            if (!string.IsNullOrEmpty(idaddr))
+            {
+                SetupAddr setupAddr = SetupAddrService.Get(idaddr);
+                if (setupAddr != null) { model.CopyFromBase(setupAddr); }
+            }
+            else
+            {
+                model.inuse = true;
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 新增\编辑报装地址
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult SetupAddrEdit(SetupAddrViewModel model)
+        {
+            SetupAddr setupAddr = new SetupAddr();
+            model.CopyToBase(setupAddr);
+            if (string.IsNullOrEmpty(setupAddr.idaddr))
+            {
+                setupAddr.idaddr = Pub.ID().ToString();
+                //新增
+                setupAddr = SetupAddrService.Add(setupAddr);
+            }
+            else
+            {
+                //编辑
+                setupAddr = SetupAddrService.Edit(setupAddr);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(setupAddr);
+
+            ModelState.AddModelError("", "保存成功.");
+
+            return View(model);
+        }
+
+
+        /// <summary>
+        /// 启用或者禁用报装地址
+        /// </summary>
+        /// <param name="idaddr"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult SetupAddrEnable(string idaddr, bool enable, bool isAjax)
+        {
+            ResultModel<SetupAddrViewModel> resultEntity = new ResultModel<SetupAddrViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                SetupAddr setupAddr = SetupAddrService.Get(idaddr);
+                setupAddr.inuse = enable;
+                SetupAddrService.Edit(setupAddr);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
         }
 
         /// <summary>
