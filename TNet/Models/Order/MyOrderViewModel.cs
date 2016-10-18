@@ -116,6 +116,9 @@ namespace TNet.Models
         [StringLength(255)]
         public new  string idc_img2 { get; set; }
 
+        [Display(Name = "订单进度")]
+        public List<MyOrderPressViewModel> OrderPresses { get; set; }
+
         public   void CopyFromBase(MyOrder order)
         {
             this.orderno = order.orderno;

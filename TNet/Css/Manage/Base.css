@@ -4,21 +4,25 @@
     height: auto;
 }
 
-div.file-drop-zone.clickable:hover,div.file-drop-zone.clickable:focus {
-    border:none;
+div.file-drop-zone.clickable:hover, div.file-drop-zone.clickable:focus {
+    border: none;
 }
+
 div.file-preview-frame:hover:not(.file-preview-error) {
     box-shadow: 1px 1px 5px 0 #a2958a;
 }
-div span.file-drag-handle{
-    display:none;
+
+div span.file-drag-handle {
+    display: none;
 }
-div.file-drop-zone{
-      border:none;
-      margin:0px;
+
+div.file-drop-zone {
+    border: none;
+    margin: 0px;
 }
+
 div.file-preview {
-     padding-bottom:10px;
+    padding-bottom: 10px;
 }
 /*****************加载提示********************/
 .RAMsgHost {
@@ -449,14 +453,18 @@ span.input-group-addon span.glyphicon-remove {
     color: #337ab7;
 }
 
-.userSearchResults{
-    margin-top:15px;
+.userSearchResults {
+    margin-top: 15px;
 }
+
 .modal .modal-dialog {
-    margin:90px auto;
+    margin: 90px auto;
 }
 
 .smallMercImage {
-    width:135px;
+    width: 135px;
+}
 
+.seperate_line {
+    border-bottom: 1px solid #ddd;
 }

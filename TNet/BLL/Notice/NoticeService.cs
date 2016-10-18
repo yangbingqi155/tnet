@@ -23,7 +23,7 @@ namespace TNet.BLL {
             oldNotice.idnotice = notice.idnotice;
             oldNotice.publish = notice.publish;
             oldNotice.title = notice.title;
-            oldNotice.publish_time = notice.publish_time;
+            //oldNotice.publish_time = notice.publish_time;
             oldNotice.start_time = notice.start_time;
             oldNotice.end_time = notice.end_time;
             oldNotice.content = notice.content;

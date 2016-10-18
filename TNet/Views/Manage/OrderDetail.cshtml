@@ -1,4 +1,7 @@
-﻿@model TNet.Models.MyOrderViewModel
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.BLL;
+@model TNet.Models.MyOrderViewModel
 @{ 
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     ViewBag.Title = "订单详细";
@@ -17,150 +20,219 @@
 </div>
 <div class="ManageRightContent">
     <form method="post" class="form-horizontal">
-        <div class="merc-edit-box ">
-            <fieldset>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.orderno, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.orderno</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.iduser, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.iduser</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.merc, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.merc</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.spec, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.spec</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.month, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.month</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.attmonth, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.attmonth</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.orderno, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.orderno</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.count, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.count</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.price, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.price</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.contact, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.contact</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.addr, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.addr</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.phone</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.cretime, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.cretime</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.stime, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.stime</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.entime, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.entime</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.otype, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.otype</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.status, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.status</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.img, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.img</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.notes</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.idc, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.idc</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.idc_img1, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.idc_img1</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.idc_img2, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@Model.idc_img2</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        <p class="form-control-static">@(Model.inuse?"启用":"禁用")</p>
-                    </div>
-                </div>
-            </fieldset>
+        @if (Model != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="4">
+                            <h3>
+                                <strong>订单基本信息</strong>
+                            </h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.orderno, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.orderno</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.user_name, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.user_name</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.otype, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@TNet.Models.Order.OrderType.GetSelectItems().Where(en => en.DisplayValue == Model.otype).FirstOrDefault().DisplayText</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.status, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@TNet.Models.Order.OrderStatus.GetSelectItems().Where(en => en.DisplayValue == Model.status).FirstOrDefault().DisplayText</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.cretime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.cretime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.inuse?"启用":"禁用")</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.merc, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.merc</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.spec, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.spec</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.stime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.stime == null ? "" : Model.stime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.entime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.entime == null ? "" : Model.entime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.price, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.price</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.count, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.count</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.contact, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.contact</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.phone</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.addr, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td colspan="3">
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.addr</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td colspan="3">
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.notes</p>
+                            </div>
+                        </td>
 
-        </div>
+                    </tr>
+                </tbody>
+            </table>
+            if (Model.OrderPresses != null && Model.OrderPresses.Count > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <h3>
+                                    <strong>订单进度</strong>
+                                </h3>
+                            </th>
 
+                        </tr>
+                        <tr>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, String>(en => en.statust))</th>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, DateTime?>(en => en.cretime))</th>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, string>(en => en.oper))</th>
+                            <th style="width:150px;">@(AttributeHelper.DisplayAttributeFor<MyOrderPressViewModel, bool?>(en => en.inuse))</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderPresses)
+                    {
+                            <tr>
+                                <td style="text-align:center;">@item.statust </td>
+                                <td style="text-align:center;">@(item.cretime == null ? "" : item.cretime.Value.ToString("yyyy-MM-dd"))</td>
+                                <td style="text-align:center;">@item.oper</td>
+                                <td style="text-align:center;">
+                                    <div class="switch">
+                                        <input type="checkbox" name="OrderPressInUse" @((item.inuse==null||!item.inuse.Value) ? "": "checked" ) disabled />
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+        else
+        {
+            <h2>无法找到该订单.</h2>
+        }
     </form>
 
 </div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("#@Html.IdFor(model=>model.inuse)").bootstrapSwitch();
+        $("[name='OrderPressInUse']").bootstrapSwitch();
+
+    });
+
+</script>

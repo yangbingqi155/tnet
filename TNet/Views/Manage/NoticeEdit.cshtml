@@ -88,7 +88,7 @@
         //对编辑器的操作最好在编辑器ready之后再做
         ue.ready(function () {
             //设置编辑器的内容
-            UE.getEditor('editor').setContent("@Model.content");
+            UE.getEditor('editor').setContent('@Html.Raw(Model.content)');
         });
 
         $("#btnSave").click(function () {

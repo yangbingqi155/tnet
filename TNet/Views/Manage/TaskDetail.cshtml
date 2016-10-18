@@ -1,0 +1,184 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.BLL;
+@model TNet.Models.TaskViewModel
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "派单任务详细";
+
+}
+<link rel="stylesheet" href="@Url.Content("~/Css/bootstrap-fileinput/fileinput.min.css")" />
+<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/fileinput.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/locales/zh.js")"></script>
+
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">派单管理</a></li>
+        <li><a href="@Url.Action("TaskList","Manage")">派单列表</a></li>
+        <li><a href="#" class="active">派单详细</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form method="post" class="form-horizontal">
+        @if (Model != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="4">
+                            <h3>
+                                <strong>基本信息</strong>
+                            </h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.orderno, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.orderno</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.idtask, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.idtask</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.send, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.send</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.cretime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.cretime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.revctime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.revctime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.dotime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.dotime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.finishtime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.finishtime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.echotime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@(Model.cretime == null ? "" : Model.echotime.Value.ToString("yyyy-MM-dd"))</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="switch">
+                                @Html.CheckBoxFor(model => model.inuse, new { disabled = true })
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.notes</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            if (Model.TaskRecvers != null && Model.TaskRecvers.Count > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <h3>
+                                    <strong>派单工人</strong>
+                                </h3>
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th>@(AttributeHelper.DisplayAttributeFor<TaskRecverViewModel, String>(en => en.mname))</th>
+                            <th>@(AttributeHelper.DisplayAttributeFor<TaskRecverViewModel, DateTime?>(en => en.cretime))</th>
+                            <th>@(AttributeHelper.DisplayAttributeFor<TaskRecverViewModel, String>(en => en.smname))</th>
+                            <th>@(AttributeHelper.DisplayAttributeFor<TaskRecverViewModel, bool>(en => en.inuse))</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.TaskRecvers)
+                    {
+                            <tr>
+                                <td>@item.mname</td>
+                                <td>@(item.cretime == null ? "" : item.cretime.Value.ToString("yyyy-MM-dd"))</td>
+                                <td>
+                                    @item.smname
+                                </td>
+                                <td>
+                                    <div class="switch">
+                                        <input type="checkbox" name="TaskRecverInUse" @(item.inuse ? "checked" : "") disabled />
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+        }
+        else
+        {
+            <h2>无法找到该派单任务.</h2>
+        }
+    </form>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("#@Html.IdFor(model=>model.inuse)").bootstrapSwitch();
+        $("[name='TaskRecverInUse']").bootstrapSwitch();
+       
+    });
+
+</script>

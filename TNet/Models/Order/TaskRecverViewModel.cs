@@ -40,7 +40,7 @@ namespace TNet.Models
         public new string smname { get; set; }
 
         [Display(Name = "启用")]
-        public new bool? inuse { get; set; }
+        public new bool inuse { get; set; }
 
         public void CopyFromBase(TaskRecver taskRecver)
         {

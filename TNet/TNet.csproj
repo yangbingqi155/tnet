@@ -236,6 +236,7 @@
     <Compile Include="Models\Order\CreateOrderData.cs" />
     <Compile Include="Models\Order\CreateOrderResult.cs" />
     <Compile Include="Models\Order\MyOrderDetail.cs" />
+    <Compile Include="Models\Order\MyOrderPressViewModel.cs" />
     <Compile Include="Models\Order\MyOrderViewModel.cs" />
     <Compile Include="Models\Order\OrderListInfo.cs" />
     <Compile Include="Models\Order\OrderStatus.cs" />
@@ -310,6 +311,12 @@
     <Content Include="Css\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="Css\bootstrap-fileinput\fileinput.css" />
     <Content Include="Css\bootstrap-fileinput\fileinput.min.css" />
+    <Content Include="Css\bootstrap-switch\bootstrap2\bootstrap-switch.css" />
+    <Content Include="Css\bootstrap-switch\bootstrap2\bootstrap-switch.min.css" />
+    <Content Include="Css\bootstrap-switch\bootstrap3\bootstrap-switch.css" />
+    <Content Include="Css\bootstrap-switch\bootstrap3\bootstrap-switch.min.css" />
+    <Content Include="Js\bootstrap-switch\bootstrap-switch.js" />
+    <Content Include="Js\bootstrap-switch\bootstrap-switch.min.js" />
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
     <Content Include="Css\Task\MyTask.css" />
@@ -640,6 +647,8 @@
     <Content Include="Views\Manage\SearchManageUsers.cshtml" />
     <Content Include="Views\Task\MyTask.cshtml" />
     <Content Include="Views\Notice\NoticeList.cshtml" />
+    <Content Include="Views\Manage\TaskList.cshtml" />
+    <Content Include="Views\Manage\TaskDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />
