@@ -79,6 +79,8 @@
     <Compile Include="EF\TaskRecver.cs" />
     <Compile Include="EF\TN.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="Model\Task\TaskStatusItem.cs" />
+    <Compile Include="Model\Task\TaskStatus.cs" />
     <Compile Include="Model\ToKey\AccessToken.cs" />
     <Compile Include="Msg\MsgMgr.cs" />
     <Compile Include="Msg\MsgType.cs" />

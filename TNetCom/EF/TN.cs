@@ -334,6 +334,14 @@ namespace TCom.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Task>()
+                .Property(e => e.iduser)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
                 .Property(e => e.idsend)
                 .IsUnicode(false);
 
@@ -343,6 +351,18 @@ namespace TCom.EF
 
             modelBuilder.Entity<Task>()
                 .Property(e => e.send)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.contact)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.addr)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.phone)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaskPress>()

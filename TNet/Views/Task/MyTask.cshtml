@@ -4,4 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div></div>
+@section Head{
+    <link href="@Url.Content("~/Css/Task/MyTask.css?v=20161012")" r rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="@Url.Content("~/Js/Task/MyTask.js?v=20161012")">
+
+    </script>
+
+}
+<div id="order_host" class="order_host">
+
+
+</div>

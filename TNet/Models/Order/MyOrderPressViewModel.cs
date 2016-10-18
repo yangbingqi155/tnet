@@ -16,34 +16,34 @@ namespace TNet.Models
         /// </summary>
         [Display(Name ="状态编号")]
         [StringLength(60)]
-        public string idpress { get; set; }
+        public new string idpress { get; set; }
         
         /// <summary>
         /// 订单号
         /// </summary>
         [StringLength(60)]
         [Display(Name = "订单号")]
-        public string orderno { get; set; }
+        public new string orderno { get; set; }
 
         /// <summary>
         /// 状态代码
         /// </summary>
         [Display(Name = "状态代码")]
-        public int status { get; set; }
+        public new int status { get; set; }
 
         [Display(Name = "状态描述")]
         [StringLength(60)]
-        public string statust { get; set; }
+        public new string statust { get; set; }
 
         [Display(Name = "创建时间")]
-        public DateTime? cretime { get; set; }
+        public new DateTime? cretime { get; set; }
 
         [Display(Name = "操作者")]
         [StringLength(50)]
-        public string oper { get; set; }
+        public new string oper { get; set; }
 
         [Display(Name = "启用")]
-        public bool? inuse { get; set; }
+        public new bool? inuse { get; set; }
 
 
         public void CopyFromBase(MyOrderPress orderPress)

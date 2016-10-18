@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Models\SelectItemViewModel.cs" />
     <Compile Include="Models\Service\R.cs" />
     <Compile Include="Models\Service\Result.cs" />
+    <Compile Include="Models\Task\TaskItem.cs" />
     <Compile Include="Models\User\UserInfo.cs" />
     <Compile Include="Models\User\UserViewModel.cs" />
     <Compile Include="Models\Weixin\ReceiveMsg.cs" />
@@ -286,6 +288,10 @@
     <Compile Include="Service\Pay\PayService.svc.cs">
       <DependentUpon>PayService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Service\Task\ITaskService.cs" />
+    <Compile Include="Service\Task\TaskService.svc.cs">
+      <DependentUpon>TaskService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
@@ -313,6 +319,7 @@
     <Content Include="Js\bootstrap-switch\bootstrap-switch.min.js" />
     <Content Include="Css\Merc\Base.css" />
     <Content Include="Css\Merc\List.css" />
+    <Content Include="Css\Task\MyTask.css" />
     <Content Include="Css\User\Index.css" />
     <Content Include="Images\Com\me_bg.jpg" />
     <Content Include="Images\Manage\headerbg4.png" />
@@ -574,6 +581,8 @@
     <Content Include="Js\Com\_references.js" />
     <Content Include="Js\Manage\Menu.js" />
     <Content Include="Js\Home\Home.js" />
+    <Content Include="Js\Task\MyTask.js" />
+    <Content Include="Service\Task\TaskService.svc" />
     <Content Include="ueditor\ueditor.all.js" />
     <Content Include="ueditor\ueditor.all.min.js" />
     <Content Include="ueditor\ueditor.config.js" />
@@ -654,7 +663,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Addr\" />
-    <Folder Include="Models\Addr\" />
     <Folder Include="Resource\Images\" />
     <Folder Include="ueditor\dialogs\" />
     <Folder Include="ueditor\lang\" />

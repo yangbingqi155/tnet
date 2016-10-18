@@ -81,6 +81,7 @@ namespace TNet.BLL.User
                                         where (mo.idweixin == us.idweixin && mo.inuse == true)
                                         select new MUser
                                         {
+                                            code = mo.ManageUserId,
                                             name = mo.UserName,
                                             phone = mo.phone,
                                             recvOrder = mo.recv_order,
