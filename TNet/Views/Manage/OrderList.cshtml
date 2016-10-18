@@ -131,7 +131,9 @@
                         <td>@item.notes</td>
 
                         <td>
-                            <a onclick="enableOrder('@Url.Action("OrderEnable", "Manage", new { orderno = item.orderno, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                            <div class="switch">
+                                <input type="checkbox" onchange="enableOrder('@Url.Action("OrderEnable", "Manage", new { orderno = item.orderno, enable = !item.inuse, isAjax = true })')" name="enableOrder" @(item.inuse ? "checked" : "") />
+                            </div>
                         </td>
                     </tr>
                     }
@@ -177,6 +179,12 @@
 
 <script type="text/javascript">
     $(function () {
+        $(function () {
+            $.fn.bootstrapSwitch.defaults.onText = '启用';
+            $.fn.bootstrapSwitch.defaults.offText = '禁用';
+            $("[name='enableOrder']").bootstrapSwitch();
+        });
+
         $("#btnSearch").click(function () {
             searchUsers();
         });
@@ -234,7 +242,7 @@
                 alert(returndata.Message);
                 window.Location.href = manageLoginUrl;
             } else if (returndata.Code == "1") {
-                alert("操作成功.");
+                //alert("操作成功.");
                 window.location.href = window.location.href;
             } else {
                 alert("系统出错，请稍后再试。");

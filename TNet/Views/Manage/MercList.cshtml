@@ -30,7 +30,7 @@
                 <thead>
                     <tr>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.MercTypeName))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel,String>(en=>en.merc1))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.merc1))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.sellpt))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, double?>(en => en.baseprice))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, int?>(en => en.sellcount))</th>
@@ -46,35 +46,37 @@
                     {
                         <tr>
                             <td>@item.MercTypeName</td>
-                            <td>@item.merc1
-                                @if (!string.IsNullOrEmpty(item.imgs))
-                                {<br />
-                                    <img class="smallMercImage" src="@Url.Content(item.imgs)" alt="@item.merc1" title="@item.merc1" />
-                                }
-                                
-                            </td>
-                            <td>@item.sellpt</td>
-                            <td>@item.baseprice</td>
-                            <td>@item.sellcount</td>
                             <td>
-                                @item.stime.Value.ToString("yyyy-MM-dd") 
-                            </td>
-                            <td>
-                                @item.entime.Value.ToString("yyyy-MM-dd")
-                            </td>
-                            <td>
-                                @item.sortno
-                            </td>
-                            <td>
-                                <a onclick="enableMerc('@Url.Action("MercEnable", "Manage", new { idmerc = item.idmerc, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                                @item.merc1
+                            @if (!string.IsNullOrEmpty(item.imgs))
+                            {<br />
+                            <img class="smallMercImage" src="@Url.Content(item.imgs)" alt="@item.merc1" title="@item.merc1" />
+                            }
 
-                            </td>
-                            <td>
-                                <a href="@Url.Action("MercEdit","Manage",new {idmerc=item.idmerc })" class="btn btn-default">编辑</a>
-                                @*<a href="@Url.Action("MercImageList","Manage",new {mercId=item.idmerc })" class="btn btn-default">管理图片</a>*@
-                                <a href="@Url.Action("SpecList","Manage",new {idmerc=item.idmerc })" class="btn btn-default">规格</a>
-                            </td>
-                        </tr>
+                        </td>
+                        <td>@item.sellpt</td>
+                        <td>@item.baseprice</td>
+                        <td>@item.sellcount</td>
+                        <td>
+                            @item.stime.Value.ToString("yyyy-MM-dd")
+                        </td>
+                        <td>
+                            @item.entime.Value.ToString("yyyy-MM-dd")
+                        </td>
+                        <td>
+                            @item.sortno
+                        </td>
+                        <td>
+                            <div class="switch">
+                                <input type="checkbox" onchange="enableMerc('@Url.Action("MercEnable", "Manage", new { idmerc = item.idmerc, enable = !item.inuse, isAjax = true })')" name="enableMerc" @(item.inuse ? "checked" : "") />
+                            </div>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("MercEdit","Manage",new {idmerc=item.idmerc })" class="btn btn-default">编辑</a>
+                            @*<a href="@Url.Action("MercImageList","Manage",new {mercId=item.idmerc })" class="btn btn-default">管理图片</a>*@
+                            <a href="@Url.Action("SpecList","Manage",new {idmerc=item.idmerc })" class="btn btn-default">规格</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -87,6 +89,12 @@
     </div>
 </div>
 <script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("[name='enableMerc']").bootstrapSwitch();
+    });
+
     function enableMerc(url) {
         var manageLoginUrl = "@Url.Action("Login","Manage")";
         $.post(url, null, function (returndata) {
@@ -95,7 +103,7 @@
                 alert(returndata.Message);
                 window.Location.href = manageLoginUrl;
             } else if (returndata.Code == "1") {
-                alert("操作成功.");
+                //alert("操作成功.");
                 window.location.href = window.location.href;
             } else {
                 alert("系统出错，请稍后再试。");

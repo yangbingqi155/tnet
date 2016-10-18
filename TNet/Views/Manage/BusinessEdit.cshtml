@@ -146,7 +146,6 @@
 </div>
 
 <script type="text/javascript">
-
     function initFileInput(ctrlName, uploadUrl, initialPreview, initialPreviewConfig) {
         var $control = $('#' + ctrlName);
         $control.fileinput({
@@ -226,6 +225,10 @@
         }
     }
     $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch();
+
         initBussImages();
         var timeout = window.setInterval(bindDrag, 1000);
 

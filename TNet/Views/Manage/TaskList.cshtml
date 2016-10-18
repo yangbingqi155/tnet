@@ -91,9 +91,9 @@
                             <td>@(item.cretime == null ? "" : item.cretime.Value.ToString("yyyy-MM-dd"))</td>
                             <td>@item.send</td>
                             <td>
-                                @if(item.TaskRecvers!=null&& item.TaskRecvers.Count>0)
+                                @if (item.TaskRecvers != null && item.TaskRecvers.Count > 0)
                                 {
-                                    for (int i=0;i<item.TaskRecvers.Count;i++ )
+                                    for (int i = 0; i < item.TaskRecvers.Count; i++)
                                     {
                                         <span>@(i == 0 ? item.TaskRecvers[i].mname : "," + item.TaskRecvers[i].mname)</span>
                                     }
@@ -112,7 +112,9 @@
                                 @item.notes
                             </td>
                             <td>
-                                <a onclick="enableTask('@Url.Action("TaskEnable", "Manage", new { idtask = item.idtask, enable = !item.inuse, isAjax = true })')" href="javascript:void(0);" class="btn btn-default">@(item.inuse ? "禁用" : "启用")</a>
+                                <div class="switch">
+                                    <input type="checkbox" onchange="enableTask('@Url.Action("TaskEnable", "Manage", new { idtask = item.idtask, enable = !item.inuse, isAjax = true })')" name="enableTask" @(item.inuse ? "checked" : "") />
+                                </div>
                             </td>
                             <td>
                                 <a href="@Url.Action("TaskDetail","Manage",new { idtask=item.idtask})" class="btn btn-default">详细</a>
@@ -132,6 +134,10 @@
 <script type="text/javascript">
 
     $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("[name='enableTask']").bootstrapSwitch();
+
         $('#startDate_datepicker').datetimepicker({
             language: 'zh-CN',
             weekStart: 1,
@@ -161,7 +167,7 @@
                 alert(returndata.Message);
                 window.Location.href = manageLoginUrl;
             } else if (returndata.Code == "1") {
-                alert("操作成功.");
+                //alert("操作成功.");
                 window.location.href = window.location.href;
             } else {
                 alert("系统出错，请稍后再试。");

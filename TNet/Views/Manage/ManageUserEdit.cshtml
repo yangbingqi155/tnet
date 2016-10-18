@@ -91,3 +91,24 @@
     </form>
 
 </div>
+<script type="text/javascript" >
+    $(function () {
+        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch({
+            onText: "启用",
+            offText: "禁用"
+        });
+        $("#@Html.IdFor(model => model.recv_setup)").bootstrapSwitch({
+            onText: "是",
+            offText: "否"
+        });
+        $("#@Html.IdFor(model => model.send_setup)").bootstrapSwitch({
+            onText: "是",
+            offText: "否"
+        });
+        $("#@Html.IdFor(model => model.recv_order)").bootstrapSwitch({
+            onText: "是",
+            offText: "否"
+        });
+    });
+
+</script>
