@@ -516,7 +516,7 @@ namespace TNet.Controllers
                 task.inuse = enable;
                 TaskService.Edit(task);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 resultEntity.Code = ResponseCodeType.Fail;
                 resultEntity.Message = "操作失败";

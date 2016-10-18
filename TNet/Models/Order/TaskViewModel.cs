@@ -10,7 +10,7 @@ using System.Collections;
 namespace TNet.Models
 {
     [NotMapped]
-    public class TaskViewModel:Task, IEqualityComparer<TaskViewModel>
+    public class TaskViewModel:TCom.EF.Task, IEqualityComparer<TaskViewModel>
     {
         [Display(Name = "工单编号")]
         [StringLength(60)]
@@ -63,7 +63,7 @@ namespace TNet.Models
             return model.ToString().GetHashCode();
         }
 
-        public void CopyFromBase(Task task)
+        public void CopyFromBase(TCom.EF.Task task)
         {
             this.idtask = task.idtask;
             this.orderno = task.orderno;
@@ -90,7 +90,7 @@ namespace TNet.Models
             task.finishtime = this.finishtime;
             task.echotime = this.echotime;
             task.notes = this.notes;
-            task.inuse = this.inuse != null ? this.inuse.Value : false;
+            task.inuse = this.inuse;
         }
     }
 }
