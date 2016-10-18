@@ -81,6 +81,7 @@
     <Compile Include="EF\User.cs" />
     <Compile Include="Model\Task\TaskStatusItem.cs" />
     <Compile Include="Model\Task\TaskStatus.cs" />
+    <Compile Include="Model\Task\TaskType.cs" />
     <Compile Include="Model\ToKey\AccessToken.cs" />
     <Compile Include="Msg\MsgMgr.cs" />
     <Compile Include="Msg\MsgType.cs" />

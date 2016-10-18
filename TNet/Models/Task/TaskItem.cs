@@ -30,9 +30,12 @@ namespace TNet.Models.Task
         public TaskItem(TCom.EF.Task data)
         {
             this.idtask = data.idtask;
+            this.iduser = data.iduser;
+            this.name = data.name;
             this.idsend = data.idtask;
             this.orderno = data.idtask;
             this.send = data.idtask;
+            this.accpeptime = data.accpeptime;
             this.cretime = data.cretime;
             this.revctime = data.revctime;
             this.dotime = data.dotime;
@@ -45,12 +48,13 @@ namespace TNet.Models.Task
             this.phone = data.phone;
             this.title = data.title;
             this.text = data.text;
+            this.tasktype = data.tasktype;
+            this.score = data.score;
             this.inuse = data.inuse;
-
         }
 
 
-        public static List<TaskItem>  gets(List<TCom.EF.Task> data)
+        public static List<TaskItem> gets(List<TCom.EF.Task> data)
         {
             if (data != null && data.Count > 0)
             {
