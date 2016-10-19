@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TCom.EF;
+using TNet.Models;
 
 namespace TNet.BLL
 {
@@ -15,6 +16,25 @@ namespace TNet.BLL
         {
             TN db = new TN();
             return db.MercTypes.ToList();
+        }
+
+        public static List<SelectItemViewModel<string>> SelectItems()
+        {
+            List<SelectItemViewModel<string>> mercTypeOptions = new List<SelectItemViewModel<string>>();
+            List<MercType> mercTypes = GetALL();
+            if (mercTypes != null && mercTypes.Count > 0)
+            {
+                for (int i = 0; i < mercTypes.Count; i++)
+                {
+                    mercTypeOptions.Add(new SelectItemViewModel<string>()
+                    {
+                        DisplayValue = mercTypes[i].idtype.ToString(),
+                        DisplayText = mercTypes[i].name
+                    });
+                }
+            }
+
+            return mercTypeOptions;
         }
 
         public static MercType GetMercType(int idtype)

@@ -186,6 +186,8 @@
     <Compile Include="BLL\Merc\SpecService.cs" />
     <Compile Include="BLL\Notice\NoticeService.cs" />
     <Compile Include="BLL\Order\MyOrderService.cs" />
+    <Compile Include="BLL\Order\SetupAddrService.cs" />
+    <Compile Include="BLL\Order\SetupService.cs" />
     <Compile Include="BLL\Order\TaskRecverService.cs" />
     <Compile Include="BLL\Order\TaskService.cs" />
     <Compile Include="BLL\Pay\WeixinPay\JsApiPay.cs" />
@@ -246,6 +248,9 @@
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\Order\OrderStatusItem.cs" />
     <Compile Include="Models\Order\OrderType.cs" />
+    <Compile Include="Models\Order\SetupAddrViewModel.cs" />
+    <Compile Include="Models\Order\SetupType.cs" />
+    <Compile Include="Models\Order\SetupViewModel.cs" />
     <Compile Include="Models\Order\TaskRecverViewModel.cs" />
     <Compile Include="Models\Order\TaskViewModel.cs" />
     <Compile Include="Models\Pay\PayData.cs" />
@@ -663,6 +668,9 @@
     <Content Include="Views\Manage\TaskDetail.cshtml" />
     <Content Include="Views\Notice\List.cshtml" />
     <Content Include="Views\Notice\Detail.cshtml" />
+    <Content Include="Views\Manage\SetupEdit.cshtml" />
+    <Content Include="Views\Manage\SetupAddrList.cshtml" />
+    <Content Include="Views\Manage\SetupAddrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

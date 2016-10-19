@@ -1,0 +1,111 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+
+@model List<SetupAddrViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">订单管理</a></li>
+        <li><a href="#" class="active">报装地址</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "SetupAddrList", "Manage", ViewContext.RouteData.Values))
+    </div>
+    <div>
+        <a class="btn btn-primary" @*target="_blank"*@ href="@Url.Action("SetupAddrEdit","Manage")">新增报装地址</a>
+    </div>
+    <div>
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, MercTypeViewModel>(en => en.merctype))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, SetupViewModel>(en => en.setup))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, String>(en => en.addr))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.phone))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.service))</th>
+                      
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.acceptime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.setuptime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, bool>(en => en.inuse))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.notes))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(item.merctype!=null?item.merctype.name:"")
+                            </td>
+                            <td>
+                                @(item.setup != null ? item.setup.setup1 : "")
+                            </td>
+                            <td>@item.addr</td>
+                            <td>@item.phone</td>
+                            <td>@item.service</td>
+                            <td>
+                                @item.acceptime
+                            </td>
+                            <td>
+                                @item.setuptime
+                            </td>
+                            <td>
+                                <div class="switch">
+                                    <input type="checkbox" onchange="enableSetupAddr('@Url.Action("SetupAddrEnable", "Manage", new { idaddr = item.idaddr, enable = !item.inuse, isAjax = true })')" name="enableSetupAddr" @(item.inuse ? "checked" : "") />
+                                </div>
+                            </td>
+                            <td>
+                                @item.notes
+                            </td>
+                            <td>
+                                <a href="@Url.Action("SetupAddrEdit","Manage",new {idaddr=item.idaddr })" class="btn btn-default">编辑</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>还没有任何报装地址.</h2>
+        }
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("[name='enableSetupAddr']").bootstrapSwitch();
+    });
+
+    function enableSetupAddr(url) {
+        var manageLoginUrl = "@Url.Action("Login","Manage")";
+        $.post(url, null, function (returndata) {
+            returndata=eval("("+returndata+")");
+            if (returndata.Code == "3") {
+                alert(returndata.Message);
+                window.Location.href = manageLoginUrl;
+            } else if (returndata.Code == "1") {
+                //alert("操作成功.");
+                window.location.href = window.location.href;
+            } else {
+                alert("系统出错，请稍后再试。");
+            }
+        });
+    }
+
+</script>
+
+

@@ -1,0 +1,86 @@
+﻿@model TNet.Models.SetupViewModel
+@using TNet.Models
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "编辑报装";
+    if (string.IsNullOrEmpty(Model.idsetup))
+    {
+        ViewBag.Title = "新增报装";
+    }
+}
+
+
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">产品管理</a></li>
+        <li><a href="@Url.Action("MercTypeList","Manage")">类型管理</a></li>
+        <li><a href="#" class="active">@(string.IsNullOrEmpty(Model.idsetup) ? "新增报装" : "编辑报装")</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form action="@Url.Action("SetupEdit","Manage")" method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                @Html.HiddenFor(model => model.idsetup)
+                @Html.HiddenFor(model => model.idtype)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.merctypename, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        <p class="form-control-static">@Model.merctypename</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.setup1, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.setup1, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.setup1)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.resource, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.resource, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.resource)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.setuptype, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.setuptype, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.setuptype)
+                </div>
+               
+                <div class="form-group">
+                    @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.notes)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inuse)
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <input type="submit" value="保存" class="btn btn-primary" />
+                </div>
+            </fieldset>
+
+        </div>
+
+    </form>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch({
+            onText: '启用',
+            offText: '禁用'
+        });
+    });
+</script>

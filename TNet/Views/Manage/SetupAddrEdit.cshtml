@@ -1,0 +1,109 @@
+﻿@model TNet.Models.SetupAddrViewModel
+@using TNet.Models
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "编辑报装地址";
+    if (string.IsNullOrEmpty(Model.idaddr))
+    {
+        ViewBag.Title = "新增报装地址";
+    }
+
+    List<SelectItemViewModel<string>> setupSelectItems= (List<SelectItemViewModel<string>>)ViewData["SetupSelectItems"];
+    List<SelectItemViewModel<string>> mercTypeSelectItems =(List<SelectItemViewModel<string>>) ViewData["MercTypeSelectItems"];
+}
+
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">订单管理</a></li>
+        <li><a href="@Url.Action("SetupAddrList","Manage")">报装地址</a></li>
+        <li><a href="#" class="active">@(string.IsNullOrEmpty(Model.idaddr) ? "新增报装地址" : "编辑报装地址")</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form action="@Url.Action("SetupAddrEdit","Manage")" method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                @Html.HiddenFor(model => model.idaddr)
+                @Html.HiddenFor(model => model.idtype)
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.idtype, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(model => model.idtype, new SelectList(mercTypeSelectItems, "DisplayValue", "DisplayText"), new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.idtype)
+                </div>*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.setup, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(model => model.idsetup, new SelectList(setupSelectItems, "DisplayValue", "DisplayText"), new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.idsetup)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.addr, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.addr, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.addr)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.phone, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.phone)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.service, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.service, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.service)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.acceptime, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.acceptime, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.acceptime)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.setuptime, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.setuptime, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.setuptime)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inuse)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.notes)
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <input type="submit" value="保存" class="btn btn-primary" />
+                </div>
+            </fieldset>
+
+        </div>
+
+    </form>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch();
+    });
+</script>
+
