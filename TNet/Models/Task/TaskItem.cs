@@ -49,6 +49,7 @@ namespace TNet.Models.Task
             this.title = data.title;
             this.text = data.text;
             this.tasktype = data.tasktype;
+            this.tasktype = data.tasktype;
             this.score = data.score;
             this.inuse = data.inuse;
         }

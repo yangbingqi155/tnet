@@ -4,17 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Head{
-    <link href="@Url.Content("~/Css/Home/Index.css?v=20161012")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Css/Merc/List.css?v=20161012")" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20161012")">
+    <link href="@Url.Content("~/Css/Home/Index.css?v=20161020")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Css/Merc/List.css?v=20161020")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Js/Home/Home.js?v=20161020")">
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20161012")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/Base.js?v=20161020")">
     </script>
-    <script type="text/javascript" src="@Url.Content("~/Js/Merc/List.js?v=20161012")">
+    <script type="text/javascript" src="@Url.Content("~/Js/Merc/List.js?v=20161020")">
     </script>
-    <script type="text/javascript">
-        // Pub.delUser();
-    </script>
+
 }
 <div class="head_host">
     <div class="swiper-banner">
@@ -40,12 +38,21 @@
                 <a href="@Url.Content("~/Shared/ChangeDB")"><span id="city">北京</span><i></i></a>
             </div>*@
     </div>
+    <div class="notice  weui_cells weui_cells_access">
+        <div class="weui_cell Title_Cells">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p id="notice">加载...</p>
+            </div>
+            <div class="weui_cell_ft">
 
+            </div>
+        </div>
+    </div>
     <div class="main_nav">
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <a href="@Url.Content("~/Notice/NoticeList")"><i class="tongzhi"></i><span>公告通知</span> </a>
+                    <a href="@Url.Content("~/Notice/List")"><i class="tongzhi"></i><span>公告通知</span> </a>
                 </td>
                 <td>
                     <a href="@Url.Content("~/Merc/List")"><i class="baoxiu"></i><span>宽带销售</span> </a>

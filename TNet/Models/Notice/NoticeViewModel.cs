@@ -8,7 +8,7 @@ using TCom.EF;
 
 namespace TNet.Models {
     [NotMapped]
-    public class NoticeViewModel:Notice {
+    public class NoticeViewModel:TCom.EF.Notice {
         [Required]
         [Display(Name = "通知编号")]
         [StringLength(100)]
@@ -40,7 +40,7 @@ namespace TNet.Models {
         [Display(Name = "内容")]
         public new string content { get; set; }
         
-        public void CopyFromBase(Notice notice) {
+        public void CopyFromBase(TCom.EF.Notice notice) {
             this.idnotice = notice.idnotice;
             this.publish = notice.publish;
             this.title = notice.title;
@@ -50,7 +50,7 @@ namespace TNet.Models {
             this.content = notice.content;
         }
 
-        public void CopyToBase(Notice notice) {
+        public void CopyToBase(TCom.EF.Notice notice) {
             notice.idnotice = this.idnotice;
             notice.publish = this.publish;
             notice.title = this.title;

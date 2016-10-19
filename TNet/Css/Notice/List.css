@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.notice_item {
+    height: 60px;
+    line-height: 60px;
+}
+
+.weui_cells {
+    margin-top: 0px;
+}
+
+    .weui_cells p {
+        height: 40px;
+        line-height: 40px;
+        font-weight: bold;
+    }
+
+
+    .weui_cells span {
+         color:#757575;
+    }
+
+
+    .weui_cell_bd a{
+        display:block;
+         height: auto;
+         text-decoration:none;
+         color:#222222;
+    }

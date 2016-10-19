@@ -1,9 +1,11 @@
 ﻿.head_host {
     display: block;
-    
 }
 
- 
+body {
+    background-color: #ffffff;
+}
+
 
 .swiper-banner .top_tool {
     position: absolute;
@@ -15,7 +17,6 @@
     border-radius: 2rem;
     background: rgba(0,0,0,0.5);
     padding: 0.5rem;
-    
 }
 
     .swiper-banner .top_tool i {
@@ -105,4 +106,30 @@
 
 a#Task {
     display: none;
+}
+
+.pitem_host {
+    background-color: #ffffff;
+}
+
+.notice p {
+    height: 30px;
+    line-height: 30px;
+    margin-top: 0px;
+    font-size: 14px;
+    display: block;
+    text-overflow: ellipsis;
+    color: #222222;
+}
+
+    .notice p a {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        color: #222222;
+        text-decoration: none;
+    }
+
+.weui_cells {
+    margin-top: 0px;
 }

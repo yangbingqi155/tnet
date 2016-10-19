@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MercController.cs" />
+    <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -231,6 +232,9 @@
     <Compile Include="Models\Merc\Netype.cs" />
     <Compile Include="Models\Merc\SetupList.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
+    <Compile Include="Models\Notice\NoticeDetail.cs" />
+    <Compile Include="Models\Notice\NoticeItem.cs" />
+    <Compile Include="Models\Notice\NoticeBaseItem.cs" />
     <Compile Include="Models\Notice\NoticeViewModel.cs" />
     <Compile Include="Models\NULLViewModel.cs" />
     <Compile Include="Models\Order\CreateOrderData.cs" />
@@ -280,6 +284,10 @@
     <Compile Include="Service\Merc\MercService.svc.cs">
       <DependentUpon>MercService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Service\Notice\INoticeService.cs" />
+    <Compile Include="Service\Notice\NoticeService.svc.cs">
+      <DependentUpon>NoticeService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Service\Order\IOrderService.cs" />
     <Compile Include="Service\Order\OrderService.svc.cs">
       <DependentUpon>OrderService.svc</DependentUpon>
@@ -315,6 +323,8 @@
     <Content Include="Css\bootstrap-switch\bootstrap2\bootstrap-switch.min.css" />
     <Content Include="Css\bootstrap-switch\bootstrap3\bootstrap-switch.css" />
     <Content Include="Css\bootstrap-switch\bootstrap3\bootstrap-switch.min.css" />
+    <Content Include="Css\Notice\Detail.css" />
+    <Content Include="Css\Notice\List.css" />
     <Content Include="Js\bootstrap-switch\bootstrap-switch.js" />
     <Content Include="Js\bootstrap-switch\bootstrap-switch.min.js" />
     <Content Include="Css\Merc\Base.css" />
@@ -483,6 +493,8 @@
     <Content Include="Js\Merc\Base.js" />
     <Content Include="Js\Merc\Detail.js" />
     <Content Include="Js\Merc\List.js" />
+    <Content Include="Js\Notice\Detail.js" />
+    <Content Include="Js\Notice\List.js" />
     <Content Include="Js\Order\Base.js" />
     <Content Include="Js\Order\Detail.js" />
     <Content Include="Js\Order\List.js" />
@@ -582,6 +594,7 @@
     <Content Include="Js\Manage\Menu.js" />
     <Content Include="Js\Home\Home.js" />
     <Content Include="Js\Task\MyTask.js" />
+    <Content Include="Service\Notice\NoticeService.svc" />
     <Content Include="Service\Task\TaskService.svc" />
     <Content Include="ueditor\ueditor.all.js" />
     <Content Include="ueditor\ueditor.all.min.js" />
@@ -646,9 +659,10 @@
     <Content Include="Views\Manage\NoticeEdit.cshtml" />
     <Content Include="Views\Manage\SearchManageUsers.cshtml" />
     <Content Include="Views\Task\MyTask.cshtml" />
-    <Content Include="Views\Notice\NoticeList.cshtml" />
     <Content Include="Views\Manage\TaskList.cshtml" />
     <Content Include="Views\Manage\TaskDetail.cshtml" />
+    <Content Include="Views\Notice\List.cshtml" />
+    <Content Include="Views\Notice\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />
