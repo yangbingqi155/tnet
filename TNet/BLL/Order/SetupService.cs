@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TCom.EF;
+using TNet.Models;
 
 namespace TNet.BLL
 {
@@ -12,6 +13,23 @@ namespace TNet.BLL
         public static List<Setup> GetALL()
         {
             return new TN().Setups.ToList();
+        }
+
+        public static List<SelectItemViewModel<string>> SelectItems() {
+            List<SelectItemViewModel<string>> setupsOptions = new List<SelectItemViewModel<string>>();
+            List<Setup> setups = GetALL();
+            if (setups != null && setups.Count > 0)
+            {
+                for (int i = 0; i < setups.Count; i++)
+                {
+                    setupsOptions.Add(new SelectItemViewModel<string>() {
+                        DisplayValue = setups[i].idsetup,
+                        DisplayText = setups[i].setup1
+                    });
+                }
+            }
+
+            return setupsOptions;
         }
 
         public static Setup Get(string idsetup)

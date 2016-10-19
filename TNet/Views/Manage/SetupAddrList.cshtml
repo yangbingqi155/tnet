@@ -34,10 +34,11 @@
                         <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, String>(en => en.addr))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.phone))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.service))</th>
-                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.notes))</th>
+                      
                         <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.acceptime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.setuptime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, bool>(en => en.inuse))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<SetupAddrViewModel, string>(en => en.notes))</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -54,9 +55,6 @@
                             <td>@item.phone</td>
                             <td>@item.service</td>
                             <td>
-                                @item.notes
-                            </td>
-                            <td>
                                 @item.acceptime
                             </td>
                             <td>
@@ -66,6 +64,9 @@
                                 <div class="switch">
                                     <input type="checkbox" onchange="enableSetupAddr('@Url.Action("SetupAddrEnable", "Manage", new { idaddr = item.idaddr, enable = !item.inuse, isAjax = true })')" name="enableSetupAddr" @(item.inuse ? "checked" : "") />
                                 </div>
+                            </td>
+                            <td>
+                                @item.notes
                             </td>
                             <td>
                                 <a href="@Url.Action("SetupAddrEdit","Manage",new {idaddr=item.idaddr })" class="btn btn-default">编辑</a>

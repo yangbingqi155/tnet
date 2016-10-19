@@ -13,14 +13,17 @@ namespace TNet.Models
     {
         [Display(Name = "办理点编号")]
         [StringLength(60)]
+        [Required]
         public string idaddr { get; set; }
 
         [Display(Name = "类型编号")]
         [StringLength(60)]
+        [Required]
         public string idtype { get; set; }
 
         [Display(Name = "安装编号")]
         [StringLength(60)]
+        [Required]
         public string idsetup { get; set; }
 
         [Display(Name = "办理地点")]

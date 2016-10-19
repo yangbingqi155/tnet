@@ -11,16 +11,13 @@ namespace TCom.EF
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [StringLength(60)]
         public string idaddr { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
+        
         [StringLength(60)]
         public string idtype { get; set; }
-
-        [Key]
-        [Column(Order = 2)]
+        
         [StringLength(60)]
         public string idsetup { get; set; }
 

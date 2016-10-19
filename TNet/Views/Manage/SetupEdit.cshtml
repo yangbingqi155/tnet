@@ -78,8 +78,9 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $.fn.bootstrapSwitch.defaults.onText = '启用';
-        $.fn.bootstrapSwitch.defaults.offText = '禁用';
-        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch();
+        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch({
+            onText: '启用',
+            offText: '禁用'
+        });
     });
 </script>

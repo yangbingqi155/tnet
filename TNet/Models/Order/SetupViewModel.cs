@@ -12,10 +12,12 @@ namespace TNet.Models
     [NotMapped]
     public class SetupViewModel:Setup
     {
+        [Required]
         [Display(Name = "安装编号")]
         [StringLength(60)]
         public string idsetup { get; set; }
 
+        [Required]
         [Display(Name = "类型编号")]
         [StringLength(60)]
         public string idtype { get; set; }
@@ -51,39 +53,21 @@ namespace TNet.Models
             }
         }
 
-        [Display(Name = "报装类型")]
-        /// <summary>
-        /// 报装类型
-        /// </summary>
-        public SetupType setupType { get; set; }
-
-        [Display(Name = "报装类型")]
-        /// <summary>
-        /// 报装类型
-        /// </summary>
-        public string SetupTypeName
-        {
-            get
-            {
-                return AttributeHelper.GetDisplayName<SetupType>(setupType);
-            }
-        }
-
-        public static List<SelectItemViewModel<int>> GetSetupTypeSelectItems()
-        {
-            List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
-            list.Add(new SelectItemViewModel<int>()
-            {
-                DisplayText = AttributeHelper.GetDisplayName<SetupType>(SetupType.Store),
-                DisplayValue = (int)SetupType.Store
-            });
-            list.Add(new SelectItemViewModel<int>()
-            {
-                DisplayText = AttributeHelper.GetDisplayName<SetupType>(SetupType.Online),
-                DisplayValue = (int)SetupType.Online
-            });
-            return list;
-        }
+        //public static List<SelectItemViewModel<int>> GetSetupTypeSelectItems()
+        //{
+        //    List<SelectItemViewModel<int>> list = new List<SelectItemViewModel<int>>();
+        //    list.Add(new SelectItemViewModel<int>()
+        //    {
+        //        DisplayText = AttributeHelper.GetDisplayName<SetupType>(SetupType.Store),
+        //        DisplayValue = (int)SetupType.Store
+        //    });
+        //    list.Add(new SelectItemViewModel<int>()
+        //    {
+        //        DisplayText = AttributeHelper.GetDisplayName<SetupType>(SetupType.Online),
+        //        DisplayValue = (int)SetupType.Online
+        //    });
+        //    return list;
+        //}
 
         public void CopyFromBase(Setup setup)
         {

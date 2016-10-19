@@ -885,17 +885,9 @@ namespace TNet.Controllers
         {
             int pageCount = 0;
             int pageSize = 10;
-            List<SetupAddr> entities = SetupAddrService.GetALL();
-            List<SetupAddr> pageList = entities.Pager<SetupAddr>(pageIndex, pageSize, out pageCount);
-
-
-            List<SetupAddrViewModel> viewModels = pageList.Select(model =>
-            {
-                SetupAddrViewModel viewModel = new SetupAddrViewModel();
-                viewModel.CopyFromBase(model);
-                return viewModel;
-            }).ToList();
-
+            List<SetupAddrViewModel> entities = SetupAddrService.GetALLViewModels();
+            List<SetupAddrViewModel> viewModels = entities.Pager<SetupAddrViewModel>(pageIndex, pageSize, out pageCount);
+            
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
 
@@ -915,13 +907,15 @@ namespace TNet.Controllers
             SetupAddrViewModel model = new SetupAddrViewModel();
             if (!string.IsNullOrEmpty(idaddr))
             {
-                SetupAddr setupAddr = SetupAddrService.Get(idaddr);
-                if (setupAddr != null) { model.CopyFromBase(setupAddr); }
+                model = SetupAddrService.GetViewModel(idaddr);
             }
             else
             {
                 model.inuse = true;
             }
+
+            ViewData["SetupSelectItems"] = SetupService.SelectItems();
+            ViewData["MercTypeSelectItems"] = MercTypeService.SelectItems();
 
             return View(model);
         }
@@ -937,9 +931,12 @@ namespace TNet.Controllers
         {
             SetupAddr setupAddr = new SetupAddr();
             model.CopyToBase(setupAddr);
+            Setup setup = SetupService.Get(model.idsetup);
+            setupAddr.idtype = setup.idtype;
             if (string.IsNullOrEmpty(setupAddr.idaddr))
             {
                 setupAddr.idaddr = Pub.ID().ToString();
+                
                 //新增
                 setupAddr = SetupAddrService.Add(setupAddr);
             }
@@ -953,6 +950,9 @@ namespace TNet.Controllers
             model.CopyFromBase(setupAddr);
 
             ModelState.AddModelError("", "保存成功.");
+
+            ViewData["SetupSelectItems"] = SetupService.SelectItems();
+            ViewData["MercTypeSelectItems"] = MercTypeService.SelectItems();
 
             return View(model);
         }
