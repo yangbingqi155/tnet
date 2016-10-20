@@ -123,7 +123,7 @@ a {
     }
 
 body {
-    background: #e7e8eb none repeat scroll 0 0;
+    /*background: #e7e8eb none repeat scroll 0 0;*/
     color: #222;
     line-height: 1.6;
     list-style: none;
@@ -369,12 +369,12 @@ body {
     width: 220px;
     /*width: 19.9%;*/
     /*float: left;*/
-    padding: 10px;
+    padding: 5px;
     position: fixed;
     left: 0px;
     top: 50px;
     bottom: 0px;
-    background-color: #d9d9d9;
+    background-color: #efefef;
     overflow:auto;
 }
 
@@ -390,9 +390,12 @@ body {
     /*min-height: 1000px;*/
     padding: 10px 10px 8px 10px;
     overflow: auto;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
 }
-
+.form-horizontal .form-group{
+    margin-left:0px;
+    margin-right:0px;
+}
 .ManageRightTitle {
     display: block;
     height: 50px;
@@ -418,7 +421,7 @@ body {
 }
 
 .merc-edit-box {
-    width: 850px;
+     display:block;
 }
 
 .form-group div.datetime_picker {
@@ -463,11 +466,16 @@ span.input-group-addon span.glyphicon-remove {
 }
 
 .smallMercImage {
-    width: 80px;
-    height:80px;
+    width: 60px;
+    height:60px;
     outline:none;
 }
 
 .seperate_line {
     border-bottom: 1px solid #ddd;
+}
+
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th{
+    padding:10px 10px 10px 10px;
 }
