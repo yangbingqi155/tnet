@@ -19,7 +19,7 @@ namespace TNet.Models
         public string merc { get; set; }
 
         [Display(Name = "规格号")]
-        public new  int idspec { get; set; }
+        public new  string idspec { get; set; }
 
         [Display(Name = "规格")]
         [StringLength(60)]

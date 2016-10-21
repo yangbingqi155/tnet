@@ -1017,7 +1017,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [HttpPost]
         [ManageLoginValidation]
-        public ActionResult SpecEnable(int idspec, bool enable, bool isAjax)
+        public ActionResult SpecEnable(string idspec, bool enable, bool isAjax)
         {
             ResultModel<SpecViewModel> resultEntity = new ResultModel<SpecViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
@@ -1040,14 +1040,15 @@ namespace TNet.Controllers
         /// <summary>
         /// 新增\编辑产品规格
         /// </summary>
+        /// <param name="idmerc"></param>
         /// <param name="idspec"></param>
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpGet]
-        public ActionResult SpecEdit(int idmerc, int idspec = 0)
+        public ActionResult SpecEdit(int idmerc, string idspec = "")
         {
             SpecViewModel model = new SpecViewModel();
-            if (idspec > 0)
+            if (!string.IsNullOrEmpty(idspec))
             {
                 model = SpecService.GetSpec(idspec);
             }
@@ -1070,9 +1071,9 @@ namespace TNet.Controllers
         {
             Spec spec = new Spec();
             model.CopyToBase(spec);
-            if (spec.idspec == 0)
+            if (string.IsNullOrEmpty( spec.idspec) )
             {
-                spec.idspec = IdentifyService.GetMaxIdentifyID<Spec>(en => en.idspec) + 1;
+                spec.idspec = Pub.ID().ToString();
                 //新增
                 spec = SpecService.Add(spec);
             }

@@ -26,6 +26,9 @@
 </div>
 <div class="ManageRightContent">
     <div>
+        <a class="btn btn-primary" href="@Url.Action("OrderList","Manage")">去派单</a>
+    </div>
+    <div style="margin-top:10px;">
         <form action="@Url.Action("TaskList","Manage")" method="post">
             <div class="row">
                 <div class="col-xs-2">
@@ -61,13 +64,11 @@
     <div>
         @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "TaskList", "Manage", ViewContext.RouteData.Values))
     </div>
-    <div style="margin-top:10px;">
-        <a class="btn btn-primary" href="@Url.Action("OrderList","Manage")">去派单</a>
-    </div>
-    <div>
+  
+    <div  class="list-box">
         @if (Model.Count > 0)
         {
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, String>(en => en.orderno))</th>

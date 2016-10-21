@@ -10,14 +10,14 @@ namespace TCom.EF
     public partial class SetupAddr
     {
         [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [StringLength(60)]
         public string idaddr { get; set; }
-        
+
+        [Required]
         [StringLength(60)]
         public string idtype { get; set; }
-        
+
+        [Required]
         [StringLength(60)]
         public string idsetup { get; set; }
 

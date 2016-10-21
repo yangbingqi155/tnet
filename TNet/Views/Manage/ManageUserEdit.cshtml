@@ -24,63 +24,65 @@
                 @Html.HiddenFor(model=>model.idweixin)
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserType, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.DropDownListFor(model => model.UserType, new SelectList(ManageUserViewModel.GetUserTypeSelectItems(), "DisplayValue", "DisplayText"), new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.UserType)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserName, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.UserName)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.TextBoxFor(model => model.phone, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.phone)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.recv_order, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.CheckBoxFor(model => model.recv_order, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.recv_order)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.recv_setup, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.CheckBoxFor(model => model.recv_setup, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.recv_setup)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.send_setup, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.CheckBoxFor(model => model.send_setup, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.send_setup)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.inuse)
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         @Html.TextBoxFor(model => model.notes, new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.notes)
                 </div>
                 @Html.ValidationSummary(true)
                 <div class="form-group">
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10" style="padding-top:10px;">
                         <input type="submit" id="btnSave" value="保存" class="btn btn-primary" />
                     </div>
                 </div>

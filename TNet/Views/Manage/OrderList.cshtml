@@ -66,9 +66,9 @@
         @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "OrderList", "Manage", ViewContext.RouteData.Values))
     </div>
 
-    <div @*style="overflow:scroll;min-width:2180px;"*@>
+    <div class="list-box">
         @if (Model.Count > 0) {
-            <table class="table table-hover table-responsive">
+            <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>操作</th>
