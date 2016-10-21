@@ -2,6 +2,7 @@
 @using TNet.Models;
 @using TNet.BLL;
 @model TNet.Models.TaskViewModel
+@using TCom.Model.Task;
 @{
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     ViewBag.Title = "派单任务详细";
@@ -19,10 +20,14 @@
     </ol>
 </div>
 <div class="ManageRightContent">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#basic_info">基本信息</a></li>
+        <li role="presentation"><a href="#assgin_tasks">派单工人</a></li>
+    </ul>
     <form method="post" class="form-horizontal">
         @if (Model != null)
         {
-            <table class="table">
+            <table class="table" role="tabpanel"  class="tab-pane active" id="basic_info">
                 <thead>
                     <tr>
                         <th colspan="4">
@@ -53,6 +58,58 @@
                     </tr>
                     <tr>
                         <td>
+                            @Html.LabelFor(model => model.title, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.title</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.status, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                @{
+                                    TaskStatusItem statusItem = TaskStatus.get(Model.status);
+                                    if (statusItem != null)
+                                    {                                      
+                                        <p class="form-control-static">
+                                            @statusItem.text
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="form-control-static">
+                                            未知
+                                        </p>
+                                    }
+
+                                }
+                            
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.contact, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.contact</p>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.LabelFor(model => model.phone, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.phone</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             @Html.LabelFor(model => model.send, new { @class = "col-sm-2 control-label" })
                         </td>
                         <td>
@@ -71,6 +128,14 @@
                     </tr>
                     <tr>
                         <td>
+                            @Html.LabelFor(model => model.accpeptime, new { @class = "col-sm-2 control-label" })
+                        </td>
+                        <td>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.accpeptime</p>
+                            </div>
+                        </td>
+                        <td>
                             @Html.LabelFor(model => model.revctime, new { @class = "col-sm-2 control-label" })
                         </td>
                         <td>
@@ -78,6 +143,8 @@
                                 <p class="form-control-static">@(Model.revctime == null ? "" : Model.revctime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
+                    </tr>
+                    <tr>
                         <td>
                             @Html.LabelFor(model => model.dotime, new { @class = "col-sm-2 control-label" })
                         </td>
@@ -86,8 +153,6 @@
                                 <p class="form-control-static">@(Model.dotime == null ? "" : Model.dotime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
                             @Html.LabelFor(model => model.finishtime, new { @class = "col-sm-2 control-label" })
                         </td>
@@ -96,6 +161,8 @@
                                 <p class="form-control-static">@(Model.finishtime == null ? "" : Model.finishtime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
+                    </tr>
+                    <tr>
                         <td>
                             @Html.LabelFor(model => model.echotime, new { @class = "col-sm-2 control-label" })
                         </td>
@@ -104,30 +171,31 @@
                                 <p class="form-control-static">@(Model.echotime == null ? "" : Model.echotime.Value.ToString("yyyy-MM-dd"))</p>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
                             @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
                         </td>
                         <td>
-                            <div class="switch">
-                                @Html.CheckBoxFor(model => model.inuse, new { disabled = true })
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Html.CheckBoxFor(model => model.inuse, new { disabled = true })</p>
                             </div>
                         </td>
+                    </tr>
+                    <tr>
                         <td>
                             @Html.LabelFor(model => model.notes, new { @class = "col-sm-2 control-label" })
                         </td>
-                        <td>
-                            <div class="col-sm-10">
+                        <td colspan="3">
+                            <div class="switch">
                                 <p class="form-control-static">@Model.notes</p>
                             </div>
                         </td>
+                       
                     </tr>
                 </tbody>
             </table>
             if (Model.TaskRecvers != null && Model.TaskRecvers.Count > 0)
             {
-                <table class="table">
+                <table class="table"  role="tabpanel"  class="tab-pane" id="assgin_tasks">
                     <thead>
                         <tr>
                             <th colspan="4">
@@ -178,6 +246,11 @@
         $.fn.bootstrapSwitch.defaults.offText = '禁用';
         $("#@Html.IdFor(model=>model.inuse)").bootstrapSwitch();
         $("[name='TaskRecverInUse']").bootstrapSwitch();
+
+        $('.nav-tabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
     });
 
 </script>

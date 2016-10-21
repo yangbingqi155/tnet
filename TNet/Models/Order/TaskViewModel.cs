@@ -30,6 +30,9 @@ namespace TNet.Models
         [StringLength(60)]
         public new string orderno { get; set; }
 
+        [Display(Name = "受理日期")]
+        public new DateTime? accpeptime { get; set; }
+
         [Display(Name = "创建时间")]
         public new DateTime? cretime { get; set; }
 
@@ -111,6 +114,7 @@ namespace TNet.Models
             this.cretime = task.cretime;
             this.idsend = task.idsend;
             this.send = task.send;
+            this.accpeptime = task.accpeptime;
             this.revctime = task.revctime;
             this.dotime = task.dotime;
             this.finishtime = task.finishtime;
@@ -136,6 +140,7 @@ namespace TNet.Models
             task.cretime = this.cretime;
             task.idsend = this.idsend;
             task.send = this.send;
+            task.accpeptime = this.accpeptime;
             task.revctime = this.revctime;
             task.dotime = this.dotime;
             task.finishtime = this.finishtime;

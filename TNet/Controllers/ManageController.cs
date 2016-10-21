@@ -1519,19 +1519,38 @@ namespace TNet.Controllers
         /// <param name="isAjax"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult AssignTask(string bindOrderNo,string manageUserIds, bool isAjax) {
+        public ActionResult AssignTask(string bindOrderNo,string manageUserIds, bool isAjax,string notes="") {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             ResultModel<ManageUserViewModel> resultEntity = new ResultModel<ManageUserViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "报装订单指派工人成功";
             try {
+                MyOrder order = MyOrderService.GetOrder(Convert.ToInt64(bindOrderNo));
+                User user = null;
+                if (order!=null) {
+                    user = UserBll.Get(order.iduser);
+                }
+
                 Task task = new Task();
                 task.idtask = Pub.ID().ToString();
                 task.orderno = bindOrderNo;
                 task.cretime = DateTime.Now;
+                task.iduser= (user!=null?user.iduser.ToString():"");
+                task.name = (user != null ? user.name : "");
+                task.contact= (user != null ? user.name : "");
+                task.phone = (user != null ? user.phone : "");
                 task.idsend = ((ManageUser)Session["ManageUser"]).ManageUserId.ToString();
                 task.send = ((ManageUser)Session["ManageUser"]).UserName;
                 task.inuse = true;
+                task.notes = notes;
+                task.text = "报装";
+                task.title = order != null ? order.merc + "-报装" : "报装";
+                if (order != null) {
+                    task.accpeptime = order.cretime;
+                }
+                task.status = TCom.Model.Task.TaskStatus.WaitPress;
+                task.tasktype = TCom.Model.Task.TaskType.Setup;
+
                 Task newTask= TaskService.Add(task);
                 List<ManageUser> manageUsers = ManageUserService.GetALL();
                 if (newTask!=null&&!string.IsNullOrEmpty(manageUserIds)) {

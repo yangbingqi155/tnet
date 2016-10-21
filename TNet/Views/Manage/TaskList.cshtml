@@ -1,6 +1,7 @@
 ﻿@using TNet.Util;
 @using TNet.Models;
 @using TNet.BLL;
+@using TCom.Model.Task;
 
 @model List<TaskViewModel>
 
@@ -64,17 +65,22 @@
     <div>
         @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "TaskList", "Manage", ViewContext.RouteData.Values))
     </div>
-  
-    <div  class="list-box">
+
+    <div class="list-box">
         @if (Model.Count > 0)
         {
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, String>(en => en.orderno))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, String>(en => en.title))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, DateTime?>(en => en.cretime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, String>(en => en.send))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, List<TaskRecverViewModel>>(en => en.TaskRecvers))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, String>(en => en.contact))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, String>(en => en.phone))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, int?>(en => en.status))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, DateTime?>(en => en.accpeptime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, DateTime?>(en => en.revctime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, DateTime?>(en => en.dotime))</th>
                         <th>@(AttributeHelper.DisplayAttributeFor<TaskViewModel, DateTime?>(en => en.finishtime))</th>
@@ -89,6 +95,7 @@
                     {
                         <tr>
                             <td>@item.orderno</td>
+                            <td>@item.title</td>
                             <td>@(item.cretime == null ? "" : item.cretime.Value.ToString("yyyy-MM-dd"))</td>
                             <td>@item.send</td>
                             <td>
@@ -101,6 +108,24 @@
                                 }
 
                             </td>
+                            <td>@item.contact</td>
+                            <td>@item.phone</td>
+                            <td>
+                                @{
+                                    TaskStatusItem statusItem = TaskStatus.get(item.status);
+                                    if (statusItem != null)
+                                    {
+                                        <span>@statusItem.text</span>
+                                    }
+                                    else
+                                    {
+                                        <span>未知</span>
+                                    }
+
+                                }
+
+                            </td>
+                            <td>@(item.accpeptime == null ? "" : item.accpeptime.Value.ToString("yyyy-MM-dd"))</td>
                             <td>@(item.revctime == null ? "" : item.revctime.Value.ToString("yyyy-MM-dd"))</td>
                             <td>@(item.dotime == null ? "" : item.dotime.Value.ToString("yyyy-MM-dd"))</td>
                             <td>
@@ -121,14 +146,14 @@
                                 <a href="@Url.Action("TaskDetail","Manage",new { idtask=item.idtask})" class="btn btn-default">详细</a>
                             </td>
                         </tr>
-                    }
+                                    }
                 </tbody>
             </table>
-        }
-        else
-        {
-            <h2>还没有任何派单任务.</h2>
-        }
+                                    }
+                                    else
+                                    {
+                                        <h2>还没有任何派单任务.</h2>
+                                    }
 
     </div>
 </div>
