@@ -15,7 +15,7 @@ namespace TNet.BLL
         public static List<MercType> GetALL()
         {
             TN db = new TN();
-            return db.MercTypes.ToList();
+            return db.MercTypes.OrderBy(en=>en.sortno).ToList();
         }
 
         public static List<SelectItemViewModel<string>> SelectItems()

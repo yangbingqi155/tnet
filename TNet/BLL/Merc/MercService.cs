@@ -22,7 +22,7 @@ namespace TNet.BLL
         public static List<Merc> Search(int idtype = 0, string merc = "", int netype = -1, int isetup = -1) {
             List<Merc> mercs = new List<Merc>();
             TN db = new TN();
-            mercs=db.Mercs.Where(en => (
+            mercs= (from mo in db.Mercs join mt in db.MercTypes on mo.idtype equals mt.idtype orderby mt.sortno descending, mo.sortno descending select mo).Where(en => (
             (idtype == 0 || en.idtype== idtype)
             && (string.IsNullOrEmpty(merc) || en.merc1.Contains(merc))
             &&(netype==-1 || en.netype==netype)
