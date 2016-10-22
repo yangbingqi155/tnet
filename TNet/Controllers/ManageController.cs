@@ -528,17 +528,20 @@ namespace TNet.Controllers
         /// <summary>
         /// 商品列表
         /// </summary>
+        /// <param name="idtype"></param>
+        /// <param name="merc"></param>
+        /// <param name="netype"></param>
+        /// <param name="isetup"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult MercList(int pageIndex = 0)
+        public ActionResult MercList(int idtype = 0, string merc = "", int netype = -1, int isetup = -1, int pageIndex = 0)
         {
             int pageCount = 0;
             int pageSize = 10;
-            List<Merc> entities = MercService.GetALL();
+            List<Merc> entities = MercService.Search(idtype,merc,netype,isetup);
             List<Merc> pageList = entities.Pager<Merc>(pageIndex, pageSize, out pageCount);
-
-
+            
             List<MercViewModel> viewModels = pageList.Select(model =>
             {
                 MercViewModel viewModel = new MercViewModel();
@@ -556,10 +559,48 @@ namespace TNet.Controllers
                 return model;
             }).ToList();
 
+            List<SelectItemViewModel<int>> netypeSelects = MercViewModel.GetNeTypeSelectItems();
+            netypeSelects.Insert(0,new SelectItemViewModel<int>() {
+                DisplayText = "所有接入方式",
+                DisplayValue = -1
+            });
+
+            List<SelectItemViewModel<string>> mercTypeSelects= MercTypeService.SelectItems();
+            mercTypeSelects.Insert(0,new SelectItemViewModel<string>() {
+                 DisplayText="所有类型",
+                 DisplayValue="0"
+            });
+            List<SelectItemViewModel<int>> isetupSelects = new List<SelectItemViewModel<int>>();
+            isetupSelects.Add(new SelectItemViewModel<int>() {
+                 DisplayValue=-1,
+                 DisplayText="所有"
+            });
+            isetupSelects.Add(new SelectItemViewModel<int>() {
+                DisplayValue = 0,
+                DisplayText = "不能报装"
+            });
+            isetupSelects.Add(new SelectItemViewModel<int>() {
+                DisplayValue = 1,
+                DisplayText = "可报装"
+            });
+
+            ViewData["mercTypeSelects"] = mercTypeSelects;
+            ViewData["isetupSelects"] = isetupSelects;
+            ViewData["netypeSelects"] = netypeSelects;
+
+            RouteData.Values.Add("idtype", idtype);
+            RouteData.Values.Add("merc", merc);
+            RouteData.Values.Add("netype", netype);
+            RouteData.Values.Add("isetup", isetup);
+
+            ViewData["idtype"] = idtype;
+            ViewData["merc"] = merc;
+            ViewData["netype"] = netype;
+            ViewData["isetup"] = isetup;
+
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
-
-
+            
             return View(viewModels);
         }
 

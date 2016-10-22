@@ -19,6 +19,19 @@ namespace TNet.BLL
             //return db.Mercs.ToList();
         }
 
+        public static List<Merc> Search(int idtype = 0, string merc = "", int netype = -1, int isetup = -1) {
+            List<Merc> mercs = new List<Merc>();
+            TN db = new TN();
+            mercs=db.Mercs.Where(en => (
+            (idtype == 0 || en.idtype== idtype)
+            && (string.IsNullOrEmpty(merc) || en.merc1.Contains(merc))
+            &&(netype==-1 || en.netype==netype)
+            &&(isetup==-1 || ((isetup==0 || isetup==1) && en.isetup==(isetup == 1)) )
+            )).ToList();
+            return mercs;
+
+        }
+
         public static Merc GetMerc(int idmerc)
         {
             return GetALL().Where(en => en.idmerc == idmerc).FirstOrDefault();
