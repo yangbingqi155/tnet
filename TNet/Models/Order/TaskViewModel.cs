@@ -19,12 +19,12 @@ namespace TNet.Models
         [Display(Name = "用户编号")]
         [Required]
         [StringLength(60)]
-        public string iduser { get; set; }
+        public new string iduser { get; set; }
 
         [Display(Name = "用户名称")]
         [Required]
         [StringLength(50)]
-        public string name { get; set; }
+        public new string name { get; set; }
 
         [Display(Name = "订单编号")]
         [StringLength(60)]
@@ -57,33 +57,33 @@ namespace TNet.Models
         public new DateTime? echotime { get; set; }
 
         [Display(Name = "状态")]
-        public int? status { get; set; }
+        public new int? status { get; set; }
 
         [Display(Name = "联系人")]
         [StringLength(50)]
-        public string contact { get; set; }
+        public new string contact { get; set; }
 
         [Display(Name = "地址")]
         [StringLength(100)]
-        public string addr { get; set; }
+        public new string addr { get; set; }
 
         [Display(Name = "手机号")]
         [StringLength(13)]
-        public string phone { get; set; }
+        public new string phone { get; set; }
 
         [Display(Name = "标题")]
         [StringLength(150)]
-        public string title { get; set; }
+        public new string title { get; set; }
 
         [Display(Name = "内容")]
         [StringLength(200)]
-        public string text { get; set; }
+        public new string text { get; set; }
 
         [Display(Name = "工单类型")]
-        public int? tasktype { get; set; }
+        public new int? tasktype { get; set; }
 
         [Display(Name = "分数")]
-        public int? score { get; set; }
+        public new int? score { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(50)]

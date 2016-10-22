@@ -125,6 +125,7 @@ function submit() {
                 idc_img1: idc_img1,
                 idc_img2: idc_img2
             };
+             
             Pub.post({
                 url: "Service/Order/Create",
                 data: JSON.stringify(data),

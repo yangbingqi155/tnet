@@ -29,8 +29,8 @@ namespace TCom.EF
 
         [Key]
         [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idspec { get; set; }
+        [StringLength(60)]
+        public string idspec { get; set; }
 
         [StringLength(60)]
         public string spec { get; set; }

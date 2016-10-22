@@ -210,6 +210,10 @@ namespace TCom.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<MyOrder>()
+                .Property(e => e.idspec)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MyOrder>()
                 .Property(e => e.spec)
                 .IsUnicode(false);
 

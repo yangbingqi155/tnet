@@ -15,7 +15,7 @@ namespace TNet.Models.Order
 
         public string merc { get; set; }
 
-        public int idspec { get; set; }
+        public string idspec { get; set; }
 
         public string spec { get; set; }
 

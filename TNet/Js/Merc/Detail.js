@@ -12,7 +12,6 @@ function getDetailData() {
         if (idmerc) {
             Pub.get({
                 url: "Service/Merc/Detail/" + idmerc,
-
                 loadingMsg: "加载中...",
                 success: function (data) {
                     var html = "";
@@ -72,6 +71,7 @@ function getDetailData() {
                                         for (var h = 0; h < data.Data.SetupAddrs.length; h++) {
                                             var sa = data.Data.SetupAddrs[h];
                                             if (sa.idtype == data.Data.Merc.idtype && sa.idsetup == s.idsetup) {
+                                                sahtml += '<div class="setup_addr_line"></div>';
                                                 sahtml += '<div class="setup_addr"><div><span>电话:</span>' + sa.phone + "&nbsp;&nbsp;" + sa.service + '</div>';
                                                 sahtml += '<div><span>受理:</span>' + sa.acceptime + '</div>';
                                                 sahtml += '<div><span>安装:</span>' + sa.setuptime + '</div>';

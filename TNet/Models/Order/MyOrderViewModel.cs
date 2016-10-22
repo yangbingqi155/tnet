@@ -34,7 +34,7 @@ namespace TNet.Models
 
         [Display(Name = "规格id")]
         [Required]
-        public new  int idspec { get; set; }
+        public new  string idspec { get; set; }
 
         [Display(Name = "规格")]
         [Required]
