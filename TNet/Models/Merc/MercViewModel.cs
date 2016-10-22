@@ -72,7 +72,7 @@ namespace TNet.Models
         public new  int? sortno { get; set; }
 
         [Display(Name = "可否报装")]
-        public bool isetup { get; set; }
+        public new bool isetup { get; set; }
 
         [Display(Name = "启用")]
         [Required]
@@ -80,10 +80,10 @@ namespace TNet.Models
 
         [Display(Name = "商家编号")]
         [StringLength(50)]
-        public string idbuss { get; set; }
+        public new string idbuss { get; set; }
 
         [Display(Name = "类型")]
-        public int? idclass { get; set; }
+        public new int? idclass { get; set; }
 
         public   List<MercTypeViewModel> mercTypes { get; set; }
 

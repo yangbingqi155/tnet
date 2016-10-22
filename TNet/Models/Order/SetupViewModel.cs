@@ -15,31 +15,31 @@ namespace TNet.Models
         [Required]
         [Display(Name = "安装编号")]
         [StringLength(60)]
-        public string idsetup { get; set; }
+        public new string idsetup { get; set; }
 
         [Required]
         [Display(Name = "类型编号")]
         [StringLength(60)]
-        public string idtype { get; set; }
+        public new string idtype { get; set; }
         
         [Display(Name = "安装标题")]
         [StringLength(160)]
-        public string setup1 { get; set; }
+        public new string setup1 { get; set; }
 
         [Display(Name = "所需资源")]
         [StringLength(150)]
-        public string resource { get; set; }
+        public new string resource { get; set; }
 
         [Display(Name = "报装方式")]
         [StringLength(120)]
-        public string setuptype { get; set; }
+        public new string setuptype { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(10)]
-        public string notes { get; set; }
+        public new string notes { get; set; }
 
         [Display(Name = "启用")]
-        public bool inuse { get; set; }
+        public new bool inuse { get; set; }
 
         [Display(Name = "产品类型")]
         public MercTypeViewModel merctype { get; set; }

@@ -14,45 +14,45 @@ namespace TNet.Models
         [Display(Name = "办理点编号")]
         [StringLength(60)]
         [Required]
-        public string idaddr { get; set; }
+        public new  string idaddr { get; set; }
 
         [Display(Name = "类型编号")]
         [StringLength(60)]
         [Required]
-        public string idtype { get; set; }
+        public new string idtype { get; set; }
 
         [Display(Name = "安装编号")]
         [StringLength(60)]
         [Required]
-        public string idsetup { get; set; }
+        public new string idsetup { get; set; }
 
         [Display(Name = "办理地点")]
         [Required]
         [StringLength(150)]
-        public string addr { get; set; }
+        public new string addr { get; set; }
 
         [Display(Name = "联系电话")]
         [StringLength(12)]
-        public string phone { get; set; }
+        public new string phone { get; set; }
 
         [Display(Name = "服务热线")]
         [StringLength(30)]
-        public string service { get; set; }
+        public new string service { get; set; }
 
         [Display(Name = "备注")]
         [StringLength(10)]
-        public string notes { get; set; }
+        public new string notes { get; set; }
 
         [Display(Name = "办理时间")]
         [StringLength(50)]
-        public string acceptime { get; set; }
+        public new string acceptime { get; set; }
 
         [Display(Name = "安装时间")]
         [StringLength(60)]
-        public string setuptime { get; set; }
+        public new string setuptime { get; set; }
 
         [Display(Name = "启用")]
-        public bool inuse { get; set; }
+        public new bool inuse { get; set; }
 
         [Display(Name ="报装")]
         public SetupViewModel setup { get; set; }
