@@ -22,6 +22,11 @@ function getDetailData() {
                             $(".sellpt").html(data.Data.Merc.sellpt);
                             $(".price").html("￥" + data.Data.Merc.baseprice);
                             $(".sellcount").html("销量：" + data.Data.Merc.sellcount);
+                            if (data.Data.Merc.descs) {
+                                $(".Merc_Detail").html(data.Data.Merc.descs);
+                            }
+                            
+                            
                             var imgs = data.Data.Imgs;
                             if (!imgs || imgs.length <= 0) {
                                 imgs = ["Images/default_bg.png"];

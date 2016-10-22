@@ -49,22 +49,22 @@ namespace Util
         }
         public static void e(string t)
         {
-            return;
-            lock (lk)
-            {
+            //return;
+            //lock (lk)
+            //{
 
 
-                FileStream fs = new FileStream("c:\\1.txt", FileMode.OpenOrCreate | FileMode.Append);
+            //    FileStream fs = new FileStream("c:\\1.txt", FileMode.OpenOrCreate | FileMode.Append);
 
-                StreamWriter sw = new StreamWriter(fs);
-                //开始写入
-                sw.Write(t + "\r\n\r\n\r\n\r\n====\r\n\r\n\r\n\r\n");
-                //清空缓冲区
-                sw.Flush();
-                //关闭流
-                sw.Close();
-                fs.Close();
-            }
+            //    StreamWriter sw = new StreamWriter(fs);
+            //    //开始写入
+            //    sw.Write(t + "\r\n\r\n\r\n\r\n====\r\n\r\n\r\n\r\n");
+            //    //清空缓冲区
+            //    sw.Flush();
+            //    //关闭流
+            //    sw.Close();
+            //    fs.Close();
+            //}
         }
         /// <summary>
         /// 微信公众号appid

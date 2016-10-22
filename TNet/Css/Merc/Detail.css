@@ -10,7 +10,6 @@
     line-height: 30px;
     padding-bottom: 0px;
     font-size: 1.6rem;
-    
 }
 
 .sellpt {
@@ -54,7 +53,7 @@
     color: #222222;
     height: 40px;
     line-height: 40px;
-    border-bottom:solid #d6d6d6 1px;
+    border-bottom: solid #d6d6d6 1px;
 }
 
 .spec {
@@ -129,7 +128,7 @@
 
             .buy .buy_l a.buy_amount span {
                 color: #ff0000;
-                font-weight:bold;
+                font-weight: bold;
             }
 
     .buy .buy_r {
@@ -160,49 +159,63 @@
             cursor: pointer;
         }
 
-        .buy_num,.buy_num_hid{
-            display:block;
-            height:auto;
-            padding:0px;
-            text-align:right;
-        }
-        .buy_num_hid{
-            display:none;
-        }
-        .num{
-            padding:0px 10px 0px 0px;
-        }
-        .num_box{
-            display:inline-block;
-            border:solid #d6d6d6 1px;
-            border-radius:8px;
-            margin:10px;
-        }
-        .num_box a.op{
-            display:inline-block;
-            height:30px;
-            line-height:30px;
-            color:#222222;
-            padding:5px 20px 5px 20px;
-           font-weight:bold;
-            
-        }
-        .num_box a.nums{
-            border-left:solid 1px #d6d6d6;
-            border-right:solid 1px #d6d6d6;
-            padding:0px 30px 0px 30px;
-            color:#222222;
-            height:30px;
-            line-height:30px;
-        }
+.buy_num, .buy_num_hid {
+    display: block;
+    height: auto;
+    padding: 0px;
+    text-align: right;
+}
 
-        .lv{
-            display:block;
-            height:36px;
-            line-height:36px;
-            padding:0px 10px 0px 10px;
-        }
+.buy_num_hid {
+    display: none;
+}
 
-        .setup{
-            padding-bottom:20px;
-        }
+.num {
+    padding: 0px 10px 0px 0px;
+}
+
+.num_box {
+    display: inline-block;
+    border: solid #d6d6d6 1px;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+    .num_box a.op {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        color: #222222;
+        padding: 5px 20px 5px 20px;
+        font-weight: bold;
+    }
+
+    .num_box a.nums {
+        border-left: solid 1px #d6d6d6;
+        border-right: solid 1px #d6d6d6;
+        padding: 0px 30px 0px 30px;
+        color: #222222;
+        height: 30px;
+        line-height: 30px;
+    }
+
+.lv {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0px 10px 0px 10px;
+}
+
+.setup {
+    padding-bottom: 20px;
+}
+
+
+.Merc_Detail {
+    position: relative;
+    display: block;
+    height: auto;
+    min-height: 100px;
+    padding: 10px 8px 20px 8px;
+    overflow: auto;
+}

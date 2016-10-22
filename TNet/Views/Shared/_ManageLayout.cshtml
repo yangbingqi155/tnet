@@ -21,9 +21,11 @@
     <script type="text/javascript" src="@Url.Content("~/Js/bootstrap-switch/bootstrap-switch.min.js")" charset="UTF-8"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.min.js?v=20161020")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Com/jquery.validate.unobtrusive.min.js?v=20161020")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Js/Pub.js?v=20161020")"></script>
     <script type="text/javascript" src="@Url.Content("~/Js/Manage/Base.js?v=20161020")"></script>
+
 </head>
-<body>
+<body root="@Url.Content("~/")" >
     <div class="T">
         <div class="TL">您好: @ViewBag.MUName</div>
         <div class="TR"><a href="@Url.Action("SignOut","Manage")">注销</a>|<a href="#">帮助</a></div>
