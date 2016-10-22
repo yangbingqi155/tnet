@@ -10,11 +10,10 @@ namespace TCom.EF
     public partial class Setup
     {
         [Key]
-        [Column(Order = 0)]
         [StringLength(60)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string idsetup { get; set; }
-        
+
+        [Required]
         [StringLength(60)]
         public string idtype { get; set; }
 

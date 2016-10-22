@@ -3,7 +3,7 @@
     position: relative;
     display: block;
     height: auto;
-    background-color:#ffffff;
+    background-color: #ffffff;
 }
 
 .pitem {
@@ -22,7 +22,7 @@
     height: 100%;
     position: relative;
     overflow: hidden;
-    background-color:transparent;
+    background-color: transparent;
 }
 
 .pitem_r {
@@ -55,4 +55,14 @@
     display: block;
     margin: 0px auto 20px auto;
     border: none;
+}
+
+
+.setup div.setup_addr_line {
+    display: block;
+    height: 1px;
+    line-height:1px;
+    margin:0px 10px 0px 10px;
+    font-size:0px;
+    border-top: dotted #d6d6d6 1px;
 }

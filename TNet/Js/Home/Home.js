@@ -54,7 +54,7 @@ function setNotice() {
 }
 
 function load_fail(msg) {
-    Pub.noData("#notice", msg, getNotice);
+    $("#notice").html(msg);
     if (notice_tag) {
         window.clearInterval(notice_tag);
     }

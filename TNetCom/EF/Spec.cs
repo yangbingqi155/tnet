@@ -10,14 +10,10 @@ namespace TCom.EF
     public partial class Spec
     {
         [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idmerc { get; set; }
+        [StringLength(60)]
+        public string idspec { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idspec { get; set; }
+        public int idmerc { get; set; }
 
         [Column("spec")]
         [StringLength(60)]

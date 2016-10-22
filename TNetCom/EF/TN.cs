@@ -318,6 +318,10 @@ namespace TCom.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Spec>()
+                .Property(e => e.idspec)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Spec>()
                 .Property(e => e.spec1)
                 .IsUnicode(false);
 

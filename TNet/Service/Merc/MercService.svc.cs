@@ -94,10 +94,10 @@ namespace TNet.Service.Merc
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 result.Code = R.Error;
-                result.Msg = "出现异常";
+                result.Msg = "出现异常"+e.Message;
             }
             return result;
         }

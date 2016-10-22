@@ -27,7 +27,7 @@
 }
 
 .setup .setup_addr{
-     display:inline-block;
+     display:block;
      height:auto;
      padding: 0px 10px 0px 10px;
 }
