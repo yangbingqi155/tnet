@@ -9,6 +9,13 @@
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
     var pageCount = Convert.ToInt32(ViewData["pageCount"]);
     var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+    int idtype = Convert.ToInt32(ViewData["idtype"]);
+    string merc = ViewData["merc"].ToString();
+    int netype = Convert.ToInt32(ViewData["netype"]);
+    int isetup = Convert.ToInt32(ViewData["isetup"]);
+    List<SelectItemViewModel<string>> mercTypeSelects =(List<SelectItemViewModel<string>>) ViewData["mercTypeSelects"];
+    List<SelectItemViewModel<int>> isetupSelects = (List<SelectItemViewModel<int>>)ViewData["isetupSelects"];
+    List<SelectItemViewModel<int>> netypeSelects = (List<SelectItemViewModel<int>>)ViewData["netypeSelects"];
 }
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
@@ -18,15 +25,37 @@
 </div>
 <div class="ManageRightContent">
     <div>
-        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "MercList", "Manage", ViewContext.RouteData.Values))
-    </div>
-    <div>
         <a class="btn btn-primary" @*target="_blank"*@ href="@Url.Action("MercEdit","Manage")">新增产品</a>
     </div>
+    <div style="margin-top:10px;">
+        <form action="@Url.Action("MercList","Manage")" method="post">
+            <div class="row">
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="产品名称" name="merc" value="@merc">
+                </div>
+                <div class="col-xs-2">
+                   @Html.DropDownList("idtype", new SelectList(mercTypeSelects, "DisplayValue", "DisplayText"), new { @class = "form-control", Value = idtype })
+                </div>
+                <div class="col-xs-2">
+                    @Html.DropDownList("netype", new SelectList(netypeSelects, "DisplayValue", "DisplayText"), new { @class = "form-control", Value = netype })
+                </div>
+                <div class="col-xs-2">
+                    @Html.DropDownList("isetup", new SelectList(isetupSelects, "DisplayValue", "DisplayText"), new { @class = "form-control", Value = isetup })
+
+                </div>
+                <div class="col-xs-1">
+                    <input type="submit" value="搜索" class="btn btn-primary" placeholder="" />
+                </div>
+            </div>
+        </form>
+    </div>
     <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "MercList", "Manage", ViewContext.RouteData.Values))
+    </div>
+    <div class="list-box">
         @if (Model.Count > 0)
         {
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>@(AttributeHelper.DisplayAttributeFor<MercViewModel, String>(en => en.MercTypeName))</th>

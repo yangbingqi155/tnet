@@ -66,9 +66,10 @@
         @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "OrderList", "Manage", ViewContext.RouteData.Values))
     </div>
 
-    <div @*style="overflow:scroll;min-width:2180px;"*@>
-        @if (Model.Count > 0) {
-            <table class="table table-hover table-responsive">
+    <div class="list-box">
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>操作</th>
@@ -93,10 +94,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model) {
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
-                                @if (item.otype == TNet.Models.Order.OrderType.Setup) {
+                                @if (item.otype == TNet.Models.Order.OrderType.Setup)
+                                {
                                     <a href="javascript:void(0);" onclick='openModal("@item.orderno");' class="btn btn-default">派单</a>
                                 }
 
@@ -104,43 +107,45 @@
                             </td>
                             <td>
                                 @item.orderno
-                            @if (!string.IsNullOrEmpty(item.img)) {
-                                <br />
-                                <img class="smallMercImage" src="@Url.Content(@item.img)" title="@item.merc" />
-                            }
-                        </td>
-                        <td>@item.user_name</td>
-                        <td>@item.merc</td>
-                        <td>@item.spec</td>
-                        <td>@item.month</td>
-                        <td>@item.attmonth</td>
-                        <td>@item.count</td>
-                        <td>@item.price</td>
-                        <td>@item.contact</td>
-                        <td>@item.addr</td>
-                        <td>@item.phone</td>
-                        <td>@item.cretime</td>
-                        <td>@(item.stime==null?"":item.stime.Value.ToString("yyyy-MM-dd"))</td>
-                        <td>@(item.entime==null?"":item.entime.Value.ToString("yyyy-MM-dd"))</td>
-                        <td>
-                            @TNet.Models.Order.OrderType.GetSelectItems().Where(en => en.DisplayValue == item.otype).FirstOrDefault().DisplayText
-                        </td>
-                        <td>
-                            @TNet.Models.Order.OrderStatus.GetSelectItems().Where(en => en.DisplayValue == item.status).FirstOrDefault().DisplayText
-                        </td>
-                        <td>@item.notes</td>
+                                @if (!string.IsNullOrEmpty(item.img))
+                                {
+                                    <br />
+                                    <img class="smallMercImage" src="@Url.Content(@item.img)" title="@item.merc" />
+                                }
+                            </td>
+                            <td>@item.user_name</td>
+                            <td>@item.merc</td>
+                            <td>@item.spec</td>
+                            <td>@item.month</td>
+                            <td>@item.attmonth</td>
+                            <td>@item.count</td>
+                            <td>@item.price</td>
+                            <td>@item.contact</td>
+                            <td>@item.addr</td>
+                            <td>@item.phone</td>
+                            <td>@item.cretime</td>
+                            <td>@(item.stime == null ? "" : item.stime.Value.ToString("yyyy-MM-dd"))</td>
+                            <td>@(item.entime == null ? "" : item.entime.Value.ToString("yyyy-MM-dd"))</td>
+                            <td>
+                                @TNet.Models.Order.OrderType.GetSelectItems().Where(en => en.DisplayValue == item.otype).FirstOrDefault().DisplayText
+                            </td>
+                            <td>
+                                @TNet.Models.Order.OrderStatus.GetSelectItems().Where(en => en.DisplayValue == item.status).FirstOrDefault().DisplayText
+                            </td>
+                            <td>@item.notes</td>
 
-                        <td>
-                            <div class="switch">
-                                <input type="checkbox" onchange="enableOrder('@Url.Action("OrderEnable", "Manage", new { orderno = item.orderno, enable = !item.inuse, isAjax = true })')" name="enableOrder" @(item.inuse ? "checked" : "") />
-                            </div>
-                        </td>
-                    </tr>
+                            <td>
+                                <div class="switch">
+                                    <input type="checkbox" onchange="enableOrder('@Url.Action("OrderEnable", "Manage", new { orderno = item.orderno, enable = !item.inuse, isAjax = true })')" name="enableOrder" @(item.inuse ? "checked" : "") />
+                                </div>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
         }
-        else {
+        else
+        {
             <h2>没有找到任何订单.</h2>
         }
 
@@ -159,13 +164,10 @@
                 <div class="row">
                     <div class="col-xs-3">
                         <input type="hidden" id="currentSetManageUserId" value="" />
-                        <input type="text" class="form-control" placeholder="用户名" name="searchUserName" value="" id="searchUserName" />
+                        <input type="text" class="form-control" placeholder="用户名或者空" name="searchUserName" value="" id="searchUserName" />
                     </div>
                     <div class="col-xs-3">
                         <input type="submit" value="搜索" class="btn btn-primary" placeholder=".col-xs-1" id="btnSearch" />
-                    </div>
-                    <div class="col-xs-3">
-                        <input type="button" value="指派选定的工人" class="btn btn-primary" placeholder=".col-xs-1" id="btnAssign" />
                     </div>
                 </div>
                 <div id="searchResults" class="userSearchResults"></div>
@@ -188,35 +190,36 @@
         $("#btnSearch").click(function () {
             searchUsers();
         });
-        $("#btnAssign").click(function () {
-            var selectedManageUsers = $('input[name="chkManageUser"]:checked');
-            if (selectedManageUsers.length == 0) {
-                alert("还没选中任何工人,请先选中。");
-                return;
-            }
-            var selectedManageUserIds = "";
-            $(selectedManageUsers).each(function (i, d) {
-                if (i == 0) {
-                    selectedManageUserIds += $(d).val();
-                }
-                else {
-                    selectedManageUserIds += "," + $(d).val();
-                }
-            });
-            var url = "@Url.Action("AssignTask", "Manage")";
-            var data = { bindOrderNo: $("#currentSetOrderNo").val(), manageUserIds: selectedManageUserIds, isAjax: true };
-            $.post(url, data, function (returndata) {
-                returndata = eval("(" + returndata + ")");
-                if (returndata.Code == 1) {
-                    closeModal();
-                    alert(returndata.Message);
-                }
-                else if (returndata.Code == 2) {
-                    alert(returndata.Message);
-                }
-            });
-        });
     });
+    function assignTask() {
+        var selectedManageUsers = $('input[name="chkManageUser"]:checked');
+        if (selectedManageUsers.length == 0) {
+            alert("还没选中任何工人,请先选中。");
+            return;
+        }
+        var selectedManageUserIds = "";
+        $(selectedManageUsers).each(function (i, d) {
+            if (i == 0) {
+                selectedManageUserIds += $(d).val();
+            }
+            else {
+                selectedManageUserIds += "," + $(d).val();
+            }
+        });
+        var url = "@Url.Action("AssignTask", "Manage")";
+        var data = { bindOrderNo: $("#currentSetOrderNo").val(), manageUserIds: selectedManageUserIds, isAjax: true, notes: $("#txtNotes").val() };
+        $.post(url, data, function (returndata) {
+            returndata = eval("(" + returndata + ")");
+            if (returndata.Code == 1) {
+                closeModal();
+                alert(returndata.Message);
+            }
+            else if (returndata.Code == 2) {
+                alert(returndata.Message);
+            }
+        });
+    }
+
     function searchUsers() {
         var url = "@Url.Action("SearchManageUsers","Manage")";
         var data = { userName: $("#searchUserName").val(), bindOrderNo: $("#currentSetOrderNo").val(), isAjax: true };

@@ -113,7 +113,6 @@ namespace TNet.BLL
             oldTask.echotime = task.echotime;
             oldTask.notes = task.notes;
             oldTask.inuse = task.inuse;
-
             db.SaveChanges();
             return oldTask;
         }

@@ -375,7 +375,7 @@ body {
     top: 50px;
     bottom: 0px;
     background-color: #efefef;
-    overflow:auto;
+    overflow: auto;
 }
 
 .manageRight {
@@ -392,10 +392,12 @@ body {
     overflow: auto;
     margin-bottom: 20px;
 }
-.form-horizontal .form-group{
-    margin-left:0px;
-    margin-right:0px;
+
+.form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
 }
+
 .ManageRightTitle {
     display: block;
     height: 50px;
@@ -421,7 +423,7 @@ body {
 }
 
 .merc-edit-box {
-     display:block;
+    display: block;
 }
 
 .form-group div.datetime_picker {
@@ -467,15 +469,22 @@ span.input-group-addon span.glyphicon-remove {
 
 .smallMercImage {
     width: 60px;
-    height:60px;
-    outline:none;
+    height: 60px;
+    outline: none;
 }
 
 .seperate_line {
     border-bottom: 1px solid #ddd;
 }
 
+.list-box {
+    margin-top: 10px;
+}
 
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th{
-    padding:10px 10px 10px 10px;
+nav .pagination {
+    margin:10px 0 0 0;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    padding: 10px 10px 10px 10px;
 }

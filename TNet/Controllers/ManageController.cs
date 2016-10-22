@@ -528,17 +528,20 @@ namespace TNet.Controllers
         /// <summary>
         /// 商品列表
         /// </summary>
+        /// <param name="idtype"></param>
+        /// <param name="merc"></param>
+        /// <param name="netype"></param>
+        /// <param name="isetup"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult MercList(int pageIndex = 0)
+        public ActionResult MercList(int idtype = 0, string merc = "", int netype = -1, int isetup = -1, int pageIndex = 0)
         {
             int pageCount = 0;
             int pageSize = 10;
-            List<Merc> entities = MercService.GetALL();
+            List<Merc> entities = MercService.Search(idtype,merc,netype,isetup);
             List<Merc> pageList = entities.Pager<Merc>(pageIndex, pageSize, out pageCount);
-
-
+            
             List<MercViewModel> viewModels = pageList.Select(model =>
             {
                 MercViewModel viewModel = new MercViewModel();
@@ -556,10 +559,48 @@ namespace TNet.Controllers
                 return model;
             }).ToList();
 
+            List<SelectItemViewModel<int>> netypeSelects = MercViewModel.GetNeTypeSelectItems();
+            netypeSelects.Insert(0,new SelectItemViewModel<int>() {
+                DisplayText = "所有接入方式",
+                DisplayValue = -1
+            });
+
+            List<SelectItemViewModel<string>> mercTypeSelects= MercTypeService.SelectItems();
+            mercTypeSelects.Insert(0,new SelectItemViewModel<string>() {
+                 DisplayText="所有类型",
+                 DisplayValue="0"
+            });
+            List<SelectItemViewModel<int>> isetupSelects = new List<SelectItemViewModel<int>>();
+            isetupSelects.Add(new SelectItemViewModel<int>() {
+                 DisplayValue=-1,
+                 DisplayText="所有"
+            });
+            isetupSelects.Add(new SelectItemViewModel<int>() {
+                DisplayValue = 0,
+                DisplayText = "不能报装"
+            });
+            isetupSelects.Add(new SelectItemViewModel<int>() {
+                DisplayValue = 1,
+                DisplayText = "可报装"
+            });
+
+            ViewData["mercTypeSelects"] = mercTypeSelects;
+            ViewData["isetupSelects"] = isetupSelects;
+            ViewData["netypeSelects"] = netypeSelects;
+
+            RouteData.Values.Add("idtype", idtype);
+            RouteData.Values.Add("merc", merc);
+            RouteData.Values.Add("netype", netype);
+            RouteData.Values.Add("isetup", isetup);
+
+            ViewData["idtype"] = idtype;
+            ViewData["merc"] = merc;
+            ViewData["netype"] = netype;
+            ViewData["isetup"] = isetup;
+
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
-
-
+            
             return View(viewModels);
         }
 
@@ -1017,7 +1058,7 @@ namespace TNet.Controllers
         /// <returns></returns>
         [HttpPost]
         [ManageLoginValidation]
-        public ActionResult SpecEnable(int idspec, bool enable, bool isAjax)
+        public ActionResult SpecEnable(string idspec, bool enable, bool isAjax)
         {
             ResultModel<SpecViewModel> resultEntity = new ResultModel<SpecViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
@@ -1040,14 +1081,15 @@ namespace TNet.Controllers
         /// <summary>
         /// 新增\编辑产品规格
         /// </summary>
+        /// <param name="idmerc"></param>
         /// <param name="idspec"></param>
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpGet]
-        public ActionResult SpecEdit(int idmerc, int idspec = 0)
+        public ActionResult SpecEdit(int idmerc, string idspec = "")
         {
             SpecViewModel model = new SpecViewModel();
-            if (idspec > 0)
+            if (!string.IsNullOrEmpty(idspec))
             {
                 model = SpecService.GetSpec(idspec);
             }
@@ -1070,9 +1112,9 @@ namespace TNet.Controllers
         {
             Spec spec = new Spec();
             model.CopyToBase(spec);
-            if (spec.idspec == 0)
+            if (string.IsNullOrEmpty( spec.idspec) )
             {
-                spec.idspec = IdentifyService.GetMaxIdentifyID<Spec>(en => en.idspec) + 1;
+                spec.idspec = Pub.ID().ToString();
                 //新增
                 spec = SpecService.Add(spec);
             }
@@ -1518,19 +1560,38 @@ namespace TNet.Controllers
         /// <param name="isAjax"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult AssignTask(string bindOrderNo,string manageUserIds, bool isAjax) {
+        public ActionResult AssignTask(string bindOrderNo,string manageUserIds, bool isAjax,string notes="") {
             ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             ResultModel<ManageUserViewModel> resultEntity = new ResultModel<ManageUserViewModel>();
             resultEntity.Code = ResponseCodeType.Success;
             resultEntity.Message = "报装订单指派工人成功";
             try {
+                MyOrder order = MyOrderService.GetOrder(Convert.ToInt64(bindOrderNo));
+                User user = null;
+                if (order!=null) {
+                    user = UserBll.Get(order.iduser);
+                }
+
                 Task task = new Task();
                 task.idtask = Pub.ID().ToString();
                 task.orderno = bindOrderNo;
                 task.cretime = DateTime.Now;
+                task.iduser= (user!=null?user.iduser.ToString():"");
+                task.name = (user != null ? user.name : "");
+                task.contact= (user != null ? user.name : "");
+                task.phone = (user != null ? user.phone : "");
                 task.idsend = ((ManageUser)Session["ManageUser"]).ManageUserId.ToString();
                 task.send = ((ManageUser)Session["ManageUser"]).UserName;
                 task.inuse = true;
+                task.notes = notes;
+                task.text = "报装";
+                task.title = order != null ? order.merc + "-报装" : "报装";
+                if (order != null) {
+                    task.accpeptime = order.cretime;
+                }
+                task.status = TCom.Model.Task.TaskStatus.WaitPress;
+                task.tasktype = TCom.Model.Task.TaskType.Setup;
+
                 Task newTask= TaskService.Add(task);
                 List<ManageUser> manageUsers = ManageUserService.GetALL();
                 if (newTask!=null&&!string.IsNullOrEmpty(manageUserIds)) {

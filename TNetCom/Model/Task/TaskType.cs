@@ -24,7 +24,7 @@ namespace TCom.Model.Task
         /// <summary>
         /// 建议
         /// </summary>
-        public readonly static int Suggest = 20;
+        public readonly static int Suggest = 30;
 
 
         public static Dictionary<int, string> s = new Dictionary<int, string>()

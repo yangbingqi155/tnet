@@ -37,7 +37,7 @@ namespace TNet.BLL
             return specs;
         }
 
-        public static SpecViewModel GetSpec(int idspec)
+        public static SpecViewModel GetSpec(string idspec)
         {
             SpecViewModel viewModel = null;
             Spec spec= GetALL().Where(en => en.idspec == idspec).FirstOrDefault();
@@ -50,7 +50,7 @@ namespace TNet.BLL
             return viewModel;
         }
 
-        public static Spec Get(int idspec)
+        public static Spec Get(string idspec)
         {
             Spec spec = GetALL().Where(en => en.idspec == idspec).FirstOrDefault();
             return spec;
