@@ -80,8 +80,9 @@ namespace TCom.Model.Task
                 WaitPress,
                 new TaskStatusItem()
                 {
+                    
                     text = "等待处理",
-                    ops = ""
+                    ops = "pause|finish"
                 }
             },
             {
@@ -89,7 +90,7 @@ namespace TCom.Model.Task
                 new TaskStatusItem()
                 {
                     text = "处理中...",
-                    ops = ""
+                    ops = "pause|finish"
                 }
             },
             {
@@ -97,7 +98,7 @@ namespace TCom.Model.Task
                 new TaskStatusItem()
                 {
                     text = "暂停...",
-                    ops = ""
+                    ops = "continue"
                 }
             },
             {

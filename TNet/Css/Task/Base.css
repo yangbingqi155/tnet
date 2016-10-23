@@ -1,0 +1,65 @@
+﻿
+
+/********order_ops**********/
+
+.task_ops {
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    border-top: solid #d6d6d6 1px;
+}
+
+    .task_ops .ops {
+        display: block;
+        float: right;
+        width: auto;
+    }
+
+
+    .task_ops .time_num {
+        display: block;
+        float: left;
+        height: 40px;
+        line-height: 40px;
+        padding: 0px 10px 0px 0px;
+        margin: 5px 10px 5px 10px;
+        width: auto;
+        color: #ff0000;
+        font-weight: bold;
+    }
+
+
+a.pause, a.finish {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 20px 0px 20px;
+    margin: 5px 5px 5px 5px;
+    border: solid #d6d6d6 1px;
+    border-radius: 5px;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+a.pause, a.finish {
+    color: #ffffff;
+    background: #ce2828;
+    background: linear-gradient(#ce2828,#ce2228);
+}
+
+
+
+
+
+.setup_tag {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+    background-image: url("../../Images/Order/setup_tag.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.5;
+}
