@@ -339,6 +339,7 @@
     <Content Include="Css\bootstrap-switch\bootstrap3\bootstrap-switch.min.css" />
     <Content Include="Css\Notice\Detail.css" />
     <Content Include="Css\Notice\List.css" />
+    <Content Include="Css\Task\Base.css" />
     <Content Include="Js\bootstrap-switch\bootstrap-switch.js" />
     <Content Include="Js\bootstrap-switch\bootstrap-switch.min.js" />
     <Content Include="Css\Merc\Base.css" />
@@ -607,6 +608,7 @@
     <Content Include="Js\Com\_references.js" />
     <Content Include="Js\Manage\Menu.js" />
     <Content Include="Js\Home\Home.js" />
+    <Content Include="Js\Task\Base.js" />
     <Content Include="Js\Task\MyTask.js" />
     <Content Include="Resource\Images\Buss\104ecb02-a814-4e03-9793-017615260131.jpg" />
     <Content Include="Resource\Images\Buss\7b494041-1b07-467e-84e5-184234f9698a.jpg" />

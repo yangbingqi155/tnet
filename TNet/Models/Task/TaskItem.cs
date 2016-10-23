@@ -10,11 +10,39 @@ namespace TNet.Models.Task
     [NotMapped]
     public class TaskItem : TCom.EF.Task
     {
+        public string tasktype_t
+        {
+            get
+            {
+                return TaskType.get(this.tasktype);
+            }
+            set
+            {
+
+            }
+        }
+
         public TaskStatusItem statusObj
         {
             get
             {
                 return TaskStatus.get(this.status);
+            }
+            set
+            {
+
+            }
+        }
+
+        public long workTime
+        {
+            get
+            {
+                if (this.revctime != null)
+                {
+                    return (long)(DateTime.Now - this.revctime.Value).TotalMinutes;
+                }
+                return 0;
             }
             set
             {
@@ -48,7 +76,6 @@ namespace TNet.Models.Task
             this.phone = data.phone;
             this.title = data.title;
             this.text = data.text;
-            this.tasktype = data.tasktype;
             this.tasktype = data.tasktype;
             this.score = data.score;
             this.inuse = data.inuse;

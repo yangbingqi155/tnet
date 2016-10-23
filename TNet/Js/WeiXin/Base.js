@@ -54,6 +54,8 @@ function setTopMenuEvent(func,css) {
 function getTime(t) {
     if (t) {
         t = t.substring(0, t.length - 3);
+    } else {
+        t = "";
     }
     return t;
 }
@@ -64,6 +66,8 @@ function getTime(t) {
 function getTimeYYMMHH(t) {
     if (t) {
         t = t.substring(0, t.length - 9);
+    } else {
+        t = "";
     }
     return t;
 }
