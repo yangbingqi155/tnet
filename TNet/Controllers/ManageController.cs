@@ -1759,6 +1759,355 @@ namespace TNet.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 广告类型列表
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AdvertiseTypeList()
+        {
+            List<AdvertiseType> entities = AdvertiseTypeService.GetALL();
+   
+            List<AdvertiseTypeViewModel> viewModels = entities.Select(model =>
+            {
+                AdvertiseTypeViewModel viewModel = new AdvertiseTypeViewModel();
+                viewModel.CopyFromBase(model);
+                return viewModel;
+            }).ToList();
+
+            return View(viewModels);
+        }
+
+
+        /// <summary>
+        /// 启用或者禁用广告类型
+        /// </summary>
+        /// <param name="idat"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult AdvertiseTypeEnable(string idat, bool enable, bool isAjax)
+        {
+            ResultModel<AdvertiseTypeViewModel> resultEntity = new ResultModel<AdvertiseTypeViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                AdvertiseType advertiseType = AdvertiseTypeService.Get(idat);
+                advertiseType.inuse = enable;
+                AdvertiseTypeService.Edit(advertiseType);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
+        /// 新增\编辑广告类型
+        /// </summary>
+        /// <param name="idat"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult AdvertiseTypeEdit(string idat = "")
+        {
+            AdvertiseTypeViewModel model = new AdvertiseTypeViewModel();
+            if (!string.IsNullOrEmpty(idat))
+            {
+                AdvertiseType advertiseType = AdvertiseTypeService.Get(idat);
+                if (idat != null) { model.CopyFromBase(advertiseType); }
+            }
+            else
+            {
+                model.inuse = true;
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 新增\编辑广告类型
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult AdvertiseTypeEdit(AdvertiseTypeViewModel model)
+        {
+            AdvertiseType advertiseType = new AdvertiseType();
+            model.CopyToBase(advertiseType);
+            if (string.IsNullOrEmpty( advertiseType.idat))
+            {
+                advertiseType.idat = Pub.ID().ToString();
+                advertiseType.createtime = DateTime.Now;
+                //新增
+                advertiseType = AdvertiseTypeService.Add(advertiseType);
+            }
+            else
+            {
+                //编辑
+                advertiseType = AdvertiseTypeService.Edit(advertiseType);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(advertiseType);
+
+            ModelState.AddModelError("", "保存成功.");
+
+            return View(model);
+        }
+
+
+        /// <summary>
+        /// 广告列表
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult AdvertiseList(DateTime? sdate, DateTime? edate, string idat = "", string title = "",int pageIndex=0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+           
+            List<AdvertiseViewModel> entities = AdvertiseService.SearchViewModels(sdate, edate, idat, title);
+            List<AdvertiseViewModel> viewModels = entities.Pager<AdvertiseViewModel>(pageIndex, pageSize, out pageCount);
+
+            RouteData.Values.Add("sdate", sdate);
+            RouteData.Values.Add("edate", edate);
+            RouteData.Values.Add("idat", idat);
+            RouteData.Values.Add("title", title);
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+
+            ViewData["sdate"] = sdate;
+            ViewData["edate"] = edate;
+            ViewData["idat"] = idat;
+            ViewData["title"] = title;
+
+            List<SelectItemViewModel<string>> advertiseTypes= AdvertiseTypeService.SelectItems();
+            ViewData["advertiseTypes"] = advertiseTypes;
+
+            return View(viewModels);
+        }
+
+
+        /// <summary>
+        /// 启用或者禁用广告
+        /// </summary>
+        /// <param name="idav"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult AdvertiseEnable(string idav, bool enable, bool isAjax)
+        {
+            ResultModel<AdvertiseViewModel> resultEntity = new ResultModel<AdvertiseViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                Advertise advertise = AdvertiseService.Get(idav);
+                advertise.inuse = enable;
+                AdvertiseService.Edit(advertise);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
+        /// 新增\编辑广告
+        /// </summary>
+        /// <param name="idav"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult AdvertiseEdit(string idav = "")
+        {
+            AdvertiseViewModel model = new AdvertiseViewModel();
+            if (!string.IsNullOrEmpty(idav))
+            {
+                Advertise advertise = AdvertiseService.Get(idav);
+                if (advertise != null) { model.CopyFromBase(advertise); }
+            }
+            else
+            {
+                model.inuse = true;
+            }
+            List<SelectItemViewModel<string>> advertiseTypes = AdvertiseTypeService.SelectItems();
+            ViewData["advertiseTypes"] = advertiseTypes;
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 新增\编辑广告
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult AdvertiseEdit(AdvertiseViewModel model)
+        {
+            Advertise advertise = new Advertise();
+            model.CopyToBase(advertise);
+            if (string.IsNullOrEmpty(advertise.idav))
+            {
+                advertise.idav = Pub.ID().ToString();
+                advertise.cretime = DateTime.Now;
+                //新增
+                advertise = AdvertiseService.Add(advertise);
+            }
+            else
+            {
+                //编辑
+                advertise = AdvertiseService.Edit(advertise);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(advertise);
+
+            List<SelectItemViewModel<string>> advertiseTypes = AdvertiseTypeService.SelectItems();
+            ViewData["advertiseTypes"] = advertiseTypes;
+
+            ModelState.AddModelError("", "保存成功.");
+
+            return View(model);
+        }
+
+        [ManageLoginValidation]
+        public ActionResult UploadAdvertiseImage(string idav="")
+        {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<AdvertiseViewModel> resultEntity = new ResultModel<AdvertiseViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件上传成功";
+            string GUID = System.Guid.NewGuid().ToString();
+            string path = "~/Resource/Images/Advertise/";
+            string filename = string.Empty;
+            string message = string.Empty;
+            try
+            {
+                if (Request.Files != null && Request.Files.Count > 0)
+                {
+                    //if (Request.Files.Count > 1)
+                    //{
+                    //    resultEntity.Code = ResponseCodeType.Fail;
+                    //    resultEntity.Message = "请选择文件.";
+                    //    return Content(resultEntity.SerializeToJson());
+                    //}
+                    resultEntity.Content = new List<AdvertiseViewModel>();
+                    int i = 0;
+                    foreach (string upload in Request.Files)
+                    {
+                        GUID = System.Guid.NewGuid().ToString();
+                        if (!Request.Files[i].HasFile())
+                        {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件大小不能0.";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+
+                        if (!CheckFileType((HttpPostedFileWrapper)((HttpFileCollectionWrapper)Request.Files)[i]))
+                        {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+
+                        //获取文件后缀名
+                        string originFileName = Request.Files[i].FileName;
+                        string originFileNameSuffix = string.Empty;
+                        int lastIndex = originFileName.LastIndexOf(".");
+                        if (lastIndex < 0)
+                        {
+                            resultEntity.Code = ResponseCodeType.Fail;
+                            resultEntity.Message = "文件类型只能是jpg,bmp,gif,PNG..";
+                            return Content(resultEntity.SerializeToJson());
+                        }
+                        originFileNameSuffix = originFileName.Substring(lastIndex, originFileName.Length - lastIndex);
+
+                        filename = GUID + originFileNameSuffix;
+                        if (!Directory.Exists(Server.MapPath(path)))
+                        {
+                            Directory.CreateDirectory(Server.MapPath(path));
+                        }
+
+                        Request.Files[i].SaveAs(Path.Combine(Server.MapPath(path), filename));
+                        AdvertiseViewModel model = new AdvertiseViewModel()
+                        {
+                            idav = idav,
+                            img = path + filename
+                        };
+
+                        resultEntity.Content.Add(model);
+                        i++;
+                        StringBuilder initialPreview = new StringBuilder();
+                        StringBuilder initialPreviewConfig = new StringBuilder();
+                        initialPreviewConfig.Append(",\"initialPreviewConfig\":[");
+                        initialPreview.Append("{\"initialPreview\":[");
+                        for (int k = 0; k < resultEntity.Content.Count; k++)
+                        {
+                            if (k == 0)
+                            {
+                                initialPreview.AppendFormat("\"{0}\"", Url.Content(resultEntity.Content[k].img));
+                                initialPreviewConfig.Append("{\"url\":\"" + Url.Action("DeleteAdvertiseImage", "Manage") + "\"}");
+                            }
+                            else
+                            {
+                                initialPreview.AppendFormat("\",{0}\"", Url.Content(resultEntity.Content[k].img));
+                                initialPreviewConfig.Append(",{\"url\":\"" + Url.Action("DeleteAdvertiseImage", "Manage") + "\"}");
+                            }
+                        }
+                        initialPreview.Append("]");
+                        initialPreviewConfig.Append("]");
+                        initialPreview.Append(initialPreviewConfig.ToString());
+                        initialPreview.Append("}");
+                        return Content(initialPreview.ToString());
+                    }
+
+                }
+                else
+                {
+                    resultEntity.Code = ResponseCodeType.Fail;
+                    resultEntity.Message = "文件上传失败.";
+                    return Content(resultEntity.SerializeToJson());
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.ToString());
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = "没有选择要上传的文件.";
+                return Content(resultEntity.SerializeToJson());
+            }
+            return Content(resultEntity.SerializeToJson());
+
+
+        }
+
+        [ManageLoginValidation]
+        public ActionResult DeleteAdvertiseImage(string idav = "", bool isAjax = true)
+        {
+            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            ResultModel<AdvertiseViewModel> resultEntity = new ResultModel<AdvertiseViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "文件删除成功";
+            return Content(resultEntity.SerializeToJson());
+
+        }
+
 
         /// <summary>
         /// 判断上传文件类型

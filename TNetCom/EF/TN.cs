@@ -12,6 +12,8 @@ namespace TCom.EF
         {
         }
 
+        public virtual DbSet<Advertise> Advertises { get; set; }
+        public virtual DbSet<AdvertiseType> AdvertiseTypes { get; set; }
         public virtual DbSet<Business> Businesses { get; set; }
         public virtual DbSet<BussImage> BussImages { get; set; }
         public virtual DbSet<City> Cities { get; set; }
@@ -37,6 +39,34 @@ namespace TCom.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.idav)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.idat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.title)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.img)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.link)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AdvertiseType>()
+                .Property(e => e.idat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AdvertiseType>()
+                .Property(e => e.typename)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Business>()
                 .Property(e => e.buss)
                 .IsUnicode(false);

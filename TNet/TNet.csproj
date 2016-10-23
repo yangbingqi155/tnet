@@ -177,6 +177,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
+    <Compile Include="BLL\Advertise\AdvertiseService.cs" />
+    <Compile Include="BLL\Advertise\AdvertiseTypeService.cs" />
     <Compile Include="BLL\Business\BusinessService.cs" />
     <Compile Include="BLL\Business\BussImageService.cs" />
     <Compile Include="BLL\IdentifyService.cs" />
@@ -208,9 +210,10 @@
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
-    <Compile Include="Controllers\UeditorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
+    <Compile Include="Models\Advertise\AdvertiseTypeViewModel.cs" />
+    <Compile Include="Models\Advertise\AdvertiseViewModel.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
     <Compile Include="Models\Business\BussImageViewModel.cs" />
     <Compile Include="Models\File\UploadData.cs" />
@@ -307,14 +310,6 @@
       <DependentUpon>TaskService.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ueditor\net\Config.cs" />
-    <Compile Include="ueditor\net\ConfigHandler.cs" />
-    <Compile Include="ueditor\net\CrawlerHandler.cs" />
-    <Compile Include="ueditor\net\Handler.cs" />
-    <Compile Include="ueditor\net\ListFileHandler.cs" />
-    <Compile Include="ueditor\net\NotSupportedHandler.cs" />
-    <Compile Include="ueditor\net\PathFormater.cs" />
-    <Compile Include="ueditor\net\UploadHandler.cs" />
     <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
     <Compile Include="Util\HttpExtension.cs" />
@@ -993,6 +988,10 @@
     <Content Include="ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Ueditor\Index.cshtml" />
+    <Content Include="Views\Manage\AdvertiseTypeList.cshtml" />
+    <Content Include="Views\Manage\AdvertiseTypeEdit.cshtml" />
+    <Content Include="Views\Manage\AdvertiseEdit.cshtml" />
+    <Content Include="Views\Manage\AdvertiseList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />

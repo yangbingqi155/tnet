@@ -34,7 +34,10 @@ namespace TNet.BLL
 
         public static Merc GetMerc(int idmerc)
         {
-            return GetALL().Where(en => en.idmerc == idmerc).FirstOrDefault();
+            TN db = new TN();
+            List<Merc> mercs =  db.Mercs.Where(en => en.idmerc == idmerc).ToList();
+
+            return (mercs != null && mercs.Count > 0) ? mercs.First() : null;
         }
 
         public static Merc Edit(Merc merc)

@@ -1,0 +1,137 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+
+@model List<AdvertiseViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+
+    DateTime? sdate = Convert.ToDateTime(ViewData["sdate"]);
+    DateTime? edate = Convert.ToDateTime(ViewData["edate"]);
+    string idat = ViewData["idat"].ToString();
+    string title = ViewData["title"].ToString();
+
+    List<SelectItemViewModel<string>> advertiseTypes = (List<SelectItemViewModel<string>>)ViewData["advertiseTypes"];
+
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">广告管理</a></li>
+        <li><a href="#" class="active">广告列表</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        <a class="btn btn-primary" @*target="_blank"*@ href="@Url.Action("AdvertiseEdit","Manage")">新增广告</a>
+    </div>
+    <div style="margin-top:10px;">
+        <form action="@Url.Action("AdvertiseList","Manage")" method="post">
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.DropDownList("orderTypes", new SelectList(advertiseTypes, "DisplayValue", "DisplayText"), new { @class = "form-control", Value = idat })
+                </div>
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="标题" name="title" value="@title">
+                </div>
+                <div class="col-xs-1">
+                    <input type="submit" value="搜索" class="btn btn-primary" placeholder=".col-xs-1" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "OrderList", "Manage", ViewContext.RouteData.Values))
+    </div>
+
+    <div class="list-box">
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseViewModel, string>(en => en.idat))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseViewModel, string>(en => en.title))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseViewModel, string>(en => en.img))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseViewModel, string>(en => en.link))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseViewModel, DateTime?>(en => en.cretime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseViewModel, int?>(en => en.sortno))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseViewModel, bool>(en => en.inuse))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@advertiseTypes.Where(en => en.DisplayValue == item.idat).FirstOrDefault().DisplayText</td>
+                            <td>@item.title</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.img))
+                                {
+                                    <br />
+                                    <img class="smallMercImage" src="@Url.Content(@item.img)" title="@item.title" />
+                                }
+                            </td>
+                            
+                            <td>
+                                <a href="@item.link" target="_blank" class="btn btn-default">链接</a>
+                            </td>
+                            <td>
+                                @(item.cretime!=null?item.cretime.Value.ToString("yyyy-MM-dd"):"")
+                            </td>
+                            <td>
+                                @item.sortno
+                            </td>
+                            <td>
+                                <div class="switch">
+                                    <input type="checkbox" onchange="enableAdvertise('@Url.Action("AdvertiseEnable", "Manage", new { idav = item.idav, enable = !item.inuse, isAjax = true })')" name="enableAdvertise" @(item.inuse ? "checked" : "") />
+                                </div>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("AdvertiseEdit","Manage",new { idav = item.idav })" class="btn btn-default">编辑</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>没有找到任何广告.</h2>
+        }
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(function () {
+            $.fn.bootstrapSwitch.defaults.onText = '启用';
+            $.fn.bootstrapSwitch.defaults.offText = '禁用';
+            $("[name='enableAdvertise']").bootstrapSwitch();
+        });
+
+      
+    });
+    
+    function enableAdvertise(url) {
+        var manageLoginUrl = "@Url.Action("Login","Manage")";
+        $.post(url, null, function (returndata) {
+            returndata = eval("(" + returndata + ")");
+            if (returndata.Code == "3") {
+                alert(returndata.Message);
+                window.Location.href = manageLoginUrl;
+            } else if (returndata.Code == "1") {
+                //alert("操作成功.");
+                window.location.href = window.location.href;
+            } else {
+                alert("系统出错，请稍后再试。");
+            }
+        });
+    }
+</script>

@@ -1,0 +1,175 @@
+﻿@model TNet.Models.AdvertiseViewModel
+@using TNet.Models
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "编辑广告";
+    if (string.IsNullOrEmpty(Model.idav))
+    {
+        ViewBag.Title = "新增广告";
+    }
+    List<SelectItemViewModel<string>> advertiseTypes = (List<SelectItemViewModel<string>>)ViewData["advertiseTypes"];
+}
+<link rel="stylesheet" href="@Url.Content("~/Css/bootstrap-fileinput/fileinput.min.css")" />
+<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/fileinput.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Js/bootstrap-fileinput/locales/zh.js")"></script>
+
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">广告管理</a></li>
+        <li><a href="@Url.Action("AdvertiseList","Manage")">广告列表</a></li>
+        <li><a href="#" class="active">@(string.IsNullOrEmpty(Model.idav) ? "新增广告" : "编辑广告")</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form id="form1" action="@Url.Action("AdvertiseEdit","Manage")" method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                @Html.HiddenFor(model => model.idav)
+                @Html.HiddenFor(model => model.img)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AdvertiseType, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(model => model.idat, new SelectList(advertiseTypes, "DisplayValue", "DisplayText"), new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.idat)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.title, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.title, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.title)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.img, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        <input type="file" name="image" id="advertise_img" multiple class="file-loading" />
+                    </div>
+                    @Html.ValidationMessageFor(model => model.img)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.link, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.link, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.link)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sortno, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.sortno, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.sortno)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-4">
+                        @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inuse)
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-sm-10" style="padding-left:10px;padding-top:10px;">
+                        <input type="button" id="btnSave" value="保存" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+
+    </form>
+
+</div>
+
+<script type="text/javascript">
+
+    function initFileInput(ctrlName, uploadUrl, initialPreview, initialPreviewConfig) {
+        var $control = $('#' + ctrlName);
+        $control.fileinput({
+            initialPreview: initialPreview,
+            initialPreviewConfig: initialPreviewConfig,
+            initialPreviewAsData: true,
+            language: 'zh', //设置语言
+            uploadUrl: uploadUrl, //上传的地址
+            uploadAsync: true,
+            maxFileCount: 1,
+            overwriteInitial: true,
+            allowedPreviewTypes: ['image'],
+            allowedFileExtensions: ['jpg', 'png', 'gif'],//接收的文件后缀
+            showUpload: false, //是否显示上传按钮
+            showRemove: false, // hide remove button
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            showBrowse: false,
+            showClose: false,
+            showCancel: false,
+            browseOnZoneClick: true
+
+        }).on("filebatchselected", function (event, files) {
+            $control.fileinput("upload");
+        }).on('fileuploaded', function (event, data, id, index) {
+            var responseData = data.response;
+            if (responseData.Code == "1") {
+                alert(responseData.Message);
+            }
+            else if (responseData.Code == "2") {
+                alert(responseData.Message);
+            }
+
+        });
+    }
+
+    function initAdvertiseImages() {
+        var uploadUrl = "@Url.Action("UploadAdvertiseImage","Manage",new { idav = Model.idav })";
+        var deleteImageUrl = "@Url.Action("DeleteAdvertiseImage", "Manage",new { isAjax =true})";
+        var img = $("#@Html.IdFor(model=>model.img)");
+        var initPreviewImage = [];
+        var initialPreviewConfig = [];
+
+        if ($(img).val() != "") {
+            initPreviewImage.push($(img).val());
+            var initialPreviewConfigItem = {
+                url: deleteImageUrl,
+                key: "",
+                extra: { idav: "@Model.idav" }
+            };
+            initialPreviewConfig.push(initialPreviewConfigItem);
+        }
+
+        initFileInput("advertise_img", uploadUrl, initPreviewImage, initialPreviewConfig);
+    }
+
+    $(function () {
+        $("#@Html.IdFor(model=>model.inuse)").bootstrapSwitch({
+            onText: '启用',
+            offText: '禁用'
+        });
+
+        initAdvertiseImages();
+
+        $("#btnSave").click(function () {
+            var images = "";
+            $(".kv-file-content").find("img").each(function (i, d) {
+                if (i == 0) {
+                    images += $(d).attr("src");
+                }
+                else {
+                    images += "," + $(d).attr("src");
+                }
+            });
+            $("#@Html.IdFor(model=>model.img)").val(images);
+            if (images == "") {
+                alert("必须上传图片");
+                return;
+            }
+            $("#form1").submit();
+        });
+
+    });
+
+</script>
