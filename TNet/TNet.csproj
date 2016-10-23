@@ -210,6 +210,7 @@
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\UeditorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Models\Advertise\AdvertiseTypeViewModel.cs" />
@@ -310,6 +311,14 @@
       <DependentUpon>TaskService.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ueditor\net\Config.cs" />
+    <Compile Include="ueditor\net\ConfigHandler.cs" />
+    <Compile Include="ueditor\net\CrawlerHandler.cs" />
+    <Compile Include="ueditor\net\Handler.cs" />
+    <Compile Include="ueditor\net\ListFileHandler.cs" />
+    <Compile Include="ueditor\net\NotSupportedHandler.cs" />
+    <Compile Include="ueditor\net\PathFormater.cs" />
+    <Compile Include="ueditor\net\UploadHandler.cs" />
     <Compile Include="Util\AttributeHelper.cs" />
     <Compile Include="Util\CryptoHelper.cs" />
     <Compile Include="Util\HttpExtension.cs" />
@@ -994,6 +1003,7 @@
     <Content Include="Views\Manage\AdvertiseTypeEdit.cshtml" />
     <Content Include="Views\Manage\AdvertiseEdit.cshtml" />
     <Content Include="Views\Manage\AdvertiseList.cshtml" />
+    <Content Include="ueditor\net\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />
@@ -1008,6 +1018,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Addr\" />
+    <Folder Include="Models\Addr\" />
     <Folder Include="Resource\Images\Ue\" />
     <Folder Include="ueditor\net\upload\image\" />
   </ItemGroup>
