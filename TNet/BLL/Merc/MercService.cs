@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TCom.EF;
-
+using TNet.Models;
 
 namespace TNet.BLL
 {
@@ -19,10 +19,14 @@ namespace TNet.BLL
             //return db.Mercs.ToList();
         }
 
-        public static List<Merc> Search(int idtype = 0, string merc = "", int netype = -1, int isetup = -1) {
+        public static List<Merc> Search(int idtype = 0, string idcity="",string merc = "", int netype = -1, int isetup = -1) {
             List<Merc> mercs = new List<Merc>();
             TN db = new TN();
-            mercs= (from mo in db.Mercs join mt in db.MercTypes on mo.idtype equals mt.idtype orderby mt.sortno descending, mo.sortno descending select mo).Where(en => (
+            mercs= (from mo in db.Mercs join mt in db.MercTypes on mo.idtype equals mt.idtype
+                    //join cr in db.CityRelations on mo.idmerc.ToString() equals cr.idmodule
+                    orderby mt.sortno descending, mo.sortno descending
+                    //where (string.IsNullOrEmpty(idcity) || (cr.idcity== idcity && cr.moduletype==(int)ModuleType.Merc))
+                    select mo).Where(en => (
             (idtype == 0 || en.idtype== idtype)
             && (string.IsNullOrEmpty(merc) || en.merc1.Contains(merc))
             &&(netype==-1 || en.netype==netype)
@@ -34,7 +38,10 @@ namespace TNet.BLL
 
         public static Merc GetMerc(int idmerc)
         {
-            return GetALL().Where(en => en.idmerc == idmerc).FirstOrDefault();
+            TN db = new TN();
+            List<Merc> mercs =  db.Mercs.Where(en => en.idmerc == idmerc).ToList();
+
+            return (mercs != null && mercs.Count > 0) ? mercs.First() : null;
         }
 
         public static Merc Edit(Merc merc)

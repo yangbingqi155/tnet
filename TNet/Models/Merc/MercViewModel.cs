@@ -10,7 +10,7 @@ using TNet.Util;
 namespace TNet.Models
 {
     [NotMapped]
-    public   class MercViewModel: TCom.EF.Merc
+    public   class MercViewModel: TCom.EF.Merc, IEqualityComparer<MercViewModel>
     {
         [Display(Name = "产品编号")]
         public new   int idmerc { get; set; }
@@ -85,6 +85,12 @@ namespace TNet.Models
         [Display(Name = "类型")]
         public new int? idclass { get; set; }
 
+        /// <summary>
+        /// 城市
+        /// </summary>
+        [Display(Name = "城市")]
+        public List<CityViewModel> Cities { get; set; }
+
         public   List<MercTypeViewModel> mercTypes { get; set; }
 
         public static List<SelectItemViewModel<int>> GetNeTypeSelectItems()
@@ -101,6 +107,16 @@ namespace TNet.Models
                 DisplayValue = (int)Netype.NoOptical
             });
             return list;
+        }
+
+        public bool Equals(MercViewModel x, MercViewModel y)
+        {
+            return x.idmerc == y.idmerc;
+        }
+
+        public int GetHashCode(MercViewModel model)
+        {
+            return model.ToString().GetHashCode();
         }
 
         public   void CopyFromBase(TCom.EF.Merc merc) {

@@ -1,0 +1,82 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@model List<AdvertiseTypeViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">广告管理</a></li>
+        <li><a href="#" class="active">广告类型</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        <a class="btn btn-primary" href="@Url.Action("AdvertiseTypeEdit","Manage")">新增广告类型</a>
+    </div>
+    <div class="list-box">
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseTypeViewModel, string>(en => en.typename))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseTypeViewModel, int?>(en => en.sortno))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseTypeViewModel, DateTime?>(en => en.createtime))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<AdvertiseTypeViewModel, bool>(en => en.inuse))</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.typename</td>
+                            <td>@item.sortno</td>
+                            <td>@item.createtime</td>
+                            <td>
+                                <div class="switch">
+                                    <input type="checkbox" onchange="enableAdvertiseType('@Url.Action("AdvertiseTypeEnable", "Manage", new { idat = item.idat, enable = !item.inuse, isAjax = true })')" name="enableAdvertiseType" @(item.inuse ? "checked" : "") />
+                                </div>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("AdvertiseTypeEdit","Manage",new {idat=item.idat })" class="btn btn-default">编辑</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>还没有任何广告类型.</h2>
+        }
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("[name='enableAdvertiseType']").bootstrapSwitch();
+    });
+
+    function enableAdvertiseType(url) {
+        var manageLoginUrl = "@Url.Action("Login","Manage")";
+        $.post(url, null, function (returndata) {
+            returndata=eval("("+returndata+")");
+            if (returndata.Code == "3") {
+                alert(returndata.Message);
+                window.Location.href = manageLoginUrl;
+            } else if (returndata.Code == "1") {
+                //alert("操作成功.");
+                window.location.href = window.location.href;
+            } else {
+                alert("系统出错，请稍后再试。");
+            }
+        });
+    }
+
+</script>

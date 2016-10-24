@@ -1,0 +1,64 @@
+﻿@model TNet.Models.AdvertiseTypeViewModel
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    ViewBag.Title = "编辑广告类型";
+    if (string.IsNullOrEmpty( Model.idat) )
+    {
+        ViewBag.Title = "新增广告类型";
+    }
+}
+
+
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">广告管理</a></li>
+        <li><a href="@Url.Action("AdvertiseTypeList","Manage")">广告类型</a></li>
+        <li><a href="#" class="active">@(string.IsNullOrEmpty(Model.idat) ? "新增广告类型" : "编辑广告类型")</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <form action="@Url.Action("AdvertiseTypeEdit","Manage")" method="post" class="form-horizontal">
+        <div class="merc-edit-box ">
+            <fieldset>
+                @Html.HiddenFor(model => model.idat)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.typename, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.typename, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.typename)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sortno, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.sortno, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.sortno)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inuse, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-3">
+                        @Html.CheckBoxFor(model => model.inuse, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inuse)
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <div class="col-sm-2">
+
+                    </div>
+                    <div class="col-sm-10" style="padding-top:10px;">
+                        <input type="submit" value="保存" class="btn btn-primary" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.fn.bootstrapSwitch.defaults.onText = '启用';
+        $.fn.bootstrapSwitch.defaults.offText = '禁用';
+        $("#@Html.IdFor(model => model.inuse)").bootstrapSwitch();
+    });
+</script>

@@ -16,6 +16,7 @@
     List<SelectItemViewModel<string>> mercTypeSelects =(List<SelectItemViewModel<string>>) ViewData["mercTypeSelects"];
     List<SelectItemViewModel<int>> isetupSelects = (List<SelectItemViewModel<int>>)ViewData["isetupSelects"];
     List<SelectItemViewModel<int>> netypeSelects = (List<SelectItemViewModel<int>>)ViewData["netypeSelects"];
+    List<SelectItemViewModel<string>> citySelects = (List<SelectItemViewModel<string>>)ViewData["citySelects"];
 }
 <div class="ManageRightTitle">
     <ol class="breadcrumb">
@@ -32,6 +33,9 @@
             <div class="row">
                 <div class="col-xs-2">
                     <input type="text" class="form-control" placeholder="产品名称" name="merc" value="@merc">
+                </div>
+                <div class="col-xs-2">
+                    @Html.DropDownList("idcity", new SelectList(citySelects, "DisplayValue", "DisplayText"), new { @class = "form-control", Value = idtype })
                 </div>
                 <div class="col-xs-2">
                    @Html.DropDownList("idtype", new SelectList(mercTypeSelects, "DisplayValue", "DisplayText"), new { @class = "form-control", Value = idtype })

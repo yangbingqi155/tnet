@@ -177,8 +177,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Authorize\ManageLoginValidationAttribute.cs" />
+    <Compile Include="BLL\Advertise\AdvertiseService.cs" />
+    <Compile Include="BLL\Advertise\AdvertiseTypeService.cs" />
     <Compile Include="BLL\Business\BusinessService.cs" />
     <Compile Include="BLL\Business\BussImageService.cs" />
+    <Compile Include="BLL\City\CityRelationService.cs" />
+    <Compile Include="BLL\City\CityService.cs" />
     <Compile Include="BLL\IdentifyService.cs" />
     <Compile Include="BLL\Manage\ManageUserService.cs" />
     <Compile Include="BLL\Manage\MenuItemService.cs" />
@@ -211,8 +215,12 @@
     <Compile Include="Controllers\UeditorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
+    <Compile Include="Models\Advertise\AdvertiseTypeViewModel.cs" />
+    <Compile Include="Models\Advertise\AdvertiseViewModel.cs" />
     <Compile Include="Models\Business\BusinessViewModel.cs" />
     <Compile Include="Models\Business\BussImageViewModel.cs" />
+    <Compile Include="Models\City\CityRelationViewModel.cs" />
+    <Compile Include="Models\City\CityViewModel.cs" />
     <Compile Include="Models\File\UploadData.cs" />
     <Compile Include="Models\File\UploadDataResult.cs" />
     <Compile Include="Models\Manage\ManageUserType.cs" />
@@ -235,6 +243,7 @@
     <Compile Include="Models\Merc\Netype.cs" />
     <Compile Include="Models\Merc\SetupList.cs" />
     <Compile Include="Models\Merc\SpecViewModel.cs" />
+    <Compile Include="Models\ModuleType.cs" />
     <Compile Include="Models\Notice\NoticeDetail.cs" />
     <Compile Include="Models\Notice\NoticeItem.cs" />
     <Compile Include="Models\Notice\NoticeBaseItem.cs" />
@@ -1001,6 +1010,14 @@
     <Content Include="ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Ueditor\Index.cshtml" />
+    <Content Include="Views\Manage\AdvertiseTypeList.cshtml" />
+    <Content Include="Views\Manage\AdvertiseTypeEdit.cshtml" />
+    <Content Include="Views\Manage\AdvertiseEdit.cshtml" />
+    <Content Include="Views\Manage\AdvertiseList.cshtml" />
+    <Content Include="ueditor\net\Web.config" />
+    <Content Include="Views\Manage\CityList.cshtml" />
+    <Content Include="Views\Manage\CityEdit.cshtml" />
+    <Content Include="Views\Manage\CitiesCheckBoxList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\Submit.cshtml" />
@@ -1015,6 +1032,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Addr\" />
+    <Folder Include="Models\Addr\" />
     <Folder Include="Resource\Images\Ue\" />
     <Folder Include="ueditor\net\upload\image\" />
   </ItemGroup>
