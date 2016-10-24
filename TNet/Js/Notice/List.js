@@ -1,8 +1,13 @@
-﻿
+﻿function __init() {
+    Pub.onCity(function (city) {
+        getData(city);
+    });
+}
 //获取
-function getData() {
+function getData(city) {
+    var c = city ? city.code : "";
     Pub.get({
-        url: "Service/Notice/List",
+        url: "Service/Notice/List/" + c,
         loadingMsg: "加载中...",
         success: function (data) {
             if (Pub.wsCheck(data)) {
@@ -42,7 +47,7 @@ function getData() {
 }
 
 
-$(document).ready(getData);
+$(document).ready(__init);
 
 function load_fail(msg) {
     Pub.noData("#order_host", msg, getData);
