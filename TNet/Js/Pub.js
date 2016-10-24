@@ -17,6 +17,8 @@
         checkUser: checkUser,
         isHome: isHome,
         auth: auth,
+        onCity: onCity,
+        curCity: curCity,
         setCache: setCache,
         getCache: getCache,
         delCache: delCache,
@@ -386,6 +388,48 @@
         }
         return false;
     }
+
+    var isCalling = false;
+
+    function onCity(call) {
+        if (!isCalling) {
+            isCalling = true;
+            var city = curCity();
+            if (!city || city == undefined) {
+                getCityData(call);
+            } else {
+                call(city);
+                isCalling = false;
+            }
+        }
+    }
+    function curCity() {
+        var city = Pub.getCache("city");
+        return city ? city[0]:null;
+    }
+
+    function getCityData(call) {
+        Pub.get({
+            url: "Service/City/List",
+            loadingMsg: "加载中...",
+            success: function (data) {
+                if (Pub.wsCheck(data)) {
+                    if (data.Data) {
+                        Pub.setCache("city", data.Data);
+                    }
+                }
+                var city = curCity();
+                call(city ? city[0] : null);
+                isCalling = false;
+
+            },
+            error: function (xhr, status, e) {
+                call(null);
+                isCalling = false;
+            }
+        });
+    }
+
 
     //设置缓存
     function setCache(key, value, expires) {

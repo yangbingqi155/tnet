@@ -281,6 +281,10 @@
       <DependentUpon>BussService.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\Buss\IBussService.cs" />
+    <Compile Include="Service\City\CityService.svc.cs">
+      <DependentUpon>CityService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\City\ICityService.cs" />
     <Compile Include="Service\Com\RouteService.cs" />
     <Compile Include="Service\File\FileService.svc.cs">
       <DependentUpon>FileService.svc</DependentUpon>
@@ -507,6 +511,7 @@
     <Content Include="Js\Manage\Base.js" />
     <Content Include="Js\Merc\Base.js" />
     <Content Include="Js\Merc\Detail.js" />
+    <Content Include="Js\Merc\BaseList.js" />
     <Content Include="Js\Merc\List.js" />
     <Content Include="Js\Notice\Detail.js" />
     <Content Include="Js\Notice\List.js" />
@@ -655,6 +660,7 @@
     <Content Include="Resource\Images\r\636116578755230.jpeg" />
     <Content Include="Resource\Images\r\636124336761960.jpeg" />
     <Content Include="Resource\Images\r\636124336822190.jpeg" />
+    <Content Include="Service\City\CityService.svc" />
     <Content Include="Service\Notice\NoticeService.svc" />
     <Content Include="Service\Task\TaskService.svc" />
     <Content Include="ueditor\dialogs\anchor\anchor.html" />
@@ -1027,6 +1033,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cache\Cache.csproj">
+      <Project>{bf3caf2a-fa25-4f77-842b-0f82126a3b9c}</Project>
+      <Name>Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TNetCom\TCom.csproj">
       <Project>{ae0a4f28-18d5-4b05-a9e4-b9a571ff281e}</Project>
       <Name>TCom</Name>

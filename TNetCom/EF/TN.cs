@@ -12,9 +12,12 @@ namespace TCom.EF
         {
         }
 
+        public virtual DbSet<Advertise> Advertises { get; set; }
+        public virtual DbSet<AdvertiseType> AdvertiseTypes { get; set; }
         public virtual DbSet<Business> Businesses { get; set; }
         public virtual DbSet<BussImage> BussImages { get; set; }
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<CityRelation> CityRelations { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
         public virtual DbSet<Img> Imgs { get; set; }
         public virtual DbSet<ManageUser> ManageUsers { get; set; }
@@ -37,6 +40,34 @@ namespace TCom.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.idav)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.idat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.title)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.img)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Advertise>()
+                .Property(e => e.link)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AdvertiseType>()
+                .Property(e => e.idat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AdvertiseType>()
+                .Property(e => e.typename)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Business>()
                 .Property(e => e.buss)
                 .IsUnicode(false);
@@ -82,11 +113,27 @@ namespace TCom.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<City>()
+                .Property(e => e.code)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<City>()
                 .Property(e => e.city1)
                 .IsUnicode(false);
 
             modelBuilder.Entity<City>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CityRelation>()
+                .Property(e => e.idrelation)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CityRelation>()
+                .Property(e => e.idcity)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CityRelation>()
+                .Property(e => e.idmodule)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Discount>()

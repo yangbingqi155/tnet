@@ -13,6 +13,9 @@ namespace TCom.EF
         [StringLength(60)]
         public string idcity { get; set; }
 
+        [StringLength(60)]
+        public string code { get; set; }
+
         [Column("city")]
         [Required]
         [StringLength(60)]
@@ -21,6 +24,10 @@ namespace TCom.EF
         [StringLength(60)]
         public string notes { get; set; }
 
-        public bool? inuse { get; set; }
+        public int? sortno { get; set; }
+
+        public bool? isdefault { get; set; }
+
+        public bool inuse { get; set; }
     }
 }

@@ -1,9 +1,8 @@
 ﻿Pub.checkUser(true);
-
+ 
 //获取订单
 function getData() {
     var u = Pub.getUser();
-     
     if (u != null) {
         Pub.get({
             url: "Service/Order/List/" + u.iduser,
@@ -29,9 +28,9 @@ function getData() {
                                 var da = Pub.rootUrl() + "/Order/Detail/" + o.orderno;
                                 html += '<a href="' + da + '" id="merc" class="merc">';
                                 html += '<div class="merc_l">';
-                                 
-                                var ur = " src='" +  Pub.url(o.img,"Images/default_bg.png") + "' ";
-                                
+
+                                var ur = " src='" + Pub.url(o.img, "Images/default_bg.png") + "' ";
+
                                 html += '<img id="ico" ' + ur + ' />';
                                 html += '</div>';
                                 html += '<div class="merc_c">';
@@ -74,9 +73,7 @@ function getData() {
 }
 
 
-
-$(document).ready(getData);
-
+$(document.body).ready(getData);
 function load_fail(msg) {
     Pub.noData("#order_host", msg, getData);
 }
