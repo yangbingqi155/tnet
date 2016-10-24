@@ -1,0 +1,98 @@
+﻿@using TNet.Util;
+@using TNet.Models;
+@using TNet.Util;
+@using TNet.BLL;
+
+@model List<CityViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+    var pageCount = Convert.ToInt32(ViewData["pageCount"]);
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+}
+<div class="ManageRightTitle">
+    <ol class="breadcrumb">
+        <li><a href="#">城市管理</a></li>
+        <li><a href="#" class="active">城市列表</a></li>
+    </ol>
+</div>
+<div class="ManageRightContent">
+    <div>
+        <a class="btn btn-primary"  href="@Url.Action("CityEdit","Manage")">新增城市</a>
+    </div>
+    <div>
+        @Html.Raw(Url.BootstrapPagerHTML(pageCount, pageIndex, "CityList", "Manage", ViewContext.RouteData.Values))
+    </div>
+
+    <div class="list-box">
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>@(AttributeHelper.DisplayAttributeFor<CityViewModel, string>(en => en.city1))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<CityViewModel, int?>(en => en.sortno))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<CityViewModel, string>(en => en.notes))</th>
+                        <th>@(AttributeHelper.DisplayAttributeFor<CityViewModel, bool>(en => en.inuse))</th>
+                       
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.city1</td>
+                            <td>@item.sortno</td>
+                            <td>
+                                @item.notes
+                            </td>
+                            <td>
+                                <div class="switch">
+                                    <input type="checkbox" onchange="enableCity('@Url.Action("CityEnable", "Manage", new { idcity = item.idcity, enable = !item.inuse, isAjax = true })')" name="enableCity" @(item.inuse ? "checked" : "") />
+                                </div>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("CityEdit","Manage",new { idcity = item.idcity })" class="btn btn-default">编辑</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h2>没有找到任何城市.</h2>
+        }
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(function () {
+            $.fn.bootstrapSwitch.defaults.onText = '启用';
+            $.fn.bootstrapSwitch.defaults.offText = '禁用';
+            $("[name='enableCity']").bootstrapSwitch();
+        });
+
+
+    });
+
+    function enableCity(url) {
+        var manageLoginUrl = "@Url.Action("Login","Manage")";
+        $.post(url, null, function (returndata) {
+            returndata = eval("(" + returndata + ")");
+            if (returndata.Code == "3") {
+                alert(returndata.Message);
+                window.Location.href = manageLoginUrl;
+            } else if (returndata.Code == "1") {
+                //alert("操作成功.");
+                window.location.href = window.location.href;
+            } else {
+                alert("系统出错，请稍后再试。");
+            }
+        });
+    }
+</script>

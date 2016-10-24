@@ -1,0 +1,16 @@
+﻿@model List<TNet.Models.CityViewModel>
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div>
+        @foreach (var item in Model)
+        {
+            <label>
+                @item.city1<input type="checkbox" class="form-control" name="idcity" value="@item.idcity" @(item.IsCheck ? "checked" : "") />
+            </label>
+        }
+    </div>
+}

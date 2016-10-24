@@ -535,11 +535,11 @@ namespace TNet.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [ManageLoginValidation]
-        public ActionResult MercList(int idtype = 0, string merc = "", int netype = -1, int isetup = -1, int pageIndex = 0)
+        public ActionResult MercList(int idtype = 0,string idcity="", string merc = "", int netype = -1, int isetup = -1, int pageIndex = 0)
         {
             int pageCount = 0;
             int pageSize = 10;
-            List<Merc> entities = MercService.Search(idtype,merc,netype,isetup);
+            List<Merc> entities = MercService.Search(idtype, idcity, merc,netype,isetup);
             List<Merc> pageList = entities.Pager<Merc>(pageIndex, pageSize, out pageCount);
             
             List<MercViewModel> viewModels = pageList.Select(model =>
@@ -549,6 +549,13 @@ namespace TNet.Controllers
                 return viewModel;
             }).ToList();
 
+            //获取城市列表
+            List<SelectItemViewModel<string>> citySelects=CityService.SelectItems();
+            citySelects.Insert(0, new SelectItemViewModel<string>()
+            {
+                DisplayText = "所有城市",
+                DisplayValue = ""
+            });
 
             //获取产品类型
             List<MercType> mercTypes = MercTypeService.GetALL();
@@ -597,6 +604,7 @@ namespace TNet.Controllers
             ViewData["merc"] = merc;
             ViewData["netype"] = netype;
             ViewData["isetup"] = isetup;
+            ViewData["citySelects"] = citySelects;
 
             ViewData["pageCount"] = pageCount;
             ViewData["pageIndex"] = pageIndex;
@@ -2108,6 +2116,126 @@ namespace TNet.Controllers
 
         }
 
+
+        /// <summary>
+        /// 城市列表
+        /// </summary>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        public ActionResult CityList(int pageIndex = 0)
+        {
+            int pageCount = 0;
+            int pageSize = 10;
+            
+            List<City> entities = CityService.GetALL();
+            
+            List<City> pageList = entities.Pager<City>(pageIndex, pageSize, out pageCount);
+            List<CityViewModel> viewModels = pageList.Select(mod => {
+                CityViewModel viewModel = new CityViewModel();
+                viewModel.CopyFromBase(mod);
+                return viewModel;
+            }).ToList();
+
+            ViewData["pageCount"] = pageCount;
+            ViewData["pageIndex"] = pageIndex;
+            
+            return View(viewModels);
+        }
+
+        /// <summary>
+        /// 启用或者禁用广告
+        /// </summary>
+        /// <param name="idcity"></param>
+        /// <param name="enable"></param>
+        /// <param name="isAjax"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ManageLoginValidation]
+        public ActionResult CityEnable(string idcity, bool enable, bool isAjax)
+        {
+            ResultModel<CityViewModel> resultEntity = new ResultModel<CityViewModel>();
+            resultEntity.Code = ResponseCodeType.Success;
+            resultEntity.Message = "成功";
+            try
+            {
+                City city = CityService.Get(idcity);
+                city.inuse = enable;
+                CityService.Edit(city);
+            }
+            catch (Exception ex)
+            {
+                resultEntity.Code = ResponseCodeType.Fail;
+                resultEntity.Message = ex.ToString();
+            }
+
+            return Content(resultEntity.SerializeToJson());
+        }
+
+        /// <summary>
+        /// 新增\编辑广告
+        /// </summary>
+        /// <param name="idav"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpGet]
+        public ActionResult CityEdit(string idcity = "")
+        {
+            CityViewModel model = new CityViewModel();
+            if (!string.IsNullOrEmpty(idcity))
+            {
+                City city = CityService.Get(idcity);
+                if (city != null) { model.CopyFromBase(city); }
+            }
+            else
+            {
+                model.inuse = true;
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 新增\编辑广告
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ManageLoginValidation]
+        [HttpPost]
+        public ActionResult CityEdit(CityViewModel model)
+        {
+            City city = new City();
+            model.CopyToBase(city);
+            if (string.IsNullOrEmpty(city.idcity))
+            {
+                city.idcity = Pub.ID().ToString();
+                //新增
+                city = CityService.Add(city);
+            }
+            else
+            {
+                //编辑
+                city = CityService.Edit(city);
+            }
+
+            //修改后重新加载
+            model.CopyFromBase(city);
+            ModelState.AddModelError("", "保存成功.");
+            return View(model);
+        }
+
+
+        public ActionResult CitiesCheckBoxList() {
+
+            List<CityViewModel> viewModels = new List<CityViewModel>();
+            List<City> city = CityService.GetALL();
+            viewModels = city.Select(mod=> {
+                CityViewModel model = new CityViewModel();
+                model.CopyFromBase(mod);
+                return model;
+            }).ToList();
+
+            return View(viewModels);
+        }
 
         /// <summary>
         /// 判断上传文件类型

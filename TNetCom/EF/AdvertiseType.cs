@@ -13,6 +13,7 @@ namespace TCom.EF
         [StringLength(50)]
         public string idat { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string typename { get; set; }
 

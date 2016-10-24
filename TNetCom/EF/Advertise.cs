@@ -13,12 +13,14 @@ namespace TCom.EF
         [StringLength(50)]
         public string idav { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string idat { get; set; }
 
         [StringLength(50)]
         public string title { get; set; }
 
+        [Required]
         [StringLength(500)]
         public string img { get; set; }
 

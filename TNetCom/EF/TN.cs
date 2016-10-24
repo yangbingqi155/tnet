@@ -17,6 +17,7 @@ namespace TCom.EF
         public virtual DbSet<Business> Businesses { get; set; }
         public virtual DbSet<BussImage> BussImages { get; set; }
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<CityRelation> CityRelations { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
         public virtual DbSet<Img> Imgs { get; set; }
         public virtual DbSet<ManageUser> ManageUsers { get; set; }
@@ -117,6 +118,18 @@ namespace TCom.EF
 
             modelBuilder.Entity<City>()
                 .Property(e => e.notes)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CityRelation>()
+                .Property(e => e.idrelation)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CityRelation>()
+                .Property(e => e.idcity)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CityRelation>()
+                .Property(e => e.idmodule)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Discount>()
