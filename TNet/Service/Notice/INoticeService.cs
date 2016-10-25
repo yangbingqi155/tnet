@@ -25,8 +25,8 @@ namespace TNet.Service.Notice
         /// 所有公告列表
         /// </summary>
         /// <returns></returns>
-        [WebInvoke(Method = "GET", UriTemplate = "List", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Result<List<NoticeBaseItem>> GetList();
+        [WebInvoke(Method = "GET", UriTemplate = "List/{city}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Result<List<NoticeBaseItem>> GetList(string city);
 
         /// <summary>
         /// 获取指定公告明细

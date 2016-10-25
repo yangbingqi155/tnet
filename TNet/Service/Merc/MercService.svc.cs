@@ -43,7 +43,7 @@ namespace TNet.Service.Merc
             return result;
         }
 
-        public Result<MercList> GetList()
+        public Result<MercList> GetList(string city)
         {
             Result<MercList> result = new Result<MercList>();
             try
@@ -104,7 +104,7 @@ namespace TNet.Service.Merc
 
 
 
-        public Result<SetupList> GetSetupList()
+        public Result<SetupList> GetSetupList(string city)
         {
             Result<SetupList> result = new Result<SetupList>();
             try

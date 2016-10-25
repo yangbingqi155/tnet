@@ -113,6 +113,10 @@ namespace TCom.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<City>()
+                .Property(e => e.code)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<City>()
                 .Property(e => e.city1)
                 .IsUnicode(false);
 

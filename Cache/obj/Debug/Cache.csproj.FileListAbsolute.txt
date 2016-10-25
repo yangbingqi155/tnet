@@ -1,0 +1,4 @@
+D:\tnet\Cache\bin\Debug\Cache.dll
+D:\tnet\Cache\bin\Debug\Cache.pdb
+D:\tnet\Cache\obj\Debug\Cache.dll
+D:\tnet\Cache\obj\Debug\Cache.pdb

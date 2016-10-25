@@ -1,23 +1,35 @@
 ﻿var noticeList = null;
 var noticeList_pos = 0, notice_tag = 0, notice_load = false;
+
+
+function __init(city) {
+    getMercList(city);
+    getNotice(city);
+}
+
 function initPageParam() {
     var u = Pub.getUser();
     if (u && u.mu && (u.mu.recvSetup || u.mu.sendSetup)) {
         $("#Task").show().css("display", "block");
     }
-    getNotice();
+    Pub.onCity(function (city) {
+        __init(city);
+    });
 }
+
+$(document.body).ready(initPageParam);
 
 
 //获取公告
-function getNotice() {
+function getNotice(city) {
     if (!notice_load) {
         notice_load = true;
         noticeList = null;
         load_fail("加载...");
+        var c = city ? city.code : "";
         Pub.get({
-            url: "Service/Notice/List",
-            noLoading:true,
+            url: "Service/Notice/List/" + c,
+            noLoading: true,
             //loadingMsg: "加载中...",
             success: function (data) {
                 notice_load = false;
@@ -62,4 +74,3 @@ function load_fail(msg) {
 }
 
 
-$(document.body).ready(initPageParam);
