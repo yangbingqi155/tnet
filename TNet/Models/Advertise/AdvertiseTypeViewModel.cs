@@ -30,7 +30,7 @@ namespace TNet.Models
         [Required]
         [Display(Name = "启用")]
         public new bool inuse { get; set; }
-
+        
         public void CopyFromBase(AdvertiseType advertiseType)
         {
             this.idat = advertiseType.idat;

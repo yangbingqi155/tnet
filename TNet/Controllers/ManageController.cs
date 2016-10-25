@@ -676,11 +676,13 @@ namespace TNet.Controllers
         /// 编辑商品
         /// </summary>
         /// <param name="model"></param>
+        /// <param name="mercImages"></param>
+        /// <param name="idcity"></param>
         /// <returns></returns>
         [ManageLoginValidation]
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult MercEdit(MercViewModel model,string mercImages="")
+        public ActionResult MercEdit(string[] idcity, MercViewModel model,string mercImages="")
         {
 
             Merc merc = new Merc();
@@ -695,6 +697,23 @@ namespace TNet.Controllers
             {
                 //编辑
                 merc = MercService.Edit(merc);
+            }
+
+            //保存商品城市关系
+            List<CityRelation> cityRelations = new List<CityRelation>();
+            if (idcity!=null&& idcity.Count()>0) {
+                for (int i = 0; i < idcity.Length; i++)
+                {
+                    cityRelations.Add(new CityRelation() {
+                         idcity= idcity[i],
+                         idmodule= merc.idmerc.ToString(),
+                          moduletype=(int)ModuleType.Merc,
+                          inuse=true
+                    });
+                }
+            }
+            if (cityRelations!=null&& cityRelations.Count>0) {
+                CityRelationService.Save(cityRelations);
             }
             
             MercImageService.DeleteMercImages(merc.idmerc);
@@ -2224,15 +2243,18 @@ namespace TNet.Controllers
         }
 
 
-        public ActionResult CitiesCheckBoxList() {
-
+        public ActionResult CitiesCheckBoxList(string idmodule,ModuleType moduleType) {
+            List<CityRelation> cityRelations= CityRelationService.GetByModuleId(idmodule, moduleType);
             List<CityViewModel> viewModels = new List<CityViewModel>();
             List<City> city = CityService.GetALL();
-            viewModels = city.Select(mod=> {
-                CityViewModel model = new CityViewModel();
-                model.CopyFromBase(mod);
-                return model;
-            }).ToList();
+            if (city.Count>0&& city != null) {
+                viewModels = city.Select(mod => {
+                    CityViewModel model = new CityViewModel();
+                    model.CopyFromBase(mod);
+                    model.IsCheck= cityRelations.Where(en => en.idcity == mod.idcity).Count() > 0 ? true : false;
+                    return model;
+                }).ToList();
+            }
 
             return View(viewModels);
         }

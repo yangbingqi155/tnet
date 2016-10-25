@@ -9,7 +9,7 @@ using TCom.EF;
 namespace TNet.Models
 {
     [NotMapped]
-    public class CityRelationViewModel:CityRelation
+    public class CityRelationViewModel:CityRelation, IEqualityComparer<CityRelationViewModel>
     {
         [Display(Name ="关系编号")]
         [StringLength(50)]
@@ -28,6 +28,16 @@ namespace TNet.Models
 
         [Display(Name = "启用")]
         public new bool? inuse { get; set; }
+
+        public bool Equals(CityRelationViewModel x, CityRelationViewModel y)
+        {
+            return (x.idcity == y.idcity&&x.idmodule==y.idmodule&&x.moduletype==y.moduletype);
+        }
+
+        public int GetHashCode(CityRelationViewModel model)
+        {
+            return model.ToString().GetHashCode();
+        }
 
         public void CopyFromBase(CityRelation cityRelation)
         {

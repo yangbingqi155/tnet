@@ -9,8 +9,12 @@
         @foreach (var item in Model)
         {
             <label>
-                @item.city1<input type="checkbox" class="form-control" name="idcity" value="@item.idcity" @(item.IsCheck ? "checked" : "") />
+                @item.city1&nbsp;&nbsp;<input type="checkbox" class="form-control" name="idcity" value="@item.idcity" @(item.IsCheck ? "checked" : "") />
             </label>
         }
     </div>
+}
+else
+{
+    <h3>没有找到任何城市，请先<a href="@Url.Action("CityEdit","Manage")">添加城市</a></h3>
 }

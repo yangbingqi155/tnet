@@ -35,13 +35,13 @@
                 @Html.HiddenFor(model => model.imgs)
                 @Html.HiddenFor(model => model.descs)
                 <input type="hidden" name="mercImages" id="mercImages" value="" />
-                @*<div class="form-group">
+                <div class="form-group">
                     @Html.LabelFor(model => model.Cities, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
-                        @{Html.RenderAction("CitiesCheckBoxList", "Manage");}
+                        @{Html.RenderAction("CitiesCheckBoxList", "Manage",new { idmodule =(Model.idmerc>0? Model.idmerc.ToString(): ""), moduleType =ModuleType.Merc});}
                     </div>
                     @Html.ValidationMessageFor(model => model.Cities)
-                </div>*@
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.idtype, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">

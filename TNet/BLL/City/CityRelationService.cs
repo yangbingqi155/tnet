@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TCom.EF;
 using TNet.Models;
+using Util;
 
 namespace TNet.BLL
 {
@@ -61,6 +62,57 @@ namespace TNet.BLL
 
             db.SaveChanges();
             return oldCityRelation;
+        }
+
+        public static bool Save(List<CityRelation> cityRelations) {
+            bool result = false;
+            if (cityRelations==null|| cityRelations.Count==0) {
+                return result;
+            }
+            try
+            {
+                TN db = new TN();
+                string idmodule = cityRelations.First().idmodule;
+                int? moduleType = cityRelations.First().moduletype;
+
+                List<CityRelation> currentRelations = db.CityRelations.Where(en => en.idmodule == idmodule && en.moduletype == moduleType).ToList();
+                List<CityRelation> existCityRelations  = currentRelations.Where(en => (cityRelations.Contains<CityRelation>(en, CityRelationEqualityComparer.Instance))).ToList();
+                List<CityRelation> removeCityRelations = currentRelations.Where(en => !existCityRelations.Contains<CityRelation>(en, CityRelationEqualityComparer.Instance)).ToList();
+                List<CityRelation> addCityRelations = cityRelations.Where(en=> !currentRelations.Contains<CityRelation>(en, CityRelationEqualityComparer.Instance)).ToList();
+
+                addCityRelations = addCityRelations.Select(mod=> {
+                    mod.idrelation = Pub.ID().ToString();
+                    return mod;
+                }).ToList();
+
+                if (removeCityRelations.Count > 0)
+                {
+                    Delete(removeCityRelations);
+                }
+
+                if (addCityRelations.Count > 0)
+                {
+                    Add(addCityRelations);
+                }
+                result = true;
+            }
+            catch (Exception ex) {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public static List<CityRelation> Delete(List<CityRelation> cityRelations)
+        {
+            TN db = new TN();
+            List<string> idrelations = cityRelations.Select(mod=> {
+                return mod.idrelation;
+            }).ToList();
+            db.CityRelations.RemoveRange(db.CityRelations.Where(en => idrelations.Contains(en.idrelation)));
+           
+            db.SaveChanges();
+            return cityRelations;
         }
 
         public static List<CityRelation> Add(List<CityRelation> cityRelations)

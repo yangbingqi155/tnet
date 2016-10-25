@@ -12,7 +12,7 @@ namespace TCom.EF
         [Key]
         [StringLength(50)]
         public string idrelation { get; set; }
-
+        
         [StringLength(50)]
         public string idcity { get; set; }
 
